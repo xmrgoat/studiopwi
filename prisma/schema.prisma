@@ -1,0 +1,41 @@
+// Prisma schema — Swiss web studio
+// Run `pnpm db:push` to sync the SQLite dev DB.
+// For prod, swap the datasource to Postgres and run migrations.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  name      String
+  email     String
+  company   String?
+  message   String
+  tier      String? // showcase | growth | partnership | null
+  source    String? // hero | services | final-cta | direct
+  locale    String   @default("fr")
+  userAgent String?
+  ip        String?
+
+  @@index([createdAt])
+  @@index([email])
+}
+
+model NewsletterSubscriber {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  email        String   @unique
+  confirmed    Boolean  @default(false)
+  confirmToken String?  @unique
+  locale       String   @default("fr")
+  source       String?
+
+  @@index([createdAt])
+}

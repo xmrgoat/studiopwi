@@ -1,0 +1,133 @@
+.footer {
+  position: relative;
+  padding-block: 112px 40px;
+  background: var(--color-bg);
+  overflow: hidden;
+  border-top: 1px solid var(--color-line);
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: 1.3fr 1fr 1.4fr;
+    gap: var(--space-8);
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+  max-width: 22ch;
+}
+
+.address {
+  font-style: normal;
+  font-size: var(--fs-small);
+  color: var(--color-ink-soft);
+  line-height: var(--lh-normal);
+}
+
+.list, .socials {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.socials {
+  flex-direction: row;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.list a,
+.socials a {
+  font-size: var(--fs-small);
+  color: var(--color-ink);
+  transition: color var(--duration-ui) var(--ease-smooth);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.list a::before {
+  content: "→";
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: var(--color-muted);
+  transform: translateX(-8px);
+  opacity: 0;
+  transition: transform var(--duration-ui) var(--ease-expo),
+              opacity var(--duration-ui) var(--ease-smooth);
+}
+
+.list a:hover::before {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.list a:hover {
+  color: var(--color-brand-deep);
+}
+
+.socials a {
+  letter-spacing: var(--ls-tight);
+}
+
+.socials a::after {
+  content: "↗";
+  font-size: 0.85em;
+  margin-left: 0.25em;
+  transition: transform var(--duration-ui) var(--ease-expo);
+}
+
+.socials a:hover::after {
+  transform: translate(2px, -2px);
+}
+
+.legalRow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-9);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-line);
+  position: relative;
+  z-index: 1;
+}
+
+.wordmark {
+  position: absolute;
+  right: -3vw;
+  bottom: -6vw;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 28vw, 28rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-line-strong);
+  text-stroke: 1px var(--color-line-strong);
+  pointer-events: none;
+  line-height: 0.85;
+  user-select: none;
+  z-index: 0;
+}

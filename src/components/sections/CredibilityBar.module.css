@@ -1,0 +1,86 @@
+.section {
+  padding-block: 80px;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-bg);
+  position: relative;
+}
+
+.label {
+  text-align: center;
+  margin-bottom: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65em;
+  width: 100%;
+  justify-content: center;
+}
+
+.label::before,
+.label::after {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--color-line-strong);
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right,
+    transparent 0,
+    black 120px,
+    black calc(100% - 120px),
+    transparent 100%);
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0,
+    black 120px,
+    black calc(100% - 120px),
+    transparent 100%);
+}
+
+.track {
+  list-style: none;
+  display: flex;
+  gap: 96px;
+  width: max-content;
+  will-change: transform;
+  align-items: center;
+}
+
+.logo {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 96px;
+  height: 32px;
+}
+
+.logo::after {
+  content: "";
+  width: 3px;
+  height: 3px;
+  background: var(--color-line-strong);
+  border-radius: 50%;
+  display: block;
+}
+
+.logo:last-child::after {
+  display: none;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  opacity: 0.4;
+  transition: opacity var(--duration-ui) var(--ease-smooth),
+              letter-spacing var(--duration-ui) var(--ease-smooth);
+  letter-spacing: var(--ls-tight);
+  white-space: nowrap;
+}
+
+.logoText:hover {
+  opacity: 1;
+  letter-spacing: -0.01em;
+}

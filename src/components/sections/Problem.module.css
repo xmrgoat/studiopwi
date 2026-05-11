@@ -1,0 +1,111 @@
+.section {
+  position: relative;
+  background: var(--color-ink-deep);
+  overflow: hidden;
+}
+
+/* Subtle topographic dot pattern */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(130, 205, 157, 0.18) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.4;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+.section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-9);
+  align-items: end;
+}
+
+@media (min-width: 1024px) {
+  .header {
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+.headline {
+  font-size: var(--fs-h1);
+  color: var(--color-bg);
+  max-width: 18ch;
+}
+
+.lead {
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  color: rgba(239, 236, 230, 0.7);
+  max-width: 52ch;
+}
+
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  border-top: 1px solid rgba(239, 236, 230, 0.12);
+  padding-top: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+  padding-right: var(--space-4);
+}
+
+.number {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 4.5rem;
+  color: var(--color-brand);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-2);
+}
+
+.cardTitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-bg);
+}
+
+.cardBody {
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  color: rgba(239, 236, 230, 0.72);
+  max-width: 38ch;
+}
+
+.divider {
+  display: block;
+  height: 1px;
+  background: var(--color-brand);
+  margin-top: var(--space-3);
+  transform-origin: left center;
+  width: 56px;
+}

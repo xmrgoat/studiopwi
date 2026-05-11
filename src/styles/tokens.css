@@ -1,0 +1,91 @@
+/* Design tokens — single source of truth.
+ * Editorial Swiss × organic field-notes. */
+
+:root {
+  /* --- Color · 60/30/10 --- */
+  --color-bg: #efece6;
+  --color-bg-elevated: #f5f3ed;
+  --color-bg-warm: #ebe7df;
+
+  --color-brand: #82cd9d;
+  --color-brand-soft: #c1e5cc;
+  --color-brand-light: #e6f1ea;
+  --color-brand-deep: #5fa67e;
+
+  --color-ink: #2f6052;
+  --color-ink-soft: #4d7d70;
+  --color-ink-deep: #15302a;
+
+  --color-line: rgba(21, 48, 42, 0.1);
+  --color-line-strong: rgba(21, 48, 42, 0.22);
+  --color-muted: rgba(21, 48, 42, 0.55);
+
+  --color-focus: var(--color-ink);
+
+  /* --- Type scale --- */
+  --fs-display: clamp(3.75rem, 8vw, 8.5rem);
+  --fs-h1: clamp(2.5rem, 4.5vw, 4.5rem);
+  --fs-h2: clamp(1.875rem, 2.75vw, 2.75rem);
+  --fs-h3: clamp(1.25rem, 1.5vw, 1.625rem);
+  --fs-body: clamp(1rem, 1.05vw, 1.0625rem);
+  --fs-small: 0.875rem;
+  --fs-micro: 0.6875rem;
+
+  --lh-display: 0.98;
+  --lh-tight: 1.05;
+  --lh-snug: 1.15;
+  --lh-normal: 1.45;
+  --lh-loose: 1.65;
+
+  --ls-display: -0.035em;
+  --ls-tight: -0.022em;
+  --ls-normal: -0.005em;
+  --ls-wide: 0.12em;
+  --ls-mono: 0.16em;
+
+  /* Font stacks (loaded via next/font in layout.tsx) */
+  --font-display: var(--font-fraunces), "Times New Roman", serif;
+  --font-body: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* --- Spacing · 8px base --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+  --space-9: 128px;
+  --space-10: 192px;
+
+  --section-py: clamp(112px, 13vw, 208px);
+
+  /* --- Layout --- */
+  --content-max: 1440px;
+  --gutter: 24px;
+  --side-pad: clamp(24px, 5vw, 96px);
+
+  /* --- Motion --- */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 0.3s;
+  --duration-ui: 0.5s;
+  --duration-reveal: 0.9s;
+
+  /* --- Radii (Swiss: small or none) --- */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter: 16px;
+    --side-pad: 24px;
+  }
+}

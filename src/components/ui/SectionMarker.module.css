@@ -1,0 +1,41 @@
+.marker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: var(--space-5);
+  font-feature-settings: "tnum";
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background: var(--color-brand);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 0.25em;
+}
+
+.number, .label {
+  color: inherit;
+}
+
+.number {
+  color: var(--color-ink);
+}
+
+.slash {
+  opacity: 0.35;
+}
+
+:global(.section--dark) .number {
+  color: var(--color-bg);
+}
+:global(.section--dark) .marker {
+  color: rgba(239, 236, 230, 0.55);
+}

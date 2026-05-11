@@ -1,0 +1,81 @@
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import SmoothScroll from "@/components/layout/SmoothScroll";
+import GrainOverlay from "@/components/layout/GrainOverlay";
+import { site } from "@/content/site";
+import "./globals.css";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  axes: ["opsz", "SOFT"],
+  display: "swap",
+  preload: true,
+});
+
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+  preload: true,
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+  preload: false,
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
+  title: {
+    default: `${site.name} — ${site.tagline}`,
+    template: `%s · ${site.name}`,
+  },
+  description:
+    "Premium websites that generate qualified leads for craft-driven Swiss landscapers.",
+  applicationName: site.name,
+  authors: [{ name: site.name }],
+  openGraph: {
+    type: "website",
+    locale: "fr_CH",
+    siteName: site.name,
+    title: `${site.name} — ${site.tagline}`,
+    description:
+      "Premium websites for Swiss landscapers. Niche-only studio, transparent pricing, 90-day guarantee.",
+    images: ["/images/og.png"],
+  },
+  twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#efefef" },
+    { media: "(prefers-color-scheme: dark)", color: "#1d3a32" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
+      lang="fr-CH"
+      className={`${fraunces.variable} ${geist.variable} ${geistMono.variable}`}
+    >
+      <body>
+        <SmoothScroll />
+        {children}
+        <GrainOverlay />
+      </body>
+    </html>
+  );
+}

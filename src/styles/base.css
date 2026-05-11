@@ -1,0 +1,127 @@
+/* Base styles — body, type defaults, container, focus. */
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  letter-spacing: var(--ls-normal);
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* Display & headings */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-display);
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+}
+h2 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+}
+h3 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+}
+
+p {
+  max-width: 62ch;
+  line-height: var(--lh-loose);
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+/* Focus — visible on every interactive element. */
+:focus-visible {
+  outline: 1.5px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: var(--radius-xs);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--side-pad);
+}
+
+/* Dark-inverted sections (Problem, Why Us) */
+.section--dark {
+  background: var(--color-ink-deep);
+  color: var(--color-bg);
+}
+.section--dark h1,
+.section--dark h2,
+.section--dark h3 {
+  color: var(--color-bg);
+}
+.section--dark :focus-visible {
+  outline-color: var(--color-brand);
+}
+
+/* Italic accent — §8.2 rule */
+.accent {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-brand);
+  letter-spacing: -0.02em;
+}
+
+/* Mono utility */
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-feature-settings: "tnum";
+}
+
+/* Reduced motion — global guarantee */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Section vertical rhythm */
+.section {
+  padding-block: var(--section-py);
+  position: relative;
+}
+
+/* Editorial signature: a tiny vertical hairline behind section headers */
+.section[data-numbered]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--side-pad);
+  width: 1px;
+  height: var(--space-6);
+  background: linear-gradient(to bottom, transparent, var(--color-line-strong));
+  pointer-events: none;
+}

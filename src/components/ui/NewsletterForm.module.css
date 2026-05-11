@@ -1,0 +1,66 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 360px;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-line-strong);
+  padding-block: var(--space-2);
+}
+
+.inputRow input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: var(--fs-body);
+  color: inherit;
+}
+
+.inputRow input::placeholder {
+  color: var(--color-muted);
+}
+
+.inputRow input:focus {
+  outline: none;
+}
+
+.inputRow button {
+  background: transparent;
+  border: 0;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  padding-inline: var(--space-2);
+  transition: transform var(--duration-ui) var(--ease-expo);
+}
+
+.inputRow button:hover {
+  transform: translateX(4px);
+}
+
+.inputRow button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.error {
+  font-size: var(--fs-small);
+  color: #c0392b;
+}
+
+.success {
+  font-size: var(--fs-small);
+  color: var(--color-ink);
+}
