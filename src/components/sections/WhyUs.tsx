@@ -89,7 +89,7 @@ export default function WhyUs() {
 
         <div className={styles.flow}>
           <div className={styles.process}>
-            <h3 className={`mono ${styles.processTitle}`}>How it works</h3>
+            <h3 className={`mono ${styles.processTitle}`}>Notre démarche</h3>
             <ol className={styles.steps}>
               {whyUs.process.map((s) => (
                 <li key={s.number} className={styles.step}>

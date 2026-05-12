@@ -52,36 +52,40 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
   if (status === "success") {
     return (
       <div className={styles.success} role="status" aria-live="polite">
-        <p className="mono">MESSAGE REÇU</p>
-        <p>Merci. On revient vers vous sous 24h ouvrées.</p>
+        <p className={styles.successLabel}>Message reçu</p>
+        <p className={styles.successText}>Merci. On revient vers vous sous 24h ouvrées.</p>
       </div>
     );
   }
 
   return (
     <form className={styles.form} onSubmit={onSubmit} noValidate>
-      <label className={styles.field}>
-        <span className={styles.label}>Nom</span>
-        <input
-          type="text"
-          name="name"
-          required
-          minLength={2}
-          maxLength={120}
-          autoComplete="name"
-        />
-      </label>
+      <div className={styles.row}>
+        <label className={styles.field}>
+          <span className={styles.label}>Nom</span>
+          <input
+            type="text"
+            name="name"
+            required
+            minLength={2}
+            maxLength={120}
+            autoComplete="name"
+            placeholder="Jean Dupont"
+          />
+        </label>
 
-      <label className={styles.field}>
-        <span className={styles.label}>Email</span>
-        <input
-          type="email"
-          name="email"
-          required
-          maxLength={200}
-          autoComplete="email"
-        />
-      </label>
+        <label className={styles.field}>
+          <span className={styles.label}>Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            maxLength={200}
+            autoComplete="email"
+            placeholder="jean@entreprise.ch"
+          />
+        </label>
+      </div>
 
       <label className={styles.field}>
         <span className={styles.label}>Société (optionnel)</span>
@@ -90,12 +94,20 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
           name="company"
           maxLength={120}
           autoComplete="organization"
+          placeholder="Jardins Dupont Sàrl"
         />
       </label>
 
       <label className={styles.field}>
         <span className={styles.label}>Message</span>
-        <textarea name="message" required minLength={10} maxLength={4000} rows={5} />
+        <textarea
+          name="message"
+          required
+          minLength={10}
+          maxLength={4000}
+          rows={5}
+          placeholder="Décrivez votre projet, votre activité, vos objectifs…"
+        />
       </label>
 
       {/* Honeypot — hidden from humans, traps bots. */}
@@ -110,9 +122,11 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
         </p>
       )}
 
-      <Button type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? "Envoi…" : "Envoyer"}
-      </Button>
+      <div className={styles.submit}>
+        <Button type="submit" disabled={status === "submitting"}>
+          {status === "submitting" ? "Envoi…" : "Envoyer le message"}
+        </Button>
+      </div>
     </form>
   );
 }

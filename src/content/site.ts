@@ -88,7 +88,7 @@ export const site = {
     claim: {
       before: "Nous travaillons avec",
       accent: "des paysagistes uniquement.",
-      after: "On sait ce qui fonctionne.",
+      after: "",
     },
     badges: [
       "100% suisse. Basés en Romandie.",
@@ -138,6 +138,72 @@ export const site = {
       secondary: { label: "Ou écrivez-nous — hello@studio.ch", href: "mailto:hello@studio.ch" },
       founder: { name: "Riff", role: "fondateur", photo: "/images/founder.webp" },
     },
+  },
+
+  contact: {
+    marker: { number: "06", label: "CONTACT" },
+    headline: {
+      before: "Parlons de",
+      accent: "votre projet.",
+      after: "",
+    },
+    lead: "Dites-nous où vous en êtes. On vous répond sous 24h ouvrées.",
+    info: [
+      { label: "Email", value: "hello@studio.ch" },
+      { label: "Délai de réponse", value: "Sous 24h ouvrées" },
+      { label: "Basés à", value: "Neuchâtel, Suisse" },
+    ],
+  },
+
+  faq: {
+    marker: { number: "07", label: "FAQ" },
+    headline: {
+      before: "Questions",
+      accent: "fréquentes.",
+      after: "",
+    },
+    items: [
+      {
+        question: "Combien coûte un site web pour paysagiste ?",
+        answer:
+          "Nos offres démarrent à CHF 600 pour une présence simple et vont jusqu'à CHF 3'200 pour un site complet orienté conversion. Le prix dépend du nombre de pages, des fonctionnalités et du niveau de personnalisation.",
+      },
+      {
+        question: "Combien de temps faut-il pour créer mon site ?",
+        answer:
+          "Entre 1 et 3 semaines selon l'offre choisie. Dès que nous avons vos contenus (logo, photos, textes), nous respectons les délais convenus.",
+      },
+      {
+        question: "Est-ce que je peux modifier le site moi-même après livraison ?",
+        answer:
+          "Oui. Nous livrons un site simple à mettre à jour, et nous vous formons à l'utilisation. Vous restez autonome.",
+      },
+      {
+        question: "Travaillez-vous uniquement avec des paysagistes ?",
+        answer:
+          "Oui, c'est notre spécialité. Cette focalisation nous permet de comprendre votre métier, votre clientèle et ce qui fonctionne réellement dans votre secteur.",
+      },
+      {
+        question: "Mon site sera-t-il visible sur Google ?",
+        answer:
+          "Toutes nos offres incluent les bases du SEO local : balises optimisées, structure claire, vitesse de chargement. L'offre Croissance intègre un SEO plus avancé avec optimisation continue.",
+      },
+      {
+        question: "Que se passe-t-il si je ne suis pas satisfait ?",
+        answer:
+          "Nous travaillons en révisions validées à chaque étape pour éviter les mauvaises surprises. En cas de désaccord, nous cherchons une solution — votre satisfaction est notre priorité.",
+      },
+    ],
+  },
+
+  ctaBanner: {
+    headline: {
+      before: "Prêt à décrocher",
+      accent: "plus de chantiers ?",
+      after: "",
+    },
+    lead: "Réservez un appel découverte gratuit. On vous dit en 30 minutes si on peut vous aider.",
+    cta: { label: "Démarrer un projet", href: "#contact" },
   },
 
   footer: {

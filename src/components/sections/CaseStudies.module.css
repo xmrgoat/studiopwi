@@ -84,7 +84,7 @@
   display: inline-block;
   padding: 6px 12px;
   background: transparent;
-  color: var(--color-brand-deep);
+  color: var(--color-ink);
   border: 1px solid var(--color-brand);
   align-self: flex-start;
   font-size: var(--fs-micro);
@@ -117,7 +117,7 @@
 .facts dd {
   font-size: var(--fs-body);
   line-height: var(--lh-normal);
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
 }
 
 .result {
@@ -137,7 +137,7 @@
 .resultLabel {
   font-size: var(--fs-small);
   font-family: var(--font-body);
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
   margin-left: var(--space-3);
   align-self: end;
   max-width: 26ch;

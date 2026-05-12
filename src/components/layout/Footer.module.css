@@ -39,7 +39,7 @@
 .address {
   font-style: normal;
   font-size: var(--fs-small);
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
   line-height: var(--lh-normal);
 }
 
@@ -84,7 +84,7 @@
 }
 
 .list a:hover {
-  color: var(--color-brand-deep);
+  color: var(--color-ink-deep);
 }
 
 .socials a {

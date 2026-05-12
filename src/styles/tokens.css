@@ -8,6 +8,7 @@
   --color-bg-warm: #ebe7df;
 
   --color-brand: #82cd9d;
+  --color-brand-text: #3d8c68;
   --color-brand-soft: #c1e5cc;
   --color-brand-light: #e6f1ea;
   --color-brand-deep: #5fa67e;
@@ -18,7 +19,7 @@
 
   --color-line: rgba(21, 48, 42, 0.1);
   --color-line-strong: rgba(21, 48, 42, 0.22);
-  --color-muted: rgba(21, 48, 42, 0.55);
+  --color-muted: rgba(21, 48, 42, 0.72);
 
   --color-focus: var(--color-ink);
 

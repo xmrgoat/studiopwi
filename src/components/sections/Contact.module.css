@@ -1,0 +1,127 @@
+.section {
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-9);
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+}
+
+/* Left column */
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.headline {
+  font-size: var(--fs-h2);
+  color: var(--color-ink);
+  max-width: 18ch;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+}
+
+.lead {
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  color: var(--color-muted);
+  max-width: 38ch;
+}
+
+/* Info list — email / response time */
+.infoList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.infoLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.infoValue {
+  font-size: var(--fs-body);
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+/* Right column — form card */
+.right {
+  background: var(--color-ink-deep);
+  border-top: 3px solid var(--color-brand);
+  padding: var(--space-7) var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle dot texture on form card */
+.right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(130, 205, 157, 0.12) 1px, transparent 0);
+  background-size: 28px 28px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Dark card overrides for ContactForm inputs */
+.right :global([class*="label"]) {
+  color: rgba(239, 236, 230, 0.5);
+}
+
+.right :global(input),
+.right :global(textarea) {
+  background: rgba(239, 236, 230, 0.05);
+  border-color: rgba(239, 236, 230, 0.12);
+  color: var(--color-bg);
+}
+
+.right :global(input::placeholder),
+.right :global(textarea::placeholder) {
+  color: rgba(239, 236, 230, 0.25);
+}
+
+.right :global(input:focus),
+.right :global(textarea:focus) {
+  background: rgba(239, 236, 230, 0.08);
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(130, 205, 157, 0.12);
+}
+
+.right :global([class*="successLabel"]) {
+  color: var(--color-brand);
+}
+
+.right :global([class*="successText"]) {
+  color: var(--color-bg);
+}
+
+.right :global([class*="success"]) {
+  background: rgba(239, 236, 230, 0.05);
+}

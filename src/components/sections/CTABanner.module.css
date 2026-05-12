@@ -1,0 +1,67 @@
+.section {
+  background: var(--color-ink-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Topographic dot texture — matches Problem section */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(130, 205, 157, 0.15) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.45;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  max-width: 720px;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    max-width: 100%;
+    gap: var(--space-8);
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Brand accent hairline above headline */
+.copy::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--color-brand);
+  margin-bottom: var(--space-2);
+}
+
+.headline {
+  font-size: clamp(1.875rem, 3.5vw, 3rem);
+  color: var(--color-bg);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+}
+
+.lead {
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  color: rgba(239, 236, 230, 0.65);
+  max-width: 52ch;
+}
+

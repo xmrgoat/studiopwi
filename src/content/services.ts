@@ -8,6 +8,7 @@ export type Service = {
   duration: string;
   description: string;
   features: readonly string[];
+  payment?: string;
   cta: { label: string; href: string };
   featured?: boolean;
 };
@@ -20,43 +21,50 @@ export const services = {
     after: "en ligne.",
   },
   intro:
-    "Des offres claires, pensées pour les paysagistes suisses qui veulent plus de visibilité, plus de confiance et plus de demandes de chantier.",
+    "Chaque offre est conçue pour aider votre entreprise à être trouvée, inspirer confiance et convertir les visiteurs en demandes concrètes.",
   reassurance:
     "Toutes les formules incluent : garantie satisfaction 90 jours · CHF, sans frais cachés · Hébergement suisse · Interlocuteur unique",
   tiers: [
     {
       id: "showcase",
-      tag: "ESSENTIEL",
-      title: "Site Vitrine",
-      price: "CHF 3'900",
-      duration: "3 semaines",
+      tag: "LANCEMENT",
+      title: "Être présent et crédible",
+      price: "CHF 600 – 1'200",
+      duration: "1 à 2 semaines",
       description:
-        "Un beau site de 5 pages construit autour de vos réalisations. Mobile-first, rapide, prêt pour le SEO.",
+        "Pour les indépendants et petites entreprises qui veulent une présence professionnelle rapidement, sans complexité inutile.",
       features: [
-        "Design sur-mesure (sans templates)",
-        "5 pages clés",
-        "Bases SEO local",
-        "Formulaire de contact + Google Maps",
-        "1 an d'hébergement inclus",
+        "Jusqu'à 5 pages essentielles",
+        "Une langue, une zone d'intervention",
+        "Design adapté mobile",
+        "Branding appliqué à votre image",
+        "Formulaire de contact avec notifications email",
+        "SEO de base",
+        "1 révision",
       ],
-      cta: { label: "Choisir Vitrine", href: "#contact?tier=showcase" },
+      payment: "Paiement : 100% après livraison",
+      cta: { label: "Créer ma présence en ligne", href: "#contact?tier=showcase" },
     },
     {
       id: "growth",
-      tag: "LE PLUS POPULAIRE",
-      title: "Site Croissance",
-      price: "CHF 5'900",
-      duration: "5 semaines",
+      tag: "CROISSANCE",
+      title: "Générer plus de demandes",
+      price: "CHF 1'400 – 3'200",
+      duration: "2 à 3 semaines",
       description:
-        "Tout ce qu'inclut Vitrine, plus un système de portfolio, un blog et une optimisation continue pendant 3 mois.",
+        "Pour les entreprises qui veulent un site plus complet, capable de rassurer les prospects et de transformer les visites en leads.",
       features: [
-        "Portfolio avec pages projets",
-        "Blog / journal",
-        "SEO local avancé",
-        "Création fiche Google Business",
-        "3 mois d'optimisation inclus",
+        "6 à 8 pages structurées",
+        "Jusqu'à 2 langues",
+        "Mise en page personnalisée à votre marque",
+        "Textes améliorés et orientés conversion",
+        "Appels à l'action, formulaires",
+        "Blog + intégration email",
+        "SEO amélioré + optimisation performance",
+        "2 révisions",
       ],
-      cta: { label: "Choisir Croissance", href: "#contact?tier=growth" },
+      payment: "Paiement : 40% d'acompte / 40% avant lancement / 20% après lancement",
+      cta: { label: "Attirer plus de leads", href: "#contact?tier=growth" },
       featured: true,
     },
     {

@@ -25,7 +25,7 @@
 .intro {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
   max-width: 50ch;
 }
 
@@ -91,7 +91,7 @@
 
 .tag {
   letter-spacing: var(--ls-mono);
-  color: var(--color-brand-deep);
+  color: var(--color-ink);
   margin-bottom: var(--space-3);
 }
 
@@ -106,7 +106,7 @@
 
 .price {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 3.5vw, 3rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 400;
   color: var(--color-ink);
   letter-spacing: var(--ls-display);
@@ -122,7 +122,7 @@
 .description {
   font-size: var(--fs-small);
   line-height: var(--lh-normal);
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
   margin-top: var(--space-2);
 }
 
@@ -138,7 +138,7 @@
   font-size: var(--fs-small);
   padding-left: 1.5em;
   position: relative;
-  color: var(--color-ink-soft);
+  color: var(--color-ink);
   line-height: var(--lh-normal);
 }
 

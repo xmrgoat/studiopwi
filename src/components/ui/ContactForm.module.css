@@ -2,7 +2,19 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  max-width: 480px;
+}
+
+/* Two-column grid for Name + Email */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 540px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .field {
@@ -16,26 +28,44 @@
   font-size: var(--fs-micro);
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-ink);
 }
 
 .field input,
 .field textarea {
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--color-line-strong);
-  padding: var(--space-3) 0;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 2px;
+  padding: var(--space-3) var(--space-3);
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  color: inherit;
+  color: var(--color-ink);
   resize: vertical;
-  transition: border-color var(--duration-ui) var(--ease-smooth);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 0.6;
 }
 
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-bottom-color: var(--color-ink);
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(130, 205, 157, 0.15);
+  background: var(--color-bg);
+}
+
+.field input:user-invalid,
+.field textarea:user-invalid {
+  border-color: #c0392b;
 }
 
 .honeypot {
@@ -49,14 +79,35 @@
 .error {
   font-size: var(--fs-small);
   color: #c0392b;
+  padding: var(--space-2) var(--space-3);
+  border-left: 2px solid #c0392b;
+  background: rgba(192, 57, 43, 0.06);
 }
 
+.submit {
+  margin-top: var(--space-2);
+}
+
+/* Success state */
 .success {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding: var(--space-5);
-  border: 1px solid var(--color-line-strong);
-  border-radius: 16px;
+  padding: var(--space-6) var(--space-5);
+  border-top: 2px solid var(--color-brand);
   background: var(--color-bg-elevated);
+}
+
+.successLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-brand-text);
+}
+
+.successText {
+  font-size: var(--fs-body);
+  color: var(--color-ink);
+  line-height: var(--lh-loose);
 }
