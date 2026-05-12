@@ -13,8 +13,8 @@ export default function SmoothScroll() {
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 0.8,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
     });
 
@@ -22,7 +22,7 @@ export default function SmoothScroll() {
 
     const raf = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     const onAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;

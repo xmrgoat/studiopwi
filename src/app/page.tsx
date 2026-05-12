@@ -1,7 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-import CredibilityBar from "@/components/sections/CredibilityBar";
 import Problem from "@/components/sections/Problem";
 import Services from "@/components/sections/Services";
 import CaseStudies from "@/components/sections/CaseStudies";
@@ -35,7 +34,7 @@ export default function HomePage() {
       <Header />
       <main id="main">
         <Hero />
-        <CredibilityBar />
+        {/* TODO: CredibilityBar — "Trusted by Swiss landscapers" logo strip */}
         <Problem />
         <Services />
         <CaseStudies />

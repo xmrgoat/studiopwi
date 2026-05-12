@@ -15,10 +15,10 @@ export type CaseStudy = {
 };
 
 export const cases = {
-  marker: { number: "04", label: "SELECTED WORK" },
+  marker: { number: "04", label: "RÉALISATIONS" },
   headline: {
-    before: "Three landscapers.\nThree different",
-    accent: "roots.",
+    before: "Trois paysagistes.\nTrois",
+    accent: "histoires différentes.",
     after: "",
   },
   items: [
@@ -27,63 +27,63 @@ export const cases = {
       client: "Jardins Dupont",
       location: "Lausanne, VD",
       year: 2025,
-      tag: "SHOWCASE SITE",
+      tag: "SITE VITRINE",
       image: {
         src: "/images/case-studies/dupont.webp",
-        alt: "Editorial garden shot — Jardins Dupont",
+        alt: "Photo éditoriale de jardin — Jardins Dupont",
       },
       challenge:
-        "A family business with 30 years of work hidden in a folder.",
+        "Une entreprise familiale avec 30 ans de réalisations cachées dans un dossier.",
       solution:
-        "Editorial portfolio site with seasonal photography rotation.",
+        "Site portfolio éditorial avec rotation saisonnière de photographies.",
       resultNumber: 180,
       resultUnit: "%",
-      resultLabel: "qualified leads in 6 months",
+      resultLabel: "leads qualifiés en 6 mois",
       quote:
-        "We finally have a site that looks like our gardens — not like everyone else's.",
-      attribution: { name: "Marie Dupont", role: "Co-founder" },
+        "On a enfin un site qui ressemble à nos jardins — pas à celui de tout le monde.",
+      attribution: { name: "Marie Dupont", role: "Co-fondatrice" },
     },
     {
       slug: "paysage-muller",
       client: "Paysage Müller",
       location: "Neuchâtel, NE",
       year: 2025,
-      tag: "GROWTH SITE",
+      tag: "SITE CROISSANCE",
       image: {
         src: "/images/case-studies/muller.webp",
-        alt: "Garden detail — Paysage Müller",
+        alt: "Détail de jardin — Paysage Müller",
       },
       challenge:
-        "New generation taking over, wanted to attract premium clients.",
+        "Nouvelle génération reprenant les rênes, souhaitait attirer une clientèle premium.",
       solution:
-        "Editorial site with blog, SEO content strategy, before/after sliders.",
+        "Site éditorial avec blog, stratégie de contenu SEO, sliders avant/après.",
       resultNumber: 35,
       resultUnit: "%",
-      resultLabel: "average project value uplift",
+      resultLabel: "d'augmentation de la valeur moyenne des projets",
       quote:
-        "I now spend less time chasing leads. The right ones come to us.",
-      attribution: { name: "Lukas Müller", role: "Director" },
+        "Je passe moins de temps à courir après les leads. Les bons viennent à nous.",
+      attribution: { name: "Lukas Müller", role: "Directeur" },
     },
     {
       slug: "vertch",
       client: "VertCH",
-      location: "Geneva, GE",
+      location: "Genève, GE",
       year: 2026,
-      tag: "PARTNERSHIP",
+      tag: "PARTENARIAT",
       image: {
         src: "/images/case-studies/vertch.webp",
-        alt: "Landscape architecture — VertCH",
+        alt: "Architecture paysagère — VertCH",
       },
       challenge:
-        "Strong reputation, weak digital presence. No time for marketing.",
+        "Solide réputation, faible présence digitale. Pas le temps pour le marketing.",
       solution:
-        "Full partnership: site + monthly content + Google Ads + seasonal shoots.",
+        "Partenariat complet : site + contenus mensuels + Google Ads + shootings saisonniers.",
       resultNumber: 12,
       resultUnit: "",
-      resultLabel: "inbound qualified leads per month in 90 days",
+      resultLabel: "leads qualifiés entrants par mois en 90 jours",
       quote:
-        "It feels like having a marketing team without the overhead.",
-      attribution: { name: "Sophie Berger", role: "Owner" },
+        "C'est comme avoir une équipe marketing sans les contraintes.",
+      attribution: { name: "Sophie Berger", role: "Propriétaire" },
     },
   ] as const satisfies readonly CaseStudy[],
 } as const;

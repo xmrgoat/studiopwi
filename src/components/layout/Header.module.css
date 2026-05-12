@@ -29,17 +29,15 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  font-weight: 500;
-  letter-spacing: var(--ls-tight);
   color: inherit;
 }
 
-.mark {
-  font-size: 1.25rem;
-  color: var(--color-brand);
+.wordmark {
+  font-family: var(--font-megrim);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: inherit;
 }
 
 .nav {
@@ -48,6 +46,9 @@
 }
 
 .navLink {
+  display: inline-flex;
+  justify-content: center;
+  min-width: 88px;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   font-weight: 500;
@@ -55,11 +56,26 @@
   text-transform: uppercase;
   color: inherit;
   opacity: 0.9;
-  transition: opacity var(--duration-ui) var(--ease-smooth);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(239, 236, 230, 0.35);
+  transition: opacity var(--duration-ui) var(--ease-smooth),
+              border-color var(--duration-ui) var(--ease-smooth),
+              background var(--duration-ui) var(--ease-smooth);
 }
 
 .navLink:hover {
   opacity: 1;
+  border-color: rgba(239, 236, 230, 0.7);
+}
+
+.scrolled .navLink {
+  border-color: var(--color-line-strong);
+}
+
+.scrolled .navLink:hover {
+  border-color: var(--color-ink);
+  background: var(--color-bg-elevated);
 }
 
 .cta {

@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { site } from "@/content/site";
 import Button from "@/components/ui/Button";
 import ItalicAccent from "@/components/ui/ItalicAccent";
-import Counter from "@/components/motion/Counter";
 import SplitWords from "@/components/motion/SplitWords";
 import {
   gsap,
@@ -36,20 +35,11 @@ export default function Hero() {
       }
 
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-      tl.from(`.${styles.coord}`, { opacity: 0, duration: 1.2 })
-        .from(".eyebrow", { opacity: 0, y: 8, duration: 0.7 }, "-=0.9")
-        .from(
-          ".word > span",
-          { yPercent: 100, duration: 1, stagger: 0.05 },
-          "-=0.4",
-        )
-        .from(".lead", { opacity: 0, y: 16, duration: 0.7 }, "-=0.5")
-        .from(
-          ".ctas > *",
-          { opacity: 0, y: 8, duration: 0.5, stagger: 0.08 },
-          "-=0.4",
-        )
-        .from(".scroll-cue", { opacity: 0, duration: 0.5 }, "-=0.2");
+      tl.from(".word > span", { opacity: 0, y: 18, duration: 0.7, stagger: 0.03 }, 0)
+        .from(".eyebrow", { opacity: 0, y: 6, duration: 0.5 }, 0)
+        .from(".lead", { opacity: 0, y: 10, duration: 0.6 }, 0.2)
+        .from(".ctas > *", { opacity: 0, y: 6, duration: 0.5, stagger: 0.07 }, 0.3)
+        .from(`.${styles.coord}`, { opacity: 0, duration: 0.6 }, 0.1);
 
       const mm = gsap.matchMedia();
       mm.add("(min-width: 769px) and (prefers-reduced-motion: no-preference)", () => {
@@ -97,7 +87,7 @@ export default function Hero() {
     }
   }, []);
 
-  const { headline, metrics, video, primaryCta, secondaryCta } = site.hero;
+  const { headline, video, primaryCta, secondaryCta } = site.hero;
 
   return (
     <section ref={rootRef} className={styles.hero} id="top">
@@ -128,8 +118,8 @@ export default function Hero() {
           </p>
           <h1 className={styles.headline}>
             <SplitWords text={headline.before} />{" "}
-            <span className="word" style={{ display: "inline-block", overflow: "hidden" }}>
-              <span style={{ display: "inline-block" }}>
+            <span className={`word ${styles.accentWord}`}>
+              <span className={styles.accentInner}>
                 <ItalicAccent>{headline.accent}</ItalicAccent>
               </span>
             </span>{" "}
@@ -147,21 +137,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <ul className={`${styles.metrics} container`} aria-label="Studio metrics">
-        {metrics.map((m) => (
-          <li key={m.label}>
-            <strong>
-              <Counter value={m.value} suffix={"suffix" in m ? m.suffix : undefined} />
-            </strong>
-            <span className="mono">{m.label}</span>
-          </li>
-        ))}
-      </ul>
-
-      <a href="#trust" className={`scroll-cue ${styles.scrollCue}`} aria-label="Scroll to next section">
-        <span className="mono">Scroll</span>
-        <span className={styles.scrollLine} aria-hidden="true" />
-      </a>
     </section>
   );
 }

@@ -26,7 +26,6 @@ export default function Header() {
     <header ref={ref} className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo} aria-label={`${site.name} home`}>
-          <span className={styles.mark} aria-hidden="true">◐</span>
           <span className={styles.wordmark}>{site.name}</span>
         </Link>
 
@@ -40,7 +39,7 @@ export default function Header() {
 
         <div className={styles.cta}>
           <Button href="#contact" variant="primary">
-            Start a project
+            Démarrer un projet
           </Button>
         </div>
       </div>

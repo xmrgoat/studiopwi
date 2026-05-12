@@ -1,9 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono, Megrim } from "next/font/google";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import GrainOverlay from "@/components/layout/GrainOverlay";
 import { site } from "@/content/site";
 import "./globals.css";
+
+const megrim = Megrim({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-megrim",
+  display: "swap",
+  preload: true,
+});
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -69,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr-CH"
-      className={`${fraunces.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${megrim.variable} ${fraunces.variable} ${geist.variable} ${geistMono.variable}`}
     >
       <body>
         <SmoothScroll />

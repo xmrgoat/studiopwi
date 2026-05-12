@@ -12,13 +12,13 @@ export default function NotFound() {
     >
       <div style={{ textAlign: "center", maxWidth: "60ch" }}>
         <p className="mono" style={{ marginBottom: "var(--space-3)" }}>
-          404 / NOT FOUND
+          404 / PAGE INTROUVABLE
         </p>
         <h1 style={{ marginBottom: "var(--space-4)" }}>
-          This page has <span className="accent">grown elsewhere.</span>
+          Cette page a <span className="accent">poussé ailleurs.</span>
         </h1>
         <Link href="/" className="mono">
-          ← Back to home
+          ← Retour à l'accueil
         </Link>
       </div>
     </main>
