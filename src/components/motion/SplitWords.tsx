@@ -37,7 +37,7 @@ export default function SplitWords({
             key={`${id}-w-${i}`}
             className={wordClassName}
             aria-hidden="true"
-            style={{ display: "inline-block", overflow: "hidden" }}
+            style={{ display: "inline-block", overflow: "hidden", paddingBottom: "0.18em", marginBottom: "-0.18em" }}
           >
             <span style={{ display: "inline-block", willChange: "transform" }}>
               {token}

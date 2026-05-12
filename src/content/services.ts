@@ -20,7 +20,7 @@ export const services = {
     after: "en ligne.",
   },
   intro:
-    "Tarifs transparents. Délais clairs. Aucune surprise. Chaque formule est pensée autour de ce dont les paysagistes suisses ont vraiment besoin pour conquérir des clients locaux.",
+    "Des offres claires, pensées pour les paysagistes suisses qui veulent plus de visibilité, plus de confiance et plus de demandes de chantier.",
   reassurance:
     "Toutes les formules incluent : garantie satisfaction 90 jours · CHF, sans frais cachés · Hébergement suisse · Interlocuteur unique",
   tiers: [

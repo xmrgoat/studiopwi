@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Geist, Geist_Mono, Megrim } from "next/font/google";
+import { Fraunces, Geist, Megrim, Nunito_Sans } from "next/font/google";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import GrainOverlay from "@/components/layout/GrainOverlay";
 import { site } from "@/content/site";
@@ -9,6 +9,13 @@ const megrim = Megrim({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-megrim",
+  display: "swap",
+  preload: true,
+});
+
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  variable: "--font-nunito-sans",
   display: "swap",
   preload: true,
 });
@@ -28,12 +35,6 @@ const geist = Geist({
   preload: true,
 });
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-  display: "swap",
-  preload: false,
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -77,7 +78,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr-CH"
-      className={`${megrim.variable} ${fraunces.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${megrim.variable} ${fraunces.variable} ${geist.variable} ${nunitoSans.variable}`}
     >
       <body>
         <SmoothScroll />

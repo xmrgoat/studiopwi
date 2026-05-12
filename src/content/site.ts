@@ -26,7 +26,7 @@ export const site = {
       after: "qui veulent plus de projets.",
     },
     lead:
-      "Des sites web pour paysagistes suisses. Pensés pour faire croître votre activité — pas seulement votre présence en ligne.",
+      "Nous créons des sites web axés conversion pour les entreprises de paysagisme en Suisse afin d'attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs projets.",
     primaryCta: { label: "Démarrer un projet", href: "#contact" },
     secondaryCta: { label: "Voir nos réalisations", href: "#work" },
     metrics: [
@@ -60,25 +60,25 @@ export const site = {
       after: "",
     },
     lead:
-      "Un propriétaire reçoit deux devis. Il cherche les deux entreprises sur Google. L'une a un site soigné, des photos de réalisations, une adresse claire. L'autre n'a rien — ou presque. Il appelle le premier. Pas parce qu'il est meilleur. Parce qu'il inspire confiance.",
+      "Un propriétaire compare deux entreprises sur Google. L'une inspire confiance avec un site soigné, des photos réelles et des informations claires. L'autre paraît absente ou négligée. Il appelle la première. Pas forcément la meilleure. Celle qui rassure.",
     points: [
       {
         number: "01",
         title: "Introuvable au moment où ça compte",
         body:
-          "Quand un propriétaire tape « paysagiste [votre ville] » sur Google, il appelle les trois premiers résultats. Si vous n'y êtes pas, ce chantier n'existe pas pour vous — même si vous habitez à 2 km de chez lui.",
+          "Quand un propriétaire cherche « paysagiste [ville] », il contacte les premiers résultats. Si vous n'y êtes pas, le chantier part ailleurs.",
       },
       {
         number: "02",
         title: "Votre site dit le contraire de ce que vous faites",
         body:
-          "Un template Wix bricolé un dimanche soir, c'est le premier signal que les clients lisent. Avant votre devis. Avant votre réputation. Avant même de vous parler. Et ce signal dit : « les détails, ce n'est pas ma priorité. »",
+          "Un site bricolé donne une impression avant même le premier appel. Il peut faire croire que vos détails de finition ne sont pas une priorité.",
       },
       {
         number: "03",
         title: "Vos meilleurs chantiers restent invisibles",
         body:
-          "Vous avez des réalisations dont vous êtes fier. Elles sont enfouies dans votre téléphone, sur un Facebook que vous n'avez pas mis à jour depuis 2022, ou nulle part. Le prospect qui ne vous connaît pas a besoin de les voir — pas de les imaginer.",
+          "Vos meilleurs chantiers existent. Mais s'ils restent dans votre téléphone ou sur un ancien Facebook, vos prospects ne les voient pas. Ils ont besoin de preuves. Pas de promesses.",
       },
     ],
   },
