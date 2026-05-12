@@ -61,7 +61,7 @@
   --space-9: 128px;
   --space-10: 192px;
 
-  --section-py: clamp(112px, 13vw, 208px);
+  --section-py: clamp(64px, 7vw, 112px);
 
   /* --- Layout --- */
   --content-max: 1440px;

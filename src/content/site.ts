@@ -207,11 +207,6 @@ export const site = {
   },
 
   footer: {
-    newsletter: {
-      title: "Un email éditorial par saison.",
-      subtitle: "Pas de spam. Désinscription à tout moment.",
-      placeholder: "votre@email.com",
-    },
     legal: [
       { label: "Confidentialité", href: "/privacy" },
       { label: "CGU", href: "/terms" },

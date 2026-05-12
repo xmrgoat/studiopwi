@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { site } from "@/content/site";
-import NewsletterForm from "@/components/ui/NewsletterForm";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -26,7 +25,6 @@ export default function Footer() {
         </div>
 
         <div className={styles.col}>
-          <NewsletterForm source="footer" />
           <ul className={styles.socials}>
             {site.footer.socials.map((s) => (
               <li key={s.href}>
