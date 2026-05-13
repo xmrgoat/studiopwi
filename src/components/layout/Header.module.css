@@ -3,7 +3,7 @@
   inset: 0 0 auto 0;
   height: 72px;
   z-index: 100;
-  color: var(--color-bg);
+  color: var(--color-ink-deep);
   transition: background var(--duration-ui) var(--ease-smooth),
               backdrop-filter var(--duration-ui) var(--ease-smooth),
               color var(--duration-ui) var(--ease-smooth),

@@ -43,12 +43,8 @@
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(102deg,
-      rgba(57, 108, 94, 0.78) 0%,
-      rgba(57, 108, 94, 0.42) 42%,
-      rgba(57, 108, 94, 0.0) 78%),
     linear-gradient(to top,
-      rgba(57, 108, 94, 0.55) 0%,
+      rgba(57, 108, 94, 0.28) 0%,
       rgba(57, 108, 94, 0.0) 50%);
 }
 
@@ -114,9 +110,15 @@
 .headline :global(.accent) {
   font-family: var(--font-nunito-sans), sans-serif;
   font-style: normal;
-  font-weight: inherit;
-  color: var(--color-brand);
-  text-shadow: 0 2px 16px rgba(57, 108, 94, 0.55);
+  font-weight: 600;
+  color: var(--color-ink-deep);
+  font-size: 1.1em;
+  text-shadow: none;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: var(--color-brand);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
 
 .headline {
@@ -125,7 +127,7 @@
   font-weight: 400;
   letter-spacing: var(--ls-display);
   line-height: var(--lh-display);
-  color: var(--color-bg);
+  color: var(--color-ink-deep);
   text-wrap: balance;
   font-optical-sizing: auto;
 
@@ -134,7 +136,7 @@
 .lead {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
-  color: rgba(239, 239, 239, 0.82);
+  color: rgba(239, 239, 239, 1);
   max-width: 44ch;
   margin-top: 0;
 }
