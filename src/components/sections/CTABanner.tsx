@@ -7,7 +7,7 @@ export default function CTABanner() {
   const { ctaBanner } = site;
 
   return (
-    <section className={`section section--dark ${styles.section}`}>
+    <section className={`section ${styles.section}`}>
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.copy}>

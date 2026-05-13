@@ -72,8 +72,8 @@
 
 /* Right column — form card */
 .right {
-  background: var(--color-ink-deep);
-  border-top: 3px solid var(--color-brand);
+  background: var(--color-brand);
+  border-top: 3px solid var(--color-ink-deep);
   padding: var(--space-7) var(--space-6);
   position: relative;
   overflow: hidden;
@@ -84,44 +84,44 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(130, 205, 157, 0.12) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(57, 108, 94, 0.15) 1px, transparent 0);
   background-size: 28px 28px;
   pointer-events: none;
   opacity: 0.5;
 }
 
-/* Dark card overrides for ContactForm inputs */
+/* Light card overrides for ContactForm inputs */
 .right :global([class*="label"]) {
-  color: rgba(239, 239, 239, 0.5);
+  color: rgba(57, 108, 94, 0.75);
 }
 
 .right :global(input),
 .right :global(textarea) {
-  background: rgba(239, 239, 239, 0.05);
-  border-color: rgba(239, 239, 239, 0.12);
-  color: var(--color-bg);
+  background: rgba(239, 239, 239, 0.5);
+  border-color: rgba(57, 108, 94, 0.2);
+  color: var(--color-ink-deep);
 }
 
 .right :global(input::placeholder),
 .right :global(textarea::placeholder) {
-  color: rgba(239, 239, 239, 0.25);
+  color: rgba(57, 108, 94, 0.4);
 }
 
 .right :global(input:focus),
 .right :global(textarea:focus) {
-  background: rgba(239, 239, 239, 0.08);
-  border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(130, 205, 157, 0.12);
+  background: rgba(239, 239, 239, 0.7);
+  border-color: var(--color-ink-deep);
+  box-shadow: 0 0 0 3px rgba(57, 108, 94, 0.12);
 }
 
 .right :global([class*="successLabel"]) {
-  color: var(--color-brand);
+  color: var(--color-ink-deep);
 }
 
 .right :global([class*="successText"]) {
-  color: var(--color-bg);
+  color: var(--color-ink-deep);
 }
 
 .right :global([class*="success"]) {
-  background: rgba(239, 239, 239, 0.05);
+  background: rgba(239, 239, 239, 0.2);
 }

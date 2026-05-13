@@ -1,5 +1,5 @@
 .section {
-  background: var(--color-bg-warm);
+  background: var(--color-bg);
 }
 
 /* Two-column grid: header pinned left, accordion right */

@@ -73,10 +73,10 @@
 }
 
 .featured {
-  background: var(--color-brand-light);
+  background: var(--color-brand);
 }
 .featured:hover {
-  background: var(--color-brand-light);
+  background: var(--color-brand);
 }
 
 .cardIndex {
