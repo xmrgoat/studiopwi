@@ -22,9 +22,11 @@ export default function Header() {
       "height:80px;margin-bottom:-80px;pointer-events:none;visibility:hidden;";
     document.body.insertBefore(sentinel, document.body.firstChild);
 
-    const observer = new IntersectionObserver(([entry]) =>
-      header.classList.toggle(styles.scrolled, !entry.isIntersecting)
-    );
+    const observer = new IntersectionObserver((entries) => {
+      const e = entries[0];
+      if (!e) return;
+      header.classList.toggle(styles.scrolled ?? "scrolled", !e.isIntersecting);
+    });
     observer.observe(sentinel);
 
     return () => {
@@ -77,7 +79,7 @@ export default function Header() {
           type="button"
           className={styles.burger}
           onClick={() => setMobileOpen((v) => !v)}
-          aria-expanded={mobileOpen ? "true" : "false"}
+          aria-expanded={mobileOpen}
           aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
           <span className={`${styles.burgerLine} ${mobileOpen ? styles.burgerOpen : ""}`} />
@@ -87,7 +89,7 @@ export default function Header() {
       {/* Mobile drawer — slides down from header on small viewports */}
       <div
         className={`${styles.drawer} ${mobileOpen ? styles.drawerOpen : ""}`}
-        aria-hidden={!mobileOpen ? "true" : "false"}
+        aria-hidden={!mobileOpen}
         onClick={onDrawerClick}
       >
         <nav className={styles.drawerNav} aria-label="Mobile primary">

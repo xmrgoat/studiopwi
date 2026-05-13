@@ -85,6 +85,12 @@ p {
   letter-spacing: -0.02em;
 }
 
+/* On dark sections, brand-text (#396c5e) is invisible against ink-deep (#396c5e).
+   Switch to the lighter brand mint so the accent remains legible. */
+.section--dark .accent {
+  color: var(--color-brand);
+}
+
 /* Mono utility */
 .mono {
   font-family: var(--font-mono);

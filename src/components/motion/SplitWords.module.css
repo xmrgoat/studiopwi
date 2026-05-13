@@ -1,0 +1,11 @@
+.wordWrap {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+}
+
+.wordInner {
+  display: inline-block;
+  will-change: transform;
+}

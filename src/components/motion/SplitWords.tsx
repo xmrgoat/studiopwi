@@ -1,6 +1,8 @@
 "use client";
 
-import { useId } from "react";
+import { useId, type ElementType } from "react";
+import type { JSX } from "react";
+import styles from "./SplitWords.module.css";
 
 type Props = {
   text: string;
@@ -27,24 +29,24 @@ export default function SplitWords({
 }: Props) {
   const id = useId();
   const words = text.split(/(\s+)/);
+  const Comp = Tag as ElementType;
 
   return (
-    <Tag className={className} aria-label={text}>
+    <Comp className={className} aria-label={text}>
       {words.map((token, i) => {
         if (/^\s+$/.test(token)) return <span key={`${id}-s-${i}`}>{token}</span>;
         return (
           <span
             key={`${id}-w-${i}`}
-            className={wordClassName}
+            className={`${wordClassName} ${styles.wordWrap}`}
             aria-hidden="true"
-            style={{ display: "inline-block", overflow: "hidden", paddingBottom: "0.18em", marginBottom: "-0.18em" }}
           >
-            <span style={{ display: "inline-block", willChange: "transform" }}>
+            <span className={styles.wordInner}>
               {token}
             </span>
           </span>
         );
       })}
-    </Tag>
+    </Comp>
   );
 }

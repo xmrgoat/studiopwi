@@ -137,8 +137,8 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
       )}
 
       <div className={styles.submit}>
-        <Button type="submit" disabled={status === "submitting"}>
-          {status === "submitting" ? "Envoi…" : "Envoyer le message"}
+        <Button type="submit">
+          Envoyer le message
         </Button>
       </div>
     </form>

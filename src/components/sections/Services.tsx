@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { services } from "@/content/services";
+import { services, type Service } from "@/content/services";
 import SectionMarker from "@/components/ui/SectionMarker";
 import ItalicAccent from "@/components/ui/ItalicAccent";
 import Button from "@/components/ui/Button";
@@ -48,7 +48,7 @@ export default function Services() {
         </header>
 
         <ul className={styles.grid}>
-          {services.tiers.map((tier, idx) => (
+          {(services.tiers as readonly Service[]).map((tier, idx) => (
             <li
               key={tier.id}
               className={cn(styles.card, tier.featured && styles.featured)}
