@@ -64,7 +64,7 @@ export const services = {
         "2 révisions",
       ],
       payment: "Paiement : 40% d'acompte / 40% avant lancement / 20% après lancement",
-      cta: { label: "Attirer plus de leads", href: "#contact?tier=growth" },
+      cta: { label: "Attirer plus de prospects", href: "#contact?tier=growth" },
       featured: true,
     },
     {
