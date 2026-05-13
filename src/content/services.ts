@@ -23,7 +23,7 @@ export const services = {
   intro:
     "Chaque offre est conçue pour aider votre entreprise à être trouvée, inspirer confiance et convertir les visiteurs en demandes concrètes.",
   reassurance:
-    "Toutes les formules incluent : garantie satisfaction 90 jours · CHF, sans frais cachés · Hébergement suisse · Interlocuteur unique",
+    "Les demandes de révisions doivent être envoyées sous 48h. Après validation, toute modification supplémentaire est facturée séparément. Support post-lancement : 14 jours inclus.",
   tiers: [
     {
       id: "showcase",
