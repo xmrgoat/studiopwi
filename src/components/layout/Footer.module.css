@@ -1,9 +1,9 @@
 .footer {
   position: relative;
   padding-block: 112px 40px;
-  background: var(--color-bg);
+  background: var(--color-ink-deep);
   overflow: hidden;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid rgba(239, 239, 239, 0.1);
 }
 
 .inner {
@@ -30,7 +30,7 @@
 .tagline {
   font-family: var(--font-display);
   font-size: var(--fs-h3);
-  color: var(--color-ink);
+  color: var(--color-bg);
   letter-spacing: var(--ls-tight);
   line-height: var(--lh-snug);
   max-width: 22ch;
@@ -39,7 +39,7 @@
 .address {
   font-style: normal;
   font-size: var(--fs-small);
-  color: var(--color-ink);
+  color: rgba(239, 239, 239, 0.7);
   line-height: var(--lh-normal);
 }
 
@@ -59,7 +59,7 @@
 .list a,
 .socials a {
   font-size: var(--fs-small);
-  color: var(--color-ink);
+  color: rgba(239, 239, 239, 0.75);
   transition: color var(--duration-ui) var(--ease-smooth);
   position: relative;
   display: inline-flex;
@@ -71,7 +71,7 @@
   content: "→";
   font-family: var(--font-mono);
   font-size: 0.875em;
-  color: var(--color-muted);
+  color: var(--color-brand);
   transform: translateX(-8px);
   opacity: 0;
   transition: transform var(--duration-ui) var(--ease-expo),
@@ -84,7 +84,7 @@
 }
 
 .list a:hover {
-  color: var(--color-ink-deep);
+  color: var(--color-bg);
 }
 
 .socials a {
@@ -109,7 +109,7 @@
   gap: var(--space-3);
   margin-top: var(--space-9);
   padding-top: var(--space-4);
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid rgba(239, 239, 239, 0.1);
   position: relative;
   z-index: 1;
 }
@@ -124,8 +124,8 @@
   font-style: italic;
   letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px var(--color-line-strong);
-  text-stroke: 1px var(--color-line-strong);
+  -webkit-text-stroke: 1px rgba(239, 239, 239, 0.08);
+  text-stroke: 1px rgba(239, 239, 239, 0.08);
   pointer-events: none;
   line-height: 0.85;
   user-select: none;
