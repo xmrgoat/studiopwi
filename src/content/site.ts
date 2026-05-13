@@ -18,8 +18,6 @@ export const site = {
 
   hero: {
     eyebrow: "(CH) — Studio web pour paysagistes",
-    // The italic word/phrase per §8.2 — kept as a single token here.
-    // Component will render `accent` in Fraunces Italic + brand color.
     headline: {
       before: "Des sites web conçus pour les",
       accent: "paysagistes suisses",
