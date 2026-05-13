@@ -27,7 +27,7 @@ export default function Hero() {
 
     const ctx = gsap.context(() => {
       if (reduce) {
-        gsap.set([".eyebrow", ".lead", ".ctas > *", ".scroll-cue", `.${styles.coord}`], {
+        gsap.set([".eyebrow", ".lead", ".ctas > *", ".scroll-cue"], {
           opacity: 1,
         });
         gsap.set(".word > span", { y: 0 });
@@ -38,8 +38,7 @@ export default function Hero() {
       tl.from(".word > span", { opacity: 0, y: 18, duration: 0.7, stagger: 0.03 }, 0)
         .from(".eyebrow", { opacity: 0, y: 6, duration: 0.5 }, 0)
         .from(".lead", { opacity: 0, y: 10, duration: 0.6 }, 0.2)
-        .from(".ctas > *", { opacity: 0, y: 6, duration: 0.5, stagger: 0.07 }, 0.3)
-        .from(`.${styles.coord}`, { opacity: 0, duration: 0.6 }, 0.1);
+        .from(".ctas > *", { opacity: 0, y: 6, duration: 0.5, stagger: 0.07 }, 0.3);
 
       const mm = gsap.matchMedia();
       mm.add("(min-width: 769px) and (prefers-reduced-motion: no-preference)", () => {
@@ -106,11 +105,7 @@ export default function Hero() {
       </div>
       <div className={styles.scrim} aria-hidden="true" />
 
-      <span className={styles.coord} aria-hidden="true">
-        47.0°N · 6.9°E · CH
-      </span>
-
-      <div className={`container ${styles.inner}`}>
+<div className={`container ${styles.inner}`}>
         <div className={styles.text}>
           <p className={`eyebrow mono ${styles.eyebrow}`}>
             <span className={styles.eyebrowDot} aria-hidden="true" />

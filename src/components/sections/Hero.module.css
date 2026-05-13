@@ -48,21 +48,6 @@
       rgba(57, 108, 94, 0.0) 50%);
 }
 
-/* --- Vertical gutter coordinate (editorial signature) --- */
-.coord {
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  right: calc(var(--side-pad) / 3);
-  transform: translateY(-50%) rotate(180deg);
-  writing-mode: vertical-rl;
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-  color: rgba(239, 239, 239, 0.55);
-  white-space: nowrap;
-}
 
 /* --- Content --- */
 .inner {
