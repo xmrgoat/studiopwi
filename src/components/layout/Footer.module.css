@@ -177,8 +177,9 @@
 /* ── Ghost wordmark ── */
 .wordmark {
   position: absolute;
-  right: -2vw;
+  left: 50%;
   bottom: -4vw;
+  transform: translateX(-50%);
   font-family: var(--font-megrim);
   font-size: clamp(10rem, 32vw, 32rem);
   font-weight: 400;
