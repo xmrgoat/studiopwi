@@ -221,12 +221,12 @@
 
 /* Ghost button on dark hero */
 .ctas :global(a[class*="ghost"]) {
-  color: var(--color-bg);
-  border-color: rgba(239, 239, 239, 0.28);
+  color: var(--color-ink-deep);
+  border-color: rgba(57, 108, 94, 0.45);
 }
 .ctas :global(a[class*="ghost"]:hover) {
-  border-color: var(--color-bg);
-  background: rgba(239, 239, 239, 0.06);
+  border-color: var(--color-ink-deep);
+  background: rgba(57, 108, 94, 0.06);
 }
 
 @media (min-width: 1024px) {
