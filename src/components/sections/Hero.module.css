@@ -121,7 +121,7 @@
 .lead {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
-  color: rgba(239, 239, 239, 1);
+  color: rgba(57, 108, 94, 0.8);
   max-width: 44ch;
   margin-top: 0;
 }
