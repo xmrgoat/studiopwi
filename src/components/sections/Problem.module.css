@@ -43,7 +43,8 @@
   max-width: 18ch;
 }
 
-.headline :global(.accent) {
+.headline :global(.accent),
+.number :global(.accent) {
   color: var(--color-brand);
 }
 
