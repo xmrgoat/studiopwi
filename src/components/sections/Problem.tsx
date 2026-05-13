@@ -25,14 +25,6 @@ export default function Problem() {
         ease: "power3.out",
         scrollTrigger: { trigger: `.${styles.grid}`, start: "top 80%", once: true },
       });
-      gsap.from(`.${styles.divider}`, {
-        scaleX: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: "power2.out",
-        transformOrigin: "left center",
-        scrollTrigger: { trigger: `.${styles.grid}`, start: "top 75%", once: true },
-      });
     }, root);
 
     return () => ctx.revert();
@@ -62,7 +54,6 @@ export default function Problem() {
               </span>
               <h3 className={styles.cardTitle}>{p.title}</h3>
               <p className={styles.cardBody}>{p.body}</p>
-              <span aria-hidden="true" className={styles.divider} />
             </li>
           ))}
         </ul>

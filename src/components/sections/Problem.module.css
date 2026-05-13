@@ -100,12 +100,3 @@
   color: rgba(239, 239, 239, 0.72);
   max-width: 38ch;
 }
-
-.divider {
-  display: block;
-  height: 1px;
-  background: var(--color-brand);
-  margin-top: var(--space-3);
-  transform-origin: left center;
-  width: 56px;
-}
