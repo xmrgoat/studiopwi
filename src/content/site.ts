@@ -205,14 +205,11 @@ export const site = {
   },
 
   footer: {
+    email: "contact@pwi.com",
     legal: [
       { label: "Confidentialité", href: "/privacy" },
       { label: "CGU", href: "/terms" },
       { label: "Mentions légales", href: "/imprint" },
-    ],
-    socials: [
-      { label: "LinkedIn", href: "https://linkedin.com/company/studio" },
-      { label: "Instagram", href: "https://instagram.com/studio" },
     ],
     signature: "Conçu avec soin en Suisse.",
   },

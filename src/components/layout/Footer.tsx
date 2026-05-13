@@ -7,38 +7,42 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
+      <div className={styles.accent} aria-hidden="true" />
+
       <div className={`container ${styles.inner}`}>
-        <div className={styles.col}>
+        {/* Left — brand block */}
+        <div className={styles.brand}>
+          <span className={styles.logo}>{site.name}</span>
+          <div className={styles.rule} aria-hidden="true" />
           <p className={styles.tagline}>{site.tagline}</p>
-          <address className={styles.address}>{site.address}</address>
+          <a
+            href={`mailto:${site.footer.email}`}
+            className={styles.emailLink}
+          >
+            {site.footer.email}
+            <span className={styles.arrow} aria-hidden="true">↗</span>
+          </a>
         </div>
 
-        <div className={styles.col}>
-          <p className="mono">Navigate</p>
-          <ul className={styles.list}>
+        {/* Right — nav */}
+        <nav className={styles.nav} aria-label="Footer navigation">
+          <p className={styles.navLabel}>Navigation</p>
+          <ul className={styles.navList}>
             {site.nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href}>{item.label}</Link>
+                <Link href={item.href} className={styles.navLink}>
+                  <span className={styles.navArrow} aria-hidden="true">—</span>
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className={styles.col}>
-          <ul className={styles.socials}>
-            {site.footer.socials.map((s) => (
-              <li key={s.href}>
-                <a href={s.href} target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </nav>
       </div>
 
+      {/* Bottom legal bar */}
       <div className={`container ${styles.legalRow}`}>
-        <p className="mono">
+        <p className={styles.legal}>
           © {year} {site.name}
           {site.footer.legal.map((l) => (
             <span key={l.href}>
@@ -47,11 +51,12 @@ export default function Footer() {
             </span>
           ))}
         </p>
-        <p className="mono">{site.footer.signature}</p>
+        <p className={styles.signature}>{site.footer.signature}</p>
       </div>
 
+      {/* Ghost wordmark */}
       <div aria-hidden="true" className={styles.wordmark}>
-        {site.name}
+        PWI
       </div>
     </footer>
   );
