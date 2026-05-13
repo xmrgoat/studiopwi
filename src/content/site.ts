@@ -53,8 +53,8 @@ export const site = {
   problem: {
     marker: { number: "02", label: "LE PROBLÈME" },
     headline: {
-      before: "Vous gagnez des chantiers grâce à votre travail.\nVotre site vous en fait",
-      accent: "perdre.",
+      before: "Vous gagnez des chantiers grâce à votre travail.\n",
+      accent: "Votre site vous en fait perdre.",
       after: "",
     },
     lead:
