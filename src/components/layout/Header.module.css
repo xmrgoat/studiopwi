@@ -58,7 +58,7 @@
   opacity: 0.9;
   padding: 8px 14px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(239, 239, 239, 0.35);
+  border: 1px solid rgba(57, 108, 94, 0.45);
   transition: opacity var(--duration-ui) var(--ease-smooth),
               border-color var(--duration-ui) var(--ease-smooth),
               background var(--duration-ui) var(--ease-smooth);
@@ -66,7 +66,7 @@
 
 .navLink:hover {
   opacity: 1;
-  border-color: rgba(239, 239, 239, 0.7);
+  border-color: var(--color-ink-deep);
 }
 
 .scrolled .navLink {
@@ -115,7 +115,7 @@
   width: 40px;
   height: 40px;
   background: transparent;
-  border: 1px solid rgba(239, 239, 239, 0.3);
+  border: 1px solid rgba(57, 108, 94, 0.45);
   border-radius: var(--radius-xs);
   cursor: pointer;
   padding: 0;
@@ -128,7 +128,7 @@
 }
 
 .burger:hover {
-  border-color: rgba(239, 239, 239, 0.7);
+  border-color: var(--color-ink-deep);
 }
 
 .scrolled .burger:hover {
