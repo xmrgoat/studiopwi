@@ -44,12 +44,12 @@
   pointer-events: none;
   background:
     linear-gradient(102deg,
-      rgba(10, 22, 19, 0.78) 0%,
-      rgba(10, 22, 19, 0.42) 42%,
-      rgba(10, 22, 19, 0.0) 78%),
+      rgba(28, 45, 32, 0.78) 0%,
+      rgba(28, 45, 32, 0.42) 42%,
+      rgba(28, 45, 32, 0.0) 78%),
     linear-gradient(to top,
-      rgba(10, 22, 19, 0.55) 0%,
-      rgba(10, 22, 19, 0.0) 50%);
+      rgba(28, 45, 32, 0.55) 0%,
+      rgba(28, 45, 32, 0.0) 50%);
 }
 
 /* --- Vertical gutter coordinate (editorial signature) --- */
@@ -116,7 +116,7 @@
   font-style: normal;
   font-weight: inherit;
   color: var(--color-brand);
-  text-shadow: 0 2px 16px rgba(10, 22, 19, 0.55);
+  text-shadow: 0 2px 16px rgba(28, 45, 32, 0.55);
 }
 
 .headline {

@@ -3,23 +3,23 @@
 
 :root {
   /* --- Color · 60/30/10 --- */
-  --color-bg: #efece6;
-  --color-bg-elevated: #f5f3ed;
-  --color-bg-warm: #ebe7df;
+  --color-bg: #edeae0;
+  --color-bg-elevated: #f4f1e8;
+  --color-bg-warm: #e7e3d8;
 
-  --color-brand: #82cd9d;
-  --color-brand-text: #3d8c68;
-  --color-brand-soft: #c1e5cc;
-  --color-brand-light: #e6f1ea;
-  --color-brand-deep: #5fa67e;
+  --color-brand: #c49a3c;
+  --color-brand-text: #7a5c10;
+  --color-brand-soft: #e8d5a3;
+  --color-brand-light: #f5edd4;
+  --color-brand-deep: #5a4208;
 
-  --color-ink: #2f6052;
-  --color-ink-soft: #4d7d70;
-  --color-ink-deep: #15302a;
+  --color-ink: #2d4230;
+  --color-ink-soft: #4a6352;
+  --color-ink-deep: #1c2d20;
 
-  --color-line: rgba(21, 48, 42, 0.1);
-  --color-line-strong: rgba(21, 48, 42, 0.22);
-  --color-muted: rgba(21, 48, 42, 0.72);
+  --color-line: rgba(28, 45, 32, 0.1);
+  --color-line-strong: rgba(28, 45, 32, 0.22);
+  --color-muted: rgba(28, 45, 32, 0.72);
 
   --color-focus: var(--color-ink);
 
