@@ -116,6 +116,20 @@
   color: var(--color-ink-deep);
 }
 
+.answerWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s var(--ease-smooth);
+}
+
+.answerWrapOpen {
+  grid-template-rows: 1fr;
+}
+
+.answerInner {
+  overflow: hidden;
+}
+
 .answer {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);

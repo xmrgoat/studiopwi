@@ -1,0 +1,13 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 200;
+  pointer-events: none;
+  will-change: transform;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { site } from "@/content/site";
 import Button from "@/components/ui/Button";
@@ -8,19 +8,49 @@ import styles from "./Header.module.css";
 
 export default function Header() {
   const ref = useRef<HTMLElement>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const header = ref.current;
+    if (!header) return;
 
-    const onScroll = () => {
-      el.classList.toggle(styles.scrolled ?? "is-scrolled", window.scrollY > 40);
+    // Sentinel: 80px tall, negative margin collapses it so it takes no layout space.
+    // When scrolled 80px, sentinel leaves viewport → header gains .scrolled.
+    const sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText =
+      "height:80px;margin-bottom:-80px;pointer-events:none;visibility:hidden;";
+    document.body.insertBefore(sentinel, document.body.firstChild);
+
+    const observer = new IntersectionObserver(([entry]) =>
+      header.classList.toggle(styles.scrolled, !entry.isIntersecting)
+    );
+    observer.observe(sentinel);
+
+    return () => {
+      observer.disconnect();
+      sentinel.remove();
     };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Close drawer when viewport widens past mobile breakpoint
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const close = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
+    window.addEventListener("resize", close);
+    return () => window.removeEventListener("resize", close);
+  }, [mobileOpen]);
+
+  // Lock body scroll while drawer is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  // Close drawer on any anchor click inside it (event delegation)
+  function onDrawerClick(e: React.MouseEvent) {
+    if ((e.target as HTMLElement).closest("a")) setMobileOpen(false);
+  }
 
   return (
     <header ref={ref} className={styles.header}>
@@ -38,6 +68,36 @@ export default function Header() {
         </nav>
 
         <div className={styles.cta}>
+          <Button href="#contact" variant="primary">
+            Démarrer un projet
+          </Button>
+        </div>
+
+        <button
+          type="button"
+          className={styles.burger}
+          onClick={() => setMobileOpen((v) => !v)}
+          aria-expanded={mobileOpen ? "true" : "false"}
+          aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        >
+          <span className={`${styles.burgerLine} ${mobileOpen ? styles.burgerOpen : ""}`} />
+        </button>
+      </div>
+
+      {/* Mobile drawer — slides down from header on small viewports */}
+      <div
+        className={`${styles.drawer} ${mobileOpen ? styles.drawerOpen : ""}`}
+        aria-hidden={!mobileOpen ? "true" : "false"}
+        onClick={onDrawerClick}
+      >
+        <nav className={styles.drawerNav} aria-label="Mobile primary">
+          {site.nav.map((item) => (
+            <Link key={item.href} href={item.href} className={styles.drawerLink}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className={styles.drawerCta}>
           <Button href="#contact" variant="primary">
             Démarrer un projet
           </Button>

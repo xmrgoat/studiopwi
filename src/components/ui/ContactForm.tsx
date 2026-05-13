@@ -49,6 +49,20 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
     }
   }
 
+  if (status === "submitting") {
+    return (
+      <div className={styles.skeleton} aria-busy="true" aria-label="Envoi en cours…">
+        <div className={styles.skeletonRow}>
+          <div className={styles.skeletonField} />
+          <div className={styles.skeletonField} />
+        </div>
+        <div className={styles.skeletonField} />
+        <div className={`${styles.skeletonField} ${styles.skeletonTextarea}`} />
+        <div className={styles.skeletonBtn} />
+      </div>
+    );
+  }
+
   if (status === "success") {
     return (
       <div className={styles.success} role="status" aria-live="polite">

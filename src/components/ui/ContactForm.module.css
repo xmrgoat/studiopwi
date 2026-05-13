@@ -88,6 +88,63 @@
   margin-top: var(--space-2);
 }
 
+/* Submitting skeleton — translateX shimmer (Composite only, no repaint) */
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.skeletonRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.skeletonField {
+  height: 52px;
+  border-radius: 2px;
+  background: var(--color-bg-warm);
+  overflow: hidden;
+  position: relative;
+}
+
+.skeletonField::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--color-bg-elevated) 50%, transparent 100%);
+  animation: shimmer 1.4s infinite;
+  will-change: transform;
+}
+
+.skeletonTextarea {
+  height: 140px;
+}
+
+.skeletonBtn {
+  height: 48px;
+  width: 180px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-warm);
+  overflow: hidden;
+  position: relative;
+}
+
+.skeletonBtn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--color-bg-elevated) 50%, transparent 100%);
+  animation: shimmer 1.4s infinite;
+  will-change: transform;
+}
+
 /* Success state */
 .success {
   display: flex;

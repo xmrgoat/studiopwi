@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
@@ -34,6 +35,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
       />
+      <ScrollProgress />
       <Header />
       <main id="main">
         <Hero />

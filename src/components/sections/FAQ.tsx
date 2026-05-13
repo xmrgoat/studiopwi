@@ -50,14 +50,19 @@ export default function FAQ() {
                       className={`${styles.icon} ${isOpen ? styles.iconOpen : ""}`}
                       aria-hidden="true"
                     >
-                      +
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                        <line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
                     </span>
                   </button>
-                  {isOpen && (
-                    <p id={panelId} className={styles.answer} role="region">
-                      {item.answer}
-                    </p>
-                  )}
+                  <div className={`${styles.answerWrap} ${isOpen ? styles.answerWrapOpen : ""}`}>
+                    <div className={styles.answerInner}>
+                      <p id={panelId} className={styles.answer} role="region">
+                        {item.answer}
+                      </p>
+                    </div>
+                  </div>
                 </li>
               );
             })}

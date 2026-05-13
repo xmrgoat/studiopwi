@@ -47,7 +47,7 @@
   /* Font stacks (loaded via next/font in layout.tsx) */
   --font-display: var(--font-fraunces), "Times New Roman", serif;
   --font-body: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-geist-sans), ui-monospace, monospace;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   /* --- Spacing · 8px base --- */
   --space-1: 4px;
