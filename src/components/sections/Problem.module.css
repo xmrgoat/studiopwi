@@ -43,6 +43,10 @@
   max-width: 18ch;
 }
 
+.headline :global(.accent) {
+  color: var(--color-brand);
+}
+
 .lead {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
