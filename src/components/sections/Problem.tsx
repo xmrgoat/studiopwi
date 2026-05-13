@@ -33,7 +33,7 @@ export default function Problem() {
   const { problem } = site;
 
   return (
-    <section ref={rootRef} className={`section section--dark ${styles.section}`}>
+    <section ref={rootRef} className={`section ${styles.section}`}>
       <div className="container">
         <header className={styles.header}>
           <div>
