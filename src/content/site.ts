@@ -6,7 +6,7 @@ export const site = {
   domain: "studio.ch",
   tagline: "Studio web pour paysagistes suisses.",
   address: "Rue de la Treille 2 · 2000 Neuchâtel · Suisse",
-  email: "hello@studio.ch",
+  email: "contact@studiopwi.com",
   locale: "fr",
 
   nav: [
@@ -98,23 +98,23 @@ export const site = {
       {
         number: "01",
         title: "Appel découverte",
-        duration: "30 min, gratuit",
+        duration: "20 min, gratuit",
         body:
-          "On vous écoute, vous nous parlez de votre activité. On définit vos objectifs, votre cible et ce qu'on peut réalistement promettre.",
+          "On écoute votre situation, vos objectifs et vos besoins. On vous dit clairement si votre site peut devenir un levier de confiance, de visibilité et de demandes qualifiées.",
       },
       {
         number: "02",
         title: "Design & développement",
-        duration: "3 à 5 semaines",
+        duration: "3 à 4 semaines",
         body:
-          "Un designer, un développeur. Aperçus hebdomadaires. Vous validez à chaque étape. Aucune surprise.",
+          "On structure, conçoit et développe votre site autour d'un objectif : transformer les visiteurs en prospects. Vous validez le site avant la mise en ligne.",
       },
       {
         number: "03",
-        title: "Lancement & croissance",
-        duration: "Continu",
+        title: "Lancement & suivi",
+        duration: "14 jours inclus",
         body:
-          "On ne disparaît pas après le lancement. 90 jours d'optimisation inclus. De vraies personnes, de vraies réponses.",
+          "Après la mise en ligne, on reste présent pour les corrections techniques, ajustements mineurs et vérifications essentielles.",
       },
     ],
     guarantee: {
@@ -133,7 +133,7 @@ export const site = {
       lead:
         "Réservez un appel découverte gratuit de 20 minutes. On vous dit dans l'heure si on est faits l'un pour l'autre.",
       primary: { label: "Réserver un appel", href: "#contact" },
-      secondary: { label: "Ou écrivez-nous — hello@studio.ch", href: "mailto:hello@studio.ch" },
+      secondary: { label: "Ou écrivez-nous — contact@studiopwi.com", href: "mailto:contact@studiopwi.com" },
       founder: { name: "Riff", role: "fondateur", photo: "/images/founder.webp" },
     },
   },
@@ -147,8 +147,8 @@ export const site = {
     },
     lead: "Dites-nous où vous en êtes. On vous répond sous 24h ouvrées.",
     info: [
-      { label: "Email", value: "hello@studio.ch" },
-      { label: "Délai de réponse", value: "Sous 24h ouvrées" },
+      { label: "Email", value: "contact@studiopwi.com" },
+      { label: "Délai de réponse", value: "Sous 48h ouvrées" },
       { label: "Basés à", value: "Neuchâtel, Suisse" },
     ],
   },

@@ -193,3 +193,14 @@
   user-select: none;
   z-index: 0;
 }
+
+@media (max-width: 767px) {
+  .wordmark {
+    left: auto;
+    right: -0.15em;
+    bottom: 50%;
+    transform: translateY(50%) rotate(90deg);
+    transform-origin: right center;
+    font-size: clamp(14rem, 55vw, 22rem);
+  }
+}

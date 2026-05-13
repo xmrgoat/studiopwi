@@ -50,7 +50,7 @@ export const services = {
       tag: "CROISSANCE",
       title: "Générer plus de demandes",
       price: "CHF 1'400 – 3'200",
-      duration: "2 à 3 semaines",
+      duration: "2 à 4 semaines",
       description:
         "Pour les entreprises qui veulent un site plus complet, capable de rassurer les prospects et de transformer les visites en leads.",
       features: [
