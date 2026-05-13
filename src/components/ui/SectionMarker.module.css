@@ -37,5 +37,5 @@
   color: var(--color-bg);
 }
 :global(.section--dark) .marker {
-  color: rgba(239, 236, 230, 0.55);
+  color: rgba(239, 239, 239, 0.55);
 }

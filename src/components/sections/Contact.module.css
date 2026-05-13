@@ -92,24 +92,24 @@
 
 /* Dark card overrides for ContactForm inputs */
 .right :global([class*="label"]) {
-  color: rgba(239, 236, 230, 0.5);
+  color: rgba(239, 239, 239, 0.5);
 }
 
 .right :global(input),
 .right :global(textarea) {
-  background: rgba(239, 236, 230, 0.05);
-  border-color: rgba(239, 236, 230, 0.12);
+  background: rgba(239, 239, 239, 0.05);
+  border-color: rgba(239, 239, 239, 0.12);
   color: var(--color-bg);
 }
 
 .right :global(input::placeholder),
 .right :global(textarea::placeholder) {
-  color: rgba(239, 236, 230, 0.25);
+  color: rgba(239, 239, 239, 0.25);
 }
 
 .right :global(input:focus),
 .right :global(textarea:focus) {
-  background: rgba(239, 236, 230, 0.08);
+  background: rgba(239, 239, 239, 0.08);
   border-color: var(--color-brand);
   box-shadow: 0 0 0 3px rgba(130, 205, 157, 0.12);
 }
@@ -123,5 +123,5 @@
 }
 
 .right :global([class*="success"]) {
-  background: rgba(239, 236, 230, 0.05);
+  background: rgba(239, 239, 239, 0.05);
 }

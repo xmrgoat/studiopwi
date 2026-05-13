@@ -72,7 +72,7 @@
 }
 :global(.section--dark) .ghost {
   color: var(--color-bg);
-  border-color: rgba(239, 236, 230, 0.2);
+  border-color: rgba(239, 239, 239, 0.2);
 }
 :global(.section--dark) .ghost:hover {
   border-color: var(--color-bg);

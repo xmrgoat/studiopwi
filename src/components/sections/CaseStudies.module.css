@@ -67,7 +67,7 @@
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-bg);
-  background: rgba(28, 45, 32, 0.6);
+  background: rgba(57, 108, 94, 0.6);
   padding: 6px 10px;
   border-radius: 0;
   pointer-events: none;
