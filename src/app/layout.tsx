@@ -29,27 +29,64 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com",
   ),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name} — Sites web pour paysagistes suisses`,
     template: `%s · ${site.name}`,
   },
   description:
-    "Premium websites that generate qualified leads for craft-driven Swiss landscapers.",
+    "Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, garantie 90 jours. Basés à Neuchâtel.",
   applicationName: site.name,
   authors: [{ name: site.name }],
+  keywords: [
+    "site web paysagiste",
+    "paysagiste suisse",
+    "site internet paysagiste",
+    "création site web paysagiste",
+    "agence web paysagisme",
+    "site web Neuchâtel",
+    "paysagiste Romandie",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "fr_CH",
+    url: "/",
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} — Sites web pour paysagistes suisses`,
     description:
-      "Premium websites for Swiss landscapers. Niche-only studio, transparent pricing, 90-day guarantee.",
-    images: ["/images/og.png"],
+      "Studio web dédié aux paysagistes en Suisse. Sites orientés conversion, transparence des prix, garantie 90 jours.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — Studio web pour paysagistes suisses`,
+      },
+    ],
   },
-  twitter: { card: "summary_large_image" },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Sites web pour paysagistes suisses`,
+    description:
+      "Studio web dédié aux paysagistes en Suisse. Sites orientés conversion, garantie 90 jours.",
+    images: ["/opengraph-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "business",
 };
 
 export const viewport: Viewport = {
