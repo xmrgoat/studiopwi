@@ -99,7 +99,7 @@
   color: var(--color-ink-deep);
   font-size: 1.1em;
   text-shadow: none;
-  white-space: nowrap;
+  white-space: normal;
   text-decoration: underline;
   text-decoration-color: var(--color-brand);
   text-decoration-thickness: 2px;
@@ -236,7 +236,6 @@
   }
   .headline :global(.accent) {
     color: #ffffff;
-    white-space: normal;
   }
   .lead {
     color: #ffffff;
