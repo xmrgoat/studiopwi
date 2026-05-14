@@ -89,7 +89,12 @@ export default function Hero() {
   const { headline, video, primaryCta, secondaryCta } = site.hero;
 
   return (
-    <section ref={rootRef} className={styles.hero} id="top">
+    <section
+      ref={rootRef}
+      className={styles.hero}
+      id="top"
+      aria-labelledby="hero-headline"
+    >
       <div className={styles.media} aria-hidden="true">
         <video
           ref={videoRef}
@@ -111,7 +116,7 @@ export default function Hero() {
             <span className={styles.eyebrowDot} aria-hidden="true" />
             {site.hero.eyebrow}
           </p>
-          <h1 className={styles.headline}>
+          <h1 id="hero-headline" className={styles.headline}>
             <SplitWords text={headline.before} />{" "}
             <span className={`word ${styles.accentWord}`}>
               <span className={styles.accentInner}>
