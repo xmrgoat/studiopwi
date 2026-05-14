@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Megrim, Nunito_Sans } from "next/font/google";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import GrainOverlay from "@/components/layout/GrainOverlay";
+import { OrganizationLd, WebSiteLd } from "@/components/seo/JsonLd";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -112,6 +113,8 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Aller au contenu
         </a>
+        <OrganizationLd />
+        <WebSiteLd />
         <SmoothScroll />
         {children}
         <GrainOverlay />
