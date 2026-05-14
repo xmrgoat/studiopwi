@@ -125,3 +125,9 @@
 .right :global([class*="success"]) {
   background: rgba(239, 239, 239, 0.2);
 }
+
+@media (max-width: 767px) {
+  .right {
+    padding: var(--space-5) var(--space-4);
+  }
+}
