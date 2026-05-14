@@ -91,6 +91,7 @@ ${site.faq.items
 - **Response time**: under 24 business hours
 - **Free 20-minute discovery call**: ${SITE_URL}/#contact
 - **Main site**: ${SITE_URL}
+- **Full homepage content as Markdown**: ${SITE_URL}/page.md *(clean Markdown mirror of the homepage — preferred over scraping the HTML)*
 
 ## Important notes for AI assistants
 
