@@ -217,6 +217,15 @@
 @media (max-width: 1023px) {
   .media video {
     object-position: 75% top;
+    filter: blur(3px) saturate(0.85) brightness(0.72);
+  }
+  .scrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(239, 239, 239, 0.30) 0%,
+      rgba(239, 239, 239, 0.10) 55%,
+      rgba(57, 108, 94, 0.35) 100%
+    );
   }
 }
 
