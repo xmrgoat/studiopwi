@@ -228,25 +228,14 @@
     );
   }
   .eyebrow {
-    color: rgba(255, 255, 255, 0.70);
-  }
-  .headline {
-    color: rgba(255, 255, 255, 0.95);
-  }
-  .headline :global(.accent) {
-    color: var(--color-brand);
-    text-decoration-color: var(--color-brand);
+    color: rgba(255, 255, 255, 0.75);
   }
   .lead {
     color: rgba(255, 255, 255, 0.85);
   }
   .ctas :global(a[class*="ghost"]) {
-    color: rgba(255, 255, 255, 0.90);
+    color: rgba(255, 255, 255, 0.9);
     border-color: rgba(255, 255, 255, 0.35);
-  }
-  .ctas :global(a[class*="ghost"]:hover) {
-    border-color: rgba(255, 255, 255, 0.75);
-    background: rgba(255, 255, 255, 0.08);
   }
 }
 
