@@ -224,6 +224,9 @@
   .wordmark {
     color: #ffffff;
   }
+  .scrolled .wordmark {
+    color: var(--color-ink-deep);
+  }
 }
 
 @media (max-width: 767px) {
