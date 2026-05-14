@@ -38,7 +38,7 @@ export default function Header() {
   // Close drawer when viewport widens past mobile breakpoint
   useEffect(() => {
     if (!mobileOpen) return;
-    const close = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
+    const close = () => { if (window.innerWidth >= 1024) setMobileOpen(false); };
     window.addEventListener("resize", close);
     return () => window.removeEventListener("resize", close);
   }, [mobileOpen]);
@@ -79,7 +79,7 @@ export default function Header() {
           type="button"
           className={styles.burger}
           onClick={() => setMobileOpen((v) => !v)}
-          aria-expanded={mobileOpen}
+          aria-expanded={mobileOpen ? "true" : "false"}
           aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
           <span className={`${styles.burgerLine} ${mobileOpen ? styles.burgerOpen : ""}`} />
@@ -89,7 +89,7 @@ export default function Header() {
       {/* Mobile drawer — slides down from header on small viewports */}
       <div
         className={`${styles.drawer} ${mobileOpen ? styles.drawerOpen : ""}`}
-        aria-hidden={!mobileOpen}
+        aria-hidden={mobileOpen ? "false" : "true"}
         onClick={onDrawerClick}
       >
         <nav className={styles.drawerNav} aria-label="Mobile primary">
