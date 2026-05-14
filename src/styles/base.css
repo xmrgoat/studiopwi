@@ -54,6 +54,32 @@ p {
   border-radius: var(--radius-xs);
 }
 
+/* Skip-to-main link — visible only on keyboard focus.
+   First focusable element in <body>, lets keyboard/screen-reader users
+   bypass the header and nav. */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--side-pad);
+  z-index: 1000;
+  background: var(--color-ink-deep);
+  color: var(--color-bg);
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: top 0.18s ease;
+}
+.skip-link:focus-visible {
+  top: var(--space-3);
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
 /* Container */
 .container {
   width: 100%;

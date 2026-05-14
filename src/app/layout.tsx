@@ -109,6 +109,9 @@ export default function RootLayout({
       className={`${megrim.variable} ${nunitoSans.variable} ${geist.variable}`}
     >
       <body>
+        <a href="#main" className="skip-link">
+          Aller au contenu
+        </a>
         <SmoothScroll />
         {children}
         <GrainOverlay />
