@@ -38,6 +38,7 @@
   font-weight: 400;
   letter-spacing: 0.04em;
   color: inherit;
+  white-space: nowrap;
 }
 
 .nav {
@@ -59,6 +60,7 @@
   padding: 8px 14px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(57, 108, 94, 0.45);
+  white-space: nowrap;
   transition: opacity var(--duration-ui) var(--ease-smooth),
               border-color var(--duration-ui) var(--ease-smooth),
               background var(--duration-ui) var(--ease-smooth);
@@ -94,7 +96,7 @@
   color: var(--color-bg);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .nav {
     display: flex;
   }
@@ -216,7 +218,7 @@
   padding-top: var(--space-2);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .drawer { display: none; }
 }
 
@@ -227,30 +229,13 @@
   .scrolled .wordmark {
     color: var(--color-ink-deep);
   }
+}
 
-  /* Nav pills: white text + white outline over the dark hero video.
-     On scroll the .scrolled state takes over and reverts to the existing
-     dark-on-light treatment. (Nav itself only renders ≥768px, so on
-     phones this block is a no-op — the burger handles that range.) */
-  .navLink {
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.45);
-  }
-  .navLink:hover {
-    border-color: #ffffff;
-  }
-  .scrolled .navLink {
-    color: var(--color-ink);
-    border-color: var(--color-line-strong);
-  }
-  .scrolled .navLink:hover {
-    border-color: var(--color-ink);
-    background: var(--color-bg-elevated);
-  }
+@media (max-width: 1023px) {
+  .cta { display: none; }
+  .burger { display: flex; }
 }
 
 @media (max-width: 767px) {
   .header { height: 64px; }
-  .cta { display: none; }
-  .burger { display: flex; }
 }
