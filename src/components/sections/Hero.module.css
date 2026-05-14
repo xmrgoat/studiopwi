@@ -230,6 +230,13 @@
   .eyebrow {
     color: rgba(255, 255, 255, 0.75);
   }
+  .headline {
+    color: #ffffff;
+    font-weight: 700;
+  }
+  .headline :global(.accent) {
+    color: #ffffff;
+  }
   .lead {
     color: rgba(255, 255, 255, 0.85);
   }
