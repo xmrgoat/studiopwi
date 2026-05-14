@@ -13,6 +13,7 @@ export const site = {
     { label: "Réalisations", href: "#work" },
     { label: "Services", href: "#services" },
     { label: "À propos", href: "#why" },
+    { label: "Contact", href: "#contact" },
   ],
 
   hero: {
