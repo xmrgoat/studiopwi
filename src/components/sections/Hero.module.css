@@ -227,8 +227,26 @@
       rgba(57, 108, 94, 0.35) 100%
     );
   }
+  .eyebrow {
+    color: rgba(255, 255, 255, 0.70);
+  }
+  .headline {
+    color: rgba(255, 255, 255, 0.95);
+  }
+  .headline :global(.accent) {
+    color: var(--color-brand);
+    text-decoration-color: var(--color-brand);
+  }
   .lead {
     color: rgba(255, 255, 255, 0.85);
+  }
+  .ctas :global(a[class*="ghost"]) {
+    color: rgba(255, 255, 255, 0.90);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+  .ctas :global(a[class*="ghost"]:hover) {
+    border-color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.08);
   }
 }
 
