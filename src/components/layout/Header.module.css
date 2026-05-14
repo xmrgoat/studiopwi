@@ -108,18 +108,24 @@
   align-items: center;
   width: 52px;
   height: 52px;
-  background: var(--color-ink-deep);
+  background: var(--color-brand);
   border: none;
   border-radius: 50%;
   cursor: pointer;
   padding: 0;
-  color: var(--color-bg);
+  color: var(--color-ink-deep);
   transition: background var(--duration-ui) var(--ease-smooth),
+              color var(--duration-ui) var(--ease-smooth),
               opacity var(--duration-ui) var(--ease-smooth);
 }
 
 .burger:hover {
   opacity: 0.85;
+}
+
+.scrolled .burger {
+  background: var(--color-ink-deep);
+  color: var(--color-bg);
 }
 
 /* Three lines → X animation */
