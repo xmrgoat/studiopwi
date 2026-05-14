@@ -3,7 +3,7 @@
 
 export const site = {
   name: "Studio PWI",
-  domain: "studio.ch",
+  domain: "studiopwi.com",
   tagline: "Studio web pour paysagistes suisses.",
   address: "Rue de la Treille 2 · 2000 Neuchâtel · Suisse",
   email: "contact@studiopwi.com",
@@ -205,7 +205,7 @@ export const site = {
   },
 
   footer: {
-    email: "contact@pwi.com",
+    email: "contact@studiopwi.com",
     legal: [
       { label: "Confidentialité", href: "/privacy" },
       { label: "CGU", href: "/terms" },
