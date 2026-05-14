@@ -9,32 +9,18 @@ import WhyUs from "@/components/sections/WhyUs";
 import Contact from "@/components/sections/Contact";
 import FAQ from "@/components/sections/FAQ";
 import CTABanner from "@/components/sections/CTABanner";
-import { site } from "@/content/site";
+import {
+  LocalBusinessLd,
+  FaqLd,
+  WebPageLd,
+} from "@/components/seo/JsonLd";
 
 export default function HomePage() {
-  const ld = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: site.name,
-    description:
-      "Premium websites for Swiss landscapers. Niche-only studio.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Rue de la Treille 2",
-      postalCode: "2000",
-      addressLocality: "Neuchâtel",
-      addressCountry: "CH",
-    },
-    email: site.email,
-    areaServed: "CH",
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
-      />
+      <WebPageLd />
+      <LocalBusinessLd />
+      <FaqLd />
       <ScrollProgress />
       <Header />
       <main id="main">
