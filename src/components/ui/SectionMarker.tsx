@@ -16,7 +16,7 @@ export default function SectionMarker({ label }: Props) {
     if (!dot) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) {
+        if (entry?.isIntersecting && styles.dotVisible) {
           dot.classList.add(styles.dotVisible);
           observer.disconnect();
         }

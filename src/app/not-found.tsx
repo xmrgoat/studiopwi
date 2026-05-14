@@ -18,7 +18,7 @@ export default function NotFound() {
           Cette page a <span className="accent">poussé ailleurs.</span>
         </h1>
         <Link href="/" className="mono">
-          ← Retour à l'accueil
+          ← Retour à l&apos;accueil
         </Link>
       </div>
     </main>
