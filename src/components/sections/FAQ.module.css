@@ -49,10 +49,13 @@
 .decoration {
   display: none;
   width: clamp(160px, 22vw, 280px);
-  height: auto;
+  aspect-ratio: 1500 / 1100;
+  background-image: url('/images/interogation.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: var(--color-bg);
+  background-blend-mode: multiply;
   opacity: 0.7;
-  mix-blend-mode: multiply;
-  isolation: auto;
   margin-top: var(--space-5);
 }
 
