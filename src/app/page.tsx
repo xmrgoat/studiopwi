@@ -6,7 +6,6 @@ import Problem from "@/components/sections/Problem";
 import Services from "@/components/sections/Services";
 import CaseStudies from "@/components/sections/CaseStudies";
 import WhyUs from "@/components/sections/WhyUs";
-import Contact from "@/components/sections/Contact";
 import FAQ from "@/components/sections/FAQ";
 import CTABanner from "@/components/sections/CTABanner";
 import {
@@ -30,7 +29,6 @@ export default function HomePage() {
         <Services />
         <CaseStudies />
         <WhyUs />
-        <Contact />
         <FAQ />
         <CTABanner />
       </main>
