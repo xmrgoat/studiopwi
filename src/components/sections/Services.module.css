@@ -31,7 +31,7 @@
 
 .gridWrapper {
   position: relative;
-  padding-top: clamp(25px, 4vw, 55px);
+  padding-top: clamp(15px, 2.5vw, 35px);
 }
 
 .vine {
