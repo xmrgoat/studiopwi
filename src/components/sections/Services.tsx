@@ -29,17 +29,12 @@ export default function Services() {
         duration: 0.9,
         stagger: 0.1,
         ease: "expo.out",
-      }).fromTo(`.${styles.vine}`, {
+      }).from(`.${styles.vine}`, {
         opacity: 0,
-        scale: 1.04,
-        filter: "blur(6px)",
-      }, {
-        opacity: 0.7,
-        scale: 1,
-        filter: "blur(0px)",
-        duration: 1.1,
-        ease: "power2.out",
-      }, "-=0.75");
+        y: 60,
+        duration: 0.9,
+        ease: "expo.out",
+      }, "-=0.6");
     }, root);
 
     return () => ctx.revert();
