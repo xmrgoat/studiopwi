@@ -31,15 +31,15 @@
 
 .gridWrapper {
   position: relative;
-  padding-top: clamp(15px, 2.5vw, 35px);
+  padding-top: clamp(25px, 4vw, 55px);
 }
 
 .vine {
   display: block;
-  width: 60%;
+  width: 55%;
   height: auto;
   position: absolute;
-  top: clamp(10px, 2vw, 30px);
+  top: clamp(25px, 4vw, 55px);
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
