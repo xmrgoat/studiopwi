@@ -44,17 +44,11 @@ export default function ImprintPage() {
         <a href="mailto:contact@studiopwi.com">contact@studiopwi.com</a>.
       </p>
 
-      <h2>3. Forme juridique et registre du commerce</h2>
+      <h2>3. Statut et TVA</h2>
       <p>
-        Studio PWI est une raison individuelle au sens du Code des obligations
-        suisse (CO). L&apos;inscription au Registre du commerce du canton de Neuchâtel
-        est effectuée conformément aux obligations légales en vigueur.
-      </p>
-      <p>
-        <strong>N° IDE (CHE) :</strong> en cours d&apos;enregistrement
-        <br />
-        <strong>Assujettissement TVA :</strong> non assujetti (chiffre d&apos;affaires
-        inférieur au seuil légal de CHF&nbsp;100&apos;000 — art.&nbsp;10 LTVA)
+        Studio PWI est une activité indépendante au sens du droit suisse, non
+        assujettie à la TVA (chiffre d&apos;affaires inférieur au seuil légal de
+        CHF&nbsp;100&apos;000 — art.&nbsp;10 LTVA).
       </p>
 
       <h2>4. Hébergement</h2>
