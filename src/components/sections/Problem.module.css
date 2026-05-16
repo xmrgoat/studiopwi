@@ -13,8 +13,8 @@
   background-size: 32px 32px;
   opacity: 0.4;
   pointer-events: none;
-  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
   -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
 }
 
 .section > .container {
@@ -41,8 +41,7 @@
 .leadCol {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--space-5);
+  justify-content: space-between;
 }
 
 .edelweiss {
@@ -54,7 +53,7 @@
 @media (min-width: 1024px) {
   .edelweiss {
     display: block;
-    width: clamp(90px, 11vw, 150px);
+    width: clamp(140px, 17vw, 220px);
     height: auto;
     color: var(--color-ink-deep);
     opacity: 0.09;
