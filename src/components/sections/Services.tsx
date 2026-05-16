@@ -32,7 +32,7 @@ export default function Services() {
       }).from(`.${styles.vine}`, {
         opacity: 0,
         y: 60,
-        duration: 0.9,
+        duration: 1.6,
         ease: "expo.out",
       }, "-=0.6");
     }, root);
