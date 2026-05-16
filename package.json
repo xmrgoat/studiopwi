@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "powershell -Command \"Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force; Start-Sleep 1; Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue\" && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
