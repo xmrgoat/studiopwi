@@ -40,10 +40,6 @@
   display: none;
 }
 
-.shovelBgFill {
-  fill: var(--color-bg);
-}
-
 @media (min-width: 1024px) {
   .header {
     grid-template-columns: 1.3fr 1fr;
