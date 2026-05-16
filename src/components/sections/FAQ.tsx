@@ -27,12 +27,7 @@ export default function FAQ() {
             <p className={styles.subline}>
               Tout ce que vous voulez savoir avant de démarrer.
             </p>
-            <img
-              src="/images/interogation.svg"
-              alt=""
-              aria-hidden="true"
-              className={styles.decoration}
-            />
+            <div className={styles.decoration} aria-hidden="true" />
           </header>
 
           <ul className={styles.list}>
