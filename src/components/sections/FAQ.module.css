@@ -50,7 +50,7 @@
   display: none;
   width: 100%;
   aspect-ratio: 3 / 4;
-  background-image: url('/images/interogation.svg?v=5');
+  background-image: url('/images/interogation.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
