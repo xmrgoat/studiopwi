@@ -39,7 +39,7 @@
   width: 55%;
   height: auto;
   position: absolute;
-  top: clamp(-64px, -4.2vw, -24px);
+  top: clamp(-80px, -5.5vw, -38px);
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
