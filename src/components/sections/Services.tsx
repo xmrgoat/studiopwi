@@ -49,7 +49,7 @@ export default function Services() {
 
         <div className={styles.gridWrapper}>
           <img
-            src="/images/vine.svg"
+            src="/images/vine.svg?v=2"
             alt=""
             aria-hidden="true"
             className={styles.vine}
