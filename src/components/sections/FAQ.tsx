@@ -19,7 +19,7 @@ export default function FAQ() {
       <div className="container">
         <div className={styles.layout}>
           <header className={styles.header}>
-            <SectionMarker number={faq.marker.number} label={faq.marker.label} />
+            <SectionMarker number={faq.marker.number} label={faq.marker.label} static />
             <h2 className={styles.headline}>
               {faq.headline.before}{" "}
               <ItalicAccent>{faq.headline.accent}</ItalicAccent>
