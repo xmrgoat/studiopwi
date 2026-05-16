@@ -34,6 +34,15 @@
   .header {
     grid-template-columns: 1.3fr 1fr;
     gap: var(--space-8);
+    align-items: stretch;
+  }
+
+  .shovel {
+    display: block;
+    width: clamp(120px, 14vw, 180px);
+    height: auto;
+    color: var(--color-ink-deep);
+    opacity: 0.12;
   }
 }
 
@@ -54,6 +63,16 @@
   line-height: var(--lh-loose);
   color: rgba(57, 108, 94, 0.8);
   max-width: 52ch;
+}
+
+.leadCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shovel {
+  display: none;
 }
 
 .grid {
