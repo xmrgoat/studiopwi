@@ -30,6 +30,20 @@
   align-items: end;
 }
 
+.leadCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shovel {
+  display: none;
+}
+
+.shovelBgFill {
+  fill: var(--color-bg);
+}
+
 @media (min-width: 1024px) {
   .header {
     grid-template-columns: 1.3fr 1fr;
@@ -39,10 +53,10 @@
 
   .shovel {
     display: block;
-    width: clamp(130px, 15vw, 200px);
+    width: clamp(140px, 16vw, 210px);
     height: auto;
     color: var(--color-ink-deep);
-    opacity: 0.55;
+    opacity: 0.7;
   }
 }
 
@@ -63,16 +77,6 @@
   line-height: var(--lh-loose);
   color: rgba(57, 108, 94, 0.8);
   max-width: 52ch;
-}
-
-.leadCol {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.shovel {
-  display: none;
 }
 
 .grid {
