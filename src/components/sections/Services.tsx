@@ -19,14 +19,22 @@ export default function Services() {
     if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(`.${styles.card}`, {
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: `.${styles.grid}`, start: "top 80%", once: true },
+      });
+
+      tl.from(`.${styles.card}`, {
         y: 60,
         opacity: 0,
         duration: 0.9,
         stagger: 0.1,
         ease: "expo.out",
-        scrollTrigger: { trigger: `.${styles.grid}`, start: "top 80%", once: true },
-      });
+      }).from(`.${styles.vine}`, {
+        opacity: 0,
+        y: -12,
+        duration: 0.7,
+        ease: "power3.out",
+      }, "-=0.2");
     }, root);
 
     return () => ctx.revert();
