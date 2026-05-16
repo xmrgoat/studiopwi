@@ -34,7 +34,7 @@ export default function OpengraphImage() {
         >
           <span
             style={{
-              display: "inline-block",
+              display: "block",
               width: 10,
               height: 10,
               background: "#a8d5ba",
