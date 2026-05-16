@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { services } from "@/content/services";
+import { services, type Service } from "@/content/services";
 import { cases } from "@/content/cases";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com";
@@ -56,7 +56,7 @@ export function GET() {
   lines.push("");
   lines.push("**Repères clés :**");
   lines.push("");
-  for (const m of hero.metrics) {
+  for (const m of hero.metrics as ReadonlyArray<{ value: number; label: string; suffix?: string }>) {
     lines.push(`- ${m.value}${m.suffix ?? ""} ${m.label}`);
   }
   lines.push("");
@@ -82,7 +82,7 @@ export function GET() {
   lines.push("");
   lines.push(services.intro);
   lines.push("");
-  for (const tier of services.tiers) {
+  for (const tier of services.tiers as readonly Service[]) {
     const featured = tier.featured ? " *(offre la plus populaire)*" : "";
     lines.push(`### ${tier.tag} — ${tier.title}${featured}`);
     lines.push("");

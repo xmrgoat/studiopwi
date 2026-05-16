@@ -1,12 +1,12 @@
 import { site } from "@/content/site";
-import { services } from "@/content/services";
+import { services, type Service } from "@/content/services";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com";
 
 export const dynamic = "force-static";
 
 export function GET() {
-  const tiers = services.tiers;
+  const tiers = services.tiers as readonly Service[];
 
   const body = `# Studio PWI
 
