@@ -27,19 +27,19 @@ function ShovelIcon() {
         <path d="M 90 14 Q 100 6 110 14" />
         <line x1="90" y1="40" x2="110" y2="40" />
         {/* Shaft */}
-        <rect x="97" y="40" width="6" height="130" rx="3" fill="var(--color-bg)" />
+        <rect x="97" y="40" width="6" height="130" rx="3" className={styles.shovelBgFill} />
         {/* Ferrule */}
-        <rect x="93" y="168" width="14" height="10" rx="2" fill="var(--color-bg)" />
+        <rect x="93" y="168" width="14" height="10" rx="2" className={styles.shovelBgFill} />
         {/* Spade blade */}
         <path
           d="M 93 178 L 83 192 Q 82 212 100 220 Q 118 212 117 192 L 107 178 Z"
-          fill="var(--color-bg)"
+          className={styles.shovelBgFill}
         />
       </g>
       {/* Soil mound fill — covers the buried blade */}
       <path
         d="M -5 245 L -5 166 Q 15 184 35 181 Q 55 169 72 173 Q 84 163 95 167 Q 107 159 120 165 Q 138 160 158 169 Q 175 173 195 185 L 205 193 L 205 245 Z"
-        fill="var(--color-bg)"
+        className={styles.shovelBgFill}
         stroke="none"
       />
       {/* Soil mound outline */}
