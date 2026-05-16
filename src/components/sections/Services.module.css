@@ -41,7 +41,7 @@
   position: absolute;
   top: clamp(-60px, -4vw, -20px);
   left: 47%;
-  transform: translate(-50%, -50%) rotate(-4deg);
+  transform: translate(-50%, -50%) rotate(-2deg);
   z-index: 1;
   mix-blend-mode: multiply;
 }
