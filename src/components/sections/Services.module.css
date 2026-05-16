@@ -31,9 +31,9 @@
 
 .vine {
   display: block;
-  width: 100%;
-  height: auto;
-  margin-bottom: -2px;
+  height: clamp(60px, 8vw, 100px);
+  width: auto;
+  margin-bottom: var(--space-5);
 }
 
 .grid {
