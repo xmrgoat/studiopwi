@@ -26,6 +26,7 @@
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  background: linear-gradient(135deg, #c5ddd5 0%, #a8c9bc 100%);
 }
 
 .media video {
@@ -68,7 +69,7 @@
 }
 
 .eyebrow {
-  color: rgba(239, 239, 239, 0.75);
+  color: rgba(57, 108, 94, 0.75);
   display: flex;
   align-items: center;
   gap: 0.65em;
@@ -112,19 +113,16 @@
   font-weight: 400;
   letter-spacing: var(--ls-display);
   line-height: var(--lh-display);
-  color: var(--color-bg);
+  color: var(--color-ink-deep);
   text-wrap: balance;
   font-optical-sizing: auto;
-}
 
-.headline :global(.accent) {
-  color: var(--color-bg);
 }
 
 .lead {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
-  color: rgba(239, 239, 239, 0.8);
+  color: rgba(57, 108, 94, 0.8);
   max-width: 44ch;
   margin-top: 0;
 }
