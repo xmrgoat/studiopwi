@@ -48,7 +48,7 @@
 
 .decoration {
   display: none;
-  width: clamp(260px, 35vw, 460px);
+  width: clamp(340px, 45vw, 600px);
   aspect-ratio: 1500 / 1100;
   background-image: url('/images/interogation.svg');
   background-size: contain;
