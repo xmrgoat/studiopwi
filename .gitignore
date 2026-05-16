@@ -22,3 +22,10 @@ next-env.d.ts
 
 coverage/
 *.tsbuildinfo
+
+# VPS deployment — secrets and keys (never commit)
+vps/vps/cred
+vps/vps/deploy_studiopwi_ed25519
+vps/vps/deploy_studiopwi_ed25519.pub
+vps/vps/__pycache__/
+vps/vps/backup/
