@@ -47,6 +47,13 @@ export default function Services() {
           <p className={styles.intro}>{services.intro}</p>
         </header>
 
+        <img
+          src="/images/vine.svg"
+          alt=""
+          aria-hidden="true"
+          className={styles.vine}
+        />
+
         <ul className={styles.grid}>
           {(services.tiers as readonly Service[]).map((tier, idx) => (
             <li
