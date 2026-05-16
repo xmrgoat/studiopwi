@@ -47,14 +47,14 @@ export default function Services() {
           <p className={styles.intro}>{services.intro}</p>
         </header>
 
-        <img
-          src="/images/vine.svg"
-          alt=""
-          aria-hidden="true"
-          className={styles.vine}
-        />
-
-        <ul className={styles.grid}>
+        <div className={styles.gridWrapper}>
+          <img
+            src="/images/vine.svg"
+            alt=""
+            aria-hidden="true"
+            className={styles.vine}
+          />
+          <ul className={styles.grid}>
           {(services.tiers as readonly Service[]).map((tier, idx) => (
             <li
               key={tier.id}
@@ -80,7 +80,8 @@ export default function Services() {
               </div>
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
 
         <p className={`mono ${styles.reassurance}`}>{services.reassurance}</p>
       </div>

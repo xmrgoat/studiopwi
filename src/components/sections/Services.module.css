@@ -29,11 +29,20 @@
   max-width: 50ch;
 }
 
+.gridWrapper {
+  position: relative;
+  padding-top: clamp(40px, 5vw, 60px);
+}
+
 .vine {
   display: block;
-  height: clamp(60px, 8vw, 100px);
+  height: clamp(80px, 10vw, 120px);
   width: auto;
-  margin-bottom: var(--space-5);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .grid {
