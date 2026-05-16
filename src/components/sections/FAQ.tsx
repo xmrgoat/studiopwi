@@ -27,6 +27,12 @@ export default function FAQ() {
             <p className={styles.subline}>
               Tout ce que vous voulez savoir avant de démarrer.
             </p>
+            <img
+              src="/images/interogation.svg"
+              alt=""
+              aria-hidden="true"
+              className={styles.decoration}
+            />
           </header>
 
           <ul className={styles.list}>
