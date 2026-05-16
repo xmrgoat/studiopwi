@@ -29,6 +29,13 @@
   max-width: 50ch;
 }
 
+.vine {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: -2px;
+}
+
 .grid {
   list-style: none;
   display: grid;
