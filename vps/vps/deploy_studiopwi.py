@@ -31,7 +31,7 @@ DOMAIN     = "studiopwi.com"
 WWW_DOMAIN = "www.studiopwi.com"
 REMOTE_DIR = "/opt/studiopwi"
 BUILD_DIR  = "/tmp/_spwi_src"
-PORT       = 3002
+PORT       = 3005
 PM2_NAME   = "studiopwi"
 GITHUB_REPO = "https://github.com/xmrgoat/studiopwi"
 
@@ -151,6 +151,8 @@ def main():
     run(c, label="Phase 5a: npm ci",
         cmd=f"cd {BUILD_DIR} && npm ci",
         timeout=300)
+    # Restore .env into build dir so Next.js env validation passes during build
+    run(c, f"cp /tmp/_spwi_keep/env {BUILD_DIR}/.env 2>/dev/null || true")
     run(c, label="Phase 5b: npm run build",
         cmd=f"cd {BUILD_DIR} && npm run build",
         timeout=600)
