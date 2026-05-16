@@ -28,6 +28,9 @@ HOST       = "185.142.53.199"
 USER       = "root"
 PASS       = "*I-1LI9QX=nq"
 DOMAIN     = "studiopwi.com"
+
+# Path to local .env — uploaded to VPS when no preserved .env exists on server
+LOCAL_ENV  = os.path.join(os.path.dirname(__file__), "..", "..", ".env")
 WWW_DOMAIN = "www.studiopwi.com"
 REMOTE_DIR = "/opt/studiopwi"
 BUILD_DIR  = "/tmp/_spwi_src"
@@ -151,8 +154,19 @@ def main():
     run(c, label="Phase 5a: npm ci",
         cmd=f"cd {BUILD_DIR} && npm ci",
         timeout=300)
-    # Restore .env into build dir so Next.js env validation passes during build
+    # Restore .env: prefer preserved copy from server; fall back to local .env
     run(c, f"cp /tmp/_spwi_keep/env {BUILD_DIR}/.env 2>/dev/null || true")
+    env_missing_code = run(c, f"test -s {BUILD_DIR}/.env", allow_fail=True)
+    if env_missing_code != 0:
+        local_env = os.path.normpath(LOCAL_ENV)
+        if os.path.isfile(local_env):
+            print(f"\n  [!] No preserved .env — uploading local {local_env}")
+            sftp = c.open_sftp()
+            sftp.put(local_env, f"{BUILD_DIR}/.env")
+            sftp.close()
+            print("  [ok] .env uploaded")
+        else:
+            print(f"\n  [!] No .env found locally at {local_env} — build may fail")
     run(c, label="Phase 5b: npm run build",
         cmd=f"cd {BUILD_DIR} && npm run build",
         timeout=600)
