@@ -34,6 +34,31 @@
   .header {
     grid-template-columns: 1.3fr 1fr;
     gap: var(--space-8);
+    align-items: stretch;
+  }
+}
+
+.leadCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-5);
+}
+
+.edelweiss {
+  display: none;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .edelweiss {
+    display: block;
+    width: clamp(90px, 11vw, 150px);
+    height: auto;
+    color: var(--color-ink-deep);
+    opacity: 0.09;
+    align-self: center;
   }
 }
 

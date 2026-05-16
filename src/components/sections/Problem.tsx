@@ -7,6 +7,43 @@ import ItalicAccent from "@/components/ui/ItalicAccent";
 import { gsap, registerGsapPlugins, prefersReducedMotion } from "@/lib/motion";
 import styles from "./Problem.module.css";
 
+function EdelweissIcon({ className }: { className?: string }) {
+  const bractAngles = [0, 40, 80, 120, 160, 200, 240, 280, 320];
+  const bract = "M 100,18 C 113,38 115,68 100,86 C 85,68 87,38 100,18";
+  const floretAngles = [0, 60, 120, 180, 240, 300];
+  const fr = 18;
+
+  return (
+    <svg
+      viewBox="0 0 200 200"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className={className}
+    >
+      {bractAngles.map((a) => (
+        <g key={a} transform={`rotate(${a}, 100, 100)`}>
+          <path d={bract} />
+        </g>
+      ))}
+      <circle cx="100" cy="100" r="9" />
+      {floretAngles.map((a) => {
+        const rad = (a * Math.PI) / 180;
+        const cx = +(100 + fr * Math.sin(rad)).toFixed(2);
+        const cy = +(100 - fr * Math.cos(rad)).toFixed(2);
+        return <circle key={a} cx={cx} cy={cy} r="6" />;
+      })}
+      <circle cx="100" cy="100" r="3" fill="var(--color-bg)" />
+      {floretAngles.map((a) => {
+        const rad = (a * Math.PI) / 180;
+        const cx = +(100 + fr * Math.sin(rad)).toFixed(2);
+        const cy = +(100 - fr * Math.cos(rad)).toFixed(2);
+        return <circle key={`d${a}`} cx={cx} cy={cy} r="1.8" fill="var(--color-bg)" />;
+      })}
+    </svg>
+  );
+}
+
 export default function Problem() {
   const rootRef = useRef<HTMLElement>(null);
 
@@ -43,7 +80,10 @@ export default function Problem() {
               <ItalicAccent>{problem.headline.accent}</ItalicAccent>
             </h2>
           </div>
-          <p className={styles.lead}>{problem.lead}</p>
+          <div className={styles.leadCol}>
+            <EdelweissIcon className={styles.edelweiss} />
+            <p className={styles.lead}>{problem.lead}</p>
+          </div>
         </header>
 
         <ul className={styles.grid}>
