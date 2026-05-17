@@ -227,10 +227,10 @@
   .scrim {
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.78) 0%,
-      rgba(0, 0, 0, 0.55) 40%,
-      rgba(0, 0, 0, 0.25) 68%,
-      rgba(57, 108, 94, 0.15) 100%
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.82) 52%,
+      rgba(0, 0, 0, 0.22) 76%,
+      transparent 100%
     );
   }
   .eyebrow {
