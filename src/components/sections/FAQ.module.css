@@ -24,13 +24,6 @@
   gap: var(--space-4);
 }
 
-@media (min-width: 1024px) {
-  .header {
-    position: sticky;
-    top: 120px;
-  }
-}
-
 .headline {
   font-size: var(--fs-h2);
   color: var(--color-ink);
