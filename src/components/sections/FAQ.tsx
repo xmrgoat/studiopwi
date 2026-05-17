@@ -27,7 +27,6 @@ export default function FAQ() {
             <p className={styles.subline}>
               Tout ce que vous voulez savoir avant de démarrer.
             </p>
-            <div className={styles.decoration} aria-hidden="true" />
           </header>
 
           <ul className={styles.list}>
