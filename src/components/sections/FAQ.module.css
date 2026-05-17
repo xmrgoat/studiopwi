@@ -46,24 +46,6 @@
   max-width: 32ch;
 }
 
-.decoration {
-  display: none;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background-image: url('/images/interogation-faq.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.85;
-  margin-top: var(--space-5);
-}
-
-@media (min-width: 1024px) {
-  .decoration {
-    display: block;
-  }
-}
-
 /* Right: accordion */
 .list {
   list-style: none;
