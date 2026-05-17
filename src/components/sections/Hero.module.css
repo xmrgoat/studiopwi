@@ -216,9 +216,13 @@
 }
 
 @media (max-width: 1023px) {
+  .media {
+    background-image: url("/images/mobile-hero.png");
+    background-size: cover;
+    background-position: center top;
+  }
   .media video {
-    object-position: 75% top;
-    filter: blur(3px) saturate(0.85) brightness(0.72);
+    display: none;
   }
   .scrim {
     background: linear-gradient(
