@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description:
-    "Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, garantie 90 jours. Basés à Neuchâtel.",
+    "Nous créons des sites web axés conversion pour paysagistes suisses — plus de clients, plus de devis qualifiés, de meilleurs projets.",
   applicationName: site.name,
   authors: [{ name: site.name }],
   keywords: [
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — Sites web pour paysagistes suisses`,
     description:
-      "Studio web dédié aux paysagistes en Suisse. Sites orientés conversion, transparence des prix, garantie 90 jours.",
+      "Nous créons des sites web axés conversion pour paysagistes suisses — plus de clients, plus de devis qualifiés, de meilleurs projets.",
     images: [
       {
         url: "/opengraph-image",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.name} — Sites web pour paysagistes suisses`,
     description:
-      "Studio web dédié aux paysagistes en Suisse. Sites orientés conversion, garantie 90 jours.",
+      "Nous créons des sites web axés conversion pour paysagistes suisses — plus de clients, plus de devis qualifiés, de meilleurs projets.",
     images: ["/opengraph-image"],
   },
   robots: {
