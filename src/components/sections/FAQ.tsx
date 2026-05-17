@@ -28,7 +28,7 @@ export default function FAQ() {
               Tout ce que vous voulez savoir avant de démarrer.
             </p>
             <img
-              src="/images/interogation-mark.svg"
+              src="/images/interogation-mark.svg?v=2"
               alt=""
               aria-hidden="true"
               className={styles.decorationImg}
