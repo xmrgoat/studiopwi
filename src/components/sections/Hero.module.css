@@ -219,7 +219,7 @@
   .media {
     background-image: url("/images/mobile-hero.png");
     background-size: cover;
-    background-position: center top;
+    background-position: 80% top;
   }
   .media video {
     display: none;
@@ -227,9 +227,10 @@
   .scrim {
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.40) 0%,
-      rgba(0, 0, 0, 0.25) 55%,
-      rgba(57, 108, 94, 0.35) 100%
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(0, 0, 0, 0.55) 40%,
+      rgba(0, 0, 0, 0.25) 68%,
+      rgba(57, 108, 94, 0.15) 100%
     );
   }
   .eyebrow {
