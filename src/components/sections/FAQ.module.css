@@ -39,6 +39,13 @@
   max-width: 32ch;
 }
 
+.decorationImg {
+  display: block;
+  width: 80px;
+  margin-top: var(--space-6);
+  opacity: 0.55;
+}
+
 /* Right: accordion */
 .list {
   list-style: none;
