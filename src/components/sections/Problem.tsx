@@ -7,6 +7,12 @@ import ItalicAccent from "@/components/ui/ItalicAccent";
 import { gsap, registerGsapPlugins, prefersReducedMotion } from "@/lib/motion";
 import styles from "./Problem.module.css";
 
+function renderBold(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/).map((part, i) =>
+    part.startsWith("**") ? <strong key={i}>{part.slice(2, -2)}</strong> : part
+  );
+}
+
 
 export default function Problem() {
   const rootRef = useRef<HTMLElement>(null);
@@ -51,7 +57,7 @@ export default function Problem() {
               aria-hidden="true"
               className={styles.shovel}
             />
-            <p className={styles.lead}>{problem.lead}</p>
+            <p className={styles.lead}>{renderBold(problem.lead)}</p>
           </div>
         </header>
 

@@ -58,7 +58,7 @@ export const site = {
       after: "",
     },
     lead:
-      "Un propriétaire compare deux entreprises sur Google. L'une inspire confiance avec un site soigné, des photos réelles et des informations claires. L'autre paraît absente ou négligée. Il appelle la première. Pas forcément la meilleure. Celle qui rassure.",
+      "Un **propriétaire** compare deux entreprises sur Google. L'une inspire confiance avec un **site** soigné, des photos réelles et des informations claires. L'autre paraît absente ou négligée. Il **appelle** la première. Pas forcément la **meilleure**. Celle qui rassure.",
     points: [
       {
         number: "01",
