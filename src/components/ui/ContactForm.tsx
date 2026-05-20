@@ -39,8 +39,15 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
         body: JSON.stringify(payload),
       });
       if (!res.ok) {
-        const body = (await res.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(body?.error ?? "Request failed");
+        const body = (await res.json().catch(() => null)) as {
+          error?: string;
+          issues?: { fieldErrors?: Record<string, string[]> };
+        } | null;
+        const fieldErrors = body?.issues?.fieldErrors;
+        const firstFieldError = fieldErrors
+          ? Object.values(fieldErrors).flat()[0]
+          : null;
+        throw new Error(firstFieldError ?? body?.error ?? "Erreur inconnue");
       }
       setStatus("success");
     } catch (err) {
