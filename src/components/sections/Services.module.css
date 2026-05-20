@@ -144,6 +144,7 @@
 
 .features {
   list-style: none;
+  counter-reset: feat;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -151,6 +152,7 @@
 }
 
 .features li {
+  counter-increment: feat;
   font-size: var(--fs-small);
   padding-left: 1.5em;
   position: relative;
@@ -159,13 +161,15 @@
 }
 
 .features li::before {
-  content: "";
+  content: counter(feat);
   position: absolute;
   left: 0;
-  top: 0.7em;
-  width: 12px;
-  height: 1px;
-  background: var(--color-brand-deep);
+  top: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  color: var(--color-brand-deep);
+  line-height: var(--lh-normal);
 }
 
 .cta {

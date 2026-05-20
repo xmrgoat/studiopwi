@@ -76,11 +76,11 @@ export default function Services() {
               <p className={styles.price}>{tier.price}</p>
               <p className={`mono ${styles.duration}`}>{tier.duration}</p>
               <p className={styles.description}>{tier.description}</p>
-              <ul className={styles.features}>
+              <ol className={styles.features}>
                 {tier.features.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
-              </ul>
+              </ol>
               <div className={styles.cta}>
                 <Button href={tier.cta.href} variant={tier.featured ? "primary" : "ghost"} magnetic>
                   {tier.cta.label}
