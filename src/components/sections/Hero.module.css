@@ -34,7 +34,8 @@
   height: 100%;
   object-fit: cover;
   will-change: transform;
-  filter: saturate(0.92) contrast(1.04);
+  filter: saturate(0.92) contrast(1.04) blur(10px);
+  transform: scale(1.05); /* prevent blur from exposing edges */
 }
 
 /* --- Scrim --- */
@@ -220,6 +221,8 @@
     background-image: url("/images/mobile-hero.png");
     background-size: cover;
     background-position: 80% top;
+    filter: blur(10px);
+    transform: scale(1.05);
   }
   .media video {
     display: none;
@@ -265,5 +268,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .scrollLine { animation: none; }
-  .media video { transform: none !important; filter: none; }
+  .media video { transform: scale(1.05) !important; filter: saturate(0.92) contrast(1.04) blur(10px); }
 }
