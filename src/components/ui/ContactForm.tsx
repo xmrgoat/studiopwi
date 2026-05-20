@@ -74,7 +74,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
     return (
       <div className={styles.success} role="status" aria-live="polite">
         <p className={styles.successLabel}>Message reçu</p>
-        <p className={styles.successText}>Merci. On revient vers vous sous 24h ouvrées.</p>
+        <p className={styles.successText}>Merci. On revient vers vous sous 48h ouvrées.</p>
       </div>
     );
   }
