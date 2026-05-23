@@ -23,25 +23,25 @@ export const cases = {
   },
   items: [
     {
-      slug: "jardins-dupont",
-      client: "Jardins Dupont",
-      location: "Lausanne, VD",
-      year: 2025,
-      tag: "SITE VITRINE",
+      slug: "colorado-eco-garden",
+      client: "Colorado Eco Garden",
+      location: "Colorado, États-Unis",
+      year: 2026,
+      tag: "LANDING PAGE",
       image: {
-        src: "/images/case-studies/dupont.webp",
-        alt: "Photo éditoriale de jardin — Jardins Dupont",
+        src: "/images/case-studies/colorado-eco-garden.webp",
+        alt: "Jardin écologique natif — Colorado Eco Garden",
       },
       challenge:
-        "Une entreprise familiale avec 30 ans de réalisations cachées dans un dossier.",
+        "Des paysagistes face à des propriétaires qui dépensaient jusqu'à 1 200 $/an en eau pour des pelouses inadaptées à un État semi-aride.",
       solution:
-        "Site portfolio éditorial avec rotation saisonnière de photographies.",
-      resultNumber: 180,
+        "Landing page de conversion avec tunnel de devis gratuit, galerie de réalisations natives et trois paliers de prix transparents.",
+      resultNumber: 65,
       resultUnit: "%",
-      resultLabel: "leads qualifiés en 6 mois",
+      resultLabel: "réduction d'eau dès la première saison",
       quote:
-        "On a enfin un site qui ressemble à nos jardins — pas à celui de tout le monde.",
-      attribution: { name: "Marie Dupont", role: "Co-fondatrice" },
+        "We cut our water bill in half and our neighbors keep asking who did our yard. Best decision we've made for our home.",
+      attribution: { name: "Sarah M.", role: "Highlands Ranch, CO" },
     },
   ] as const satisfies readonly CaseStudy[],
 } as const;
