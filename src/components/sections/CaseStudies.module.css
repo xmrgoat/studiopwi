@@ -56,23 +56,6 @@
   filter: saturate(1.05);
 }
 
-/* Editorial mono caption corner */
-.imageWrap::after {
-  content: attr(data-caption);
-  position: absolute;
-  bottom: var(--space-3);
-  left: var(--space-3);
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-  color: var(--color-bg);
-  background: rgba(57, 108, 94, 0.6);
-  padding: 6px 10px;
-  border-radius: 0;
-  pointer-events: none;
-  backdrop-filter: blur(8px);
-}
 
 .text {
   display: flex;
