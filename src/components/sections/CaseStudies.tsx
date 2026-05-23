@@ -99,13 +99,15 @@ export default function CaseStudies() {
                   </p>
                 )}
 
-                <blockquote className={styles.quote}>
-                  <span aria-hidden="true" className={styles.quoteMark}>“</span>
-                  {c.quote}
-                  <footer className={styles.attribution}>
-                    — {c.attribution.name}, {c.attribution.role}
-                  </footer>
-                </blockquote>
+                {c.quote && (
+                  <blockquote className={styles.quote}>
+                    <span aria-hidden=”true” className={styles.quoteMark}>”</span>
+                    {c.quote}
+                    <footer className={styles.attribution}>
+                      — {c.attribution.name}, {c.attribution.role}
+                    </footer>
+                  </blockquote>
+                )}
               </div>
             </article>
           ))}
