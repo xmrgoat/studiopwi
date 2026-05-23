@@ -35,7 +35,7 @@ export const cases = {
       challenge:
         "Zéro site, zéro présence en ligne — une entreprise qui venait de lancer et avait besoin de clients dès le premier jour.",
       solution:
-        "Landing page de conversion avec tunnel de devis gratuit, galerie de réalisations natives et trois paliers de prix transparents.",
+        "Landing page de conversion avec tunnel de devis gratuit et trois paliers de prix transparents.",
       quote:
         "We cut our water bill in half and our neighbors keep asking who did our yard. Best decision we've made for our home.",
       attribution: { name: "Jimi", role: "Fondateur, Colorado Eco Garden" },
