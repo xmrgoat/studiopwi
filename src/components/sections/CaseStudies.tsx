@@ -101,7 +101,7 @@ export default function CaseStudies() {
 
                 {c.quote && (
                   <blockquote className={styles.quote}>
-                    <span aria-hidden=”true” className={styles.quoteMark}>”</span>
+                    <span aria-hidden=”true” className={styles.quoteMark}>{'“'}</span>
                     {c.quote}
                     <footer className={styles.attribution}>
                       — {c.attribution.name}, {c.attribution.role}
