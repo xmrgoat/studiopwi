@@ -59,17 +59,41 @@ export default function CaseStudies() {
         <div className={styles.list}>
           {(cases.items as readonly CaseStudy[]).map((c, i) => (
             <article key={c.slug} className={cn(styles.case, i % 2 === 1 && styles.reverse)}>
-              <div className={styles.imageWrap}>
-                <Image
-                  src={c.image.src}
-                  alt={c.image.alt}
-                  width={1280}
-                  height={900}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  loading="lazy"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
+              {c.siteUrl ? (
+                <a
+                  href={c.siteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.imageLink}
+                  tabIndex={-1}
+                  aria-hidden="true"
+                >
+                  <div className={styles.imageWrap}>
+                    <Image
+                      src={c.image.src}
+                      alt={c.image.alt}
+                      width={1280}
+                      height={900}
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      loading="lazy"
+                      style={{ width: "100%", height: "auto" }}
+                    />
+                  </div>
+                </a>
+              ) : (
+                <div className={styles.imageWrap}>
+                  <Image
+                    src={c.image.src}
+                    alt={c.image.alt}
+                    width={1280}
+                    height={900}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    loading="lazy"
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </div>
+              )}
+
               <div className={styles.text}>
                 <p className={`mono ${styles.tag}`}>{c.tag}</p>
                 <h3 className={styles.title}>{c.client}</h3>
@@ -104,6 +128,27 @@ export default function CaseStudies() {
                       &mdash; {c.attribution.name}, {c.attribution.role}
                     </footer>
                   </blockquote>
+                )}
+
+                {c.siteUrl && (
+                  <a
+                    href={c.siteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.siteLink}
+                  >
+                    <span className={styles.siteLinkLabel}>Voir le projet</span>
+                    <svg
+                      className={styles.siteLinkArrow}
+                      width="11"
+                      height="11"
+                      viewBox="0 0 11 11"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>
                 )}
               </div>
             </article>
