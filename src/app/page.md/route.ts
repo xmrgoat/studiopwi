@@ -1,6 +1,6 @@
 import { site } from "@/content/site";
 import { services, type Service } from "@/content/services";
-import { cases } from "@/content/cases";
+import { cases, type CaseStudy } from "@/content/cases";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com";
 
@@ -21,7 +21,7 @@ export function GET() {
   const contact = site.contact;
   const faq = site.faq;
   const banner = site.ctaBanner;
-  const caseItem = cases.items[0];
+  const caseItem = cases.items[0] as CaseStudy | undefined;
 
   const lines: string[] = [];
 
