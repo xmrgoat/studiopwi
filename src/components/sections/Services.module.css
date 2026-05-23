@@ -34,17 +34,6 @@
   padding-top: clamp(25px, 4vw, 55px);
 }
 
-.vine {
-  display: block;
-  width: 55%;
-  height: auto;
-  position: absolute;
-  top: clamp(-50px, -3vw, -15px);
-  left: 49%;
-  transform: translate(-50%, -50%) rotate(-2deg);
-  z-index: 1;
-  opacity: 0.7;
-}
 
 .grid {
   list-style: none;
@@ -144,7 +133,6 @@
 
 .features {
   list-style: none;
-  counter-reset: feat;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -152,7 +140,6 @@
 }
 
 .features li {
-  counter-increment: feat;
   font-size: var(--fs-small);
   padding-left: 1.5em;
   position: relative;
@@ -161,15 +148,13 @@
 }
 
 .features li::before {
-  content: counter(feat);
+  content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  color: var(--color-brand-deep);
-  line-height: var(--lh-normal);
+  top: 0.7em;
+  width: 12px;
+  height: 1px;
+  background: var(--color-brand-deep);
 }
 
 .cta {

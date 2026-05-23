@@ -29,12 +29,7 @@ export default function Services() {
         duration: 0.9,
         stagger: 0.1,
         ease: "expo.out",
-      }).from(`.${styles.vine}`, {
-        opacity: 0,
-        y: 60,
-        duration: 1.6,
-        ease: "expo.out",
-      }, "-=0.6");
+      });
     }, root);
 
     return () => ctx.revert();
@@ -56,12 +51,6 @@ export default function Services() {
         </header>
 
         <div className={styles.gridWrapper}>
-          <img
-            src="/images/vine.svg?v=3"
-            alt=""
-            aria-hidden="true"
-            className={styles.vine}
-          />
           <ul className={styles.grid}>
           {(services.tiers as readonly Service[]).map((tier, idx) => (
             <li
@@ -76,11 +65,11 @@ export default function Services() {
               <p className={styles.price}>{tier.price}</p>
               <p className={`mono ${styles.duration}`}>{tier.duration}</p>
               <p className={styles.description}>{tier.description}</p>
-              <ol className={styles.features}>
+              <ul className={styles.features}>
                 {tier.features.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
-              </ol>
+              </ul>
               <div className={styles.cta}>
                 <Button href={tier.cta.href} variant={tier.featured ? "primary" : "ghost"} magnetic>
                   {tier.cta.label}
