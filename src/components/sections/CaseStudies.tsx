@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { cases } from "@/content/cases";
+import { cases, type CaseStudy } from "@/content/cases";
 import SectionMarker from "@/components/ui/SectionMarker";
 import ItalicAccent from "@/components/ui/ItalicAccent";
 import Counter from "@/components/motion/Counter";
@@ -59,7 +59,7 @@ export default function CaseStudies() {
         </header>
 
         <div className={styles.list}>
-          {cases.items.map((c, i) => (
+          {(cases.items as readonly CaseStudy[]).map((c, i) => (
             <article key={c.slug} className={cn(styles.case, i % 2 === 1 && styles.reverse)}>
               <div className={styles.imageWrap}>
                 <Image
