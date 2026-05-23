@@ -33,7 +33,7 @@ export const cases = {
         alt: "Jardin écologique natif — Colorado Eco Garden",
       },
       challenge:
-        "Des paysagistes face à des propriétaires qui dépensaient jusqu'à 1 200 $/an en eau pour des pelouses inadaptées à un État semi-aride.",
+        "Zéro site, zéro présence en ligne — une entreprise qui venait de lancer et avait besoin de clients dès le premier jour.",
       solution:
         "Landing page de conversion avec tunnel de devis gratuit, galerie de réalisations natives et trois paliers de prix transparents.",
       resultNumber: 65,
