@@ -7,9 +7,9 @@ export type CaseStudy = {
   image: { src: string; alt: string };
   challenge: string;
   solution: string;
-  resultNumber: number;
-  resultUnit: "%" | "x" | "";
-  resultLabel: string;
+  resultNumber?: number;
+  resultUnit?: "%" | "x" | "";
+  resultLabel?: string;
   quote: string;
   attribution: { name: string; role: string };
 };
@@ -36,9 +36,6 @@ export const cases = {
         "Zéro site, zéro présence en ligne — une entreprise qui venait de lancer et avait besoin de clients dès le premier jour.",
       solution:
         "Landing page de conversion avec tunnel de devis gratuit, galerie de réalisations natives et trois paliers de prix transparents.",
-      resultNumber: 65,
-      resultUnit: "%",
-      resultLabel: "réduction d'eau dès la première saison",
       quote:
         "We cut our water bill in half and our neighbors keep asking who did our yard. Best decision we've made for our home.",
       attribution: { name: "Jimi", role: "Fondateur, Colorado Eco Garden" },

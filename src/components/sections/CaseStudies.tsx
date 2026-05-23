@@ -90,12 +90,14 @@ export default function CaseStudies() {
                   </div>
                 </dl>
 
-                <p className={styles.result}>
-                  {c.resultUnit === "%" && "+"}
-                  <Counter value={c.resultNumber} onScroll />
-                  <ItalicAccent>{c.resultUnit}</ItalicAccent>
-                  <span className={styles.resultLabel}> {c.resultLabel}</span>
-                </p>
+                {c.resultNumber != null && (
+                  <p className={styles.result}>
+                    {c.resultUnit === "%" && "+"}
+                    <Counter value={c.resultNumber} onScroll />
+                    <ItalicAccent>{c.resultUnit}</ItalicAccent>
+                    <span className={styles.resultLabel}> {c.resultLabel}</span>
+                  </p>
+                )}
 
                 <blockquote className={styles.quote}>
                   <span aria-hidden="true" className={styles.quoteMark}>“</span>
