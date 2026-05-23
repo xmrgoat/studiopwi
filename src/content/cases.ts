@@ -41,7 +41,7 @@ export const cases = {
       resultLabel: "réduction d'eau dès la première saison",
       quote:
         "We cut our water bill in half and our neighbors keep asking who did our yard. Best decision we've made for our home.",
-      attribution: { name: "Sarah M.", role: "Highlands Ranch, CO" },
+      attribution: { name: "Sarah M.", role: "Cliente — Colorado Eco Garden" },
     },
   ] as const satisfies readonly CaseStudy[],
 } as const;
