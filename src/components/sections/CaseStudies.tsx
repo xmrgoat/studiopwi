@@ -20,7 +20,6 @@ export default function CaseStudies() {
     if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Image reveal — clip-path on the wrapper, no scale on inner.
       root.querySelectorAll<HTMLElement>(`.${styles.imageWrap}`).forEach((wrap) => {
         gsap.from(wrap, {
           clipPath: "inset(10% 10% 10% 10%)",
@@ -30,7 +29,6 @@ export default function CaseStudies() {
         });
       });
 
-      // Parallax on inner image — starts at top top to avoid clip conflict.
       root.querySelectorAll<HTMLElement>(`.${styles.imageWrap} img`).forEach((img) => {
         gsap.to(img, {
           yPercent: -10,
@@ -76,7 +74,7 @@ export default function CaseStudies() {
                 <p className={`mono ${styles.tag}`}>{c.tag}</p>
                 <h3 className={styles.title}>{c.client}</h3>
                 <p className={`mono ${styles.meta}`}>
-                  {c.location} · {c.year}
+                  {c.location} &middot; {c.year}
                 </p>
 
                 <dl className={styles.facts}>
@@ -101,10 +99,9 @@ export default function CaseStudies() {
 
                 {c.quote && (
                   <blockquote className={styles.quote}>
-                    <span aria-hidden=”true” className={styles.quoteMark}>{'“'}</span>
                     {c.quote}
                     <footer className={styles.attribution}>
-                      — {c.attribution.name}, {c.attribution.role}
+                      &mdash; {c.attribution.name}, {c.attribution.role}
                     </footer>
                   </blockquote>
                 )}
