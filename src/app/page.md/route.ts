@@ -116,10 +116,12 @@ export function GET() {
     lines.push("");
     lines.push(`**Solution** : ${caseItem.solution}`);
     lines.push("");
-    lines.push(
-      `**Résultat** : +${caseItem.resultNumber}${caseItem.resultUnit} ${caseItem.resultLabel}`,
-    );
-    lines.push("");
+    if (caseItem.resultNumber != null) {
+      lines.push(
+        `**Résultat** : +${caseItem.resultNumber}${caseItem.resultUnit} ${caseItem.resultLabel}`,
+      );
+      lines.push("");
+    }
     lines.push(
       `> « ${caseItem.quote} »  \n> — ${caseItem.attribution.name}, ${caseItem.attribution.role}`,
     );
