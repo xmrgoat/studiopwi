@@ -6,6 +6,7 @@ export type CaseStudy = {
   tag: string;
   image: { src: string; alt: string };
   siteUrl?: string;
+  inProduction?: boolean;
   challenge: string;
   solution: string;
   resultNumber?: number;
@@ -34,6 +35,7 @@ export const cases = {
         alt: "Jardin écologique natif — Colorado Eco Garden",
       },
       siteUrl: "https://jimmi-eco-garden.vercel.app/",
+      inProduction: true,
       challenge:
         "Zéro site, zéro présence en ligne — une entreprise qui venait de lancer et avait besoin de clients dès le premier jour.",
       solution:

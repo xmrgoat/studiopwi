@@ -95,7 +95,15 @@ export default function CaseStudies() {
               )}
 
               <div className={styles.text}>
-                <p className={`mono ${styles.tag}`}>{c.tag}</p>
+                <div className={styles.tagRow}>
+                  <p className={`mono ${styles.tag}`}>{c.tag}</p>
+                  {c.inProduction && (
+                    <span className={styles.liveBadge}>
+                      <span className={styles.liveDot} aria-hidden="true" />
+                      En production
+                    </span>
+                  )}
+                </div>
                 <h3 className={styles.title}>{c.client}</h3>
                 <p className={`mono ${styles.meta}`}>
                   {c.location} &middot; {c.year}
