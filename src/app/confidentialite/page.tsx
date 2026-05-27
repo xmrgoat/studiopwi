@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description:
     "Comment Studio PWI collecte, traite et protège vos données personnelles, conformément à la nLPD suisse et au RGPD européen.",
-  alternates: { canonical: "/privacy" },
+  alternates: { canonical: "/confidentialite" },
 };
 
 export default function PrivacyPage() {

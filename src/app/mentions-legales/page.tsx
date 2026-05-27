@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Mentions légales",
   description:
     "Mentions légales du site studiopwi.com — identité de l'éditeur, hébergement, propriété intellectuelle et droit applicable.",
-  alternates: { canonical: "/imprint" },
+  alternates: { canonical: "/mentions-legales" },
 };
 
 export default function ImprintPage() {
@@ -97,7 +97,7 @@ export default function ImprintPage() {
       <p>
         Le traitement des données personnelles effectué dans le cadre de
         l&apos;utilisation du Site est décrit dans notre{" "}
-        <a href="/privacy">Politique de confidentialité</a>, conforme à la nouvelle
+        <a href="/confidentialite">Politique de confidentialité</a>, conforme à la nouvelle
         Loi fédérale sur la protection des données (nLPD, RS 235.1), en vigueur
         depuis le 1<sup>er</sup> septembre 2023, et au Règlement général sur la
         protection des données (RGPD, UE 2016/679).

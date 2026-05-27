@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Conditions générales d'utilisation",
   description:
     "Conditions générales d'utilisation du site studiopwi.com et des services de Studio PWI, soumises au droit suisse.",
-  alternates: { canonical: "/terms" },
+  alternates: { canonical: "/conditions-generales" },
 };
 
 export default function TermsPage() {
@@ -155,7 +155,7 @@ export default function TermsPage() {
       <p>
         L&apos;utilisation du Site peut impliquer la collecte de données personnelles.
         Ces traitements sont décrits dans notre{" "}
-        <a href="/privacy">Politique de confidentialité</a>, conforme à la nLPD et
+        <a href="/confidentialite">Politique de confidentialité</a>, conforme à la nLPD et
         au RGPD.
       </p>
 
