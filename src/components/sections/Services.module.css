@@ -31,7 +31,7 @@
 
 .gridWrapper {
   position: relative;
-  padding-top: clamp(25px, 4vw, 55px);
+  padding-top: clamp(24px, 4vw, 56px);
 }
 
 
@@ -40,7 +40,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-3);
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-8);
 }
 
 @media (min-width: 900px) {
