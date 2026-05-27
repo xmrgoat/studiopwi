@@ -36,6 +36,8 @@ export const site = {
     video: {
       src: "/videos/flower.mp4",
       poster: "/images/flower-poster.webp",
+      title: "Studio PWI — Sites web pour paysagistes suisses",
+      description: "Nous créons des sites web axés conversion pour les entreprises de paysagisme en Suisse — pour attirer plus de clients et générer plus de demandes de devis.",
     },
   },
 
@@ -64,7 +66,7 @@ export const site = {
         number: "01",
         title: "Introuvable au moment où ça compte",
         body:
-          "Quand un propriétaire cherche « paysagiste [ville] », il contacte les premiers résultats. Si vous n'y êtes pas, le chantier part ailleurs.",
+          "Quand un propriétaire cherche « paysagiste Lausanne », « paysagiste Neuchâtel » ou « paysagiste Genève », il contacte les premiers résultats. Si vous n'y êtes pas, le chantier part ailleurs.",
       },
       {
         number: "02",
@@ -89,7 +91,7 @@ export const site = {
       after: "",
     },
     badges: [
-      "100% suisse. Basés en Romandie.",
+      "100% suisse. Basés à Neuchâtel, en Romandie.",
       "Studio spécialisé. Paysagistes uniquement.",
       "Un seul contact. Du brief au lancement.",
       "Garantie satisfaction 90 jours.",
@@ -164,32 +166,32 @@ export const site = {
       {
         question: "Combien coûte un site web pour paysagiste ?",
         answer:
-          "Nos offres démarrent à CHF 600 pour une présence simple et vont jusqu'à CHF 3'200 pour un site complet orienté conversion. Le prix dépend du nombre de pages, des fonctionnalités et du niveau de personnalisation.",
+          "Nos offres démarrent à CHF 600 pour une présence simple et vont jusqu'à CHF 3'200 pour un site complet orienté conversion. Pour un paysagiste en Suisse romande — à Neuchâtel, Lausanne, Genève ou Fribourg — le tarif dépend du nombre de pages, des fonctionnalités souhaitées et du niveau de personnalisation. Chaque offre inclut le design, le développement et le référencement de base. Aucun abonnement caché.",
       },
       {
         question: "Combien de temps faut-il pour créer mon site ?",
         answer:
-          "Entre 1 et 3 semaines selon l'offre choisie. Dès que nous avons vos contenus (logo, photos, textes), nous respectons les délais convenus.",
+          "L'offre Lancement est livrée en 1 à 2 semaines, l'offre Croissance en 2 à 4 semaines. Dès que nous avons vos contenus — logo, photos de chantier, textes — nous respectons les délais convenus. Nos clients paysagistes en Romandie reçoivent souvent leur site en ligne avant la fin de leur saison.",
       },
       {
         question: "Est-ce que je peux modifier le site moi-même après livraison ?",
         answer:
-          "Oui. Nous livrons un site simple à mettre à jour, et nous vous formons à l'utilisation. Vous restez autonome.",
+          "Oui. Nous livrons un site simple à mettre à jour et nous vous formons à l'utilisation. Que vous soyez à Neuchâtel, Lausanne ou Genève, on peut se retrouver ou faire ça en visio. Vous pouvez ajouter de nouvelles réalisations, modifier vos services ou changer vos coordonnées sans passer par nous.",
       },
       {
         question: "Travaillez-vous uniquement avec des paysagistes ?",
         answer:
-          "Oui, c'est notre spécialité. Cette focalisation nous permet de comprendre votre métier, votre clientèle et ce qui fonctionne réellement dans votre secteur.",
+          "Oui, c'est notre seule spécialité. Nous travaillons exclusivement avec des entreprises de paysagisme en Suisse romande — jardins résidentiels, entretien d'espaces verts, aménagement paysager, terrasses et massifs. Cette focalisation nous permet de comprendre votre métier, votre clientèle et ce qui fonctionne réellement dans votre secteur.",
       },
       {
         question: "Mon site sera-t-il visible sur Google ?",
         answer:
-          "Toutes nos offres incluent les bases du SEO local : balises optimisées, structure claire, vitesse de chargement. L'offre Croissance intègre un SEO plus avancé avec optimisation continue.",
+          "Toutes nos offres incluent les bases du SEO local : balises optimisées, structure claire, vitesse de chargement. Concrètement, votre site sera mieux positionné quand un propriétaire cherche « paysagiste Neuchâtel », « paysagiste Lausanne », « jardinage Genève » ou « entretien jardin Fribourg ». L'offre Croissance intègre un SEO avancé avec optimisation continue pour vous positionner sur des requêtes locales ciblées.",
       },
       {
         question: "Que se passe-t-il si je ne suis pas satisfait ?",
         answer:
-          "Nous travaillons en révisions validées à chaque étape pour éviter les mauvaises surprises. En cas de désaccord, nous cherchons une solution — votre satisfaction est notre priorité.",
+          "Nous travaillons en révisions validées à chaque étape pour éviter les mauvaises surprises. De plus, toutes nos offres incluent une garantie satisfaction de 90 jours après le lancement : si vous ne constatez pas d'amélioration mesurable en demandes qualifiées, nous continuons à travailler jusqu'à ce que les résultats soient là — sans frais supplémentaires.",
       },
     ],
   },
