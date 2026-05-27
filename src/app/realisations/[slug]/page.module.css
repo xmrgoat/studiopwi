@@ -68,7 +68,7 @@
 /* Hero image */
 .heroImage {
   overflow: hidden;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
   background: var(--color-bg-warm);
   margin-bottom: var(--space-9);
 }
