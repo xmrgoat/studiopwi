@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { cases, type CaseStudy } from "@/content/cases";
 import SectionMarker from "@/components/ui/SectionMarker";
@@ -138,14 +139,9 @@ export default function CaseStudies() {
                   </blockquote>
                 )}
 
-                {c.siteUrl && (
-                  <a
-                    href={c.siteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.siteLink}
-                  >
-                    <span className={styles.siteLinkLabel}>Voir le projet</span>
+                <div className={styles.caseLinks}>
+                  <Link href={`/realisations/${c.slug}`} className={styles.siteLink}>
+                    <span className={styles.siteLinkLabel}>Voir l&apos;étude de cas</span>
                     <svg
                       className={styles.siteLinkArrow}
                       width="11"
@@ -156,8 +152,28 @@ export default function CaseStudies() {
                     >
                       <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                  </a>
-                )}
+                  </Link>
+                  {c.siteUrl && (
+                    <a
+                      href={c.siteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${styles.siteLink} ${styles.siteLinkExternal}`}
+                    >
+                      <span className={styles.siteLinkLabel}>Voir le projet en ligne</span>
+                      <svg
+                        className={styles.siteLinkArrow}
+                        width="11"
+                        height="11"
+                        viewBox="0 0 11 11"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
               </div>
             </article>
           ))}
