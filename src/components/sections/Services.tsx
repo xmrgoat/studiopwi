@@ -71,7 +71,7 @@ export default function Services() {
                 ))}
               </ul>
               <div className={styles.cta}>
-                <Button href={tier.cta.href} variant={tier.featured ? "primary" : "ghost"} magnetic>
+                <Button href={tier.cta.href} variant="primary" magnetic>
                   {tier.cta.label}
                 </Button>
               </div>
