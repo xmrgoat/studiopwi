@@ -24,19 +24,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
     {
-      url: `${SITE_URL}/privacy`,
+      url: `${SITE_URL}/confidentialite`,
       lastModified: new Date("2026-05-16"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: `${SITE_URL}/terms`,
+      url: `${SITE_URL}/conditions-generales`,
       lastModified: new Date("2026-05-16"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: `${SITE_URL}/imprint`,
+      url: `${SITE_URL}/mentions-legales`,
       lastModified: new Date("2026-05-16"),
       changeFrequency: "yearly",
       priority: 0.3,
