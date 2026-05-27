@@ -104,7 +104,7 @@ export function OffersLd() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     itemListElement: services.tiers.map((tier, i) => {
-      const p = priceMap[tier.id];
+      const p = priceMap[tier.id] ?? { min: 0, max: 0 };
       return {
         "@type": "ListItem",
         position: i + 1,

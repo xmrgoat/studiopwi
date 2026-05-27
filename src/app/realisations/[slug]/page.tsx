@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { cases } from "@/content/cases";
+import { cases, type CaseStudy } from "@/content/cases";
 import styles from "./page.module.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com";
@@ -19,7 +19,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const c = cases.items.find((item) => item.slug === slug);
+  const c = (cases.items as readonly CaseStudy[]).find((item) => item.slug === slug);
   if (!c) return {};
   const description = `${c.challenge} ${c.solution}`.slice(0, 155);
   return {
@@ -34,7 +34,7 @@ export async function generateMetadata({
   };
 }
 
-function CaseStudySchema({ c }: { c: (typeof cases.items)[number] }) {
+function CaseStudySchema({ c }: { c: CaseStudy }) {
   const data = {
     "@context": "https://schema.org",
     "@type": ["WebPage", "CreativeWork"],
@@ -65,7 +65,7 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const c = cases.items.find((item) => item.slug === slug);
+  const c = (cases.items as readonly CaseStudy[]).find((item) => item.slug === slug);
   if (!c) notFound();
 
   return (
