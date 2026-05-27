@@ -10,9 +10,9 @@ export const site = {
   locale: "fr",
 
   nav: [
-    { label: "Réalisations", href: "#work" },
+    { label: "Réalisations", href: "#realisations" },
     { label: "Services", href: "#services" },
-    { label: "À propos", href: "#why" },
+    { label: "À propos", href: "#pourquoi" },
     { label: "Contact", href: "#contact" },
   ],
 
@@ -26,7 +26,7 @@ export const site = {
     lead:
       "Nous créons des sites web axés conversion pour les entreprises de paysagisme en Suisse afin d'attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs projets.",
     primaryCta: { label: "Démarrer un projet", href: "#contact" },
-    secondaryCta: { label: "Voir nos réalisations", href: "#work" },
+    secondaryCta: { label: "Voir nos réalisations", href: "#realisations" },
     metrics: [
       { value: 12, label: "Projets" },
       { value: 90, label: "Jours" },
@@ -209,9 +209,9 @@ export const site = {
   footer: {
     email: "contact@studiopwi.com",
     legal: [
-      { label: "Confidentialité", href: "/privacy" },
-      { label: "CGU", href: "/terms" },
-      { label: "Mentions légales", href: "/imprint" },
+      { label: "Confidentialité", href: "/confidentialite" },
+      { label: "CGU", href: "/conditions-generales" },
+      { label: "Mentions légales", href: "/mentions-legales" },
     ],
     signature: "Conçu avec soin en Suisse.",
   },
