@@ -53,6 +53,21 @@ export default function WhyUs() {
         scrollTrigger: { trigger: `.${styles.process}`, start: "top 75%", once: true },
       });
 
+      gsap.fromTo(
+        `.${styles.stepsLine}`,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: `.${styles.steps}`,
+            start: "top 65%",
+            end: "bottom 55%",
+            scrub: 1,
+          },
+        }
+      );
+
       gsap.from(`.${styles.guarantee}`, {
         scale: 0.96,
         opacity: 0,
@@ -91,6 +106,7 @@ export default function WhyUs() {
           <div className={styles.process}>
             <h3 className={`mono ${styles.processTitle}`}>Notre démarche</h3>
             <ol className={styles.steps}>
+              <span className={styles.stepsLine} aria-hidden="true" />
               {whyUs.process.map((s) => (
                 <li key={s.number} className={styles.step}>
                   <span className={styles.stepNum} aria-hidden="true">{s.number}</span>
