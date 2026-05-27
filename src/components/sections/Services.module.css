@@ -39,7 +39,7 @@
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-4);
+  gap: var(--space-3);
   margin-bottom: var(--space-7);
 }
 
@@ -58,16 +58,18 @@
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-line-strong);
   border-radius: var(--radius-pill);
+  overflow: hidden;
   transition:
     background var(--duration-ui) var(--ease-smooth),
-    transform var(--duration-ui) var(--ease-out),
-    box-shadow var(--duration-ui) var(--ease-out);
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+  will-change: transform;
 }
 
 .card:hover {
   background: var(--color-bg-elevated);
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(45, 85, 73, 0.13);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 36px -6px color-mix(in oklch, var(--color-brand-deep) 28%, transparent);
 }
 
 .featured {
@@ -76,7 +78,7 @@
 }
 .featured:hover {
   background: var(--color-brand);
-  box-shadow: 0 16px 40px rgba(45, 85, 73, 0.22);
+  box-shadow: 0 10px 36px -6px color-mix(in oklch, var(--color-brand-deep) 40%, transparent);
 }
 
 .cardIndex {
