@@ -29,7 +29,7 @@ export const cases = {
       client: "Colorado Eco Garden",
       location: "Colorado, États-Unis",
       year: 2026,
-      tag: "LANDING PAGE",
+      tag: "",
       image: {
         src: "/images/case-studies/colorado-eco-garden.webp",
         alt: "Jardin écologique natif — Colorado Eco Garden",
