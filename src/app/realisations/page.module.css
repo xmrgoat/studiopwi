@@ -73,11 +73,15 @@
   border-radius: var(--radius-lg);
   background: var(--color-bg-warm);
   margin-bottom: var(--space-4);
-  transition: transform var(--duration-ui) var(--ease-expo);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+  will-change: transform;
 }
 
 .card:hover .cardImage {
-  transform: scale(1.01);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 36px -6px color-mix(in oklch, var(--color-brand-deep) 28%, transparent);
 }
 
 .cardImage img {

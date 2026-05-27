@@ -38,7 +38,15 @@
 .imageLink {
   display: block;
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+  will-change: transform;
+}
+
+.imageLink:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 36px -6px color-mix(in oklch, var(--color-brand-deep) 28%, transparent);
 }
 
 .imageWrap {
