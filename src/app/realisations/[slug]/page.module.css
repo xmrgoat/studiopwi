@@ -1,0 +1,199 @@
+.main {
+  padding-top: clamp(80px, 10vw, 120px);
+  padding-bottom: var(--section-py);
+}
+
+.wrapper {
+  max-width: 1100px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-6);
+  transition: color var(--duration-ui) var(--ease-smooth);
+}
+
+.back:hover {
+  color: var(--color-ink);
+}
+
+/* Header */
+.header {
+  margin-bottom: var(--space-7);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-brand-text);
+}
+
+.metaDot {
+  color: var(--color-line-strong);
+  font-size: var(--fs-micro);
+}
+
+.metaText {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-mono);
+  color: var(--color-muted);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  font-weight: 400;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  color: var(--color-ink);
+}
+
+/* Hero image */
+.heroImage {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-warm);
+  margin-bottom: var(--space-9);
+}
+
+.heroImage img {
+  display: block;
+}
+
+/* Body */
+.body {
+  max-width: 720px;
+}
+
+.section {
+  margin-bottom: var(--space-7);
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--space-3);
+}
+
+.sectionText {
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  color: var(--color-ink);
+  max-width: 62ch;
+}
+
+/* Result metric */
+.result {
+  margin-bottom: var(--space-7);
+  padding: var(--space-6) var(--space-7);
+  background: var(--color-bg-warm);
+  border-left: 3px solid var(--color-brand);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.resultNumber {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: var(--ls-display);
+  color: var(--color-brand-text);
+  margin-bottom: var(--space-2);
+}
+
+.resultLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-mono);
+  color: var(--color-muted);
+}
+
+/* Quote */
+.quote {
+  margin: 0 0 var(--space-8);
+  padding: var(--space-6) var(--space-7);
+  border-left: 3px solid var(--color-brand);
+  background: var(--color-bg-warm);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.quoteText {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  font-style: italic;
+  line-height: var(--lh-snug);
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+
+.attribution {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  margin-top: var(--space-8);
+}
+
+.primaryAction {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-ink);
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-xs);
+  transition: background var(--duration-fast) var(--ease-expo),
+    color var(--duration-fast) var(--ease-expo);
+}
+
+.primaryAction:hover {
+  background: var(--color-brand-deep);
+}
+
+.secondaryAction {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-expo);
+}
+
+.secondaryAction:hover {
+  color: var(--color-ink);
+}
