@@ -12,6 +12,8 @@ import {
   LocalBusinessLd,
   FaqLd,
   WebPageLd,
+  OffersLd,
+  VideoObjectLd,
 } from "@/components/seo/JsonLd";
 
 export default function HomePage() {
@@ -20,6 +22,8 @@ export default function HomePage() {
       <WebPageLd />
       <LocalBusinessLd />
       <FaqLd />
+      <OffersLd />
+      <VideoObjectLd />
       <ScrollProgress />
       <Header />
       <main id="main">
