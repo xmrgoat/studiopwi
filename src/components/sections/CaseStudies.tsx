@@ -48,7 +48,7 @@ export default function CaseStudies() {
   }, []);
 
   return (
-    <section ref={rootRef} className={`section ${styles.section}`} id="work">
+    <section ref={rootRef} className={`section ${styles.section}`} id="realisations">
       <div className="container">
         <header className={styles.header}>
           <SectionMarker number={cases.marker.number} label={cases.marker.label} />

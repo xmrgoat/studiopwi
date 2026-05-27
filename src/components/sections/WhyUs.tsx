@@ -68,7 +68,7 @@ export default function WhyUs() {
   const { whyUs } = site;
 
   return (
-    <section ref={rootRef} className={`section ${styles.section}`} id="why">
+    <section ref={rootRef} className={`section ${styles.section}`} id="pourquoi">
       <div className={`container ${styles.inner}`}>
         <aside className={styles.sticky}>
           <SectionMarker number={whyUs.marker.number} label={whyUs.marker.label} />
