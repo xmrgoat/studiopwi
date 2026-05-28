@@ -126,33 +126,18 @@ export const site = {
       body:
         "Dans les 90 jours suivant le lancement, si vous n'avez pas constaté d'amélioration mesurable en leads qualifiés, on prolonge l'engagement sans frais — jusqu'à ce que les chiffres bougent.",
     },
-    finalCta: {
-      headline: {
-        before: "Prêt à",
-        accent: "planter la graine ?",
-        after: "",
-      },
-      lead:
-        "Réservez un appel découverte gratuit de 20 minutes. On vous dit dans l'heure si on est faits l'un pour l'autre.",
-      primary: { label: "Réserver un appel", href: "#contact" },
-      secondary: { label: "Ou écrivez-nous — contact@studiopwi.com", href: "mailto:contact@studiopwi.com" },
-      founder: { name: "Riff", role: "fondateur", photo: "/images/founder.webp" },
-    },
   },
 
   contact: {
     marker: { number: "06", label: "CONTACT" },
     headline: {
-      before: "Parlons de",
-      accent: "votre projet.",
+      before: "Prêt à",
+      accent: "planter la graine ?",
       after: "",
     },
-    lead: "Dites-nous où vous en êtes. On vous répond sous 24h ouvrées.",
-    info: [
-      { label: "Email", value: "contact@studiopwi.com" },
-      { label: "Délai de réponse", value: "Sous 48h ouvrées" },
-      { label: "Basés à", value: "Neuchâtel, Suisse" },
-    ],
+    lead: "Réservez un appel découverte gratuit de 20 minutes. On vous dit dans l'heure si on est faits l'un pour l'autre.",
+    primary: { label: "Réserver un appel", href: "mailto:contact@studiopwi.com" },
+    secondary: { label: "Ou écrivez-nous — contact@studiopwi.com", href: "mailto:contact@studiopwi.com" },
   },
 
   faq: {
