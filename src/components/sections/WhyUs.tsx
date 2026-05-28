@@ -5,7 +5,6 @@ import { site } from "@/content/site";
 import SectionMarker from "@/components/ui/SectionMarker";
 import ItalicAccent from "@/components/ui/ItalicAccent";
 import Button from "@/components/ui/Button";
-import ContactForm from "@/components/ui/ContactForm";
 import {
   gsap,
   ScrollTrigger,
@@ -127,7 +126,7 @@ export default function WhyUs() {
             <p className={styles.guaranteeBody}>{whyUs.guarantee.body}</p>
           </div>
 
-          <div className={styles.finalCta} id="contact">
+          <div className={styles.finalCta}>
             <h3 className={styles.finalHeadline}>
               {whyUs.finalCta.headline.before}{" "}
               <ItalicAccent>{whyUs.finalCta.headline.accent}</ItalicAccent>
@@ -143,9 +142,6 @@ export default function WhyUs() {
               </a>
             </div>
 
-            <div className={styles.formWrap}>
-              <ContactForm source="final-cta" />
-            </div>
           </div>
         </div>
       </div>

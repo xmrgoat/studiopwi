@@ -13,7 +13,7 @@ export const site = {
     { label: "Réalisations", href: "#realisations" },
     { label: "Services", href: "#services" },
     { label: "À propos", href: "#pourquoi" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/contact" },
   ],
 
   hero: {
@@ -25,7 +25,7 @@ export const site = {
     },
     lead:
       "Nous créons des sites web axés conversion pour les entreprises de paysagisme en Suisse afin d'attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs projets.",
-    primaryCta: { label: "Démarrer un projet", href: "#contact" },
+    primaryCta: { label: "Démarrer un projet", href: "/contact" },
     secondaryCta: { label: "Voir nos réalisations", href: "#realisations" },
     metrics: [
       { value: 12, label: "Projets" },
@@ -134,7 +134,7 @@ export const site = {
       },
       lead:
         "Réservez un appel découverte gratuit de 20 minutes. On vous dit dans l'heure si on est faits l'un pour l'autre.",
-      primary: { label: "Réserver un appel", href: "#contact" },
+      primary: { label: "Réserver un appel", href: "/contact" },
       secondary: { label: "Ou écrivez-nous — contact@studiopwi.com", href: "mailto:contact@studiopwi.com" },
       founder: { name: "Riff", role: "fondateur", photo: "/images/founder.webp" },
     },
@@ -203,7 +203,7 @@ export const site = {
       after: "",
     },
     lead: "Réservez un appel découverte gratuit. On vous dit en 30 minutes si on peut vous aider.",
-    cta: { label: "Démarrer un projet", href: "#contact" },
+    cta: { label: "Démarrer un projet", href: "/contact" },
   },
 
   footer: {
