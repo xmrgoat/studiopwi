@@ -97,7 +97,7 @@ export default function CaseStudies() {
 
               <div className={styles.text}>
                 <div className={styles.tagRow}>
-                  <p className={`mono ${styles.tag}`}>{c.tag}</p>
+                  {c.tag && <p className={`mono ${styles.tag}`}>{c.tag}</p>}
                   {c.inProduction && (
                     <span className={styles.liveBadge}>
                       <span className={styles.liveDot} aria-hidden="true" />
