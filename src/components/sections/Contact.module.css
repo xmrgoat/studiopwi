@@ -1,68 +1,133 @@
 .section {
-  position: relative;
   background: var(--color-bg);
   overflow: hidden;
 }
 
-.section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(57, 108, 94, 0.1) 1px, transparent 0);
-  background-size: 40px 40px;
-  opacity: 0.4;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-9);
 }
 
-.inner {
-  position: relative;
-  z-index: 1;
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+}
+
+/* Left column */
+.left {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  padding-top: var(--space-6);
-  border-top: 1px solid rgba(57, 108, 94, 0.12);
+  gap: var(--space-5);
 }
 
 .headline {
-  font-size: var(--fs-h1);
-  color: var(--color-ink-deep);
-  text-wrap: balance;
+  font-size: var(--fs-h2);
+  color: var(--color-ink);
+  max-width: 18ch;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
 }
 
 .lead {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
-  color: rgba(57, 108, 94, 0.8);
-  max-width: 48ch;
+  color: var(--color-muted);
+  max-width: 38ch;
 }
 
-.ctaRow {
+/* Info list — email / response time */
+.infoList {
+  list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-4);
+  flex-direction: column;
   margin-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
 }
 
-.secondaryLink {
-  font-size: var(--fs-small);
-  color: rgba(57, 108, 94, 0.7);
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 1px;
-  text-decoration-color: rgba(57, 108, 94, 0.3);
-  transition: text-decoration-color var(--duration-ui) var(--ease-smooth);
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-line);
 }
 
-.secondaryLink:hover {
-  text-decoration-color: var(--color-brand);
+.infoLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--color-ink);
 }
 
-.formWrap {
-  margin-top: var(--space-6);
-  padding-top: var(--space-6);
-  border-top: 1px solid rgba(57, 108, 94, 0.12);
+.infoValue {
+  font-size: var(--fs-body);
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+/* Right column — form card */
+.right {
+  background: var(--color-brand);
+  border-top: 3px solid var(--color-ink-deep);
+  padding: var(--space-7) var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle dot texture on form card */
+.right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(57, 108, 94, 0.15) 1px, transparent 0);
+  background-size: 28px 28px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Light card overrides for ContactForm inputs */
+.right :global([class*="label"]) {
+  color: rgba(57, 108, 94, 0.75);
+}
+
+.right :global(input),
+.right :global(textarea) {
+  background: rgba(239, 239, 239, 0.5);
+  border-color: rgba(57, 108, 94, 0.2);
+  color: var(--color-ink-deep);
+}
+
+.right :global(input::placeholder),
+.right :global(textarea::placeholder) {
+  color: rgba(57, 108, 94, 0.4);
+}
+
+.right :global(input:focus),
+.right :global(textarea:focus) {
+  background: rgba(239, 239, 239, 0.7);
+  border-color: var(--color-ink-deep);
+  box-shadow: 0 0 0 3px rgba(57, 108, 94, 0.12);
+}
+
+.right :global([class*="successLabel"]) {
+  color: var(--color-ink-deep);
+}
+
+.right :global([class*="successText"]) {
+  color: var(--color-ink-deep);
+}
+
+.right :global([class*="success"]) {
+  background: rgba(239, 239, 239, 0.2);
+}
+
+@media (max-width: 767px) {
+  .right {
+    padding: var(--space-5) var(--space-4);
+  }
 }
