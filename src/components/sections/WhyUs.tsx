@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { site } from "@/content/site";
 import SectionMarker from "@/components/ui/SectionMarker";
 import ItalicAccent from "@/components/ui/ItalicAccent";
-import Button from "@/components/ui/Button";
 import {
   gsap,
   ScrollTrigger,
@@ -124,24 +123,6 @@ export default function WhyUs() {
             <p className={`mono ${styles.guaranteeLabel}`}>{whyUs.guarantee.label}</p>
             <h3 className={styles.guaranteeTitle}>{whyUs.guarantee.title}</h3>
             <p className={styles.guaranteeBody}>{whyUs.guarantee.body}</p>
-          </div>
-
-          <div className={styles.finalCta}>
-            <h3 className={styles.finalHeadline}>
-              {whyUs.finalCta.headline.before}{" "}
-              <ItalicAccent>{whyUs.finalCta.headline.accent}</ItalicAccent>
-            </h3>
-            <p className={styles.finalLead}>{whyUs.finalCta.lead}</p>
-
-            <div className={styles.ctaRow}>
-              <Button href={whyUs.finalCta.primary.href} variant="primary" magnetic>
-                {whyUs.finalCta.primary.label}
-              </Button>
-              <a className={styles.secondaryLink} href={whyUs.finalCta.secondary.href}>
-                {whyUs.finalCta.secondary.label}
-              </a>
-            </div>
-
           </div>
         </div>
       </div>
