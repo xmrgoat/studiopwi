@@ -43,10 +43,11 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    linear-gradient(to top,
-      rgba(57, 108, 94, 0.28) 0%,
-      rgba(57, 108, 94, 0.0) 50%);
+  background: radial-gradient(
+    ellipse 80% 55% at center bottom,
+    rgba(57, 108, 94, 0.32) 0%,
+    rgba(57, 108, 94, 0.0) 100%
+  );
 }
 
 
