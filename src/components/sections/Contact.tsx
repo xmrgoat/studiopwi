@@ -1,14 +1,56 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { site } from "@/content/site";
 import SectionMarker from "@/components/ui/SectionMarker";
 import ItalicAccent from "@/components/ui/ItalicAccent";
+import Button from "@/components/ui/Button";
 import ContactForm from "@/components/ui/ContactForm";
+import {
+  gsap,
+  ScrollTrigger,
+  registerGsapPlugins,
+  prefersReducedMotion,
+} from "@/lib/motion";
 import styles from "./Contact.module.css";
 
 export default function Contact() {
+  const rootRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    registerGsapPlugins();
+    const root = rootRef.current;
+    if (!root || prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      gsap.from(`.${styles.left} > *`, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "expo.out",
+        scrollTrigger: { trigger: root, start: "top 75%", once: true },
+      });
+
+      gsap.from(`.${styles.right}`, {
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        ease: "expo.out",
+        scrollTrigger: { trigger: root, start: "top 70%", once: true },
+      });
+    }, root);
+
+    return () => {
+      ctx.revert();
+      ScrollTrigger.refresh();
+    };
+  }, []);
+
   const { contact } = site;
 
   return (
-    <section id="contact" className={`section ${styles.section}`}>
+    <section ref={rootRef} id="contact" className={`section ${styles.section}`}>
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.left}>
@@ -19,18 +61,18 @@ export default function Contact() {
             </h2>
             <p className={styles.lead}>{contact.lead}</p>
 
-            <ul className={styles.infoList}>
-              {contact.info.map((item) => (
-                <li key={item.label} className={styles.infoItem}>
-                  <span className={styles.infoLabel}>{item.label}</span>
-                  <span className={styles.infoValue}>{item.value}</span>
-                </li>
-              ))}
-            </ul>
+            <div className={styles.ctaStack}>
+              <Button href={contact.primary.href} variant="primary" magnetic>
+                {contact.primary.label}
+              </Button>
+              <a className={styles.secondaryLink} href={contact.secondary.href}>
+                {contact.secondary.label}
+              </a>
+            </div>
           </div>
 
           <div className={styles.right}>
-            <ContactForm source="direct" />
+            <ContactForm source="contact" />
           </div>
         </div>
       </div>
