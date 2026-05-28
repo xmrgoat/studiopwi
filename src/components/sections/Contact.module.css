@@ -1,9 +1,25 @@
 .section {
+  position: relative;
   background: var(--color-bg);
   overflow: hidden;
 }
 
+/* Same dot-grid texture as WhyUs */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(57, 108, 94, 0.1) 1px, transparent 0);
+  background-size: 40px 40px;
+  opacity: 0.4;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
 .inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-9);
@@ -25,49 +41,40 @@
 }
 
 .headline {
-  font-size: var(--fs-h2);
-  color: var(--color-ink);
-  max-width: 18ch;
+  font-size: var(--fs-h1);
+  color: var(--color-ink-deep);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
+  overflow-wrap: break-word;
 }
 
 .lead {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
-  color: var(--color-muted);
+  color: rgba(57, 108, 94, 0.8);
   max-width: 38ch;
 }
 
-/* Info list — email / response time */
-.infoList {
-  list-style: none;
+.ctaStack {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
   margin-top: var(--space-3);
-  border-top: 1px solid var(--color-line);
 }
 
-.infoItem {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding-block: var(--space-4);
-  border-bottom: 1px solid var(--color-line);
+.secondaryLink {
+  font-size: var(--fs-small);
+  color: rgba(57, 108, 94, 0.7);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(57, 108, 94, 0.3);
+  transition: text-decoration-color var(--duration-ui) var(--ease-smooth);
 }
 
-.infoLabel {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-  color: var(--color-ink);
-}
-
-.infoValue {
-  font-size: var(--fs-body);
-  color: var(--color-ink);
-  font-weight: 500;
+.secondaryLink:hover {
+  text-decoration-color: var(--color-brand);
 }
 
 /* Right column — form card */
@@ -79,7 +86,7 @@
   overflow: hidden;
 }
 
-/* Subtle dot texture on form card */
+/* Subtle dot texture on the card */
 .right::before {
   content: "";
   position: absolute;
@@ -90,7 +97,6 @@
   opacity: 0.5;
 }
 
-/* Light card overrides for ContactForm inputs */
 .right :global([class*="label"]) {
   color: rgba(57, 108, 94, 0.75);
 }
