@@ -110,7 +110,7 @@
 
 .right :global(input::placeholder),
 .right :global(textarea::placeholder) {
-  color: rgba(57, 108, 94, 0.4);
+  color: rgba(239, 239, 239, 0.6);
 }
 
 .right :global(input:focus),
