@@ -17,14 +17,14 @@ export const site = {
   ],
 
   hero: {
-    eyebrow: "(CH) — Studio web pour paysagistes",
+    eyebrow: "(CH) — Studio web spécialisé pour paysagistes",
     headline: {
       before: "Des sites web pour les",
       accent: "paysagistes suisses",
       after: "qui veulent plus de chantiers.",
     },
     lead:
-      "Nous créons des sites web axés conversion pour les entreprises de paysagisme en Suisse afin d'attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs projets.",
+      "Nous créons des sites web conçus pour les entreprises de paysagisme en Suisse afin d'attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs chantiers.",
     primaryCta: { label: "Démarrer un projet", href: "#contact" },
     secondaryCta: { label: "Voir nos réalisations", href: "#realisations" },
     metrics: [
@@ -60,25 +60,25 @@ export const site = {
       after: "",
     },
     lead:
-      "Un propriétaire compare deux entreprises sur Google. L'une inspire confiance avec un site soigné, des photos réelles et des informations claires. L'autre paraît absente ou négligée. Il appelle la première. Pas forcément la meilleure. Celle qui rassure.",
+      "Sur Google, vos prospects choisissent l'entreprise qui les rassure le plus vite : un site soigné, des photos réelles et des informations claires. S'ils ne trouvent pas ces éléments chez vous, ils contactent un concurrent.",
     points: [
       {
         number: "01",
         title: "Introuvable sur Google",
         body:
-          "Vos clients cherchent un paysagiste à Lausanne, Neuchâtel ou Genève. S'ils ne vous trouvent pas, ils contactent un concurrent.",
+          "Vos prospects cherchent un paysagiste à Lausanne, Neuchâtel ou Genève. S'ils ne vous trouvent pas, ils vont voir ailleurs.",
       },
       {
         number: "02",
-        title: "Votre site nuit à votre image.",
+        title: "Une image peu professionnelle",
         body:
-          "Un site bricolé peut donner une mauvaise impression de votre savoir-faire.",
+          "Un site peu soigné peut donner une mauvaise impression de votre savoir-faire.",
       },
       {
         number: "03",
-        title: "Chantiers invisibles",
+        title: "Des chantiers invisibles",
         body:
-          "Sans preuves visibles, vos prospects choisissent ailleurs.",
+          "Sans preuves de vos réalisations, vos prospects manquent de raisons de vous contacter.",
       },
     ],
   },
@@ -102,29 +102,28 @@ export const site = {
         title: "Appel découverte",
         duration: "20 min, gratuit",
         body:
-          "On écoute votre situation, vos objectifs et vos besoins. On vous dit clairement si votre site peut devenir un levier de confiance, de visibilité et de demandes qualifiées.",
+          "Nous échangeons sur votre activité, vos objectifs et les besoins de votre entreprise.",
       },
       {
         number: "02",
-        title: "Design & développement",
-        duration: "3 à 4 semaines",
+        title: "Design et développement",
+        duration: "1 à 4 semaines selon l'offre",
         body:
-          "On structure, conçoit et développe votre site autour d'un objectif : transformer les visiteurs en prospects. Vous validez le site avant la mise en ligne.",
+          "Nous structurons, concevons et développons votre site autour d'un objectif : transformer vos visiteurs en clients.",
       },
       {
         number: "03",
-        title: "Lancement & suivi",
+        title: "Lancement et suivi",
         duration: "14 jours inclus",
         body:
-          "Après la mise en ligne, on reste présent pour les corrections techniques, ajustements mineurs et vérifications essentielles.",
+          "Après la mise en ligne, nous restons disponibles pour les corrections techniques et ajustements mineurs.",
       },
     ],
     guarantee: {
-      label: "GARANTIE 90 JOURS",
-      title:
-        "Si ça ne fait pas croître votre activité, on continue jusqu'à ce que ça marche.",
+      label: "SUIVI POST-LANCEMENT",
+      title: "Votre site est accompagné après sa mise en ligne.",
       body:
-        "Dans les 90 jours suivant le lancement, si vous n'avez pas constaté d'amélioration mesurable en leads qualifiés, on prolonge l'engagement sans frais — jusqu'à ce que les chiffres bougent.",
+        "Pendant 14 jours après le lancement, nous corrigeons les éventuels problèmes techniques et effectuons les ajustements mineurs convenus, sans frais supplémentaires.",
     },
   },
 
