@@ -157,9 +157,7 @@ export function GET() {
   lines.push("");
   lines.push(contact.lead);
   lines.push("");
-  for (const info of contact.info) {
-    lines.push(`- **${info.label}** : ${info.value}`);
-  }
+  lines.push(`- **Email** : ${contact.secondary.href.replace("mailto:", "")}`);
   lines.push("");
   lines.push(`Formulaire de contact : ${SITE_URL}/#contact`);
   lines.push("");
@@ -196,7 +194,7 @@ export function GET() {
   lines.push(`- **Email** : ${site.email}`);
   lines.push(`- **Adresse** : ${site.address}`);
   lines.push(`- **Zone d'intervention** : Suisse (CH)`);
-  lines.push(`- **Fondateur** : ${whyUs.finalCta.founder.name}, ${whyUs.finalCta.founder.role}`);
+  lines.push(`- **Fondateur** : Studio PWI, Neuchâtel`);
   lines.push(`- **Site web (HTML)** : ${SITE_URL}`);
   lines.push(`- **Brief pour IA** : ${SITE_URL}/llms.txt`);
   lines.push("");

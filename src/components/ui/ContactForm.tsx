@@ -8,7 +8,7 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 type Props = {
   tier?: "showcase" | "growth" | "partnership";
-  source?: "hero" | "services" | "final-cta" | "direct";
+  source?: "hero" | "services" | "final-cta" | "direct" | "contact";
 };
 
 export default function ContactForm({ tier, source = "direct" }: Props) {
