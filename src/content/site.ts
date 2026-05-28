@@ -55,30 +55,30 @@ export const site = {
   problem: {
     marker: { number: "02", label: "LE PROBLÈME" },
     headline: {
-      before: "Vous gagnez des chantiers grâce à votre travail.\n",
-      accent: "Votre site vous en fait perdre.",
+      before: "Votre site vous fait",
+      accent: "perdre des chantiers.",
       after: "",
     },
     lead:
-      "Un **propriétaire** compare deux entreprises sur Google. L'une inspire confiance avec un **site** soigné, des photos réelles et des informations claires. L'autre paraît absente ou négligée. Il **appelle** la première. Pas forcément la **meilleure**. Celle qui rassure.",
+      "Un propriétaire compare deux entreprises sur Google. L'une inspire confiance avec un site soigné, des photos réelles et des informations claires. L'autre paraît absente ou négligée. Il appelle la première. Pas forcément la meilleure. Celle qui rassure.",
     points: [
       {
         number: "01",
-        title: "Introuvable au moment où ça compte",
+        title: "Introuvable sur Google",
         body:
-          "Quand un propriétaire cherche « paysagiste Lausanne », « paysagiste Neuchâtel » ou « paysagiste Genève », il contacte les premiers résultats. Si vous n'y êtes pas, le chantier part ailleurs.",
+          "Vos clients cherchent un paysagiste à Lausanne, Neuchâtel ou Genève. S'ils ne vous trouvent pas, ils contactent un concurrent.",
       },
       {
         number: "02",
-        title: "Votre site dit le contraire de ce que vous faites",
+        title: "Votre site nuit à votre image.",
         body:
-          "Un site bricolé donne une impression avant même le premier appel. Il peut faire croire que vos détails de finition ne sont pas une priorité.",
+          "Un site bricolé peut donner une mauvaise impression de votre savoir-faire.",
       },
       {
         number: "03",
-        title: "Vos meilleurs chantiers restent invisibles",
+        title: "Chantiers invisibles",
         body:
-          "Vos meilleurs chantiers existent. Mais s'ils restent dans votre téléphone ou sur un ancien Facebook, vos prospects ne les voient pas. Ils ont besoin de preuves. Pas de promesses.",
+          "Sans preuves visibles, vos prospects choisissent ailleurs.",
       },
     ],
   },
