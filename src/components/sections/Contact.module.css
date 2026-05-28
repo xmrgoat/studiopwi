@@ -80,7 +80,8 @@
 /* Right column — form card */
 .right {
   background: var(--color-brand);
-  border-top: 3px solid var(--color-ink-deep);
+  border: 3px solid var(--color-ink-deep);
+  border-radius: var(--radius-pill);
   padding: var(--space-7) var(--space-6);
   position: relative;
   overflow: hidden;
