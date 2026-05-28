@@ -19,9 +19,9 @@ export type CaseStudy = {
 export const cases = {
   marker: { number: "04", label: "RÉALISATIONS" },
   headline: {
-    before: "Un paysagiste.\nUne",
-    accent: "histoire réelle.",
-    after: "",
+    before: "Un projet paysagiste.\nUne",
+    accent: "présence en ligne",
+    after: "conçue pour convertir.",
   },
   items: [
     {
@@ -37,9 +37,9 @@ export const cases = {
       siteUrl: "https://jimmi-eco-garden.vercel.app/",
       inProduction: true,
       challenge:
-        "Zéro site, zéro présence en ligne — une entreprise qui venait de lancer et avait besoin de clients dès le premier jour.",
+        "Une entreprise récemment lancée, sans site web ni présence en ligne structurée.",
       solution:
-        "Landing page de conversion avec tunnel de devis gratuit et trois paliers de prix transparents.",
+        "Une landing page conçue pour présenter l'offre, rassurer les visiteurs et faciliter les demandes de devis.",
       quote: "",
       attribution: { name: "", role: "" },
     },
