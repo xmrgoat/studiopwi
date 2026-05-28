@@ -19,9 +19,9 @@ export const site = {
   hero: {
     eyebrow: "(CH) — Studio web pour paysagistes",
     headline: {
-      before: "Des sites web conçus pour les",
+      before: "Des sites web pour les",
       accent: "paysagistes suisses",
-      after: "qui veulent plus de projets.",
+      after: "qui veulent plus de chantiers.",
     },
     lead:
       "Nous créons des sites web axés conversion pour les entreprises de paysagisme en Suisse afin d'attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs projets.",
