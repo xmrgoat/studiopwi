@@ -9,16 +9,6 @@
   background: var(--color-ink-deep);
 }
 
-/* --- Bottom fade into next section --- */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, var(--color-bg));
-  z-index: 1;
-  pointer-events: none;
-}
 
 /* --- Background video --- */
 .media {
