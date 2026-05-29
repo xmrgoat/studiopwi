@@ -145,13 +145,12 @@
 }
 
 .features li::before {
-  content: "";
+  content: "✓";
   position: absolute;
   left: 0;
-  top: 0.7em;
-  width: 12px;
-  height: 1px;
-  background: var(--color-brand-deep);
+  top: 0;
+  color: var(--color-brand-deep);
+  font-weight: 700;
 }
 
 .cta {
