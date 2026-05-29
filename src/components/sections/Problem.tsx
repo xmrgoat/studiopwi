@@ -68,7 +68,7 @@ export default function Problem() {
                 <ItalicAccent>{p.number}</ItalicAccent>
               </span>
               <h3 className={styles.cardTitle}>{p.title}</h3>
-              <p className={styles.cardBody}>{p.body}</p>
+              <p className={styles.cardBody}>{renderBold(p.body)}</p>
             </li>
           ))}
         </ul>

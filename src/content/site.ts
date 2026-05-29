@@ -66,19 +66,19 @@ export const site = {
         number: "01",
         title: "Introuvable sur Google",
         body:
-          "Vos prospects cherchent un paysagiste à Lausanne, Neuchâtel ou Genève. S'ils ne vous trouvent pas, ils vont voir ailleurs.",
+          "Vos prospects cherchent un paysagiste à Lausanne, Neuchâtel ou Genève. S'ils ne vous **trouvent pas**, ils vont voir ailleurs.",
       },
       {
         number: "02",
         title: "Une image peu professionnelle",
         body:
-          "Un site peu soigné peut donner une mauvaise impression de votre savoir-faire.",
+          "Un site peu soigné peut donner une **mauvaise impression** de votre savoir-faire.",
       },
       {
         number: "03",
         title: "Des chantiers invisibles",
         body:
-          "Sans preuves de vos réalisations, vos prospects manquent de raisons de vous contacter.",
+          "Sans **preuves** de vos réalisations, vos prospects manquent de raisons de vous **contacter**.",
       },
     ],
   },
