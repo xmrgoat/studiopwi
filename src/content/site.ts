@@ -66,7 +66,7 @@ export const site = {
         number: "01",
         title: "Introuvable sur Google",
         body:
-          "Vos prospects cherchent un paysagiste à Lausanne, Neuchâtel ou Genève. S'ils ne vous **trouvent pas**, ils vont voir ailleurs.",
+          "Vos **prospects** cherchent un paysagiste à Lausanne, Neuchâtel ou Genève. S'ils ne vous **trouvent pas**, ils vont voir ailleurs.",
       },
       {
         number: "02",
