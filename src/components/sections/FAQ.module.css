@@ -25,7 +25,7 @@
 }
 
 .headline {
-  font-size: var(--fs-display);
+  font-size: var(--fs-h2);
   color: var(--color-ink);
   max-width: 18ch;
   line-height: var(--lh-tight);

@@ -58,7 +58,7 @@
 }
 
 .headline {
-  font-size: var(--fs-display);
+  font-size: var(--fs-h1);
   color: var(--color-ink-deep);
   max-width: 18ch;
   white-space: pre-line;

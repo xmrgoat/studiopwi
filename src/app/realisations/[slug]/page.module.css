@@ -12,7 +12,7 @@
   align-items: center;
   gap: 0.5em;
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -39,7 +39,7 @@
 }
 
 .tag {
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-brand-text);
@@ -47,18 +47,18 @@
 
 .metaDot {
   color: var(--color-line-strong);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
 }
 
 .metaText {
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   color: var(--color-muted);
 }
 
 .title {
   font-family: var(--font-display);
-  font-size: var(--fs-display);
+  font-size: var(--fs-h1);
   font-weight: 400;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
@@ -97,7 +97,7 @@
 
 .sectionLabel {
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -148,7 +148,7 @@
 
 .quoteText {
   font-family: var(--font-display);
-  font-size: var(--fs-body);
+  font-size: var(--fs-h3);
   font-weight: 400;
   line-height: var(--lh-snug);
   color: var(--color-ink);
@@ -157,7 +157,7 @@
 
 .attribution {
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);

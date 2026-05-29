@@ -19,7 +19,7 @@
 }
 
 .headline {
-  font-size: var(--fs-display);
+  font-size: var(--fs-h1);
 }
 
 .intro {
@@ -86,7 +86,7 @@
   top: var(--space-4);
   right: var(--space-5);
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   color: var(--color-muted);
 }
@@ -102,7 +102,7 @@
 }
 
 .title {
-  font-size: var(--fs-display);
+  font-size: var(--fs-h2);
   letter-spacing: var(--ls-tight);
 }
 
@@ -162,7 +162,7 @@
   text-align: center;
   color: var(--color-muted);
   letter-spacing: var(--ls-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   max-width: 80ch;
   margin-inline: auto;
 }

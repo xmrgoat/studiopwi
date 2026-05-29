@@ -98,7 +98,7 @@
 
 .navLabel {
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: rgba(239, 239, 239, 0.35);
@@ -151,7 +151,7 @@
 
 .legal {
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: rgba(239, 239, 239, 0.35);
@@ -168,7 +168,7 @@
 
 .signature {
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: rgba(239, 239, 239, 0.35);

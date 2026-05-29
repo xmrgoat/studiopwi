@@ -12,7 +12,7 @@
   align-items: center;
   gap: 0.5em;
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -31,7 +31,7 @@
 }
 
 .eyebrow {
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -40,7 +40,7 @@
 
 .title {
   font-family: var(--font-display);
-  font-size: var(--fs-display);
+  font-size: var(--fs-h1);
   font-weight: 400;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
@@ -98,7 +98,7 @@
 }
 
 .cardTag {
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -107,7 +107,7 @@
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: var(--fs-body);
+  font-size: var(--fs-h3);
   font-weight: 400;
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-tight);
@@ -116,7 +116,7 @@
 }
 
 .cardMeta {
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   letter-spacing: var(--ls-mono);
   color: var(--color-muted);
   margin-bottom: var(--space-3);
