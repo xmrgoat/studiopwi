@@ -26,12 +26,12 @@ h1 {
   line-height: var(--lh-display);
 }
 h2 {
-  font-size: var(--fs-h1);
+  font-size: var(--fs-display);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
 }
 h3 {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-display);
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-tight);
 }
@@ -67,7 +67,7 @@ p {
   padding: 12px 20px;
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--fs-small);
   font-weight: 500;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
@@ -119,7 +119,7 @@ p {
 /* Mono utility */
 .mono {
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--fs-small);
   font-weight: 500;
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;

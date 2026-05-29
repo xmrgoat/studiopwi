@@ -39,7 +39,7 @@
 }
 
 .claim {
-  font-size: var(--fs-h1);
+  font-size: var(--fs-display);
   color: var(--color-ink-deep);
   text-wrap: balance;
 }
@@ -170,11 +170,11 @@
 .guaranteeLabel {
   color: var(--color-brand);
   letter-spacing: var(--ls-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--fs-small);
 }
 
 .guaranteeTitle {
-  font-size: var(--fs-h3);
+  font-size: var(--fs-body);
   color: var(--color-ink-deep);
   font-family: var(--font-display);
   letter-spacing: var(--ls-tight);

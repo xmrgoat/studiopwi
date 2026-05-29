@@ -41,7 +41,7 @@
 }
 
 .headline {
-  font-size: var(--fs-h1);
+  font-size: var(--fs-display);
   color: var(--color-ink-deep);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
