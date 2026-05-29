@@ -60,7 +60,7 @@ export const site = {
       after: "",
     },
     lead:
-      "Sur Google, vos prospects choisissent l'entreprise qui les rassure le plus vite : un site soigné, des photos réelles et des informations claires. S'ils ne trouvent pas ces éléments chez vous, ils contactent un concurrent.",
+      "Sur Google, vos **prospects** choisissent l'entreprise qui les rassure le plus vite : un site soigné, des photos réelles et des informations claires. S'ils ne trouvent pas ces éléments chez vous, ils **contactent** un **concurrent**.",
     points: [
       {
         number: "01",
