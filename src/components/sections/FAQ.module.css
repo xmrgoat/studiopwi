@@ -81,7 +81,6 @@
 
 .num {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: var(--fs-small);
   color: var(--color-brand-text);
   letter-spacing: -0.02em;

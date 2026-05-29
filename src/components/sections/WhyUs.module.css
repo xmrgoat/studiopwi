@@ -130,7 +130,6 @@
 
 .stepNum {
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 300;
   font-size: 2.75rem;
   color: var(--color-brand);

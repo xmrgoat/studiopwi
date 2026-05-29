@@ -105,7 +105,6 @@ p {
 /* Italic accent — §8.2 rule */
 .accent {
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 300;
   color: var(--color-brand-text);
   letter-spacing: -0.02em;
