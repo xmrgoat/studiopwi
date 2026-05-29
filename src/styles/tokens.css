@@ -24,7 +24,7 @@
   --color-focus: var(--color-ink);
 
   /* --- Type scale --- */
-  --fs-display: clamp(3.75rem, 8vw, 8.5rem);
+  --fs-display: clamp(2.5rem, 4.5vw, 4.5rem);
   --fs-body: clamp(1rem, 1.05vw, 1.0625rem);
   --fs-small: 0.875rem;
 

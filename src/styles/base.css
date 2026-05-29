@@ -31,7 +31,7 @@ h2 {
   letter-spacing: var(--ls-display);
 }
 h3 {
-  font-size: var(--fs-display);
+  font-size: var(--fs-body);
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-tight);
 }
