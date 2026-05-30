@@ -107,9 +107,7 @@ export default function CaseStudies() {
                   )}
                 </div>
                 <h3 className={styles.title}>{c.client}</h3>
-                <p className={`mono ${styles.meta}`}>
-                  {c.location} &middot; {c.year}
-                </p>
+
 
                 <dl className={styles.facts}>
                   <div>
