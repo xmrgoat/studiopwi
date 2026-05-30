@@ -9,6 +9,7 @@ import ItalicAccent from "@/components/ui/ItalicAccent";
 import Counter from "@/components/motion/Counter";
 import { gsap, registerGsapPlugins, prefersReducedMotion } from "@/lib/motion";
 import { cn } from "@/lib/cn";
+import Button from "@/components/ui/Button";
 import styles from "./CaseStudies.module.css";
 
 export default function CaseStudies() {
@@ -140,19 +141,9 @@ export default function CaseStudies() {
                 )}
 
                 <div className={styles.caseLinks}>
-                  <Link href={`/realisations/${c.slug}`} className={styles.siteLink}>
-                    <span className={styles.siteLinkLabel}>Voir l&apos;étude de cas</span>
-                    <svg
-                      className={styles.siteLinkArrow}
-                      width="11"
-                      height="11"
-                      viewBox="0 0 11 11"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </Link>
+                  <Button href={`/realisations/${c.slug}`} variant="primary" magnetic>
+                    Voir l&apos;étude de cas
+                  </Button>
                 </div>
               </div>
             </article>
