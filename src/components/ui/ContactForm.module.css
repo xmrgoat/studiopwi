@@ -26,6 +26,7 @@
 .label {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
+  font-weight: 700;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: var(--color-ink);
