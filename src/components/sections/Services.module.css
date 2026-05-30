@@ -20,6 +20,8 @@
 
 .headline {
   font-size: var(--fs-h1);
+  color: var(--color-brand-deep);
+  font-weight: 700;
 }
 
 .intro {

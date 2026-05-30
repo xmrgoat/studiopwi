@@ -40,7 +40,8 @@
 
 .claim {
   font-size: var(--fs-h1);
-  color: var(--color-ink-deep);
+  color: var(--color-brand-deep);
+  font-weight: 700;
   text-wrap: balance;
 }
 
