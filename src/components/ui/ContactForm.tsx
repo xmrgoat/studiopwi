@@ -156,7 +156,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
       )}
 
       <div className={styles.submit}>
-        <Button type="submit">
+        <Button type="submit" magnetic>
           Envoyer ma demande
         </Button>
       </div>

@@ -17,7 +17,7 @@ export default function CTABanner() {
             </h2>
             <p className={styles.lead}>{ctaBanner.lead}</p>
           </div>
-          <Button href={ctaBanner.cta.href} variant="primary">
+          <Button href={ctaBanner.cta.href} variant="primary" magnetic>
             {ctaBanner.cta.label}
           </Button>
         </div>
