@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Button from "@/components/ui/Button";
 import { cases, type CaseStudy } from "@/content/cases";
 import styles from "./page.module.css";
 
@@ -137,18 +138,13 @@ export default async function CaseStudyPage({
 
             <div className={styles.actions}>
               {c.siteUrl && (
-                <a
-                  href={c.siteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.primaryAction}
-                >
-                  Voir le site en ligne →
-                </a>
+                <Button href={c.siteUrl} variant="primary" magnetic>
+                  Voir le site en ligne
+                </Button>
               )}
-              <Link href="/#contact" className={styles.secondaryAction}>
+              <Button href="/#contact" variant="primary" magnetic>
                 Démarrer un projet similaire
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
