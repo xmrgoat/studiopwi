@@ -121,7 +121,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
       </label>
 
       <label className={styles.field}>
-        <span className={styles.label}>Site web actuel</span>
+        <span className={styles.label}>Site web actuel (facultatif)</span>
         <input
           type="text"
           name="currentSite"
