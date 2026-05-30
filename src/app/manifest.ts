@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Studio PWI — Sites web pour paysagistes suisses",
     short_name: "Studio PWI",
     description:
-      "Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, garantie 90 jours.",
+      "Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, support post-lancement inclus.",
     start_url: "/",
     display: "standalone",
     background_color: "#efefef",
