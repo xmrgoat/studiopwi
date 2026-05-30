@@ -19,7 +19,7 @@ export type CaseStudy = {
 export const cases = {
   marker: { number: "04", label: "RÉALISATIONS" },
   headline: {
-    before: "Un projet paysagiste,\n",
+    before: "Un projet paysagiste\n",
     accent: "Une présence en ligne.",
     after: "conçue pour convertir.",
   },
