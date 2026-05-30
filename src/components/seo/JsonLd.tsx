@@ -65,7 +65,7 @@ export function LocalBusinessLd() {
     "@id": BUSINESS_ID,
     name: site.name,
     description:
-      "Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, garantie 90 jours.",
+      "Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, support post-lancement inclus.",
     url: SITE_URL,
     image: `${SITE_URL}/opengraph-image`,
     priceRange: "CHF 600–3200",
