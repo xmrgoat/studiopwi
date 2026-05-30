@@ -56,9 +56,21 @@ export default function FAQ() {
                       className={`${styles.icon} ${isOpen ? styles.iconOpen : ""}`}
                       aria-hidden="true"
                     >
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                        <line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      <span className={styles.dot} />
+                      <svg
+                        className={styles.flower}
+                        viewBox="0 0 20 20"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                      >
+                        <ellipse cx="10" cy="4.2" rx="1.9" ry="2.7" transform="rotate(0 10 10)" />
+                        <ellipse cx="10" cy="4.2" rx="1.9" ry="2.7" transform="rotate(60 10 10)" />
+                        <ellipse cx="10" cy="4.2" rx="1.9" ry="2.7" transform="rotate(120 10 10)" />
+                        <ellipse cx="10" cy="4.2" rx="1.9" ry="2.7" transform="rotate(180 10 10)" />
+                        <ellipse cx="10" cy="4.2" rx="1.9" ry="2.7" transform="rotate(240 10 10)" />
+                        <ellipse cx="10" cy="4.2" rx="1.9" ry="2.7" transform="rotate(300 10 10)" />
+                        <circle cx="10" cy="10" r="2.3" />
                       </svg>
                     </span>
                   </button>
