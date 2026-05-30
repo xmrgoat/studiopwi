@@ -127,7 +127,7 @@ export default function Hero() {
           </h1>
           <p className={`lead ${styles.lead}`}>{site.hero.lead}</p>
           <div className={`ctas ${styles.ctas}`}>
-            <Button href={primaryCta.href} variant="primary" magnetic>
+            <Button href={primaryCta.href} variant="primary">
               {primaryCta.label}
             </Button>
 
