@@ -80,13 +80,6 @@ export default async function CaseStudyPage({
           </Link>
 
           <header className={styles.header}>
-            <div className={styles.meta}>
-              <span className={`mono ${styles.tag}`}>{c.tag}</span>
-              <span className={`mono ${styles.metaDot}`} aria-hidden="true">·</span>
-              <span className={`mono ${styles.metaText}`}>{c.location}</span>
-              <span className={`mono ${styles.metaDot}`} aria-hidden="true">·</span>
-              <span className={`mono ${styles.metaText}`}>{c.year}</span>
-            </div>
             <h1 className={styles.title}>{c.client}</h1>
           </header>
 
