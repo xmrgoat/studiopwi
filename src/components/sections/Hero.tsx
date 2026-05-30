@@ -86,7 +86,7 @@ export default function Hero() {
     }
   }, []);
 
-  const { headline, video, primaryCta, secondaryCta } = site.hero;
+  const { headline, video, primaryCta } = site.hero;
 
   return (
     <section
@@ -130,9 +130,7 @@ export default function Hero() {
             <Button href={primaryCta.href} variant="primary" magnetic>
               {primaryCta.label}
             </Button>
-            <Button href={secondaryCta.href} variant="ghost">
-              {secondaryCta.label}
-            </Button>
+
           </div>
         </div>
       </div>
