@@ -25,6 +25,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
       company: String(formData.get("company") ?? "") || undefined,
+      currentSite: String(formData.get("currentSite") ?? "") || undefined,
       message: String(formData.get("message") ?? ""),
       tier,
       source,
@@ -109,13 +110,24 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
       </div>
 
       <label className={styles.field}>
-        <span className={styles.label}>Société (optionnel)</span>
+        <span className={styles.label}>Société</span>
         <input
           type="text"
           name="company"
           maxLength={120}
           autoComplete="organization"
           placeholder="Jardins Dupont Sàrl"
+        />
+      </label>
+
+      <label className={styles.field}>
+        <span className={styles.label}>Site web actuel</span>
+        <input
+          type="text"
+          name="currentSite"
+          maxLength={300}
+          autoComplete="url"
+          placeholder="www.votresite.ch"
         />
       </label>
 
@@ -127,7 +139,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
           minLength={10}
           maxLength={4000}
           rows={5}
-          placeholder="Décrivez votre projet, votre activité, vos objectifs…"
+          placeholder="Décrivez votre activité, votre projet et ce que vous aimeriez améliorer."
         />
       </label>
 
@@ -145,7 +157,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
 
       <div className={styles.submit}>
         <Button type="submit">
-          Envoyer le message
+          Envoyer ma demande →
         </Button>
       </div>
     </form>
