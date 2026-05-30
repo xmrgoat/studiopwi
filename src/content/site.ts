@@ -175,7 +175,7 @@ export const site = {
       {
         question: "Que se passe-t-il si je ne suis pas satisfait ?",
         answer:
-          "Vous validez chaque étape avant la mise en ligne. Après le lancement, 14 jours de support sont inclus pour les corrections techniques et ajustements mineurs convenus.",
+          "Vous bénéficiez de 1 à 2 séries de révisions selon l'offre choisie avant la mise en ligne. Après le lancement, 14 jours de support sont inclus pour les corrections techniques et ajustements mineurs convenus.",
       },
     ],
   },
