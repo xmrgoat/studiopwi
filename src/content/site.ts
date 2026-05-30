@@ -155,7 +155,7 @@ export const site = {
       {
         question: "Combien de temps faut-il pour créer mon site ?",
         answer:
-          "L'offre Lancement est livrée en 1 à 2 semaines, l'offre Croissance en 2 à 4 semaines. Dès que nous avons vos contenus — logo, photos de chantier, textes — nous respectons les délais convenus. Nos clients paysagistes en Romandie reçoivent souvent leur site en ligne avant la fin de leur saison.",
+          "Entre 1 et 4 semaines selon l'offre choisie, le nombre de pages et la disponibilité de vos contenus.",
       },
       {
         question: "Est-ce que je peux modifier le site moi-même après livraison ?",
@@ -170,12 +170,12 @@ export const site = {
       {
         question: "Mon site sera-t-il visible sur Google ?",
         answer:
-          "Toutes nos offres incluent les bases du SEO local : balises optimisées, structure claire, vitesse de chargement. Concrètement, votre site sera mieux positionné quand un propriétaire cherche « paysagiste Neuchâtel », « paysagiste Lausanne », « jardinage Genève » ou « entretien jardin Fribourg ». L'offre Croissance intègre un SEO avancé avec optimisation continue pour vous positionner sur des requêtes locales ciblées.",
+          "Toutes nos offres incluent les bases du SEO local : structure claire, balises essentielles et optimisation technique de base. La visibilité dépend ensuite de votre marché, de votre zone d'intervention et du suivi SEO mis en place.",
       },
       {
         question: "Que se passe-t-il si je ne suis pas satisfait ?",
         answer:
-          "Nous travaillons en révisions validées à chaque étape pour éviter les mauvaises surprises. De plus, toutes nos offres incluent une garantie satisfaction de 90 jours après le lancement : si vous ne constatez pas d'amélioration mesurable en demandes qualifiées, nous continuons à travailler jusqu'à ce que les résultats soient là — sans frais supplémentaires.",
+          "Vous validez chaque étape avant la mise en ligne. Après le lancement, 14 jours de support sont inclus pour les corrections techniques et ajustements mineurs convenus.",
       },
     ],
   },
