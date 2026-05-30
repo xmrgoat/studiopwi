@@ -58,6 +58,10 @@
   letter-spacing: var(--ls-display);
 }
 
+.headline :global(.accent) {
+  color: var(--color-brand);
+}
+
 .lead {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
