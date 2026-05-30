@@ -42,9 +42,7 @@ export default function Services() {
           <div>
             <SectionMarker number={services.marker.number} label={services.marker.label} />
             <h2 className={styles.headline}>
-              {services.headline.before}{" "}
-              <ItalicAccent>{services.headline.accent}</ItalicAccent>{" "}
-              {services.headline.after}
+              {services.headline.before}
             </h2>
           </div>
           <p className={styles.intro}>{services.intro}</p>

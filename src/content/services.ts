@@ -16,8 +16,8 @@ export type Service = {
 export const services = {
   marker: { number: "03", label: "SERVICES" },
   headline: {
-    before: "Trois façons de développer",
-    accent: "votre présence en ligne,",
+    before: "Trois façons de développer votre présence en ligne,",
+    accent: "",
     after: "",
   },
   intro:
@@ -32,13 +32,12 @@ export const services = {
       price: "CHF 600 – 1'200",
       duration: "1 à 2 semaines",
       description:
-        "Pour les indépendants et petites entreprises qui veulent une présence professionnelle, claire et efficace.",
+        "Pour les indépendants et petites entreprises qui veulent une présence professionnelle, claire et rapide.",
       features: [
         "Jusqu'à 5 pages essentielles",
         "Une langue et une zone d'intervention",
-        "Design adapté au mobile",
-        "Identité visuelle intégrée",
-        "Formulaire de contact avec notifications par e-mail",
+        "Design adapté aux mobiles",
+        "Formulaire de contact",
         "SEO local de base",
         "1 révision",
       ],
@@ -48,19 +47,17 @@ export const services = {
     {
       id: "growth",
       tag: "CROISSANCE",
-      title: "Générer plus de demandes de devis",
+      title: "Générer plus de demandes qualifiées",
       price: "CHF 1'400 – 3'200",
       duration: "2 à 4 semaines",
       description:
-        "Pour les entreprises qui veulent un site plus complet, conçu pour rassurer les visiteurs et les convertir en clients potentiels.",
+        "Pour les entreprises qui veulent un site plus complet, conçu pour inspirer confiance et convertir les visiteurs.",
       features: [
         "6 à 8 pages structurées",
         "Jusqu'à 2 langues",
-        "Design personnalisé à votre marque",
+        "Design personnalisé",
         "Textes optimisés pour la conversion",
-        "Appels à l'action et formulaires",
-        "Blog et intégration e-mail",
-        "SEO amélioré et optimisation des performances",
+        "SEO local renforcé",
         "2 révisions",
       ],
       payment: "Paiement : 40% d'acompte / 40% avant lancement / 20% après lancement",
@@ -72,18 +69,18 @@ export const services = {
       tag: "PARTENARIAT",
       title: "Développer votre présence sur le long terme",
       price: "CHF 990 / mois",
-      duration: "En continu",
+      duration: "Engagement minimum de 3 mois",
       description:
-        "Un accompagnement mensuel pour améliorer votre visibilité, vos contenus et vos performances après le lancement de votre site.",
+        "Pour les entreprises qui veulent un accompagnement mensuel après le lancement de leur site.",
       features: [
         "Offre Croissance incluse",
-        "Engagement minimum de 3 mois",
         "Optimisations continues du site",
         "Séances photo saisonnières",
         "Rapport mensuel SEO et statistiques",
         "Gestion Google Ads",
         "Support prioritaire",
       ],
+      payment: "Budget publicitaire non inclus.",
       cta: { label: "Nous contacter", href: "#contact?tier=partnership" },
     },
   ] as const satisfies readonly Service[],
