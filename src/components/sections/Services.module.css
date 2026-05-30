@@ -83,7 +83,7 @@
 
 .featured {
   background: var(--color-brand);
-  border-color: transparent;
+  border-color: var(--color-ink-deep);
 }
 .featured:hover {
   background: var(--color-brand);
