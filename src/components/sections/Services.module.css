@@ -19,7 +19,7 @@
 }
 
 .headline {
-  font-size: var(--fs-h1);
+  font-size: var(--text-xl);
   color: var(--color-brand-deep);
 }
 
@@ -32,7 +32,7 @@
 }
 
 .intro {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   line-height: var(--lh-loose);
   color: var(--color-ink);
   max-width: 50ch;
@@ -95,7 +95,7 @@
   top: var(--space-4);
   right: var(--space-5);
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--text-xs);
   letter-spacing: var(--ls-mono);
   color: var(--color-muted);
 }
@@ -111,7 +111,7 @@
 }
 
 .title {
-  font-size: var(--fs-h2);
+  font-size: var(--text-lg);
   letter-spacing: var(--ls-tight);
 }
 
@@ -131,7 +131,7 @@
 }
 
 .description {
-  font-size: var(--fs-small);
+  font-size: var(--text-base);
   line-height: var(--lh-normal);
   color: var(--color-ink);
   margin-top: var(--space-2);
@@ -146,7 +146,7 @@
 }
 
 .features li {
-  font-size: var(--fs-small);
+  font-size: var(--text-base);
   padding-left: 1.5em;
   position: relative;
   color: var(--color-ink);
@@ -171,7 +171,7 @@
   text-align: center;
   color: var(--color-muted);
   letter-spacing: var(--ls-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--text-xs);
   max-width: 80ch;
   margin-inline: auto;
 }

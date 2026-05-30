@@ -8,7 +8,7 @@
 }
 
 .headline {
-  font-size: var(--fs-h1);
+  font-size: var(--text-xl);
   color: var(--color-brand-deep);
   white-space: pre-line;
   max-width: 20ch;
@@ -89,12 +89,12 @@
   color: var(--color-ink);
   border: 1px solid var(--color-brand);
   align-self: flex-start;
-  font-size: var(--fs-micro);
+  font-size: var(--text-xs);
   letter-spacing: var(--ls-mono);
 }
 
 .title {
-  font-size: var(--fs-h2);
+  font-size: var(--text-lg);
   letter-spacing: var(--ls-tight);
   line-height: var(--lh-snug);
 }
@@ -116,7 +116,7 @@
 }
 
 .facts dd {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   line-height: var(--lh-normal);
   color: var(--color-ink);
 }
@@ -136,7 +136,7 @@
 }
 
 .resultLabel {
-  font-size: var(--fs-small);
+  font-size: var(--text-xs);
   font-family: var(--font-body);
   color: var(--color-ink);
   margin-left: var(--space-3);
@@ -181,15 +181,13 @@
 }
 
 .attribution {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-style: normal;
-  font-size: var(--fs-small);
+  font-size: var(--text-xs);
   color: var(--color-muted);
   margin-top: var(--space-3);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
 }
 
 /* ── Tag row + live badge ── */
@@ -205,7 +203,7 @@
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--text-xs);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-brand-text);

@@ -25,7 +25,7 @@
 }
 
 .headline {
-  font-size: var(--fs-h1);
+  font-size: var(--text-xl);
   color: var(--color-brand-deep);
   max-width: 18ch;
   line-height: var(--lh-tight);
@@ -37,7 +37,7 @@
 }
 
 .subline {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   color: var(--color-muted);
   line-height: var(--lh-loose);
   max-width: 32ch;
@@ -85,7 +85,7 @@
 
 .num {
   font-family: var(--font-display);
-  font-size: var(--fs-small);
+  font-size: var(--text-xs);
   color: var(--color-brand-text);
   letter-spacing: -0.02em;
   line-height: 1;
@@ -93,7 +93,7 @@
 }
 
 .questionText {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   font-weight: 500;
 }
 
@@ -135,7 +135,7 @@
 }
 
 .answer {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   line-height: var(--lh-loose);
   color: var(--color-muted);
   padding-bottom: var(--space-5);

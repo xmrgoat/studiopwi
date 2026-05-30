@@ -12,7 +12,7 @@
   align-items: center;
   gap: 0.5em;
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--text-xs);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -58,7 +58,7 @@
 
 .title {
   font-family: var(--font-display);
-  font-size: var(--fs-h1);
+  font-size: var(--text-xl);
   font-weight: 400;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
@@ -97,7 +97,7 @@
 
 .sectionLabel {
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--text-xs);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -105,7 +105,7 @@
 }
 
 .sectionText {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   line-height: var(--lh-loose);
   color: var(--color-ink);
   max-width: 62ch;
@@ -132,7 +132,7 @@
 
 .resultLabel {
   font-family: var(--font-mono);
-  font-size: var(--fs-small);
+  font-size: var(--text-xs);
   letter-spacing: var(--ls-mono);
   color: var(--color-muted);
 }
@@ -157,7 +157,7 @@
 
 .attribution {
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--text-xs);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -173,7 +173,7 @@
 }
 
 .plainLink {
-  font-size: var(--fs-small);
+  font-size: var(--text-base);
   color: var(--color-muted);
   text-decoration: none;
   transition: color var(--duration-ui) var(--ease-smooth);

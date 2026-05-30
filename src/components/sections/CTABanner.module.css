@@ -52,7 +52,7 @@
 }
 
 .headline {
-  font-size: var(--fs-h1);
+  font-size: var(--text-xl);
   color: var(--color-brand-deep);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
@@ -63,7 +63,7 @@
 }
 
 .lead {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   line-height: var(--lh-loose);
   color: rgba(57, 108, 94, 0.75);
   max-width: 52ch;

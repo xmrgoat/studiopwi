@@ -39,7 +39,7 @@
 }
 
 .claim {
-  font-size: var(--fs-h1);
+  font-size: var(--text-xl);
   color: var(--color-brand-deep);
   text-wrap: balance;
 }
@@ -62,7 +62,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  font-size: var(--fs-small);
+  font-size: var(--text-xs);
   color: rgba(57, 108, 94, 0.82);
   line-height: var(--lh-normal);
 }
@@ -149,7 +149,7 @@
   color: var(--color-ink-deep);
   margin-bottom: var(--space-2);
   letter-spacing: var(--ls-mono);
-  font-size: var(--fs-small);
+  font-size: var(--text-xs);
 }
 
 .stepHead span {
@@ -157,7 +157,7 @@
 }
 
 .stepBody {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   line-height: var(--lh-loose);
   color: rgba(57, 108, 94, 0.8);
   max-width: 48ch;
@@ -174,7 +174,7 @@
 .guaranteeLabel {
   color: var(--color-brand);
   letter-spacing: var(--ls-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--text-xs);
 }
 
 .guaranteeTitle {
@@ -186,7 +186,7 @@
 }
 
 .guaranteeBody {
-  font-size: var(--fs-body);
+  font-size: var(--text-base);
   line-height: var(--lh-loose);
   color: rgba(57, 108, 94, 0.8);
 }

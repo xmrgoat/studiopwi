@@ -32,6 +32,12 @@
   --fs-small: 0.875rem;
   --fs-micro: 0.75rem;
 
+  /* --- 4-role semantic aliases --- */
+  --text-xl:   var(--fs-h1);    /* Section headings  40–72px */
+  --text-lg:   var(--fs-h2);    /* Card titles       30–44px */
+  --text-base: var(--fs-body);  /* Body copy         16–17px */
+  --text-xs:   var(--fs-micro); /* Labels / badges   12px    */
+
   --lh-display: 0.98;
   --lh-tight: 1.05;
   --lh-snug: 1.15;
