@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { site } from "@/content/site";
 import SectionMarker from "@/components/ui/SectionMarker";
 import ItalicAccent from "@/components/ui/ItalicAccent";
+import Button from "@/components/ui/Button";
 import ContactForm from "@/components/ui/ContactForm";
 import {
   gsap,
@@ -63,9 +64,9 @@ export default function Contact() {
             ))}
 
             <div className={styles.ctaStack}>
-              <a className={styles.secondaryLink} href={contact.secondary.href}>
+              <Button href={contact.secondary.href} variant="primary" magnetic>
                 {contact.secondary.label}
-              </a>
+              </Button>
             </div>
           </div>
 
