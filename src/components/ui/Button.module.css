@@ -66,6 +66,12 @@
   transform: none;
 }
 
+/* Hero and header retain the darken-on-hover since they have distinct backgrounds */
+:global(.hero-section) .primary:hover,
+:global(header) .primary:hover {
+  background: var(--color-ink-deep);
+}
+
 /* On dark sections */
 :global(.section--dark) .primary {
   background: var(--color-brand);
