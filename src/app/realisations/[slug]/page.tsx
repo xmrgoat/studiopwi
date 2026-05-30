@@ -75,7 +75,7 @@ export default async function CaseStudyPage({
       <main id="main" className={styles.main}>
         <div className={`container ${styles.wrapper}`}>
           <Link href="/realisations" className={styles.back}>
-            ← Toutes les réalisations
+            ← Retour en arrière
           </Link>
 
           <header className={styles.header}>
