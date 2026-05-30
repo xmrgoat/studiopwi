@@ -108,7 +108,7 @@
 
 .right :global(input),
 .right :global(textarea) {
-  background: rgba(239, 239, 239, 0.5);
+  background: transparent;
   border-color: rgba(57, 108, 94, 0.2);
   color: var(--color-ink-deep);
 }
@@ -120,7 +120,7 @@
 
 .right :global(input:focus),
 .right :global(textarea:focus) {
-  background: rgba(239, 239, 239, 0.7);
+  background: transparent;
   border-color: var(--color-ink-deep);
   box-shadow: 0 0 0 3px rgba(57, 108, 94, 0.12);
 }
