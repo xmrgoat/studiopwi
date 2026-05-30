@@ -27,7 +27,7 @@
 
 /* Header */
 .header {
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-4);
 }
 
 .meta {
@@ -70,7 +70,7 @@
   overflow: hidden;
   border-radius: var(--radius-lg);
   background: var(--color-bg-warm);
-  margin-bottom: var(--space-9);
+  margin-bottom: var(--space-6);
   transition:
     transform var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-fast) var(--ease-out);
