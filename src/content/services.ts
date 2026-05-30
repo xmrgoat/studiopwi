@@ -16,9 +16,9 @@ export type Service = {
 export const services = {
   marker: { number: "03", label: "SERVICES" },
   headline: {
-    before: "Trois façons de",
-    accent: "développer votre présence",
-    after: "en ligne.",
+    before: "Trois façons de développer",
+    accent: "votre présence en ligne,",
+    after: "",
   },
   intro:
     "Chaque offre est conçue pour aider votre entreprise de paysagisme à être trouvé, inspirer confiance et générer plus de demandes de devis.",

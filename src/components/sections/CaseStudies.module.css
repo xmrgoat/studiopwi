@@ -14,6 +14,10 @@
   max-width: 20ch;
 }
 
+.headline :global(.accent) {
+  color: var(--color-brand);
+}
+
 .list {
   display: flex;
   flex-direction: column;

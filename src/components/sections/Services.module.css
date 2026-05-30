@@ -23,6 +23,10 @@
   color: var(--color-brand-deep);
 }
 
+.headline :global(.accent) {
+  color: var(--color-brand);
+}
+
 .intro {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
