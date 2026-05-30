@@ -160,7 +160,7 @@ export const site = {
       {
         question: "Est-ce que je peux modifier le site moi-même après livraison ?",
         answer:
-          "Oui. Nous livrons un site simple à mettre à jour et nous vous formons à l'utilisation. Que vous soyez à Neuchâtel, Lausanne ou Genève, on peut se retrouver ou faire ça en visio. Vous pouvez ajouter de nouvelles réalisations, modifier vos services ou changer vos coordonnées sans passer par nous.",
+          "Pour l'instant, notre équipe s'occupe des modifications afin de garder votre site propre, cohérent et bien optimisé. Après le lancement, 14 jours de support sont inclus. Les changements plus importants peuvent être gérés séparément ou via un accompagnement mensuel.",
       },
       {
         question: "Travaillez-vous uniquement avec des paysagistes ?",
