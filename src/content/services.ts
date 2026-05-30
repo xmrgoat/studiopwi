@@ -21,7 +21,7 @@ export const services = {
     after: "",
   },
   intro:
-    "Chaque offre est conçue pour aider votre entreprise de paysagisme à être trouvé, inspirer confiance et générer plus de demandes de devis.",
+    "Chaque offre est conçue pour aider votre entreprise de paysagisme à être trouvée, inspirer confiance et générer plus de demandes de devis.",
   reassurance:
     "Les demandes de révision doivent être envoyées sous 48 heures. Après validation, toute modification supplémentaire est facturée séparément. Support post-lancement : 14 jours inclus.",
   tiers: [
