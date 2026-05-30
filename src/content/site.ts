@@ -91,10 +91,10 @@ export const site = {
       after: "",
     },
     badges: [
-      "100% suisse. Basés à Neuchâtel, en Romandie.",
-      "Studio spécialisé. Paysagistes uniquement.",
-      "Un seul contact. Du brief au lancement.",
-      "Garantie satisfaction 90 jours.",
+      "Basés à Neuchâtel. Spécialisés paysagistes.",
+      "Une équipe de 4. Un interlocuteur dédié.",
+      "Du brief au lancement, sans intermédiaire.",
+      "Support post-lancement inclus.",
     ],
     process: [
       {
