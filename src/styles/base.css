@@ -110,6 +110,14 @@ p {
   letter-spacing: -0.02em;
 }
 
+/* Inside section h2 headlines, accent words inherit the heading's styling */
+h2 .accent {
+  font-weight: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  font-family: inherit;
+}
+
 /* On dark sections, brand-text (#396c5e) is invisible against ink-deep (#396c5e).
    Switch to the lighter brand mint so the accent remains legible. */
 .section--dark .accent {
