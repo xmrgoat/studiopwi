@@ -83,7 +83,7 @@ export default function OpengraphImage() {
               lineHeight: 1.4,
             }}
           >
-            Studio spécialisé. Conversion, devis qualifiés, garantie 90 jours.
+            Studio spécialisé. Conversion, devis qualifiés, interlocuteur dédié.
           </div>
         </div>
 
