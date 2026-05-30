@@ -186,8 +186,8 @@ export const site = {
       accent: "plus de chantiers ?",
       after: "",
     },
-    lead: "Réservez un appel découverte gratuit. On vous dit en 30 minutes si on peut vous aider.",
-    cta: { label: "Démarrer un projet", href: "#contact" },
+    lead: "Remplissez le formulaire et dites-nous où vous en êtes.\nNous vous recontacterons pour organiser un appel découverte.",
+    cta: { label: "Envoyer ma demande →", href: "#contact" },
   },
 
   footer: {
