@@ -34,7 +34,7 @@ export const services = {
       description:
         "Pour les indépendants et petites entreprises qui veulent une présence professionnelle, claire et rapide.",
       features: [
-        "Jusqu'à 5 pages essentielles",
+        "Jusqu'à 5 pages",
         "Une langue et une zone d'intervention",
         "Design adapté aux mobiles",
         "Formulaire de contact",
@@ -53,7 +53,7 @@ export const services = {
       description:
         "Pour les entreprises qui veulent un site plus complet, conçu pour inspirer confiance et convertir les visiteurs.",
       features: [
-        "6 à 8 pages structurées",
+        "6 à 8 pages",
         "Jusqu'à 2 langues",
         "Design personnalisé",
         "Textes optimisés pour la conversion",
