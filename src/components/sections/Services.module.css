@@ -27,6 +27,10 @@
   color: var(--color-brand);
 }
 
+.headlineAccent {
+  color: var(--color-brand);
+}
+
 .intro {
   font-size: var(--fs-body);
   line-height: var(--lh-loose);
