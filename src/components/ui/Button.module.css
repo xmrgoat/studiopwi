@@ -40,7 +40,7 @@
   color: var(--color-bg);
 }
 .primary:hover {
-  background: var(--color-ink);
+  background: var(--color-ink-deep);
 }
 
 .ghost {
@@ -64,12 +64,6 @@
 }
 .btn:disabled:hover .arrow {
   transform: none;
-}
-
-/* Hero and header retain the darken-on-hover since they have distinct backgrounds */
-:global(.hero-section) .primary:hover,
-:global(header) .primary:hover {
-  background: var(--color-ink-deep);
 }
 
 /* On dark sections */
