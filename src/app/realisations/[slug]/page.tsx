@@ -130,14 +130,14 @@ export default async function CaseStudyPage({
             )}
 
             <div className={styles.actions}>
-              {c.siteUrl && (
-                <Button href={c.siteUrl} variant="primary" magnetic>
-                  Voir le site en ligne
-                </Button>
-              )}
               <Button href="/#contact" variant="primary" magnetic>
                 Démarrer un projet similaire
               </Button>
+              {c.siteUrl && (
+                <a href={c.siteUrl} target="_blank" rel="noopener noreferrer" className={styles.plainLink}>
+                  Voir le site en ligne →
+                </a>
+              )}
             </div>
           </div>
         </div>
