@@ -98,26 +98,44 @@
 }
 
 .icon {
+  position: relative;
   width: 22px;
   height: 22px;
-  border-radius: 50%;
-  border: 1px solid var(--color-brand);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
-  font-weight: 300;
-  color: var(--color-brand-text);
-  line-height: 1;
-  transition: transform 0.22s ease, background 0.18s ease;
-  -webkit-user-select: none;
-  user-select: none;
+  flex-shrink: 0;
 }
 
-.iconOpen {
-  transform: rotate(45deg);
-  background: var(--color-brand);
-  color: var(--color-ink-deep);
+.dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-lime);
+  transition: opacity 0.15s ease, transform 0.2s ease;
+  transform-origin: center;
+}
+
+.flower {
+  position: absolute;
+  color: var(--color-lime);
+  opacity: 0;
+  transform: scale(0.15) rotate(-30deg);
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: opacity 0.25s ease, transform 0.42s var(--ease-spring);
+  pointer-events: none;
+}
+
+.iconOpen .dot {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.iconOpen .flower {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
 }
 
 .answerWrap {
