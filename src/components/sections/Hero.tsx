@@ -91,7 +91,7 @@ export default function Hero() {
   return (
     <section
       ref={rootRef}
-      className={styles.hero}
+      className={`${styles.hero} hero-section`}
       id="top"
       aria-labelledby="hero-headline"
     >
