@@ -136,7 +136,7 @@ export const site = {
     },
     lead: "Remplissez le formulaire pour nous présenter votre projet.\nNous vous répondrons rapidement pour organiser un appel découverte de 20 minutes si votre projet correspond à notre accompagnement.",
     primary: { label: "Réserver un appel", href: "mailto:contact@studiopwi.com" },
-    secondary: { label: "Ecrivez-nous directement contact@studiopwi.com", href: "mailto:contact@studiopwi.com" },
+    secondary: { label: "Écrivez-nous directement contact@studiopwi.com", href: "mailto:contact@studiopwi.com" },
   },
 
   faq: {
