@@ -100,7 +100,7 @@
 
 .headline {
   font-family: var(--font-nunito-sans), sans-serif;
-  font-size: clamp(2.5rem, 4.6vw, 5rem);
+  font-size: var(--fs-display);
   font-weight: 400;
   letter-spacing: var(--ls-display);
   line-height: var(--lh-display);
