@@ -54,7 +54,6 @@
 .headline {
   font-size: clamp(1.875rem, 3.5vw, 3rem);
   color: var(--color-brand-deep);
-  font-weight: 700;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
 }

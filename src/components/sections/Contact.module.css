@@ -43,7 +43,6 @@
 .headline {
   font-size: var(--fs-h1);
   color: var(--color-brand-deep);
-  font-weight: 700;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
   overflow-wrap: break-word;
