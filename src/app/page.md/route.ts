@@ -29,7 +29,7 @@ export function GET() {
   lines.push(`# ${site.name} — Sites web pour paysagistes suisses`);
   lines.push("");
   lines.push(
-    `> ${site.tagline} Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, garantie 90 jours. Basés à Neuchâtel.`,
+    `> ${site.tagline} Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, support post-lancement inclus. Basés à Neuchâtel.`,
   );
   lines.push("");
   lines.push(`**Site canonique** : ${SITE_URL}`);
