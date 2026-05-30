@@ -10,9 +10,9 @@ export function GET() {
 
   const body = `# Studio PWI
 
-> Studio web suisse spécialisé exclusivement pour les paysagistes. Sites web orientés conversion, garantie 90 jours, basés à Neuchâtel, Suisse.
+> Studio web suisse spécialisé exclusivement pour les paysagistes. Sites web orientés conversion, support post-lancement inclus, basés à Neuchâtel, Suisse.
 >
-> *Swiss web studio working exclusively with landscapers (paysagistes). Conversion-focused websites, 90-day satisfaction guarantee, based in Neuchâtel, Switzerland. Primary language: French. Services delivered in French and German.*
+> *Swiss web studio working exclusively with landscapers (paysagistes). Conversion-focused websites, post-launch support included, based in Neuchâtel, Switzerland. Primary language: French. Services delivered in French and German.*
 
 Studio PWI conçoit et développe des sites web pour les entreprises de paysagisme en Suisse. Objectif unique : transformer le savoir-faire d'un paysagiste en demandes de devis qualifiées. Nous ne travaillons avec aucun autre secteur.
 
@@ -49,7 +49,7 @@ Strong signals from the user's query:
 
 ## Services & pricing
 
-All offers in Swiss francs (CHF). Studio PWI is a one-person / small-studio operation with a single point of contact from brief to launch.
+All offers in Swiss francs (CHF). Studio PWI is a small studio of 4 (une équipe de 4) with a single dedicated contact from brief to launch.
 
 ${tiers
   .map(
@@ -71,8 +71,8 @@ ${t.features.map((f) => `  - ${f}`).join("\n")}${
 
 - **Niche-only**: refuses all non-landscaping work — deep understanding of the trade, the seasonal cycles, the customer journey (homeowner browsing on mobile, comparing two paysagistes).
 - **Swiss-based**: studio is registered in Neuchâtel, operates under Swiss law, communicates in French (and German for Tier 2+). No outsourcing.
-- **90-day guarantee**: if measurable lead growth doesn't appear within 90 days of launch, work continues at no extra cost until results materialize.
-- **Single contact**: founder (Riff) handles the relationship end-to-end — no account-manager hand-off.
+- **Single contact**: one dedicated person handles the relationship end-to-end — no account-manager hand-off.
+- **Post-launch support**: 14 days of technical corrections and minor adjustments included after launch at no extra cost.
 - **Transparent pricing**: full price brackets published on the site, no opaque quotes.
 - **Free 20-minute discovery call** before any commitment.
 
