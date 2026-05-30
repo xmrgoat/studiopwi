@@ -134,9 +134,9 @@ export const site = {
       accent: "planter la graine ?",
       after: "",
     },
-    lead: "Réservez un appel découverte gratuit de 20 minutes. On vous dit dans l'heure si on est faits l'un pour l'autre.",
+    lead: "Remplissez le formulaire pour nous présenter votre projet.\nNous vous répondrons rapidement pour organiser un appel découverte de 20 minutes si votre projet correspond à notre accompagnement.",
     primary: { label: "Réserver un appel", href: "mailto:contact@studiopwi.com" },
-    secondary: { label: "Ou écrivez-nous — contact@studiopwi.com", href: "mailto:contact@studiopwi.com" },
+    secondary: { label: "Ou écrivez-nous directement — contact@studiopwi.com", href: "mailto:contact@studiopwi.com" },
   },
 
   faq: {
