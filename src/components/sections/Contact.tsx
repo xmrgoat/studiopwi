@@ -59,7 +59,9 @@ export default function Contact() {
               {contact.headline.before}{" "}
               <ItalicAccent>{contact.headline.accent}</ItalicAccent>
             </h2>
-            <p className={styles.lead}>{contact.lead}</p>
+            {contact.lead.split("\n").map((line, i) => (
+              <p key={i} className={styles.lead}>{line}</p>
+            ))}
 
             <div className={styles.ctaStack}>
               <Button href={contact.primary.href} variant="primary" magnetic>
