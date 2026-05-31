@@ -112,14 +112,14 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-lime);
+  background: var(--color-brand);
   transition: opacity 0.15s ease, transform 0.2s ease;
   transform-origin: center;
 }
 
 .flower {
   position: absolute;
-  color: var(--color-lime);
+  color: var(--color-brand);
   opacity: 0;
   transform: scale(0.15) rotate(-30deg);
   transform-origin: center;
