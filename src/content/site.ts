@@ -35,7 +35,7 @@ export const site = {
     ],
     video: {
       src: "/videos/flower.mp4",
-      poster: "/images/flower-poster.webp",
+      poster: "/images/mobile-hero.webp",
       title: "Studio PWI — Sites web pour paysagistes suisses",
       description: "Nous créons des sites web axés conversion pour les entreprises de paysagisme en Suisse — pour attirer plus de clients et générer plus de demandes de devis.",
     },
