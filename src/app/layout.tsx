@@ -6,12 +6,18 @@ import { OrganizationLd, WebSiteLd } from "@/components/seo/JsonLd";
 import { site } from "@/content/site";
 import "./globals.css";
 
+// Only the LCP font (Nunito Sans — renders the hero <h1>) is preloaded.
+// Preloading every family makes all three woff2 files compete at the
+// browser's highest priority against the render-blocking CSS, which on
+// throttled mobile starves the critical path and delays the LCP paint.
+// Megrim (logo) and Geist (body) are non-LCP, so they load lazily and
+// swap in via `display: swap` without holding up first render.
 const megrim = Megrim({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-megrim",
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 const nunitoSans = Nunito_Sans({
@@ -25,7 +31,7 @@ const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 export const metadata: Metadata = {
