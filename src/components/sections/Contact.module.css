@@ -55,7 +55,7 @@
 .lead {
   font-size: var(--text-base);
   line-height: var(--lh-loose);
-  color: rgba(57, 108, 94, 0.8);
+  color: var(--color-muted);
   max-width: 38ch;
 }
 
