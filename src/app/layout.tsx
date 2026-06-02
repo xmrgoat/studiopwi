@@ -109,6 +109,9 @@ export default function RootLayout({
       lang="fr-CH"
       className={`${megrim.variable} ${nunitoSans.variable} ${geist.variable}`}
     >
+      <head>
+        <link rel="preload" as="image" href="/images/mobile-hero.webp" fetchPriority="high" />
+      </head>
       <body>
         <a href="#main" className="skip-link">
           Aller au contenu
