@@ -4,7 +4,6 @@ import { useState } from "react";
 import { site } from "@/content/site";
 import SectionMarker from "@/components/ui/SectionMarker";
 import ItalicAccent from "@/components/ui/ItalicAccent";
-import DecorativeQuestion from "@/components/ui/DecorativeQuestion";
 import styles from "./FAQ.module.css";
 
 export default function FAQ() {
@@ -28,7 +27,14 @@ export default function FAQ() {
             <p className={styles.subline}>
               Tout ce que vous voulez savoir avant de démarrer.
             </p>
-            <DecorativeQuestion className={styles.decorationImg} />
+            <img
+              src="/images/interogation-mark-v3.webp"
+              alt=""
+              aria-hidden="true"
+              className={styles.decorationImg}
+              width="200"
+              height="280"
+            />
           </header>
 
           <ul className={styles.list}>
