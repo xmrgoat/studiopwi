@@ -19,7 +19,7 @@
 
   --color-line: rgba(57, 108, 94, 0.12);
   --color-line-strong: rgba(57, 108, 94, 0.25);
-  --color-muted: rgba(57, 108, 94, 0.65);
+  --color-muted: #396c5e;
 
   --color-focus: var(--color-ink);
 
