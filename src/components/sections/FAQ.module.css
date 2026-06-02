@@ -33,7 +33,7 @@
 }
 
 .headline :global(.accent) {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
 }
 
 .subline {
