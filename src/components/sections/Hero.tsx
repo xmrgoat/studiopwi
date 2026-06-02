@@ -35,7 +35,7 @@ export default function Hero() {
       }
 
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-      tl.from(".word > span", { opacity: 0, y: 18, duration: 0.7, stagger: 0.03 }, 0)
+      tl.from(".word > span", { y: 18, duration: 0.7, stagger: 0.03 }, 0)
         .from(".eyebrow", { opacity: 0, y: 6, duration: 0.5 }, 0)
         .from(".lead", { opacity: 0, y: 10, duration: 0.6 }, 0.2)
         .from(".ctas > *", { opacity: 0, y: 6, duration: 0.5, stagger: 0.07 }, 0.3);
