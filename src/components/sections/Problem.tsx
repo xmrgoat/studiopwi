@@ -58,6 +58,8 @@ export default function Problem() {
               className={styles.shovel}
               width="210"
               height="210"
+              loading="lazy"
+              fetchPriority="low"
             />
             <p className={styles.lead}>{renderBold(problem.lead)}</p>
           </div>

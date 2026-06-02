@@ -26,8 +26,18 @@
     "zod": "^3.24.1"
   },
   "browserslist": {
-    "production": ["chrome >= 93", "firefox >= 92", "safari >= 15.4", "edge >= 93", "not dead"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      "chrome >= 93",
+      "firefox >= 92",
+      "safari >= 15.4",
+      "edge >= 93",
+      "not dead"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
     "@types/node": "^22.10.5",

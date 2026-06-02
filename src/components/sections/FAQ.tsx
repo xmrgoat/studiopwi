@@ -34,6 +34,8 @@ export default function FAQ() {
               className={styles.decorationImg}
               width="200"
               height="280"
+              loading="lazy"
+              fetchPriority="low"
             />
           </header>
 
@@ -47,7 +49,7 @@ export default function FAQ() {
                     type="button"
                     className={styles.question}
                     onClick={() => toggle(i)}
-                    aria-expanded={isOpen ? "true" : "false"}
+                    aria-expanded={isOpen}
                     aria-controls={panelId}
                   >
                     <span className={styles.num}>

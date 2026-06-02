@@ -50,10 +50,13 @@
   --ls-wide: 0.12em;
   --ls-mono: 0.16em;
 
-  /* Font stacks (loaded via next/font in layout.tsx) */
+  /* Font stacks (loaded via next/font in layout.tsx).
+     Body/mono list system-ui FIRST so the browser renders immediately with a
+     native font and Geist swaps in via font-display:swap. This removes the
+     28 KB Geist woff2 from the render-blocking CSS critical chain. */
   --font-display: var(--font-nunito-sans), sans-serif;
-  --font-body: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-body: system-ui, -apple-system, sans-serif, var(--font-geist-sans);
+  --font-mono: ui-monospace, monospace, var(--font-geist-sans);
 
   /* --- Spacing · 8px base --- */
   --space-1: 4px;

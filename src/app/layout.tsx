@@ -115,6 +115,23 @@ export default function RootLayout({
       lang="fr-CH"
       className={`${megrim.variable} ${nunitoSans.variable} ${geist.variable}`}
     >
+      <head>
+        {/*
+          next/font's preload:true silently produces no <link rel="preload">
+          in Next.js 15 App Router (the data-precedence streaming architecture
+          prevents Critters / the font injector from adding them). Add the
+          preload manually for the LCP font — the primary Latin subset woff2
+          whose URL is content-hashed on the font file and stable across builds
+          as long as the Nunito_Sans() config doesn't change.
+        */}
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/_next/static/media/68180864d7f93f02-s.p.woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <a href="#main" className="skip-link">
           Aller au contenu
