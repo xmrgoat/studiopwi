@@ -2,14 +2,15 @@ import dynamic from "next/dynamic";
 import Header from "@/components/layout/Header";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import Hero from "@/components/sections/Hero";
-import Problem from "@/components/sections/Problem";
 
-// Below-the-fold sections are still server-rendered (ssr defaults to true, so
-// SEO/content/LCP markup is unchanged) but their client chunks + GSAP
-// ScrollTrigger setup hydrate lazily, off the first-paint critical path.
-// Each section's mount runs a synchronous ScrollTrigger layout pass; doing all
-// eight at once during initial hydration was saturating the main thread and
-// delaying first paint on throttled mobile.
+// Only Hero is eagerly loaded. Every other section is server-rendered (ssr
+// defaults to true, so SEO/content/LCP markup is unchanged) but its client
+// chunk + GSAP ScrollTrigger setup hydrates lazily, off the first-paint
+// critical path. Each section's mount runs a synchronous ScrollTrigger layout
+// pass; doing all of them at once during initial hydration saturated the main
+// thread and delayed first paint on throttled mobile. Keeping Problem dynamic
+// too means GSAP is never imported by the eager bundle at all.
+const Problem = dynamic(() => import("@/components/sections/Problem"));
 const Services = dynamic(() => import("@/components/sections/Services"));
 const CaseStudies = dynamic(() => import("@/components/sections/CaseStudies"));
 const WhyUs = dynamic(() => import("@/components/sections/WhyUs"));

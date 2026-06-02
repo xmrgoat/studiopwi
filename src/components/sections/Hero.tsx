@@ -5,73 +5,56 @@ import { site } from "@/content/site";
 import Button from "@/components/ui/Button";
 import ItalicAccent from "@/components/ui/ItalicAccent";
 import SplitWords from "@/components/motion/SplitWords";
-import {
-  gsap,
-  ScrollTrigger,
-  registerGsapPlugins,
-  prefersReducedMotion,
-} from "@/lib/motion";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   const rootRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // The hero entrance is pure CSS (see Hero.module.css), so above-the-fold
+  // needs no JavaScript and GSAP stays off the mobile critical path. GSAP is
+  // imported lazily here only for the desktop parallax — which is gated to wide
+  // viewports + no-reduced-motion, so it never loads on phones at all.
   useEffect(() => {
-    registerGsapPlugins();
-
     const root = rootRef.current;
     if (!root) return;
+    if (
+      window.innerWidth < 769 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
 
-    const reduce = prefersReducedMotion();
+    let ctx: { revert: () => void } | undefined;
+    let cancelled = false;
 
-    const ctx = gsap.context(() => {
-      if (reduce) {
-        gsap.set([".eyebrow", ".lead", ".ctas > *", ".scroll-cue"], {
-          opacity: 1,
-        });
-        gsap.set(".word > span", { y: 0 });
-        return;
-      }
-
-      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-      tl.from(".word > span", { y: 18, duration: 0.7, stagger: 0.03 }, 0)
-        .from(".eyebrow", { opacity: 0, y: 6, duration: 0.5 }, 0)
-        .from(".lead", { opacity: 0, y: 10, duration: 0.6 }, 0.2)
-        .from(".ctas > *", { opacity: 0, y: 6, duration: 0.5, stagger: 0.07 }, 0.3);
-
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 769px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.to(`.${styles.inner}`, {
-          yPercent: -12,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-        gsap.fromTo(
-          `.${styles.media} video`,
-          { scale: 1 },
-          {
-            scale: 1.08,
+    void import("@/lib/motion").then(
+      ({ gsap, ScrollTrigger, registerGsapPlugins }) => {
+        if (cancelled) return;
+        registerGsapPlugins();
+        ctx = gsap.context(() => {
+          gsap.to(`.${styles.inner}`, {
+            yPercent: -12,
             ease: "none",
-            scrollTrigger: {
-              trigger: root,
-              start: "top top",
-              end: "bottom top",
-              scrub: 1,
+            scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: 1 },
+          });
+          gsap.fromTo(
+            `.${styles.media} video`,
+            { scale: 1 },
+            {
+              scale: 1.08,
+              ease: "none",
+              scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: 1 },
             },
-          },
-        );
-      });
-    }, root);
+          );
+        }, root);
+        ScrollTrigger.refresh();
+      },
+    );
 
     return () => {
-      ctx.revert();
-      ScrollTrigger.refresh();
+      cancelled = true;
+      ctx?.revert();
     };
   }, []);
 
@@ -79,7 +62,8 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    if (!prefersReducedMotion() && window.innerWidth >= 768) {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce && window.innerWidth >= 768) {
       video.play().catch(() => {
         // Autoplay blocked — poster stays visible.
       });
