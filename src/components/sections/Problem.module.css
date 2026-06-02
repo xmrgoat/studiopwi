@@ -66,13 +66,13 @@
 
 .headline :global(.accent),
 .number :global(.accent) {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
 }
 
 .lead {
   font-size: var(--text-base);
   line-height: var(--lh-loose);
-  color: rgba(57, 108, 94, 0.8);
+  color: var(--color-ink);
   max-width: 52ch;
 }
 
@@ -104,7 +104,7 @@
   font-family: var(--font-display);
   font-weight: 300;
   font-size: 4.5rem;
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   line-height: 0.85;
   letter-spacing: -0.04em;
   margin-bottom: var(--space-2);
@@ -122,6 +122,6 @@
 .cardBody {
   font-size: var(--text-base);
   line-height: var(--lh-loose);
-  color: rgba(57, 108, 94, 0.8);
+  color: var(--color-ink);
   max-width: 38ch;
 }
