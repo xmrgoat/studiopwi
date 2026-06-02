@@ -49,6 +49,7 @@
   width: auto;
   margin-top: auto;
   opacity: 0.55;
+  color: var(--color-brand-text);
 }
 
 /* Right: accordion */
