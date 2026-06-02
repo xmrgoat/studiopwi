@@ -56,6 +56,8 @@ export default function Problem() {
               alt=""
               aria-hidden="true"
               className={styles.shovel}
+              width="210"
+              height="210"
             />
             <p className={styles.lead}>{renderBold(problem.lead)}</p>
           </div>
