@@ -32,6 +32,8 @@ export default function FAQ() {
               alt=""
               aria-hidden="true"
               className={styles.decorationImg}
+              width="200"
+              height="280"
             />
           </header>
 
@@ -76,7 +78,7 @@ export default function FAQ() {
                   </button>
                   <div className={`${styles.answerWrap} ${isOpen ? styles.answerWrapOpen : ""}`}>
                     <div className={styles.answerInner}>
-                      <p id={panelId} className={styles.answer} role="region">
+                      <p id={panelId} className={styles.answer}>
                         {item.answer}
                       </p>
                     </div>
