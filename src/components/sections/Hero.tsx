@@ -79,7 +79,7 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    if (!prefersReducedMotion()) {
+    if (!prefersReducedMotion() && window.innerWidth >= 768) {
       video.play().catch(() => {
         // Autoplay blocked — poster stays visible.
       });
@@ -103,7 +103,7 @@ export default function Hero() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           width={1920}
           height={1080}
         />
