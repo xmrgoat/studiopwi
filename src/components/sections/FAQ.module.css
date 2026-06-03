@@ -44,14 +44,20 @@
 }
 
 .decorationImg {
-  display: block;
-  height: auto;
-  max-height: 280px;
-  width: auto;
-  max-width: 200px;
-  object-fit: contain;
-  margin-top: var(--space-6);
-  opacity: 0.55;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .decorationImg {
+    display: block;
+    height: auto;
+    max-height: 280px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    margin-top: var(--space-6);
+    opacity: 0.55;
+  }
 }
 
 /* Right: accordion */
