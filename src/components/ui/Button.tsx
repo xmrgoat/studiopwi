@@ -47,6 +47,18 @@ export default function Button(props: Props) {
     props.magnetic ? <Magnetic strength={0.2}>{node}</Magnetic> : node;
 
   if ("href" in props && props.href) {
+    // Hash-only links (#contact, #services, …) must use a plain <a> so the
+    // browser (and the SmoothScroll anchor handler) handles them natively.
+    // Next.js <Link> triggers a client-side route transition whose default
+    // scroll:true resets the window to the top before the anchor can resolve,
+    // sending the user to the hero instead of the target section.
+    if (props.href.startsWith("#")) {
+      return wrap(
+        <a href={props.href} className={className}>
+          {inner}
+        </a>,
+      );
+    }
     return wrap(
       <Link href={props.href} className={className}>
         {inner}
