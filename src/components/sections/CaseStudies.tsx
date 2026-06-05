@@ -9,7 +9,6 @@ import ItalicAccent from "@/components/ui/ItalicAccent";
 import Counter from "@/components/motion/Counter";
 import { gsap, registerGsapPlugins, prefersReducedMotion } from "@/lib/motion";
 import { cn } from "@/lib/cn";
-import Button from "@/components/ui/Button";
 import styles from "./CaseStudies.module.css";
 
 export default function CaseStudies() {
@@ -138,11 +137,6 @@ export default function CaseStudies() {
                   </blockquote>
                 )}
 
-                <div className={styles.caseLinks}>
-                  <Button href={`/realisations/${c.slug}`} variant="primary" magnetic>
-                    Voir l&apos;étude de cas
-                  </Button>
-                </div>
               </div>
             </article>
           ))}

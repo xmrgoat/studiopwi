@@ -10,7 +10,6 @@ export const site = {
   locale: "fr",
 
   nav: [
-    { label: "Réalisations", href: "#realisations" },
     { label: "Services", href: "#services" },
     { label: "À propos", href: "#pourquoi" },
     { label: "Contact", href: "#contact" },
@@ -26,7 +25,6 @@ export const site = {
     lead:
       "Nous créons des sites web conçus pour les entreprises de paysagisme en Suisse afin d'attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs chantiers.",
     primaryCta: { label: "Démarrer un projet", href: "#contact" },
-    secondaryCta: { label: "Voir nos réalisations", href: "#realisations" },
     metrics: [
       { value: 12, label: "Projets" },
       { value: 90, label: "Jours" },

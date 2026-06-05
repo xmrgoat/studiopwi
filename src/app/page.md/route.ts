@@ -50,9 +50,6 @@ export function GET() {
   lines.push(
     `- **Action principale** : ${hero.primaryCta.label} — ${SITE_URL}/${hero.primaryCta.href}`,
   );
-  lines.push(
-    `- **Action secondaire** : ${hero.secondaryCta.label} — ${SITE_URL}/${hero.secondaryCta.href}`,
-  );
   lines.push("");
   lines.push("**Repères clés :**");
   lines.push("");
