@@ -42,7 +42,7 @@ export const services = {
         "1 révision",
       ],
       payment: "Paiement : 100% après livraison",
-      cta: { label: "Créer ma présence en ligne", href: "#contact?tier=showcase" },
+      cta: { label: "Créer ma présence en ligne", href: "#contact" },
     },
     {
       id: "growth",
@@ -61,7 +61,7 @@ export const services = {
         "2 révisions",
       ],
       payment: "Paiement : 40% d'acompte / 40% avant lancement / 20% après lancement",
-      cta: { label: "Attirer plus de clients", href: "#contact?tier=growth" },
+      cta: { label: "Attirer plus de clients", href: "#contact" },
       featured: true,
     },
     {
@@ -81,7 +81,7 @@ export const services = {
         "Support prioritaire",
       ],
       payment: "Budget publicitaire non inclus.",
-      cta: { label: "Nous contacter", href: "#contact?tier=partnership" },
+      cta: { label: "Nous contacter", href: "#contact" },
     },
   ] as const satisfies readonly Service[],
 } as const;
