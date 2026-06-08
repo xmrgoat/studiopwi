@@ -41,9 +41,7 @@ export function GET() {
   lines.push("");
 
   // ---------- Hero ----------
-  lines.push(`## ${hero.eyebrow}`);
-  lines.push("");
-  lines.push(`### ${joinHeadline(hero.headline)}`);
+  lines.push(`## ${joinHeadline(hero.headline)}`);
   lines.push("");
   lines.push(hero.lead);
   lines.push("");
