@@ -12,7 +12,7 @@
 }
 
 .scrolled {
-  background: rgba(239, 239, 239, 0.8);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom-color: var(--color-line);
@@ -60,7 +60,7 @@
   opacity: 0.9;
   padding: 8px 14px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(57, 108, 94, 0.45);
+  border: 1px solid color-mix(in srgb, var(--color-text) 45%, transparent);
   transition: opacity var(--duration-ui) var(--ease-smooth),
               border-color var(--duration-ui) var(--ease-smooth),
               background var(--duration-ui) var(--ease-smooth);
@@ -170,7 +170,7 @@
   right: 0;
   z-index: 99;
   background: var(--color-ink-deep);
-  border-bottom: 1px solid rgba(130, 205, 157, 0.2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -194,7 +194,7 @@
 .drawerNav {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid rgba(239, 239, 239, 0.1);
+  border-top: 1px solid color-mix(in srgb, var(--color-bg) 10%, transparent);
   padding-top: var(--space-3);
 }
 
@@ -204,9 +204,9 @@
   font-weight: 500;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
-  color: rgba(239, 239, 239, 0.75);
+  color: color-mix(in srgb, var(--color-bg) 75%, transparent);
   padding-block: var(--space-3);
-  border-bottom: 1px solid rgba(239, 239, 239, 0.06);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-bg) 6%, transparent);
   transition: color 0.18s ease;
 }
 
