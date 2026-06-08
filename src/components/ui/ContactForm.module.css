@@ -60,7 +60,7 @@
 .field textarea:focus {
   outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(130, 205, 157, 0.15);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
   background: var(--color-bg);
 }
 
