@@ -2,26 +2,36 @@
  * Editorial Swiss × organic field-notes. */
 
 :root {
-  /* --- Color · 60/30/10 --- */
-  --color-bg: #efefef;
-  --color-bg-elevated: #f5f5f5;
-  --color-bg-warm: #e8e8e8;
+  /* ── Primary palette (source of truth) ───────────────── */
+  --color-bg:               #efefef;
+  --color-text:             #396c5e;
+  --color-accent:           #82cd9d;
 
-  --color-brand: #82cd9d;
-  --color-brand-text: #396c5e;
-  --color-brand-soft: #b3dfbe;
-  --color-brand-light: #d4efdc;
-  --color-brand-deep: #2d5549;
+  /* ── Computed variants ───────────────────────────────── */
+  --color-text-muted:       color-mix(in oklch, var(--color-text) 70%, var(--color-bg));
+  --color-text-faint:       color-mix(in oklch, var(--color-text) 40%, var(--color-bg));
+  --color-accent-hover:     color-mix(in oklch, var(--color-accent) 80%, var(--color-text));
+  --color-accent-highlight: color-mix(in oklch, var(--color-accent) 20%, var(--color-bg));
 
-  --color-ink: #396c5e;
-  --color-ink-soft: #396c5e;
-  --color-ink-deep: #396c5e;
+  /* ── Surface variants ────────────────────────────────── */
+  --color-bg-elevated:      color-mix(in oklch, var(--color-bg) 80%, white);
+  --color-bg-warm:          color-mix(in oklch, var(--color-bg) 90%, var(--color-text));
 
-  --color-line: rgba(57, 108, 94, 0.12);
-  --color-line-strong: rgba(57, 108, 94, 0.25);
-  --color-muted: #396c5e;
+  /* ── Structural ──────────────────────────────────────── */
+  --color-line:             color-mix(in srgb, var(--color-text) 12%, transparent);
+  --color-line-strong:      color-mix(in srgb, var(--color-text) 25%, transparent);
+  --color-focus:            var(--color-accent);
 
-  --color-focus: var(--color-ink);
+  /* ── Legacy aliases (module files reference these) ───── */
+  --color-brand:            var(--color-accent);
+  --color-brand-text:       var(--color-text);
+  --color-brand-soft:       color-mix(in oklch, var(--color-accent) 60%, var(--color-bg));
+  --color-brand-light:      var(--color-accent-highlight);
+  --color-brand-deep:       color-mix(in oklch, var(--color-text) 85%, black);
+  --color-ink:              var(--color-text);
+  --color-ink-soft:         var(--color-text-muted);
+  --color-ink-deep:         var(--color-text);
+  --color-muted:            var(--color-text-muted);
 
   /* --- Type scale --- */
   --fs-display: clamp(3.75rem, 8vw, 8.5rem);
