@@ -32,7 +32,7 @@
 .inputRow button {
   background: transparent;
   border: 0;
-  font-size: 1.25rem;
+  font-size: var(--fs-h3);
   color: var(--color-ink);
   padding-inline: var(--space-2);
   transition: transform var(--duration-ui) var(--ease-expo);
@@ -56,11 +56,11 @@
 }
 
 .error {
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   color: #c0392b;
 }
 
 .success {
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
   color: var(--color-ink);
 }
