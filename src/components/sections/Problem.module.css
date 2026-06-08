@@ -58,7 +58,7 @@
 }
 
 .headline {
-  font-size: var(--text-xl);
+  font-size: var(--fs-h1);
   color: var(--color-brand-deep);
   max-width: 18ch;
   white-space: pre-line;
@@ -70,7 +70,7 @@
 }
 
 .lead {
-  font-size: var(--text-base);
+  font-size: var(--fs-body);
   line-height: var(--lh-loose);
   color: var(--color-ink);
   max-width: 52ch;
@@ -103,7 +103,7 @@
 .number {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: 4.5rem;
+  font-size: var(--fs-h1);
   color: var(--color-brand-text);
   line-height: 0.85;
   letter-spacing: -0.04em;
@@ -112,7 +112,7 @@
 
 .cardTitle {
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
+  font-size: var(--fs-body);
   font-weight: 500;
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
@@ -120,7 +120,7 @@
 }
 
 .cardBody {
-  font-size: var(--text-base);
+  font-size: var(--fs-body);
   line-height: var(--lh-loose);
   color: var(--color-ink);
   max-width: 38ch;
