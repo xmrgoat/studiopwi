@@ -59,12 +59,12 @@ p {
    bypass the header and nav. */
 .skip-link {
   position: absolute;
-  top: -100px;
+  top: -96px; /* spacing audit */
   left: var(--side-pad);
   z-index: 1000;
   background: var(--color-ink-deep);
   color: var(--color-bg);
-  padding: 12px 20px;
+  padding: 16px 24px; /* spacing audit */
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
   font-size: var(--fs-body);
