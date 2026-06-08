@@ -1,7 +1,7 @@
 .btn {
   display: inline-flex;
   align-items: center;
-  padding: 14px 22px;
+  padding: 16px 24px; /* spacing audit */
   font-family: var(--font-body);
   font-size: var(--fs-body);
   font-weight: 500;
