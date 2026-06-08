@@ -108,8 +108,8 @@
 
 .icon {
   position: relative;
-  width: 22px;
-  height: 22px;
+  width: 24px; /* spacing audit */
+  height: 24px; /* spacing audit */
   display: flex;
   align-items: center;
   justify-content: center;
