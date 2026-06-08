@@ -34,7 +34,7 @@
 
 .wordmark {
   font-family: var(--font-megrim);
-  font-size: var(--fs-h2);
+  font-size: var(--fs-body);
   font-weight: 400;
   letter-spacing: 0.04em;
   color: inherit;
