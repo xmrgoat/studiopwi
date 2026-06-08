@@ -49,8 +49,8 @@ p {
 
 /* Focus — visible on every interactive element. */
 :focus-visible {
-  outline: 1.5px solid var(--color-focus);
-  outline-offset: 4px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
   border-radius: var(--radius-xs);
 }
 
