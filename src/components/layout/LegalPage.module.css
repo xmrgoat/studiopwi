@@ -13,7 +13,7 @@
   align-items: center;
   gap: 0.5em;
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--fs-body);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
@@ -47,7 +47,7 @@
 
 .updated {
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--fs-body);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   color: var(--color-muted);
