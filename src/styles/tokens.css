@@ -35,19 +35,11 @@
   --color-muted:            var(--color-text-muted);
 
   /* --- Type scale --- */
-  --fs-display: clamp(3.75rem, 8vw, 8.5rem);
-  --fs-h1: clamp(2.5rem, 4.5vw, 4.5rem);
-  --fs-h2: clamp(1.875rem, 2.75vw, 2.75rem);
-  --fs-h3: clamp(1.25rem, 1.5vw, 1.625rem);
-  --fs-body: clamp(1rem, 1.05vw, 1.0625rem);
-  --fs-small: 0.875rem;
-  --fs-micro: 0.75rem;
-
-  /* --- 4-role semantic aliases --- */
-  --text-xl:   var(--fs-h1);    /* Section headings  40–72px */
-  --text-lg:   var(--fs-h2);    /* Card titles       30–44px */
-  --text-base: var(--fs-body);  /* Body copy         16–17px */
-  --text-xs:   var(--fs-micro); /* Labels / badges   12px    */
+  --fs-display: clamp(3.5rem, 7vw, 5.5rem);
+  --fs-h1:      clamp(2.5rem, 4.5vw, 5rem);
+  --fs-h2:      clamp(1.875rem, 2.75vw, 2.75rem);
+  --fs-h3:      clamp(1.25rem, 1.5vw, 1.625rem);
+  --fs-body:    clamp(1rem, 1.05vw, 1.0625rem);
 
   --lh-display: 0.98;
   --lh-tight: 1.05;
