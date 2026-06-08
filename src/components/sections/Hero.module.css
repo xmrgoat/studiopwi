@@ -100,7 +100,7 @@
 
 .headline {
   font-family: var(--font-nunito-sans), sans-serif;
-  font-size: clamp(2.5rem, 4.6vw, 5rem);
+  font-size: var(--fs-h1);
   font-weight: 400;
   letter-spacing: var(--ls-display);
   line-height: var(--lh-display);
@@ -186,7 +186,7 @@
 
 .metrics strong {
   font-family: var(--font-display);
-  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  font-size: var(--fs-h2);
   font-weight: 400;
   color: var(--color-bg);
   letter-spacing: var(--ls-tight);
