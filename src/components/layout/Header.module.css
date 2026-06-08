@@ -224,22 +224,22 @@
 
 @media (max-width: 1023px) {
   .wordmark {
-    color: #ffffff;
+    color: var(--color-bg);
   }
   .scrolled .wordmark {
     color: var(--color-ink-deep);
   }
 
-  /* Nav pills: white text + white outline over the dark hero video.
+  /* Nav pills: light text + light outline over the dark hero video.
      On scroll the .scrolled state takes over and reverts to the existing
      dark-on-light treatment. (Nav itself only renders ≥768px, so on
      phones this block is a no-op — the burger handles that range.) */
   .navLink {
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.45);
+    color: var(--color-bg);
+    border-color: color-mix(in srgb, var(--color-bg) 45%, transparent);
   }
   .navLink:hover {
-    border-color: #ffffff;
+    border-color: var(--color-bg);
   }
   .scrolled .navLink {
     color: var(--color-ink);
