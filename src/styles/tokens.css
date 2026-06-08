@@ -14,6 +14,7 @@
   --color-accent-highlight: color-mix(in oklch, var(--color-accent) 20%, var(--color-bg));
 
   /* ── Surface variants ────────────────────────────────── */
+  --color-surface:          var(--color-bg);
   --color-bg-elevated:      color-mix(in oklch, var(--color-bg) 80%, white);
   --color-bg-warm:          color-mix(in oklch, var(--color-bg) 90%, var(--color-text));
 
