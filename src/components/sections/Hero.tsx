@@ -96,10 +96,6 @@ export default function Hero() {
 
 <div className={`container ${styles.inner}`}>
         <div className={styles.text}>
-          <p className={`eyebrow mono ${styles.eyebrow}`}>
-            <span className={styles.eyebrowDot} aria-hidden="true" />
-            {site.hero.eyebrow}
-          </p>
           <h1 id="hero-headline" className={styles.headline}>
             <SplitWords text={headline.before} />{" "}
             <span className={`word ${styles.accentWord}`}>
