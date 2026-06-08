@@ -33,8 +33,10 @@
 }
 
 .wordmark {
+  /* Megrim has a small cap-height; scale up so it visually matches
+     the uppercase mono nav text, which shares --fs-body. */
   font-family: var(--font-megrim);
-  font-size: var(--fs-body);
+  font-size: calc(var(--fs-body) * 1.4);
   font-weight: 400;
   letter-spacing: 0.04em;
   color: inherit;
