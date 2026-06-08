@@ -16,7 +16,6 @@ export const site = {
   ],
 
   hero: {
-    eyebrow: "(CH) — Studio web spécialisé pour paysagistes",
     headline: {
       before: "Des sites web pour les",
       accent: "paysagistes suisses",
