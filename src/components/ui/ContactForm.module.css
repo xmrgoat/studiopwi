@@ -108,7 +108,7 @@
 }
 
 .skeletonField {
-  height: 52px;
+  height: 56px; /* spacing audit */
   border-radius: var(--radius-lg);
   background: var(--color-bg-warm);
   overflow: hidden;
@@ -125,12 +125,12 @@
 }
 
 .skeletonTextarea {
-  height: 140px;
+  height: 144px; /* spacing audit */
 }
 
 .skeletonBtn {
   height: 48px;
-  width: 180px;
+  width: 184px; /* spacing audit */
   border-radius: var(--radius-pill);
   background: var(--color-bg-warm);
   overflow: hidden;
