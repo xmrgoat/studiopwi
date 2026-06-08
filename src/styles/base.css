@@ -4,7 +4,7 @@ body {
   background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-body);
-  font-size: var(--text-base);
+  font-size: var(--fs-body);
   font-weight: 400;
   letter-spacing: var(--ls-normal);
   font-feature-settings: "ss01", "cv11";
@@ -26,12 +26,12 @@ h1 {
   line-height: var(--lh-display);
 }
 h2 {
-  font-size: var(--text-xl);
+  font-size: var(--fs-h1);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
 }
 h3 {
-  font-size: var(--text-lg);
+  font-size: var(--fs-h2);
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-tight);
 }
@@ -67,7 +67,7 @@ p {
   padding: 12px 20px;
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
-  font-size: var(--fs-micro);
+  font-size: var(--fs-body);
   font-weight: 500;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
@@ -127,7 +127,7 @@ h2 .accent {
 /* Mono utility */
 .mono {
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
+  font-size: var(--fs-body);
   font-weight: 500;
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
