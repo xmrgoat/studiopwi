@@ -104,18 +104,18 @@
 .steps::before {
   content: "";
   position: absolute;
-  left: 25px;
-  top: 12px;
-  bottom: 12px;
+  left: 24px; /* spacing audit — aligns connector with step-number column */
+  top: 16px; /* spacing audit */
+  bottom: 16px; /* spacing audit */
   width: 1px;
   background: color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 
 .stepsLine {
   position: absolute;
-  left: 25px;
-  top: 12px;
-  bottom: 12px;
+  left: 24px; /* spacing audit — aligns connector with step-number column */
+  top: 16px; /* spacing audit */
+  bottom: 16px; /* spacing audit */
   width: 1px;
   background: var(--color-brand);
   transform: scaleY(0);
