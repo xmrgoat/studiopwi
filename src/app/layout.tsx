@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description:
-    "Nous créons des sites web axés conversion pour paysagistes suisses — plus de clients, plus de devis qualifiés, de meilleurs projets.",
+    "Sites web pour entreprises de paysagisme en Suisse — attirez plus de clients, générez plus de demandes de devis et décrochez de meilleurs chantiers.",
   applicationName: site.name,
   authors: [{ name: site.name }],
   keywords: [
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — Sites web pour paysagistes suisses`,
     description:
-      "Nous créons des sites web axés conversion pour paysagistes suisses — plus de clients, plus de devis qualifiés, de meilleurs projets.",
+      "Sites web pour entreprises de paysagisme en Suisse — attirez plus de clients, générez plus de demandes de devis et décrochez de meilleurs chantiers.",
     images: [
       {
         url: "/opengraph-image",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.name} — Sites web pour paysagistes suisses`,
     description:
-      "Nous créons des sites web axés conversion pour paysagistes suisses — plus de clients, plus de devis qualifiés, de meilleurs projets.",
+      "Sites web pour entreprises de paysagisme en Suisse — attirez plus de clients, générez plus de demandes de devis et décrochez de meilleurs chantiers.",
     images: ["/opengraph-image"],
   },
   robots: {
