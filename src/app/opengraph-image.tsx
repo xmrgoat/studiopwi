@@ -83,7 +83,7 @@ export default function OpengraphImage() {
               lineHeight: 1.4,
             }}
           >
-            Studio spécialisé. Conversion, devis qualifiés, interlocuteur dédié.
+            Studio spécialisé. Conversion, demandes de devis, plus de chantiers.
           </div>
         </div>
 
