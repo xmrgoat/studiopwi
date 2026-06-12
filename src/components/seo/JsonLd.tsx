@@ -16,6 +16,20 @@ const ADDRESS = {
   addressCountry: "CH",
 } as const;
 
+// Public profiles confirming the entity (Google/AI answer engines use these
+// to disambiguate the brand).
+const SAME_AS = ["https://www.linkedin.com/company/studiopwi/"] as const;
+
+// Mirrors the cities named in the on-page copy (hero/problem/FAQ) so the
+// structured data and the visible content claim the same service area.
+const AREA_SERVED = [
+  { "@type": "City", name: "Neuchâtel" },
+  { "@type": "City", name: "Lausanne" },
+  { "@type": "City", name: "Genève" },
+  { "@type": "City", name: "Fribourg" },
+  { "@type": "Country", name: "Switzerland" },
+] as const;
+
 function serialize(data: object): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
@@ -36,11 +50,14 @@ export function OrganizationLd() {
     "@id": ORG_ID,
     name: site.name,
     url: SITE_URL,
-    logo: `${SITE_URL}/icon`,
+    // /apple-icon is 180×180 — Google requires the logo to be ≥112×112
+    // (the 32×32 /icon is too small for the logo rich result).
+    logo: `${SITE_URL}/apple-icon`,
     email: site.email,
     address: ADDRESS,
     founder: { "@type": "Person", name: "Riff" },
-    areaServed: { "@type": "Country", name: "Switzerland" },
+    sameAs: SAME_AS,
+    areaServed: AREA_SERVED,
   };
   return <Ld data={data} />;
 }
@@ -70,8 +87,14 @@ export function LocalBusinessLd() {
     image: `${SITE_URL}/opengraph-image`,
     priceRange: "CHF 600–3200",
     address: ADDRESS,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 46.9926,
+      longitude: 6.931,
+    },
     email: site.email,
-    areaServed: { "@type": "Country", name: "Switzerland" },
+    sameAs: SAME_AS,
+    areaServed: AREA_SERVED,
     founder: { "@type": "Person", name: "Riff" },
     parentOrganization: { "@id": ORG_ID },
   };
