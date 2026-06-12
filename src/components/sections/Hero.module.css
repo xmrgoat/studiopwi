@@ -249,12 +249,14 @@
 
 @media (max-width: 1023px) {
   .media {
-    background-image: url("/images/mobile-hero.png");
+    /* webp as the base fallback: every browserslist target supports webp,
+       and the old 17 MB png trap shipped raw (CSS backgrounds bypass
+       next/image). Browsers without image-set() at all are out of support. */
+    background-image: url("/images/mobile-hero.webp");
     background-image: -webkit-image-set(url("/images/mobile-hero.webp") 1x);
     background-image: image-set(
       url("/images/mobile-hero.avif") type("image/avif"),
-      url("/images/mobile-hero.webp") type("image/webp"),
-      url("/images/mobile-hero.png") type("image/png")
+      url("/images/mobile-hero.webp") type("image/webp")
     );
     background-size: cover;
     background-position: 80% top;
