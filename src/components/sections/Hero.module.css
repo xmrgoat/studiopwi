@@ -248,47 +248,30 @@
 }
 
 @media (max-width: 1023px) {
+  /* Flip to light mode — no background image, #efefef bg, #396c5e text. */
+  .hero {
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
   .media {
-    /* webp as the base fallback: every browserslist target supports webp,
-       and the old 17 MB png trap shipped raw (CSS backgrounds bypass
-       next/image). Browsers without image-set() at all are out of support. */
-    background-image: url("/images/mobile-hero.webp");
-    background-image: -webkit-image-set(url("/images/mobile-hero.webp") 1x);
-    background-image: image-set(
-      url("/images/mobile-hero.avif") type("image/avif"),
-      url("/images/mobile-hero.webp") type("image/webp")
-    );
-    background-size: cover;
-    background-position: 80% top;
+    background-image: none;
   }
   .media video {
     display: none;
   }
   .scrim {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.78) 0%,
-      rgba(0, 0, 0, 0.55) 40%,
-      rgba(0, 0, 0, 0.25) 68%,
-      color-mix(in srgb, var(--color-text) 15%, transparent) 100%
-    );
+    background: none;
   }
-  .eyebrow {
-    color: var(--color-bg);
+  /* Metrics numbers/labels: flip from --color-bg (white) to token colors. */
+  .metrics {
+    border-top-color: color-mix(in srgb, var(--color-text) 18%, transparent);
   }
-  .headline {
-    color: var(--color-bg);
-    font-weight: 700;
+  .metrics strong {
+    color: var(--color-text);
   }
-  .headline :global(.accent) {
-    color: var(--color-bg);
-  }
-  .lead {
-    color: var(--color-bg);
-  }
-  .ctas :global(a[class*="ghost"]) {
-    color: var(--color-bg);
-    border-color: color-mix(in srgb, var(--color-bg) 35%, transparent);
+  .metrics span,
+  .metrics .mono {
+    color: color-mix(in srgb, var(--color-text) 55%, transparent);
   }
 }
 
