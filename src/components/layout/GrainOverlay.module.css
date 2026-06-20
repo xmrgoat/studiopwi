@@ -15,3 +15,10 @@
 @media (prefers-reduced-motion: reduce) {
   .grain { opacity: 0.05; }
 }
+
+/* Mobile: a fixed full-viewport mix-blend-mode layer forces a whole-viewport
+   recomposite on every scrolled frame. At 0.08 opacity the grain is
+   imperceptible on a phone, so drop it entirely to keep scrolling smooth. */
+@media (max-width: 1023px) {
+  .grain { display: none; }
+}
