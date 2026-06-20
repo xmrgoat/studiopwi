@@ -124,6 +124,15 @@
   z-index: 0;
 }
 
+/* The scaleY(0) base is the pre-scrub state for the desktop draw animation.
+   On mobile the scrub is gated off (see WhyUs.tsx), so render the line fully
+   drawn instead of leaving it collapsed/invisible. */
+@media (max-width: 1023px) {
+  .stepsLine {
+    transform: scaleY(1);
+  }
+}
+
 .step {
   display: grid;
   grid-template-columns: auto 1fr;
