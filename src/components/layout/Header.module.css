@@ -225,21 +225,23 @@
 }
 
 @media (max-width: 1023px) {
-  /* Hero is now light (#efefef) on mobile — use the hero text color (#396c5e)
-     so the wordmark and nav links stay visible over the light background. */
   .wordmark {
-    color: var(--color-text);
+    color: var(--color-bg);
   }
   .scrolled .wordmark {
     color: var(--color-ink-deep);
   }
 
+  /* Nav pills: light text + light outline over the dark hero video.
+     On scroll the .scrolled state takes over and reverts to the existing
+     dark-on-light treatment. (Nav itself only renders ≥768px, so on
+     phones this block is a no-op — the burger handles that range.) */
   .navLink {
-    color: var(--color-text);
-    border-color: color-mix(in srgb, var(--color-text) 45%, transparent);
+    color: var(--color-bg);
+    border-color: color-mix(in srgb, var(--color-bg) 45%, transparent);
   }
   .navLink:hover {
-    border-color: var(--color-text);
+    border-color: var(--color-bg);
   }
   .scrolled .navLink {
     color: var(--color-ink);
@@ -258,4 +260,16 @@
 
 @media (max-width: 767px) {
   .header { height: 64px; }
+}
+
+/* Mobile: drop the live backdrop blur. A blurred fixed bar forces the GPU to
+   re-sample everything behind it on every scrolled frame — the dominant cause
+   of scroll-down stutter on mobile. An opaque bg looks near-identical (the bg
+   was already 80% opaque) at zero per-frame cost. */
+@media (max-width: 1023px) {
+  .scrolled {
+    background: var(--color-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
