@@ -31,6 +31,24 @@ export default function WhyUs() {
           pin: `.${styles.sticky}`,
           pinSpacing: false,
         });
+
+        // Scrub draws the timeline line. Desktop-only: on mobile it updated
+        // every scroll frame and added to scroll-down stutter — the line just
+        // renders fully drawn there.
+        gsap.fromTo(
+          `.${styles.stepsLine}`,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: `.${styles.steps}`,
+              start: "top 65%",
+              end: "bottom 55%",
+              scrub: 1,
+            },
+          }
+        );
       });
 
       gsap.from(`.${styles.badge}`, {
@@ -50,21 +68,6 @@ export default function WhyUs() {
         ease: "expo.out",
         scrollTrigger: { trigger: `.${styles.process}`, start: "top 75%", once: true },
       });
-
-      gsap.fromTo(
-        `.${styles.stepsLine}`,
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: `.${styles.steps}`,
-            start: "top 65%",
-            end: "bottom 55%",
-            scrub: 1,
-          },
-        }
-      );
 
       gsap.from(`.${styles.guarantee}`, {
         scale: 0.96,
