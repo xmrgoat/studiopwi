@@ -30,16 +30,22 @@ export default function CaseStudies() {
         });
       });
 
-      root.querySelectorAll<HTMLElement>(`.${styles.imageWrap} img`).forEach((img) => {
-        gsap.to(img, {
-          yPercent: -10,
-          ease: "none",
-          scrollTrigger: {
-            trigger: img,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
+      // Per-frame scrub parallax is desktop-only. On mobile it ran ungated and
+      // wrote a transform every scroll frame, competing with paint and adding
+      // to scroll-down stutter — the images just stay static on phones.
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        root.querySelectorAll<HTMLElement>(`.${styles.imageWrap} img`).forEach((img) => {
+          gsap.to(img, {
+            yPercent: -10,
+            ease: "none",
+            scrollTrigger: {
+              trigger: img,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
         });
       });
     }, root);
