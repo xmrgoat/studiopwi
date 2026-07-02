@@ -88,6 +88,23 @@ p {
   padding-inline: var(--side-pad);
 }
 
+/* 12-column layout grid — desktop.
+   Children span columns with `grid-column: span N` (or explicit
+   line numbers). Collapses to the single-column side-pad flow at ≤768px. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap);
+  margin-inline: var(--grid-margin);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    margin-inline: var(--side-pad);
+  }
+}
+
 /* Dark-inverted sections (Problem, Why Us) */
 .section--dark {
   background: var(--color-ink-deep);
