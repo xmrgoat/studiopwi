@@ -103,6 +103,15 @@
   --radius-pill: 999px;
 }
 
+/* Tablet — 8-column grid */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --grid-columns: 8;
+    --grid-gap: 20px;
+    --grid-margin: 40px;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --gutter: 16px;
