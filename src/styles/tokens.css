@@ -80,6 +80,11 @@
   --gutter: 24px;
   --side-pad: clamp(24px, 5vw, 96px);
 
+  /* --- 12-column grid (desktop) --- */
+  --grid-columns: 12;
+  --grid-gap: 20px;
+  --grid-margin: 80px;
+
   /* --- Motion --- */
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
