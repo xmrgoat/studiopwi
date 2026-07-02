@@ -112,9 +112,13 @@
   }
 }
 
+/* Mobile — 3-column grid */
 @media (max-width: 768px) {
   :root {
     --gutter: 16px;
     --side-pad: 24px;
+    --grid-columns: 3;
+    --grid-gap: 16px;
+    --grid-margin: 20px;
   }
 }
