@@ -42,6 +42,7 @@ export const services = {
         "1 révision complète avant le lancement",
       ],
       cta: { label: "Créer ma présence en ligne", href: "#contact" },
+      featured: false,
     },
     {
       id: "growth",
@@ -73,6 +74,7 @@ export const services = {
         "Photos professionnelles de vos réalisations",
       ],
       cta: { label: "Créer ma présence en ligne", href: "#contact" },
+      featured: false,
     },
   ] as const satisfies readonly Service[],
 } as const;
