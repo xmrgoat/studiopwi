@@ -75,7 +75,6 @@
   gap: var(--space-6);
 }
 
-/* Quote glyph as an exported mark above the text — no card, no border. */
 .figure {
   margin: 0;
   display: flex;
@@ -83,17 +82,35 @@
   gap: var(--space-3);
 }
 
-.figure::before {
-  content: "";
-  width: 22px;
-  height: 19px;
-  background: currentColor;
-  -webkit-mask: url("/images/icons/quote.svg") no-repeat center / contain;
-  mask: url("/images/icons/quote.svg") no-repeat center / contain;
+/* Opening and closing marks, as the frame has them: one hanging to the left of
+   the first line, one below the last.
+   Drawn as a background image rather than a mask — the Figma glyph is an
+   outline (fill #efefef, stroke #396c5e), and masking it to currentColor would
+   discard the stroke and flatten it into a solid shape. */
+.quote {
+  position: relative;
+  margin: 0;
+  padding-left: 34px;
 }
 
-.quote {
-  margin: 0;
+.quote::before,
+.quote::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 19px;
+  background: url("/images/icons/quote.svg") no-repeat center / contain;
+}
+
+.quote::before {
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+
+.quote::after {
+  margin-top: var(--space-2);
+  margin-left: var(--space-4);
 }
 
 /* Bold in the frame — the quote carries more weight than the body copy
