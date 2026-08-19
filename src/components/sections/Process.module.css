@@ -1,0 +1,129 @@
+/* Notre démarche — Figma "Studio PWI pourquoi nous" (2070:44) and
+   "mobile notre démarche". Heading left, intro right-aligned, three
+   4-column steps, CTA below. */
+
+.section {
+  background: var(--color-bg);
+}
+
+.header {
+  align-items: start;
+  row-gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.title {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.intro {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+}
+
+/* ── Steps ───────────────────────────────────────────── */
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin-block: 0;
+  row-gap: var(--space-6);
+  align-items: start;
+}
+
+.step {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Ink-filled rounded tile carrying the step numeral. */
+.numeral {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 80px;
+  border-radius: var(--radius-action);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-display);
+  font-size: var(--fs-numeral);
+  font-weight: var(--fw-medium);
+  line-height: 1;
+}
+
+.stepTitle {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+  text-transform: uppercase;
+}
+
+.stepBody {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+/* ── CTA ─────────────────────────────────────────────── */
+
+.ctaRow {
+  margin-top: var(--space-7);
+}
+
+.cta {
+  grid-column: 1 / -1;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .numeral {
+    width: 56px;
+    height: 56px;
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .title {
+    grid-column: 1 / span 5;
+  }
+  .intro {
+    grid-column: 6 / span 3;
+    text-align: right;
+  }
+  .step {
+    grid-column: span 4;
+  }
+  .cta {
+    grid-column: 1 / span 4;
+  }
+}
+
+@media (min-width: 1025px) {
+  .title {
+    grid-column: 1 / span 6;
+  }
+  .intro {
+    grid-column: 9 / span 4;
+    text-align: right;
+  }
+  .step {
+    grid-column: span 4;
+  }
+  .cta {
+    grid-column: 1 / span 4;
+  }
+}
