@@ -1,202 +1,137 @@
+/* Why us — Figma "Studio PWI pourquoi nous" (1440×900) and "mobile why us".
+   Copy on columns 1–6, testimonials on 7–12. */
+
 .section {
-  position: relative;
   background: var(--color-bg);
-  overflow: hidden;
 }
 
-.section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--color-text) 10%, transparent) 1px, transparent 0);
-  background-size: 40px 40px;
-  opacity: 0.4;
-  pointer-events: none;
-  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+.grid {
+  row-gap: var(--space-7);
+  align-items: start;
 }
 
-.inner {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
-}
-
-@media (min-width: 1024px) {
-  .inner {
-    grid-template-columns: 5fr 7fr;
-    gap: var(--space-9);
-    align-items: start;
-  }
-}
-
-.sticky {
+.copy {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
 
-.claim {
-  font-size: var(--fs-h1);
-  color: var(--color-brand-deep);
-  text-wrap: balance;
+/* Lighter than the hero: the design sets this heading in Medium, not
+   ExtraBold, so the two large uppercase headlines do not compete. */
+.title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
 }
 
-.claim :global(.accent) {
-  color: var(--color-brand);
-}
-
-.badges {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin-top: var(--space-5);
-  border-top: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
-  padding-top: var(--space-4);
-}
-
-.badge {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
+.paragraph {
+  margin: 0;
+  max-width: 60ch;
   font-size: var(--fs-body);
-  color: color-mix(in srgb, var(--color-text) 82%, transparent);
+  font-weight: var(--fw-medium);
   line-height: var(--lh-normal);
 }
 
-.dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-brand);
-  flex-shrink: 0;
+.paragraph strong {
+  font-weight: var(--fw-bold);
 }
 
-.flow {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
+/* ── Testimonials ────────────────────────────────────── */
 
-.process {
+.reviews {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-.processTitle {
-  color: color-mix(in srgb, var(--color-text) 65%, transparent);
-  letter-spacing: var(--ls-mono);
+.reviewsTitle {
+  margin: 0;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
 }
 
-.steps {
+.list {
   list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
-  position: relative;
-  padding-left: var(--space-2);
-}
-
-.steps::before {
-  content: "";
-  position: absolute;
-  left: 24px; /* spacing audit — aligns connector with step-number column */
-  top: 16px; /* spacing audit */
-  bottom: 16px; /* spacing audit */
-  width: 1px;
-  background: color-mix(in srgb, var(--color-accent) 25%, transparent);
-}
-
-.stepsLine {
-  position: absolute;
-  left: 24px; /* spacing audit — aligns connector with step-number column */
-  top: 16px; /* spacing audit */
-  bottom: 16px; /* spacing audit */
-  width: 1px;
-  background: var(--color-brand);
-  transform: scaleY(0);
-  transform-origin: top center;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* The scaleY(0) base is the pre-scrub state for the desktop draw animation.
-   On mobile the scrub is gated off (see WhyUs.tsx), so render the line fully
-   drawn instead of leaving it collapsed/invisible. */
-@media (max-width: 1023px) {
-  .stepsLine {
-    transform: scaleY(1);
-  }
-}
-
-.step {
-  display: grid;
-  grid-template-columns: auto 1fr;
   gap: var(--space-4);
-  align-items: start;
-  position: relative;
 }
 
-.stepNum {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--fs-h2);
-  color: var(--color-brand);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  position: relative;
-  z-index: 1;
+.card {
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-action);
+  padding: var(--space-4);
   background: var(--color-bg);
-  padding-right: var(--space-2);
 }
 
-.stepHead {
-  color: var(--color-ink-deep);
-  margin-bottom: var(--space-2);
-  letter-spacing: var(--ls-mono);
-  font-size: var(--fs-body);
-}
-
-.stepHead span {
-  color: color-mix(in srgb, var(--color-text) 50%, transparent);
-}
-
-.stepBody {
-  font-size: var(--fs-body);
-  line-height: var(--lh-loose);
-  color: color-mix(in srgb, var(--color-text) 80%, transparent);
-  max-width: 48ch;
-}
-
-.guarantee {
-  padding-block: var(--space-6);
-  border-top: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+.figure {
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-.guaranteeLabel {
-  color: var(--color-brand);
-  letter-spacing: var(--ls-mono);
-  font-size: var(--fs-body);
-}
-
-.guaranteeTitle {
-  font-size: var(--fs-h3);
-  color: var(--color-ink-deep);
+.quoteMark {
   font-family: var(--font-display);
-  letter-spacing: var(--ls-tight);
-  line-height: var(--lh-snug);
+  font-size: 3rem;
+  font-weight: var(--fw-bold);
+  line-height: 0.6;
+  color: var(--color-text-faint);
+  /* Sits on the text baseline of the following line rather than adding a full
+     line box of its own. */
+  height: 1.6rem;
 }
 
-.guaranteeBody {
+.quote {
+  margin: 0;
+}
+
+.quoteText {
+  margin: 0;
+  max-width: 56ch;
   font-size: var(--fs-body);
-  line-height: var(--lh-loose);
-  color: color-mix(in srgb, var(--color-text) 80%, transparent);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
 }
 
+.attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.author {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+}
+
+.role {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .copy {
+    grid-column: 1 / span 8;
+  }
+  .reviews {
+    grid-column: 1 / span 8;
+  }
+}
+
+@media (min-width: 1025px) {
+  .copy {
+    grid-column: 1 / span 6;
+  }
+  .reviews {
+    grid-column: 7 / span 6;
+  }
+}
