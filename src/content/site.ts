@@ -40,12 +40,6 @@ export const site = {
     cta: { label: "Démarrer un projet", href: "#contact" },
     testimonials: [
       {
-        quote:
-          "Avant, je n'avais pas de site, juste ma page Facebook. Studio PWI a compris rapidement ce dont j'avais besoin : montrer mes chantiers et être trouvable sur Google. En moins de deux semaines, j'avais un site professionnel, et j'ai reçu ma première demande de devis via le site dès le premier mois.",
-        author: "Marc D.",
-        role: "Paysagiste, Neuchâtel",
-      },
-      {
         // Translated from the English review in the desktop "Avis concret"
         // frame. The Figma carries no attribution for it — fill `author`/`role`
         // in before launch, or drop this entry. The component hides the
