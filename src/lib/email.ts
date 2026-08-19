@@ -38,22 +38,3 @@ export async function sendLeadNotification(input: LeadEmailInput) {
       .join("\n"),
   });
 }
-
-export async function sendNewsletterConfirmation(opts: {
-  to: string;
-  confirmUrl: string;
-}) {
-  return resend.emails.send({
-    from: env.RESEND_FROM,
-    to: opts.to,
-    subject: "Confirmez votre abonnement",
-    text: [
-      "Merci de votre inscription.",
-      "",
-      "Cliquez pour confirmer :",
-      opts.confirmUrl,
-      "",
-      "Si vous n'êtes pas à l'origine de cette demande, ignorez cet email.",
-    ].join("\n"),
-  });
-}

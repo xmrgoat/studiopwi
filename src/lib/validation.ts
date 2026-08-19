@@ -26,13 +26,3 @@ export const contactSchema = z.object({
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
-
-export const newsletterSchema = z.object({
-  email: z.string().trim().email("Email invalide").max(200),
-  locale: z.enum(["fr", "de", "en"]).default("fr"),
-  source: z.string().max(60).optional(),
-  // Honeypot — see the note on contactSchema.website
-  website: z.string().optional(),
-});
-
-export type NewsletterInput = z.infer<typeof newsletterSchema>;
