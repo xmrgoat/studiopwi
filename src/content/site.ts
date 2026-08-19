@@ -37,6 +37,7 @@ export const site = {
       "Comme un paysagiste qui doit s'adapter à la météo, nous nous adaptons aux tendances du web et nous construisons **des sites, pensés pour durer.**",
     ],
     testimonialsTitle: "Avis concret",
+    cta: { label: "Démarrer un projet", href: "#contact" },
     testimonials: [
       {
         quote:
