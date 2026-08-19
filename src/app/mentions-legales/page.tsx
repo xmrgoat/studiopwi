@@ -53,9 +53,10 @@ export default function ImprintPage() {
 
       <h2>4. Hébergement</h2>
       <p>
-        Le site studiopwi.com est hébergé sur un serveur privé virtuel (VPS) géré
-        par Studio PWI. Pour toute question relative à l&apos;infrastructure technique,
-        contactez{" "}
+        Le site studiopwi.com est hébergé par{" "}
+        <strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133, Walnut, CA 91789,
+        États-Unis, sur son réseau de diffusion mondial. Pour toute question
+        relative à l&apos;infrastructure technique, contactez{" "}
         <a href="mailto:contact@studiopwi.com">contact@studiopwi.com</a>.
       </p>
 
