@@ -29,7 +29,7 @@ export const cases = {
       siteUrl: "https://www.jimibuilds.com",
       siteLabel: "www.jimibuilds.com",
       inProduction: true,
-      statusLabel: "En production",
+      statusLabel: "En direct",
       problemLabel: "Le problème :",
       // Desktop copy. The mobile frame carries a condensed variant of the same
       // paragraph; the fuller desktop wording is used at every breakpoint
