@@ -3,7 +3,6 @@ import { z } from "zod";
 const schema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   NEXT_PUBLIC_SITE_URL: z.string().url(),
-  DATABASE_URL: z.string().min(1),
   RESEND_API_KEY: z.string().min(1),
   RESEND_FROM: z.string().min(1),
   LEADS_TO: z.string().email(),
