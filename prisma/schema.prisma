@@ -1,6 +1,15 @@
 // Prisma schema — Swiss web studio
-// Run `pnpm db:push` to sync the SQLite dev DB.
-// For prod, swap the datasource to Postgres and run migrations.
+//
+// Postgres, because the app runs on Vercel: serverless functions get a
+// read-only filesystem that is discarded between invocations, so a SQLite file
+// has nowhere to live and lead capture would fail in production.
+//
+// Two URLs are needed. DATABASE_URL is the *pooled* connection used at runtime
+// — serverless opens many short-lived connections and would otherwise exhaust
+// Postgres' connection limit. DIRECT_URL bypasses the pooler for migrations,
+// which need a single long-lived session.
+//
+// Run `npx prisma migrate dev --name init` to create the baseline.
 
 generator client {
   provider      = "prisma-client-js"
@@ -8,8 +17,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Lead {
