@@ -33,16 +33,16 @@ Sections import from these files; copy changes never go in component JSX. **The 
 
 The site is **French (fr-CH) targeting Swiss landscapers**. The `<html lang>`, metadata copy, JSON-LD `inLanguage`, and content files are all in French. Don't mix languages.
 
-### Two animation runtimes you must keep separate
+### Motion: Lenis only — GSAP is gone
 
-- **Lenis** (smooth scrolling) is mounted once in [`src/components/layout/SmoothScroll.tsx`](src/components/layout/SmoothScroll.tsx) from the root layout. It owns `window` scroll.
-- **GSAP + ScrollTrigger** is used inside section components via `useEffect` + `gsap.context()`. Every animation:
-  1. Calls `registerGsapPlugins()` from [`src/lib/motion.ts`](src/lib/motion.ts) before creating triggers
-  2. Bails out under `prefersReducedMotion()`
-  3. Uses `gsap.context(() => …, root)` so the cleanup function (`ctx.revert()`) tears down triggers on unmount
-  4. Calls `ScrollTrigger.refresh()` in the cleanup if it added triggers
+The redesign removed every scroll-linked effect (no pinning, scrub or
+parallax), and with it every reason to ship GSAP. Do not reintroduce it for a
+one-shot fade.
 
-Breaking any of those four rules causes ghost triggers across navigations or layout-shift jank under reduced-motion preference.
+- **Lenis** (smooth scrolling) is mounted once in [`src/components/layout/SmoothScroll.tsx`](src/components/layout/SmoothScroll.tsx) from the root layout. It owns `window` scroll, is driven by a **plain `requestAnimationFrame` loop**, and only runs for fine-pointer viewports ≥1024px — on touch it is pure main-thread tax. It also handles all `a[href^="#"]` anchor scrolling, offset by the 104px header.
+- **Section reveals** use [`src/components/motion/Reveal.tsx`](src/components/motion/Reveal.tsx): one lazily-created `IntersectionObserver` shared by every instance, plus a CSS transition. Wrap a block, optionally pass `order` to stagger.
+- The hidden state in `Reveal.module.css` lives **inside** a `prefers-reduced-motion: no-preference` block. That is deliberate: if the observer never runs, content stays visible instead of being stranded at `opacity: 0`.
+- [`src/lib/motion.ts`](src/lib/motion.ts) is now just `prefersReducedMotion()` / `watchReducedMotion()`. The `gsap` package is still in `package.json` but **nothing imports it** — removing it dropped the homepage First Load JS from 162 kB to 117 kB. Uninstalling it is safe.
 
 ### CSS Modules + design tokens — no Tailwind
 
@@ -53,9 +53,11 @@ Styling is per-component `*.module.css` files plus three global stylesheets impo
 - [`src/styles/base.css`](src/styles/base.css) — body type defaults, headings, focus, `.skip-link`, `.accent`, `.mono`, `.container`, `.section`, and `.section--dark` invert for dark sections
 
 Conventions worth knowing:
-- `.section--dark` inverts text + adjusts the italic accent color so the brand teal stays legible
-- One italic phrase per headline using `<ItalicAccent>` or the `.accent` class (spec §8.2)
-- `<SplitWords text="…" />` is the custom replacement for GSAP's paid `SplitText` plugin
+- The palette is the Figma's 60/30/10 system: `#efefef` ground, `#396c5e` ink, `#2cff05` action. **The accent is fill-only** — at ~1.1:1 against the ground it can never carry text or serve as a focus ring. `--color-focus` is ink for exactly this reason; the footer, which inverts to an ink ground, overrides the ring back to `--color-bg`.
+- Headings are uppercase **per section**, never globally — the legal pages share `h1`/`h2` and must stay sentence-case.
+- `.section--dark` still exists for the legal pages and the footer, but no homepage section is dark.
+- The one-italic-phrase-per-headline rule is **retired**. `ItalicAccent` and `SplitWords` are deleted; `.accent` survives only because `not-found.tsx` uses it.
+- `**bold**` markers inside content strings are rendered by [`src/components/ui/RichText.tsx`](src/components/ui/RichText.tsx).
 
 ### SEO surface — eight generated routes
 
@@ -70,10 +72,10 @@ Files under `src/app/` that aren't pages or layouts are Next.js metadata-route c
 | `/apple-icon` (180×180) | `src/app/apple-icon.tsx` | iOS touch icon via `next/og` |
 | `/opengraph-image` (1200×630) | `src/app/opengraph-image.tsx` | Generated OG card via `next/og` |
 | `/twitter-image` | `src/app/twitter-image.tsx` | Re-exports `opengraph-image` |
-| `/llms.txt` | `src/app/llms.txt/route.ts` | French + English brief for AI answer engines |
+| `/llms.txt` | `src/app/llms.txt/route.ts` | French + English brief for AI answer engines. **Publishes no prices** and tells assistants not to infer any — nothing on the site shows a figure. |
 | `/page.md` | `src/app/page.md/route.ts` | Markdown mirror of the homepage (carries `X-Robots-Tag: noindex`) |
 
-JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx) (five typed components: `OrganizationLd`, `WebSiteLd`, `LocalBusinessLd`, `FaqLd`, `WebPageLd`) and is mounted in two places — sitewide schema in `layout.tsx`, page-level schema in `page.tsx`. The components share `@id` references so Google can stitch the graph; preserve that pattern when adding new schema types.
+JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx) (four typed components: `OrganizationLd`, `WebSiteLd`, `LocalBusinessLd`, `WebPageLd`) and is mounted in two places — sitewide schema in `layout.tsx`, page-level schema in `page.tsx`. The components share `@id` references so Google can stitch the graph; preserve that pattern when adding new schema types.
 
 `metadataBase` and every SEO route default to `https://studiopwi.com` when `NEXT_PUBLIC_SITE_URL` is unset. The canonical domain is **studiopwi.com**; the canonical contact email is **contact@studiopwi.com**. Older drafts used `studio.ch` / `contact@pwi.com` — those are wrong, don't reintroduce them.
 
@@ -98,8 +100,20 @@ The user wants **a commit and push to `origin/main` after every individual file 
 
 ## Things deliberately not done (don't "fix" these)
 
-- `CredibilityBar` renders text spans, not `<img>` tags — placeholder until real client SVGs are commissioned. Don't replace with `<Image>` until logos arrive.
-- `cases.ts` has only one case study (`jardins-dupont`). The component handles a list and will scale.
-- `flower.mp4` poster and several `/images/*` paths in `site.ts` and `cases.ts` reference files that don't exist in `/public` yet. They are tracked in the README's "Open issues" list — don't delete the references.
+- **No prices anywhere.** The redesigned service cards show no figures, so `services.ts` carries none and `OffersLd` was removed. Offer price markup is only permitted for prices visible on the page. Don't re-add prices to structured data without also putting them on the page.
+- **No FAQ.** The section, `site.faq` and `FaqLd` are all removed pending a new FAQ. Don't re-add `FaqLd` before the questions are back on the page.
+- All three service tiers share the CTA label "Créer ma présence en ligne" — that is what the Figma says (the component default was never overridden per card), not a copy/paste slip.
+- `site.footer.legal` keeps a **Conditions générales** link the Figma omits, so `/conditions-generales` isn't orphaned.
+- `NewsletterForm` is unreferenced by the homepage but kept: the `/api/newsletter` double opt-in routes are still live.
 - `next lint` deprecation warning is upstream noise; do not migrate to the ESLint CLI without being asked.
-- `force-static` is set on the AI-facing routes (`llms.txt`, `page.md`) but not yet on `robots.ts` / `sitemap.ts`. Both work either way; only add `force-static` if asked.
+- `force-static` is set on the AI-facing routes (`llms.txt`, `page.md`) but not on `robots.ts` / `sitemap.ts`. Both work either way.
+
+## Open items from the Figma rebuild
+
+These are real content questions, not code defects:
+
+- The case study is titled **Jimi Builds** / `jimibuilds.com`, but the screenshot the Figma supplies is the **Eco Garden** site. One of the two is wrong.
+- `site.footer.social` LinkedIn URL is a **guess** — the Figma supplies an icon but no href.
+- The second testimonial has **no attribution**; it renders without an author line until one is filled in.
+- The Figma states the discovery call as **30 min** (process step) and **20 minutes** (contact lead). Both are currently in the content as written.
+- Running `npm run db:push` is required before the contact form works — `Lead.phone` was added to the schema.
