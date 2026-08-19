@@ -2,7 +2,7 @@ export type CaseStudy = {
   slug: string;
   client: string;
   eyebrow: string;
-  image: { src: string; mobileSrc: string; alt: string; width: number; height: number };
+  image: { src: string; alt: string; width: number; height: number };
   siteUrl?: string;
   siteLabel?: string;
   inProduction?: boolean;
@@ -28,7 +28,6 @@ export const cases = {
       eyebrow: "Un projet paysagiste,",
       image: {
         src: "/images/case-studies/jimi-ecograden-herosection-website.webp",
-        mobileSrc: "/images/case-studies/jimi-ecograden-herosection-website-mobile.webp",
         alt: "Page d'accueil du site Jimi Builds — aménagement paysager écologique",
         width: 2373,
         height: 1362,
