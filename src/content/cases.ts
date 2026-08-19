@@ -18,19 +18,13 @@ export const cases = {
   items: [
     {
       slug: "jimi-builds",
-      // NOTE: the Figma titles this case "Jimi Builds" and links
-      // www.jimibuilds.com, but the screenshot it uses is the Eco Garden site
-      // (the local webp below is the same image). Either the client rebranded
-      // and the screenshot is stale, or the title/URL belong to another
-      // project. Confirm before launch — as written, the section shows one
-      // brand and names another.
       client: "Jimi Builds",
       eyebrow: "Un projet paysagiste,",
       image: {
-        src: "/images/case-studies/jimi-ecograden-herosection-website.webp",
+        src: "/images/case-studies/JimiBuilds.webp",
         alt: "Page d'accueil du site Jimi Builds — aménagement paysager écologique",
-        width: 2373,
-        height: 1362,
+        width: 2377,
+        height: 1357,
       },
       siteUrl: "https://www.jimibuilds.com",
       siteLabel: "www.jimibuilds.com",
