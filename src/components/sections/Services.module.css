@@ -1,184 +1,180 @@
+/* Services — Figma "Studio PWI  service" (1440×1320) and "mobile project".
+   Header on 1–7 / 8–12, three 4-column cards, footnote across the full width. */
+
 .section {
-  position: relative;
   background: var(--color-bg);
 }
 
 .header {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
-  margin-bottom: var(--space-8);
   align-items: end;
-}
-
-@media (min-width: 1024px) {
-  .header {
-    grid-template-columns: 1.5fr 1fr;
-    gap: var(--space-8);
-  }
+  row-gap: var(--space-4);
+  margin-bottom: var(--space-7);
 }
 
 .headline {
-  font-size: var(--fs-h1);
-  color: var(--color-brand-deep);
-}
-
-.headline :global(.accent) {
-  color: var(--color-brand);
-}
-
-.headlineAccent {
-  color: var(--color-brand);
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .intro {
+  grid-column: 1 / -1;
+  margin: 0;
   font-size: var(--fs-body);
-  line-height: var(--lh-loose);
-  color: var(--color-ink);
-  max-width: 50ch;
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
 }
 
-.gridWrapper {
-  position: relative;
-  padding-top: clamp(24px, 4vw, 56px);
-}
+/* ── Cards ───────────────────────────────────────────── */
 
-
-.grid {
+.cards {
   list-style: none;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-3);
-  margin-bottom: var(--space-8);
-}
-
-@media (min-width: 900px) {
-  .grid {
-    grid-template-columns: 3fr 4fr 3fr;
-  }
+  padding: 0;
+  margin-block: 0;
+  row-gap: var(--space-6);
+  align-items: stretch;
 }
 
 .card {
   position: relative;
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-6) var(--space-5);
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-line-strong);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition:
-    background var(--duration-ui) var(--ease-smooth),
-    transform var(--duration-fast) var(--ease-out),
-    box-shadow var(--duration-fast) var(--ease-out);
+  padding: var(--space-4);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-action);
+  background: var(--color-bg);
 }
 
-.card:hover {
-  background: var(--color-bg-elevated);
-  will-change: transform;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 36px -6px color-mix(in oklch, var(--color-brand-deep) 28%, transparent);
-}
-
+/* Croissance inverts: ink ground, page-coloured text, accent CTA and checks. */
 .featured {
-  background: var(--color-brand);
-  border-color: var(--color-ink-deep);
-}
-.featured:hover {
-  background: var(--color-brand);
-  box-shadow: 0 10px 36px -6px color-mix(in oklch, var(--color-brand-deep) 40%, transparent);
+  background: var(--color-text);
+  border-color: var(--color-text);
+  color: var(--color-bg);
 }
 
-.cardIndex {
+.badge {
   position: absolute;
-  top: var(--space-4);
-  right: var(--space-5);
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  letter-spacing: var(--ls-mono);
-  color: var(--color-muted);
-}
-
-.tag {
-  letter-spacing: var(--ls-mono);
-  color: var(--color-ink);
-  margin-bottom: var(--space-3);
-}
-
-.featured .tag {
-  color: var(--color-ink);
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-text);
+  font-size: 0.8125rem;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .title {
-  font-size: var(--fs-h2);
-  letter-spacing: var(--ls-tight);
-}
-
-.price {
-  font-family: var(--font-mono);
-  font-size: var(--fs-h2);
-  font-weight: 400;
-  color: var(--color-ink);
-  letter-spacing: var(--ls-display);
-  line-height: 1;
-  margin-top: var(--space-2);
+  margin: 0 0 var(--space-2);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  color: inherit;
 }
 
 .duration {
-  margin-top: calc(var(--space-1) * -1);
-  letter-spacing: var(--ls-mono);
+  margin: 0 0 var(--space-3);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
 }
 
 .description {
+  margin: 0 0 var(--space-5);
   font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
   line-height: var(--lh-normal);
-  color: var(--color-ink);
-  margin-top: var(--space-2);
 }
 
 .features {
   list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  margin-block: var(--space-3);
+  gap: var(--space-3);
 }
 
-.features li {
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
   font-size: var(--fs-body);
-  padding-left: 1.5em;
-  position: relative;
-  color: var(--color-ink);
+  font-weight: var(--fw-medium);
   line-height: var(--lh-normal);
 }
 
-.features li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--color-brand-deep);
-  font-weight: 700;
+.check {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: url("/images/icons/check.svg") no-repeat center / 14px 14px;
+  mask: url("/images/icons/check.svg") no-repeat center / 14px 14px;
 }
 
+.featured .check {
+  background: var(--color-accent);
+}
+
+/* Pins every CTA to the bottom edge so the three buttons align across cards
+   of differing content height. */
 .cta {
   margin-top: auto;
-  padding-top: var(--space-4);
 }
 
-.reassurance {
-  text-align: center;
-  color: var(--color-muted);
-  letter-spacing: var(--ls-mono);
-  font-size: var(--fs-body);
-  max-width: 80ch;
-  margin-inline: auto;
+/* ── Footnote ────────────────────────────────────────── */
+
+.footnoteRow {
+  margin-top: var(--space-6);
 }
 
-@media (max-width: 767px) {
-  .reassurance {
-    text-align: left;
-    margin-inline: 0;
+.footnote {
+  grid-column: 1 / -1;
+  max-width: none;
+  margin: 0;
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+  text-transform: uppercase;
+}
+
+@media (min-width: 769px) {
+  .card {
+    padding: var(--space-6);
+  }
+}
+
+/* Tablet — 8-column grid: header splits 5/3, cards go two-up then one. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .headline {
+    grid-column: 1 / span 5;
+  }
+  .intro {
+    grid-column: 6 / span 3;
+  }
+  .card {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: 1025px) {
+  .headline {
+    grid-column: 1 / span 7;
+  }
+  .intro {
+    grid-column: 8 / span 5;
+  }
+  .card {
+    grid-column: span 4;
   }
 }
