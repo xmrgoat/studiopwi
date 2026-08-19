@@ -1,86 +1,62 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { services, type Service } from "@/content/services";
-import SectionMarker from "@/components/ui/SectionMarker";
-import ItalicAccent from "@/components/ui/ItalicAccent";
+import { services } from "@/content/services";
 import Button from "@/components/ui/Button";
-import { cn } from "@/lib/cn";
-import { gsap, registerGsapPlugins, prefersReducedMotion } from "@/lib/motion";
+import Reveal from "@/components/motion/Reveal";
 import styles from "./Services.module.css";
 
+// Server component. The three tiers are a list — screen readers announce the
+// count, which is useful context when comparing offers.
 export default function Services() {
-  const rootRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    registerGsapPlugins();
-    const root = rootRef.current;
-    if (!root) return;
-    if (prefersReducedMotion()) return;
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: `.${styles.grid}`, start: "top 80%", once: true },
-      });
-
-      tl.from(`.${styles.card}`, {
-        y: 60,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.1,
-        ease: "expo.out",
-      });
-    }, root);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={rootRef} className={`section ${styles.section}`} id="services">
-      <div className="container">
-        <header className={styles.header}>
-          <div>
-            <SectionMarker number={services.marker.number} label={services.marker.label} />
-            <h2 className={styles.headline}>
-              {services.headline.before}{" "}
-              <span className={styles.headlineAccent}>{services.headline.accent}</span>
-            </h2>
-          </div>
-          <p className={styles.intro}>{services.intro}</p>
-        </header>
+    <section className={`section ${styles.section}`} id="services">
+      <Reveal className={`grid ${styles.header}`}>
+        <h2 className={styles.headline}>{services.headline}</h2>
+        <p className={styles.intro}>{services.intro}</p>
+      </Reveal>
 
-        <div className={styles.gridWrapper}>
-          <ul className={styles.grid}>
-          {(services.tiers as readonly Service[]).map((tier, idx) => (
-            <li
-              key={tier.id}
-              className={cn(styles.card, tier.featured && styles.featured)}
-            >
-              <span className={styles.cardIndex} aria-hidden="true">
-                0{idx + 1}
-              </span>
-              <p className={`mono ${styles.tag}`}>{tier.tag}</p>
-              <h3 className={styles.title}>{tier.title}</h3>
-              <p className={styles.price}>{tier.price}</p>
-              <p className={`mono ${styles.duration}`}>{tier.duration}</p>
-              <p className={styles.description}>{tier.description}</p>
-              <ul className={styles.features}>
-                {tier.features.map((f) => (
-                  <li key={f}>{f}</li>
-                ))}
-              </ul>
-              <div className={styles.cta}>
-                <Button href={tier.cta.href} variant="primary" magnetic>
-                  {tier.cta.label}
-                </Button>
-              </div>
-            </li>
-          ))}
-          </ul>
-        </div>
+      <ul className={`grid ${styles.cards}`}>
+        {services.tiers.map((tier, i) => (
+          <Reveal
+            as="li"
+            key={tier.id}
+            order={i}
+            className={tier.featured ? `${styles.card} ${styles.featured}` : styles.card}
+          >
+            {tier.featured && (
+              <span className={styles.badge}>{services.featuredBadge}</span>
+            )}
 
-        <p className={`mono ${styles.reassurance}`}>{services.reassurance}</p>
-      </div>
+            <h3 className={styles.title}>{tier.title}</h3>
+            <p className={styles.duration}>{tier.duration}</p>
+            <p className={styles.description}>{tier.description}</p>
+
+            <ul className={styles.features}>
+              {tier.features.map((feature) => (
+                <li key={feature} className={styles.feature}>
+                  {/* The exported check, drawn as a mask so it can take the
+                      card's text colour — ink on the plain cards, accent on
+                      the inverted one — from one asset. */}
+                  <span className={styles.check} aria-hidden="true" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className={styles.cta}>
+              <Button
+                href={tier.cta.href}
+                variant={tier.featured ? "primary" : "outline"}
+                fullWidth
+              >
+                {tier.cta.label}
+              </Button>
+            </div>
+          </Reveal>
+        ))}
+      </ul>
+
+      <Reveal className={`grid ${styles.footnoteRow}`}>
+        <p className={styles.footnote}>{services.reassurance}</p>
+      </Reveal>
     </section>
   );
 }
