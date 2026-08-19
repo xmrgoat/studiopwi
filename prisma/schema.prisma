@@ -17,6 +17,7 @@ model Lead {
   createdAt DateTime @default(now())
   name      String
   email     String
+  phone     String?
   company   String?
   message   String
   tier      String? // showcase | growth | partnership | null
