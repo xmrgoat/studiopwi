@@ -12,12 +12,12 @@ The README documents `pnpm` commands; the project's `package.json` uses `npm` sc
 | `npm run build` | Production build (compiles + typechecks + lints + collects routes) |
 | `npm run typecheck` | `tsc --noEmit` only |
 | `npm run lint` | `next lint` |
-| `npm run db:push` | Sync Prisma schema to the local SQLite file |
-| `npm run db:studio` | Visual DB browser |
+
+No database: there are no `db:*` scripts.
 
 No test framework is configured. Don't invent one.
 
-`next build` performs route-data collection at the end, which **instantiates `src/lib/env.ts`** (Zod schema). Missing `RESEND_API_KEY` / `RESEND_FROM` / `LEADS_TO` will fail the build even though they are unrelated to the change being made. See [`.env.example`](.env.example) — copy to `.env` (or `.env.local`) and fill before building locally.
+`next build` performs route-data collection at the end, which **instantiates `src/lib/env.ts`** (Zod schema). Missing `NEXT_PUBLIC_SITE_URL` / `RESEND_API_KEY` / `RESEND_FROM` / `LEADS_TO` will fail the build even though they are unrelated to the change being made. See [`.env.example`](.env.example) — copy to `.env` (or `.env.local`) and fill before building locally.
 
 ## Architecture — the parts you must understand before editing
 
@@ -81,11 +81,33 @@ JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx
 
 ### Forms, rate-limiting, env validation
 
-Both `/api/contact` and `/api/newsletter` follow the same shape: rate-limit by IP → Zod validate → honeypot field (`website`) returns silent 200 → persist via Prisma → send email via Resend. Schemas live in [`src/lib/validation.ts`](src/lib/validation.ts); rate-limit bucket in [`src/lib/rateLimit.ts`](src/lib/rateLimit.ts) (in-memory — swap for Upstash before scaling).
+**There is no database.** The site stores nothing. `/api/contact` validates →
+checks the honeypot → sends one email via Resend. Prisma, the `Lead` model, the
+newsletter double opt-in and `src/lib/db.ts` were all removed.
 
-[`src/lib/env.ts`](src/lib/env.ts) throws at module load if any required env is missing. This intentionally fails the build / dev server fast instead of producing runtime 500s. The trade-off: build-only changes still need full env to complete `next build`.
+That makes the Resend call the *only* copy of a lead, which is why the route
+returns **502** when a send fails instead of the 200 it used to return while a
+database held a duplicate — and why the form's error state always offers the
+contact address as a fallback. Don't soften either back to a silent success.
 
-Newsletter uses double opt-in: `POST /api/newsletter` → email with token → `GET /api/newsletter/confirm?token=…` flips `confirmed: true`.
+Schemas live in [`src/lib/validation.ts`](src/lib/validation.ts); rate-limit
+bucket in [`src/lib/rateLimit.ts`](src/lib/rateLimit.ts) (in-memory — on
+serverless this is per-instance, so it is weak; swap for Upstash if spam
+appears).
+
+The honeypot field is `website`. Keep its schema permissive: constraining it to
+`max(0)` makes Zod reject first and return a 422 naming the field, which tells
+a bot exactly what to leave empty. The route inspects it and returns a silent
+200.
+
+[`src/lib/env.ts`](src/lib/env.ts) throws at module load if any required env is
+missing — `NEXT_PUBLIC_SITE_URL` (must parse as a URL), `RESEND_API_KEY`,
+`RESEND_FROM`, `LEADS_TO` (bare email, no display name). This intentionally
+fails the build / dev server fast instead of producing runtime 500s.
+
+`RESEND_FROM` must be on a domain **verified in Resend**. `studiopwi.com` is
+verified; `send.studiopwi.com` is not, and sending from it fails with a 403
+that used to be swallowed silently.
 
 ### Accessibility invariants worth preserving
 
@@ -104,7 +126,6 @@ The user wants **a commit and push to `origin/main` after every individual file 
 - **No FAQ.** The section, `site.faq` and `FaqLd` are all removed pending a new FAQ. Don't re-add `FaqLd` before the questions are back on the page.
 - All three service tiers share the CTA label "Créer ma présence en ligne" — that is what the Figma says (the component default was never overridden per card), not a copy/paste slip.
 - `site.footer.legal` keeps a **Conditions générales** link the Figma omits, so `/conditions-generales` isn't orphaned.
-- `NewsletterForm` is unreferenced by the homepage but kept: the `/api/newsletter` double opt-in routes are still live.
 - `next lint` deprecation warning is upstream noise; do not migrate to the ESLint CLI without being asked.
 - `force-static` is set on the AI-facing routes (`llms.txt`, `page.md`) but not on `robots.ts` / `sitemap.ts`. Both work either way.
 
@@ -116,4 +137,11 @@ These are real content questions, not code defects:
 - `site.footer.social` LinkedIn URL is a **guess** — the Figma supplies an icon but no href.
 - The second testimonial has **no attribution**; it renders without an author line until one is filled in.
 - The Figma states the discovery call as **30 min** (process step) and **20 minutes** (contact lead). Both are currently in the content as written.
-- Running `npm run db:push` is required before the contact form works — `Lead.phone` was added to the schema.
+- The legal pages still describe newsletter subscriptions and data retention that no longer happen — see below.
+
+## Legal copy is now out of date
+
+`/confidentialite` and `/conditions-generales` describe a newsletter and the
+storage of personal data. With the database removed, the site stores nothing and
+sends no newsletter. The privacy policy overstates what is collected and must be
+corrected before launch — this is a factual accuracy issue, not a code defect.
