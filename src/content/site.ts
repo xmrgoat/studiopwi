@@ -59,6 +59,8 @@ export const site = {
 
   process: {
     title: "Notre démarche",
+    intro:
+      "Une approche structurée pour transformer votre vision en une expérience digitale cohérente et performante.",
     steps: [
       {
         number: "1",
@@ -79,7 +81,7 @@ export const site = {
           "Après la mise en ligne, nous restons disponibles pour les corrections techniques et ajustements mineurs.",
       },
     ],
-    cta: { label: "Démarrer un projet", href: "#contact" },
+    cta: { label: "Demander un devis", href: "#contact" },
   },
 
   contact: {
