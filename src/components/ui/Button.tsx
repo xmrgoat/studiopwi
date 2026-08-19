@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
-import Magnetic from "@/components/motion/Magnetic";
 import styles from "./Button.module.css";
 
 // The design ships exactly two CTA treatments: an accent fill (#2cff05) and an
@@ -13,7 +12,6 @@ type CommonProps = {
   variant?: Variant;
   className?: string;
   children: ReactNode;
-  magnetic?: boolean;
   /** Stretch to the container width — service cards and every mobile CTA. */
   fullWidth?: boolean;
 };
@@ -44,9 +42,6 @@ export default function Button(props: Props) {
 
   const inner = <span className={styles.inner}>{props.children}</span>;
 
-  const wrap = (node: ReactNode) =>
-    props.magnetic ? <Magnetic strength={0.2}>{node}</Magnetic> : node;
-
   if ("href" in props && props.href) {
     // Hash-only links (#contact, #services, …) must use a plain <a> so the
     // browser (and the SmoothScroll anchor handler) handles them natively.
@@ -54,20 +49,20 @@ export default function Button(props: Props) {
     // scroll:true resets the window to the top before the anchor can resolve,
     // sending the user to the hero instead of the target section.
     if (props.href.startsWith("#")) {
-      return wrap(
+      return (
         <a href={props.href} className={className}>
           {inner}
-        </a>,
+        </a>
       );
     }
-    return wrap(
+    return (
       <Link href={props.href} className={className}>
         {inner}
-      </Link>,
+      </Link>
     );
   }
 
-  return wrap(
+  return (
     <button
       type={props.type ?? "button"}
       className={className}
@@ -75,6 +70,6 @@ export default function Button(props: Props) {
       disabled={"disabled" in props ? props.disabled : undefined}
     >
       {inner}
-    </button>,
+    </button>
   );
 }
