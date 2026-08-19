@@ -1,51 +1,34 @@
-import dynamic from "next/dynamic";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import Hero from "@/components/sections/Hero";
+import CaseStudies from "@/components/sections/CaseStudies";
+import Services from "@/components/sections/Services";
+import WhyUs from "@/components/sections/WhyUs";
+import Process from "@/components/sections/Process";
+import Contact from "@/components/sections/Contact";
+import { LocalBusinessLd, WebPageLd } from "@/components/seo/JsonLd";
 
-// Only Hero is eagerly loaded. Every other section is server-rendered (ssr
-// defaults to true, so SEO/content/LCP markup is unchanged) but its client
-// chunk + GSAP ScrollTrigger setup hydrates lazily, off the first-paint
-// critical path. Each section's mount runs a synchronous ScrollTrigger layout
-// pass; doing all of them at once during initial hydration saturated the main
-// thread and delayed first paint on throttled mobile. Keeping Problem dynamic
-// too means GSAP is never imported by the eager bundle at all.
-const Problem = dynamic(() => import("@/components/sections/Problem"));
-const Services = dynamic(() => import("@/components/sections/Services"));
-const CaseStudies = dynamic(() => import("@/components/sections/CaseStudies"));
-const WhyUs = dynamic(() => import("@/components/sections/WhyUs"));
-const Contact = dynamic(() => import("@/components/sections/Contact"));
-const FAQ = dynamic(() => import("@/components/sections/FAQ"));
-const CTABanner = dynamic(() => import("@/components/sections/CTABanner"));
-const Footer = dynamic(() => import("@/components/layout/Footer"));
-import {
-  LocalBusinessLd,
-  FaqLd,
-  WebPageLd,
-  OffersLd,
-  VideoObjectLd,
-} from "@/components/seo/JsonLd";
-
+// Sections are plain imports again. They were wrapped in next/dynamic to keep
+// each one's GSAP ScrollTrigger setup off the initial hydration pass, which was
+// saturating the main thread on throttled mobile. The redesign removes every
+// scroll-linked effect, so the sections are server components with no client
+// bundle to split — only Header, ContactForm and the shared Reveal observer
+// ship JavaScript at all.
 export default function HomePage() {
   return (
     <>
       <WebPageLd />
       <LocalBusinessLd />
-      <FaqLd />
-      <OffersLd />
-      <VideoObjectLd />
       <ScrollProgress />
       <Header />
       <main id="main">
         <Hero />
-        {/* TODO: CredibilityBar — "Trusted by Swiss landscapers" logo strip */}
-        <Problem />
-        <Services />
         <CaseStudies />
+        <Services />
         <WhyUs />
+        <Process />
         <Contact />
-        <FAQ />
-        <CTABanner />
       </main>
       <Footer />
     </>
