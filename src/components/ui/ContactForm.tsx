@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { site } from "@/content/site";
 import Button from "./Button";
 import styles from "./ContactForm.module.css";
 
@@ -14,6 +15,7 @@ type Props = {
 export default function ContactForm({ tier, source = "direct" }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const f = site.contact.form;
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,8 +26,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
     const payload = {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
-      company: String(formData.get("company") ?? "") || undefined,
-      currentSite: String(formData.get("currentSite") ?? "") || undefined,
+      phone: String(formData.get("phone") ?? "") || undefined,
       message: String(formData.get("message") ?? ""),
       tier,
       source,
@@ -60,10 +61,8 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
   if (status === "submitting") {
     return (
       <div className={styles.skeleton} aria-busy="true" aria-label="Envoi en cours…">
-        <div className={styles.skeletonRow}>
-          <div className={styles.skeletonField} />
-          <div className={styles.skeletonField} />
-        </div>
+        <div className={styles.skeletonField} />
+        <div className={styles.skeletonField} />
         <div className={styles.skeletonField} />
         <div className={`${styles.skeletonField} ${styles.skeletonTextarea}`} />
         <div className={styles.skeletonBtn} />
@@ -75,71 +74,63 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
     return (
       <div className={styles.success} role="status" aria-live="polite">
         <p className={styles.successLabel}>Message reçu</p>
-        <p className={styles.successText}>Merci. On revient vers vous sous 48h ouvrées.</p>
+        <p className={styles.successText}>
+          Merci. On revient vers vous sous 48h ouvrées.
+        </p>
       </div>
     );
   }
 
+  // Fields follow the Figma form: nom, email, téléphone, message. The old
+  // "société" and "site web actuel" inputs are gone; both remain optional in
+  // the API schema, so nothing breaks for callers that still send them.
   return (
     <form className={styles.form} onSubmit={onSubmit} noValidate>
-      <div className={styles.row}>
-        <label className={styles.field}>
-          <span className={styles.label}>Nom</span>
-          <input
-            type="text"
-            name="name"
-            required
-            minLength={2}
-            maxLength={120}
-            autoComplete="name"
-            placeholder="Jean Dupont"
-          />
-        </label>
-
-        <label className={styles.field}>
-          <span className={styles.label}>Email</span>
-          <input
-            type="email"
-            name="email"
-            required
-            maxLength={200}
-            autoComplete="email"
-            placeholder="jean@entreprise.ch"
-          />
-        </label>
-      </div>
-
       <label className={styles.field}>
-        <span className={styles.label}>Société</span>
+        <span className={styles.label}>{f.name.label}</span>
         <input
           type="text"
-          name="company"
+          name="name"
+          required
+          minLength={2}
           maxLength={120}
-          autoComplete="organization"
-          placeholder="Jardins Dupont Sàrl"
+          autoComplete="name"
+          placeholder={f.name.placeholder}
         />
       </label>
 
       <label className={styles.field}>
-        <span className={styles.label}>Site web actuel (facultatif)</span>
+        <span className={styles.label}>{f.email.label}</span>
         <input
-          type="text"
-          name="currentSite"
-          maxLength={300}
-          autoComplete="url"
-          placeholder="www.votresite.ch"
+          type="email"
+          name="email"
+          required
+          maxLength={200}
+          autoComplete="email"
+          placeholder={f.email.placeholder}
         />
       </label>
 
       <label className={styles.field}>
-        <span className={styles.label}>Message</span>
+        <span className={styles.label}>{f.phone.label}</span>
+        <input
+          type="tel"
+          name="phone"
+          maxLength={40}
+          autoComplete="tel"
+          placeholder={f.phone.placeholder}
+        />
+      </label>
+
+      <label className={styles.field}>
+        <span className={styles.label}>{f.message.label}</span>
         <textarea
           name="message"
           required
           minLength={10}
           maxLength={4000}
           rows={5}
-          placeholder="Décrivez votre activité, votre projet et ce que vous aimeriez améliorer."
+          placeholder={f.message.placeholder}
         />
       </label>
 
@@ -156,8 +147,8 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
       )}
 
       <div className={styles.submit}>
-        <Button type="submit" magnetic>
-          Envoyer ma demande
+        <Button type="submit" fullWidth>
+          {f.submit}
         </Button>
       </div>
     </form>
