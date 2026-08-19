@@ -1,12 +1,15 @@
-/* Why us — Figma "Studio PWI pourquoi nous" (1440×900) and "mobile why us".
-   Copy on columns 1–6, testimonials on 7–12. */
+/* Why us — Figma "Studio PWI pourquoi nous" (2056:504) and "mobile why us".
+
+   Desktop frame measures: copy block x=80 y=189 w=631; "Avis concret" block
+   x=730 y=454 w=630 — the right column starts far lower than the left, which
+   is what balances the frame. CTA sits below both at w=414. */
 
 .section {
   background: var(--color-bg);
 }
 
 .grid {
-  row-gap: var(--space-7);
+  row-gap: var(--space-6);
   align-items: start;
 }
 
@@ -14,29 +17,36 @@
   grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5); /* 32px */
 }
 
-/* Lighter than the hero: the design sets this heading in Medium, not
-   ExtraBold, so the two large uppercase headlines do not compete. */
+/* Regular weight in the frame — deliberately lighter than the hero, and
+   lighter than the Bold "Avis concret" it sits beside. */
 .title {
   margin: 0;
   font-size: var(--fs-h2);
-  font-weight: var(--fw-medium);
+  font-weight: 400;
   line-height: var(--lh-display);
   text-transform: uppercase;
 }
 
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .paragraph {
   margin: 0;
-  max-width: 60ch;
+  max-width: none;
   font-size: var(--fs-body);
   font-weight: var(--fw-medium);
   line-height: var(--lh-normal);
 }
 
+/* SemiBold in the frame, not Bold. */
 .paragraph strong {
-  font-weight: var(--fw-bold);
+  font-weight: 600;
 }
 
 /* ── Testimonials ────────────────────────────────────── */
@@ -45,14 +55,15 @@
   grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-5); /* 32px */
 }
 
+/* Same 64px scale as the section heading, Bold, and not uppercased. */
 .reviewsTitle {
   margin: 0;
-  font-size: var(--fs-h3);
+  font-size: var(--fs-h2);
   font-weight: var(--fw-bold);
-  line-height: 1.2;
+  line-height: var(--lh-display);
 }
 
 .list {
@@ -61,16 +72,10 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-6);
 }
 
-.card {
-  border: 1px solid var(--color-line-strong);
-  border-radius: var(--radius-action);
-  padding: var(--space-4);
-  background: var(--color-bg);
-}
-
+/* Quote glyph as an exported mark above the text — no card, no border. */
 .figure {
   margin: 0;
   display: flex;
@@ -78,26 +83,26 @@
   gap: var(--space-3);
 }
 
-.quoteMark {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  font-weight: var(--fw-bold);
-  line-height: 0.6;
-  color: var(--color-text-faint);
-  /* Sits on the text baseline of the following line rather than adding a full
-     line box of its own. */
-  height: 1.6rem;
+.figure::before {
+  content: "";
+  width: 22px;
+  height: 19px;
+  background: currentColor;
+  -webkit-mask: url("/images/icons/quote.svg") no-repeat center / contain;
+  mask: url("/images/icons/quote.svg") no-repeat center / contain;
 }
 
 .quote {
   margin: 0;
 }
 
+/* Bold in the frame — the quote carries more weight than the body copy
+   opposite it, which is what makes the right column read as the louder half. */
 .quoteText {
   margin: 0;
-  max-width: 56ch;
+  max-width: none;
   font-size: var(--fs-body);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-bold);
   line-height: var(--lh-normal);
 }
 
@@ -118,12 +123,23 @@
   color: var(--color-text-muted);
 }
 
+/* ── CTA ─────────────────────────────────────────────── */
+
+.ctaRow {
+  grid-column: 1 / -1;
+  display: flex;
+  margin-top: var(--space-5);
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
   .copy {
     grid-column: 1 / span 8;
   }
   .reviews {
     grid-column: 1 / span 8;
+  }
+  .ctaRow {
+    grid-column: 1 / span 4;
   }
 }
 
@@ -133,5 +149,11 @@
   }
   .reviews {
     grid-column: 7 / span 6;
+    /* Reproduces the frame's 265px vertical offset between the two columns. */
+    margin-top: clamp(0px, 18vw, 265px);
+  }
+  .ctaRow {
+    grid-column: 5 / span 4;
+    justify-content: stretch;
   }
 }
