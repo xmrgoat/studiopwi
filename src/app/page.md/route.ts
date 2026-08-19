@@ -6,21 +6,14 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com";
 
 export const dynamic = "force-static";
 
-function joinHeadline(h: { before: string; accent: string; after: string }) {
-  return [h.before, h.accent, h.after]
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .join(" ")
-    .replace(/\s+/g, " ");
+// Strips the **bold** markers the content files carry for on-page emphasis —
+// Markdown would render them, but they add nothing to a machine-readable brief.
+function plain(text: string) {
+  return text.replace(/\*\*/g, "");
 }
 
 export function GET() {
-  const hero = site.hero;
-  const problem = site.problem;
-  const whyUs = site.whyUs;
-  const contact = site.contact;
-  const faq = site.faq;
-  const banner = site.ctaBanner;
+  const { hero, whyUs, process: steps, contact } = site;
   const caseItem = cases.items[0] as CaseStudy | undefined;
 
   const lines: string[] = [];
@@ -29,7 +22,7 @@ export function GET() {
   lines.push(`# ${site.name} — Sites web pour paysagistes suisses`);
   lines.push("");
   lines.push(
-    `> ${site.tagline} Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, support post-lancement inclus. Basés à Neuchâtel.`,
+    `> ${site.tagline}. Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, support post-lancement inclus. Basés à Neuchâtel.`,
   );
   lines.push("");
   lines.push(`**Site canonique** : ${SITE_URL}`);
@@ -41,7 +34,7 @@ export function GET() {
   lines.push("");
 
   // ---------- Hero ----------
-  lines.push(`## ${joinHeadline(hero.headline)}`);
+  lines.push(`## ${hero.headline}`);
   lines.push("");
   lines.push(hero.lead);
   lines.push("");
@@ -49,41 +42,35 @@ export function GET() {
     `- **Action principale** : ${hero.primaryCta.label} — ${SITE_URL}/${hero.primaryCta.href}`,
   );
   lines.push("");
-  lines.push("**Repères clés :**");
-  lines.push("");
-  for (const m of hero.metrics as ReadonlyArray<{ value: number; label: string; suffix?: string }>) {
-    lines.push(`- ${m.value}${m.suffix ?? ""} ${m.label}`);
-  }
-  lines.push("");
   lines.push("---");
   lines.push("");
 
-  // ---------- Problem ----------
-  lines.push(`## Le problème : ${joinHeadline(problem.headline)}`);
-  lines.push("");
-  lines.push(problem.lead);
-  lines.push("");
-  for (const p of problem.points) {
-    lines.push(`### ${p.number} — ${p.title}`);
+  // ---------- Case study ----------
+  if (caseItem) {
+    lines.push(`## Réalisation : ${caseItem.client}`);
     lines.push("");
-    lines.push(p.body);
+    if (caseItem.siteUrl) {
+      lines.push(`**Site** : ${caseItem.siteUrl}`);
+      lines.push("");
+    }
+    lines.push(`**${caseItem.problemLabel}** ${caseItem.problem}`);
+    lines.push("");
+    lines.push(`**${caseItem.solutionLabel}** ${caseItem.solution}`);
+    lines.push("");
+    lines.push("---");
     lines.push("");
   }
-  lines.push("---");
-  lines.push("");
 
   // ---------- Services ----------
-  lines.push(`## Services — ${joinHeadline(services.headline)}`);
+  lines.push(`## Services — ${services.headline}`);
   lines.push("");
   lines.push(services.intro);
   lines.push("");
   for (const tier of services.tiers as readonly Service[]) {
-    const featured = tier.featured ? " *(offre la plus populaire)*" : "";
-    lines.push(`### ${tier.tag} — ${tier.title}${featured}`);
+    const featured = tier.featured ? ` *(${services.featuredBadge})*` : "";
+    lines.push(`### ${tier.title}${featured}`);
     lines.push("");
-    lines.push(`- **Prix** : ${tier.price}`);
     lines.push(`- **Durée** : ${tier.duration}`);
-    if (tier.payment) lines.push(`- **Paiement** : ${tier.payment}`);
     lines.push("");
     lines.push(tier.description);
     lines.push("");
@@ -99,84 +86,49 @@ export function GET() {
   lines.push("---");
   lines.push("");
 
-  // ---------- Case study ----------
-  if (caseItem) {
-    lines.push(`## Réalisation : ${caseItem.client}`);
-    lines.push("");
-    lines.push(
-      `**Lieu** : ${caseItem.location} · **Année** : ${caseItem.year} · **Type** : ${caseItem.tag}`,
-    );
-    lines.push("");
-    lines.push(`**Défi** : ${caseItem.challenge}`);
-    lines.push("");
-    lines.push(`**Solution** : ${caseItem.solution}`);
-    lines.push("");
-    if (caseItem.resultNumber != null) {
-      lines.push(
-        `**Résultat** : +${caseItem.resultNumber}${caseItem.resultUnit} ${caseItem.resultLabel}`,
-      );
-      lines.push("");
-    }
-    lines.push(
-      `> « ${caseItem.quote} »  \n> — ${caseItem.attribution.name}, ${caseItem.attribution.role}`,
-    );
-    lines.push("");
-    lines.push("---");
+  // ---------- Why us ----------
+  lines.push(`## ${whyUs.title}`);
+  lines.push("");
+  for (const paragraph of whyUs.paragraphs) {
+    lines.push(plain(paragraph));
     lines.push("");
   }
+  lines.push(`### ${whyUs.testimonialsTitle}`);
+  lines.push("");
+  for (const t of whyUs.testimonials) {
+    const attribution = t.author
+      ? `  \n> — ${t.author}${t.role ? `, ${t.role}` : ""}`
+      : "";
+    lines.push(`> « ${t.quote} »${attribution}`);
+    lines.push("");
+  }
+  lines.push("---");
+  lines.push("");
 
-  // ---------- Why us ----------
-  lines.push(`## Pourquoi nous — ${joinHeadline(whyUs.claim)}`);
+  // ---------- Process ----------
+  lines.push(`## ${steps.title}`);
   lines.push("");
-  for (const b of whyUs.badges) lines.push(`- ${b}`);
+  lines.push(steps.intro);
   lines.push("");
-  lines.push("### Notre processus");
-  lines.push("");
-  for (const step of whyUs.process) {
-    lines.push(`#### ${step.number}. ${step.title} *(${step.duration})*`);
+  for (const step of steps.steps) {
+    lines.push(`### ${step.number}. ${step.title}`);
     lines.push("");
     lines.push(step.body);
     lines.push("");
   }
-  lines.push(`### ${whyUs.guarantee.label}`);
-  lines.push("");
-  lines.push(`**${whyUs.guarantee.title}**`);
-  lines.push("");
-  lines.push(whyUs.guarantee.body);
-  lines.push("");
   lines.push("---");
   lines.push("");
 
   // ---------- Contact ----------
-  lines.push(`## ${joinHeadline(contact.headline)}`);
+  lines.push(`## ${contact.title}`);
   lines.push("");
   lines.push(contact.lead);
   lines.push("");
-  lines.push(`- **Email** : ${contact.secondary.href.replace("mailto:", "")}`);
+  for (const signal of contact.trustSignals) lines.push(`- ${signal}`);
+  lines.push("");
+  lines.push(`- **Email** : ${site.email}`);
   lines.push("");
   lines.push(`Formulaire de contact : ${SITE_URL}/#contact`);
-  lines.push("");
-  lines.push("---");
-  lines.push("");
-
-  // ---------- FAQ ----------
-  lines.push(`## Questions fréquentes`);
-  lines.push("");
-  for (const q of faq.items) {
-    lines.push(`### ${q.question}`);
-    lines.push("");
-    lines.push(q.answer);
-    lines.push("");
-  }
-  lines.push("---");
-  lines.push("");
-
-  // ---------- Final CTA ----------
-  lines.push(`## ${joinHeadline(banner.headline)}`);
-  lines.push("");
-  lines.push(banner.lead);
-  lines.push("");
-  lines.push(`${banner.cta.label} — ${SITE_URL}/${banner.cta.href}`);
   lines.push("");
   lines.push("---");
   lines.push("");
