@@ -33,6 +33,7 @@
   --color-action:           var(--color-accent);
   --color-action-text:      var(--color-text);
   --shadow-action:          0 4px 16px -2px color-mix(in srgb, var(--color-accent) 35%, transparent);
+  --shadow-action-outline:  0 4px 16px -2px color-mix(in srgb, var(--color-text) 35%, transparent);
 
   /* ── Legacy aliases (module files reference these) ───── */
   --color-brand:            var(--color-accent);
