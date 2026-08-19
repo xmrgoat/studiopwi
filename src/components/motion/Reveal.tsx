@@ -1,63 +1,69 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
-import { gsap, ScrollTrigger, registerGsapPlugins, prefersReducedMotion } from "@/lib/motion";
+import { useEffect, useRef, type ElementType, type ReactNode } from "react";
+import styles from "./Reveal.module.css";
+
+// One IntersectionObserver for the whole page, created lazily and shared by
+// every Reveal instance.
+//
+// This replaces the per-section GSAP ScrollTrigger setup the previous design
+// used. The redesign has no pinning, scrubbing or parallax left — every
+// section just needs to fade up once — and the earlier mobile-LCP work found
+// the constraint to be main-thread saturation while many GSAP sections
+// hydrated at once, not asset weight. A single observer and a CSS transition
+// cost a few hundred bytes instead of the GSAP bundle.
+let observer: IntersectionObserver | null = null;
+
+function getObserver(): IntersectionObserver {
+  observer ??= new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add(styles.visible ?? "is-visible");
+        observer?.unobserve(entry.target);
+      }
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
+  );
+  return observer;
+}
 
 type Props = {
   children: ReactNode;
-  /** Children selector to stagger. Defaults to direct children. */
-  stagger?: number;
-  delay?: number;
-  y?: number;
-  duration?: number;
-  start?: string;
+  /** Stagger index — each step delays the transition by 80ms. */
+  order?: number;
+  as?: ElementType;
   className?: string;
 };
 
-/**
- * Generic scroll reveal — fades+lifts direct children once at start trigger.
- * Honors prefers-reduced-motion.
- */
 export default function Reveal({
   children,
-  stagger = 0.08,
-  delay = 0,
-  y = 40,
-  duration = 0.9,
-  start = "top 80%",
+  order = 0,
+  as: Tag = "div",
   className,
 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    registerGsapPlugins();
+    // Under reduced motion the element is already at its final state in CSS —
+    // no observer, no transition, no layout shift.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    if (prefersReducedMotion()) return;
-
-    const targets = el.children;
-    if (targets.length === 0) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from(targets, {
-        y,
-        opacity: 0,
-        duration,
-        delay,
-        stagger,
-        ease: "expo.out",
-        scrollTrigger: { trigger: el, start, once: true },
-      });
-    }, el);
-
-    return () => ctx.revert();
-  }, [stagger, delay, y, duration, start]);
+    const io = getObserver();
+    io.observe(el);
+    return () => io.unobserve(el);
+  }, []);
 
   return (
-    <div ref={ref} className={className}>
+    <Tag
+      ref={ref}
+      className={className ? `${styles.reveal} ${className}` : styles.reveal}
+      style={order ? { transitionDelay: `${order * 80}ms` } : undefined}
+    >
       {children}
-    </div>
+    </Tag>
   );
 }

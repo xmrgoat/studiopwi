@@ -1,0 +1,21 @@
+/* Scroll reveal — paired with components/motion/Reveal.tsx.
+
+   The hidden state only exists when the user accepts motion. Under
+   prefers-reduced-motion the element renders at its final state with no
+   transition, so content is never left invisible if the observer never runs
+   (JS disabled, hydration error, bot without IntersectionObserver). */
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity var(--duration-reveal) var(--ease-out),
+      transform var(--duration-reveal) var(--ease-out);
+  }
+
+  .visible {
+    opacity: 1;
+    transform: none;
+  }
+}
