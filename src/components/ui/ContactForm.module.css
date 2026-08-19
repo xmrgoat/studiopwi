@@ -74,6 +74,12 @@
   content: "⚠ ";
 }
 
+.errorLink {
+  color: inherit;
+  font-weight: var(--fw-bold);
+  text-underline-offset: 3px;
+}
+
 /* ── Submitting / success states ─────────────────────── */
 
 .skeleton {

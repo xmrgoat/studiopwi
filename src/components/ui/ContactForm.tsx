@@ -49,12 +49,20 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
         const firstFieldError = fieldErrors
           ? Object.values(fieldErrors).flat()[0]
           : null;
-        throw new Error(firstFieldError ?? body?.error ?? "Erreur inconnue");
+        throw new Error(
+          firstFieldError ??
+            body?.error ??
+            "Votre message n'a pas pu être envoyé. Écrivez-nous directement à",
+        );
       }
       setStatus("success");
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Erreur inconnue");
+      setError(
+        err instanceof Error && err.message
+          ? err.message
+          : "Votre message n'a pas pu être envoyé. Écrivez-nous directement à",
+      );
     }
   }
 
@@ -140,9 +148,15 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
         <input type="text" name="website" tabIndex={-1} autoComplete="off" />
       </label>
 
+      {/* With no database behind the form, a failed send means the enquiry is
+          gone — so the error always offers the mail address as a way through
+          rather than just reporting failure. */}
       {error && (
         <p className={styles.error} role="alert">
-          {error}
+          {error}{" "}
+          <a className={styles.errorLink} href={`mailto:${site.email}`}>
+            {site.email}
+          </a>
         </p>
       )}
 
