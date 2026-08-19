@@ -2,10 +2,12 @@
  * Editorial Swiss × organic field-notes. */
 
 :root {
-  /* ── Primary palette (source of truth) ───────────────── */
+  /* ── Primary palette (source of truth) ─────────────────
+   * Figma 60/30/10 system — "Studio PWI Website draft":
+   *   60% #EFEFEF page ground · 30% #396C5E ink · 10% #2CFF05 action. */
   --color-bg:               #efefef;
   --color-text:             #396c5e;
-  --color-accent:           #82cd9d;
+  --color-accent:           #2cff05;
 
   /* ── Computed variants ───────────────────────────────── */
   --color-text-muted:       color-mix(in oklch, var(--color-text) 70%, var(--color-bg));
@@ -21,7 +23,16 @@
   /* ── Structural ──────────────────────────────────────── */
   --color-line:             color-mix(in srgb, var(--color-text) 12%, transparent);
   --color-line-strong:      color-mix(in srgb, var(--color-text) 25%, transparent);
-  --color-focus:            var(--color-accent);
+
+  /* Focus ring is ink, NOT accent: #2cff05 on #efefef is ~1.1:1, far below the
+   * 3:1 WCAG 2.2 minimum for non-text UI. The accent is a fill-only colour —
+   * it carries ink-coloured text on top, never the reverse. */
+  --color-focus:            var(--color-text);
+
+  /* ── Action (CTA) ────────────────────────────────────── */
+  --color-action:           var(--color-accent);
+  --color-action-text:      var(--color-text);
+  --shadow-action:          0 4px 16px -2px color-mix(in srgb, var(--color-accent) 35%, transparent);
 
   /* ── Legacy aliases (module files reference these) ───── */
   --color-brand:            var(--color-accent);
@@ -34,17 +45,22 @@
   --color-ink-deep:         var(--color-text);
   --color-muted:            var(--color-text-muted);
 
-  /* --- Type scale --- */
-  --fs-display: clamp(3.5rem, 7vw, 5.5rem);
-  --fs-h1:      clamp(2.5rem, 4.5vw, 5rem);
-  --fs-h2:      clamp(1.875rem, 2.75vw, 2.75rem);
-  --fs-h3:      clamp(1.25rem, 1.5vw, 1.625rem);
-  --fs-body:    clamp(1rem, 1.05vw, 1.0625rem);
+  /* --- Type scale ---
+   * Anchored to the Figma frames: mobile 360 → desktop 1440.
+   * Hero h1 32→64 · section h2 28→64 · card h3 24→48 · body 14→18. */
+  --fs-display: clamp(2rem, 4.45vw, 4rem);
+  --fs-h1:      var(--fs-display);
+  --fs-h2:      clamp(1.75rem, 4.45vw, 4rem);
+  --fs-h3:      clamp(1.5rem, 3.35vw, 3rem);
+  --fs-body:    clamp(0.875rem, 1.25vw, 1.125rem);
+  --fs-small:   clamp(0.875rem, 1.1vw, 1rem);
+  --fs-eyebrow: 0.875rem;
+  --fs-numeral: clamp(2rem, 4.45vw, 4rem);
 
-  --lh-display: 0.98;
+  --lh-display: 1.22;
   --lh-tight: 1.05;
   --lh-snug: 1.15;
-  --lh-normal: 1.45;
+  --lh-normal: 1.4;
   --lh-loose: 1.65;
 
   --ls-display: -0.035em;
@@ -54,12 +70,17 @@
   --ls-mono: 0.16em;
 
   /* Font stacks (loaded via next/font in layout.tsx).
-     Body/mono list system-ui FIRST so the browser renders immediately with a
-     native font and Geist swaps in via font-display:swap. This removes the
-     28 KB Geist woff2 from the render-blocking CSS critical chain. */
-  --font-display: var(--font-nunito-sans), sans-serif;
-  --font-body: system-ui, -apple-system, sans-serif, var(--font-geist-sans);
-  --font-mono: ui-monospace, monospace, var(--font-geist-sans);
+     The Figma sets Montserrat across the whole design — display and body are
+     the same family at different weights (800 headlines, 700/500 copy), so
+     one family serves both and only one woff2 sits on the critical path. */
+  --font-display: var(--font-montserrat), system-ui, sans-serif;
+  --font-body: var(--font-montserrat), system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  /* Weights, per the Figma text styles */
+  --fw-display: 800;
+  --fw-bold: 700;
+  --fw-medium: 500;
 
   /* --- Spacing · 8px base --- */
   --space-1: 4px;
@@ -99,6 +120,7 @@
   --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 8px;
+  --radius-action: 10px;
   --radius-lg: 28px;
   --radius-pill: 999px;
 }
