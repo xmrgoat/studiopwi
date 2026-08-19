@@ -1,289 +1,172 @@
+/* Case study — Figma "Studio PWI  case study" (1440×900) and "mobile project".
+   Desktop: copy on columns 1–5, media on 7–12. Mobile: title, image, text, CTA. */
+
 .section {
-  position: relative;
   background: var(--color-bg);
 }
 
-.header {
-  margin-bottom: var(--space-9);
+.grid {
+  align-items: center;
+  row-gap: var(--space-6);
+}
+
+.copy {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
 }
 
 .headline {
-  font-size: var(--fs-h1);
-  color: var(--color-brand-deep);
-  white-space: pre-line;
-  max-width: 20ch;
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+  text-wrap: balance;
 }
 
-.headline :global(.accent) {
-  color: var(--color-brand);
+/* The design splits the headline across two weights on one line. */
+.eyebrow {
+  font-weight: var(--fw-medium);
 }
 
-.list {
+.client {
+  font-weight: var(--fw-bold);
+}
+
+.body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-2);
 }
 
-.case {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
+.label {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+}
+
+.paragraph {
+  margin: 0 0 var(--space-3);
+  max-width: 60ch;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.ctas {
+  display: flex;
+}
+
+/* ── Media column ────────────────────────────────────── */
+
+.media {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.status {
+  display: flex;
   align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
 }
 
-@media (min-width: 1024px) {
-  .case {
-    grid-template-columns: 7fr 5fr;
-    gap: var(--space-8);
-  }
-  .reverse .imageWrap { order: 2; }
-  .reverse .text { order: 1; }
+.statusDot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
 }
 
-.imageLink {
+.frame {
+  overflow: hidden;
+  border-radius: var(--radius-action);
+  /* The screenshot is a light image on a light ground; without a hairline the
+     edges of the shot dissolve into the page. */
+  box-shadow: 0 0 0 1px var(--color-line);
+}
+
+.shot {
   display: block;
-  border-radius: var(--radius-lg);
-  transition:
-    transform var(--duration-fast) var(--ease-out),
-    box-shadow var(--duration-fast) var(--ease-out);
-  will-change: transform;
-}
-
-.imageLink:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 36px -6px color-mix(in oklch, var(--color-brand-deep) 28%, transparent);
-}
-
-.imageWrap {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--color-bg-warm);
-}
-
-.imageWrap img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 630 / 361;
   object-fit: cover;
-  width: 100% !important;
-  height: 100% !important;
-  transition: transform 0.9s var(--ease-out), filter 0.9s var(--ease-out);
-  filter: saturate(0.95);
+  object-position: top center;
 }
 
-.imageWrap:hover img {
-  transform: scale(1.04);
-  filter: saturate(1.05);
-}
-
-
-.text {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.tag {
-  display: inline-block;
-  padding: 8px 16px; /* spacing audit */
-  background: transparent;
-  color: var(--color-ink);
-  border: 1px solid var(--color-brand);
-  align-self: flex-start;
-  font-size: var(--fs-body);
-  letter-spacing: var(--ls-mono);
-}
-
-.title {
-  font-size: var(--fs-h2);
-  letter-spacing: var(--ls-tight);
-  line-height: var(--lh-snug);
-}
-
-.meta {
-  color: var(--color-muted);
-  letter-spacing: var(--ls-mono);
-}
-
-.facts {
-  display: grid;
-  gap: var(--space-3);
-  margin-block: var(--space-4);
-  padding-top: var(--space-4);
-}
-
-.facts dt {
-  margin-bottom: var(--space-1);
-}
-
-.facts dd {
-  font-size: var(--fs-body);
-  line-height: var(--lh-normal);
-  color: var(--color-ink);
-}
-
-.result {
-  font-family: var(--font-display);
-  font-size: var(--fs-display);
-  font-weight: 400;
-  color: var(--color-ink);
-  display: flex;
-  align-items: baseline;
-  gap: 0.05em;
-  flex-wrap: wrap;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  margin-top: var(--space-4);
-}
-
-.resultLabel {
-  font-size: var(--fs-body);
-  font-family: var(--font-body);
-  color: var(--color-ink);
-  margin-left: var(--space-3);
-  align-self: end;
-  max-width: 26ch;
-  line-height: var(--lh-normal);
-  font-style: normal;
-  letter-spacing: 0;
-}
-
-.quote {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--fs-h3);
-  line-height: var(--lh-snug);
-  color: var(--color-ink);
-  padding-left: var(--space-5);
-  position: relative;
-  margin-top: var(--space-5);
-  max-width: 36ch;
-  letter-spacing: -0.01em;
-}
-
-.quote::before {
-  content: "";
-  position: absolute;
-  top: 0.55em;
-  left: 0;
-  width: var(--space-4);
-  height: 1px;
-  background: var(--color-brand);
-}
-
-.quoteMark {
-  position: absolute;
-  left: 0;
-  top: -8px;
-  color: var(--color-brand);
-  font-size: var(--fs-h2);
-  font-style: normal;
-  display: none;
-}
-
-.attribution {
-  font-family: var(--font-mono);
-  font-style: normal;
-  font-size: var(--fs-body);
-  color: var(--color-muted);
-  margin-top: var(--space-3);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-}
-
-/* ── Tag row + live badge ── */
-.tagRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
-
-.liveBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px; /* spacing audit */
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-  color: var(--color-brand-text);
-}
-
-.liveDot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-brand);
-  flex-shrink: 0;
-  will-change: opacity, transform;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.75); }
-}
-
-/* ── Site link CTA ── */
 .siteLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: var(--space-5);
-  padding: 8px var(--space-4); /* spacing audit */
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  letter-spacing: var(--ls-mono);
+  align-self: flex-end;
+  color: var(--color-text);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
-  color: var(--color-ink);
-  border: 1px solid var(--color-brand);
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: color var(--duration-fast) var(--ease-expo);
 }
-
-.siteLink::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--color-brand);
-  transform: translateX(-101%);
-  transition: transform var(--duration-ui) var(--ease-expo);
-}
-
 .siteLink:hover {
-  color: var(--color-brand-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.siteLink:hover::before {
-  transform: translateX(0);
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-.siteLinkLabel {
-  position: relative;
-  z-index: 1;
+@media (min-width: 1025px) {
+  .copy {
+    grid-column: 1 / span 5;
+  }
+  .media {
+    grid-column: 7 / span 6;
+  }
 }
 
-.siteLinkArrow {
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-  transition: transform var(--duration-fast) var(--ease-expo);
+/* Tablet runs the 8-column grid: 4 and 4. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .copy {
+    grid-column: 1 / span 4;
+  }
+  .media {
+    grid-column: 5 / span 4;
+  }
 }
 
-.siteLink:hover .siteLinkArrow {
-  transform: translate(3px, -3px);
-}
-
-.caseLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  align-items: center;
-}
-
-.siteLinkExternal {
-  opacity: 0.65;
+/* Mobile stacking order from the mobile frame: title, image, body, CTA. */
+@media (max-width: 768px) {
+  .copy {
+    display: contents;
+  }
+  .headline {
+    grid-column: 1 / -1;
+    order: 1;
+  }
+  .media {
+    order: 2;
+  }
+  .body {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+  .ctas {
+    grid-column: 1 / -1;
+    order: 4;
+  }
 }
