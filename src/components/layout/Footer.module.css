@@ -1,206 +1,176 @@
+/* Footer — Figma "studio-pwi-footer" (1440×316) and "mobile footer".
+   Inverted: ink ground, page-coloured text. */
+
 .footer {
-  position: relative;
-  background: var(--color-ink-deep);
-  overflow: hidden;
-  padding-bottom: 40px;
+  background: var(--color-text);
+  color: var(--color-bg);
 }
 
-/* Lime green top accent bar */
-.accent {
-  width: 100%;
-  height: 3px;
-  background: var(--color-brand);
-}
-
-/* Main content grid */
 .inner {
+  padding-block: var(--space-6) var(--space-5);
+}
+
+.columns {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-9);
-  padding-top: clamp(56px, 8vw, 96px);
-  padding-bottom: clamp(48px, 6vw, 80px);
-  position: relative;
-  z-index: 1;
+  gap: var(--space-6);
 }
 
-@media (min-width: 768px) {
-  .inner {
-    grid-template-columns: 1.4fr 1fr;
-    gap: var(--space-10);
-    align-items: start;
-  }
-}
+/* ── Brand ───────────────────────────────────────────── */
 
-/* ── Brand block ── */
 .brand {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.logo {
-  font-family: var(--font-megrim);
-  font-size: var(--fs-h2);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--color-bg);
-}
-
-.rule {
-  width: 40px;
-  height: 1px;
-  background: var(--color-brand);
-  margin-block: var(--space-1);
-}
-
-.tagline {
-  font-size: var(--fs-body);
-  line-height: var(--lh-loose);
-  color: color-mix(in srgb, var(--color-bg) 60%, transparent);
-  max-width: 28ch;
-}
-
-.emailLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-  margin-top: var(--space-3);
-  font-size: var(--fs-body);
-  font-weight: 500;
-  color: var(--color-brand);
-  letter-spacing: -0.01em;
-  transition: color var(--duration-ui) var(--ease-smooth),
-              gap var(--duration-ui) var(--ease-expo);
-  text-decoration: none;
-}
-
-.emailLink:hover {
-  color: var(--color-bg);
-  gap: 0.65em;
-}
-
-.arrow {
-  font-size: 0.9em;
-  transition: transform var(--duration-ui) var(--ease-expo);
-}
-
-.emailLink:hover .arrow {
-  transform: translate(2px, -2px);
-}
-
-/* ── Nav block ── */
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  padding-top: var(--space-1);
-}
-
-.navLabel {
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-bg) 35%, transparent);
-}
-
-.navList {
-  list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-.navLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75em;
+.wordmark {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: var(--fw-bold);
+}
+
+.tagline,
+.email {
+  margin: 0;
   font-size: var(--fs-body);
-  color: color-mix(in srgb, var(--color-bg) 65%, transparent);
-  transition: color var(--duration-ui) var(--ease-smooth),
-              gap var(--duration-ui) var(--ease-expo);
+  font-weight: var(--fw-medium);
+  color: inherit;
+}
+
+.email {
+  text-decoration: none;
+  width: fit-content;
+}
+.email:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Nav & legal lists ───────────────────────────────── */
+
+.navList,
+.socialList,
+.legal {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.navLink,
+.legalLink {
+  color: inherit;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
   text-decoration: none;
 }
-
-.navLink:hover {
-  color: var(--color-bg);
-  gap: 1em;
+.navLink:hover,
+.legalLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.navArrow {
-  color: var(--color-brand);
-  font-size: 0.8em;
-  transition: transform var(--duration-ui) var(--ease-expo);
-}
+/* ── Social ──────────────────────────────────────────── */
 
-.navLink:hover .navArrow {
-  transform: translateX(4px);
-}
-
-/* ── Legal bar ── */
-.legalRow {
+.social {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: var(--space-3);
-  padding-top: var(--space-4);
-  border-top: 1px solid color-mix(in srgb, var(--color-bg) 10%, transparent);
-  position: relative;
-  z-index: 1;
+}
+
+.socialLabel {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.socialList {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-bg) 10%, transparent);
+  color: var(--color-bg);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+.socialLink:hover {
+  background: color-mix(in srgb, var(--color-bg) 22%, transparent);
+}
+
+/* Exported Figma glyph, masked so it takes the footer's text colour. */
+.socialIcon {
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+}
+.socialIcon[data-icon="linkedin"] {
+  -webkit-mask: url("/images/icons/linkedin.svg") no-repeat center / contain;
+  mask: url("/images/icons/linkedin.svg") no-repeat center / contain;
+}
+
+/* ── Divider & bottom bar ────────────────────────────── */
+
+.divider {
+  height: 1px;
+  border: 0;
+  margin: var(--space-5) 0;
+  background: color-mix(in srgb, var(--color-bg) 25%, transparent);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.copyright {
+  margin: 0;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
 }
 
 .legal {
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-bg) 35%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
-.legal a {
-  color: inherit;
-  transition: color var(--duration-ui) var(--ease-smooth);
+/* Focus rings must invert here — the ink ring is invisible on the ink ground. */
+.footer :focus-visible {
+  outline: 2px solid var(--color-bg);
+  outline-offset: 3px;
 }
 
-.legal a:hover {
-  color: color-mix(in srgb, var(--color-bg) 70%, transparent);
-}
-
-.signature {
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-bg) 35%, transparent);
-}
-
-/* ── Ghost wordmark ── */
-.wordmark {
-  position: absolute;
-  left: 50%;
-  bottom: -4vw;
-  transform: translateX(-50%);
-  font-family: var(--font-megrim);
-  font-size: calc(var(--fs-display) * 3.5);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-bg) 6%, transparent);
-  text-stroke: 1px color-mix(in srgb, var(--color-bg) 6%, transparent);
-  pointer-events: none;
-  line-height: 0.85;
-  -webkit-user-select: none;
-  user-select: none;
-  z-index: 0;
-}
-
-@media (max-width: 767px) {
-  .wordmark {
-    left: auto;
-    right: -0.15em;
-    bottom: 50%;
-    transform: translateY(50%) rotate(90deg);
-    transform-origin: right center;
-    font-size: calc(var(--fs-display) * 2.6);
+@media (min-width: 769px) {
+  .inner {
+    padding-block: var(--space-6);
+  }
+  .columns {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-5);
+  }
+  .bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .legal {
+    justify-content: flex-end;
   }
 }
