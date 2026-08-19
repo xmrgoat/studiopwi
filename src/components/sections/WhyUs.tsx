@@ -1,134 +1,57 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { site } from "@/content/site";
-import SectionMarker from "@/components/ui/SectionMarker";
-import ItalicAccent from "@/components/ui/ItalicAccent";
-import {
-  gsap,
-  ScrollTrigger,
-  registerGsapPlugins,
-  prefersReducedMotion,
-} from "@/lib/motion";
+import RichText from "@/components/ui/RichText";
+import Reveal from "@/components/motion/Reveal";
 import styles from "./WhyUs.module.css";
 
+// Server component.
+//
+// The testimonial uses the mobile frame's treatment — a bordered card with a
+// quote glyph and an attribution line — at every breakpoint. The desktop frame
+// shows the quote bare, untranslated and unattributed, with the section's
+// lower-left quadrant empty; the mobile frame is the finished one.
 export default function WhyUs() {
-  const rootRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    registerGsapPlugins();
-    const root = rootRef.current;
-    if (!root) return;
-    if (prefersReducedMotion()) return;
-
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px)", () => {
-        ScrollTrigger.create({
-          trigger: `.${styles.inner}`,
-          start: "top 120",
-          end: "bottom bottom",
-          pin: `.${styles.sticky}`,
-          pinSpacing: false,
-        });
-
-        // Scrub draws the timeline line. Desktop-only: on mobile it updated
-        // every scroll frame and added to scroll-down stutter — the line just
-        // renders fully drawn there.
-        gsap.fromTo(
-          `.${styles.stepsLine}`,
-          { scaleY: 0 },
-          {
-            scaleY: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: `.${styles.steps}`,
-              start: "top 65%",
-              end: "bottom 55%",
-              scrub: 1,
-            },
-          }
-        );
-      });
-
-      gsap.from(`.${styles.badge}`, {
-        x: -16,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: `.${styles.sticky}`, start: "top 70%", once: true },
-      });
-
-      gsap.from(`.${styles.step}`, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "expo.out",
-        scrollTrigger: { trigger: `.${styles.process}`, start: "top 75%", once: true },
-      });
-
-      gsap.from(`.${styles.guarantee}`, {
-        scale: 0.96,
-        opacity: 0,
-        duration: 1,
-        ease: "expo.out",
-        scrollTrigger: { trigger: `.${styles.guarantee}`, start: "top 80%", once: true },
-      });
-    }, root);
-
-    return () => ctx.revert();
-  }, []);
-
-  const { whyUs } = site;
+  const { title, paragraphs, testimonialsTitle, testimonials } = site.whyUs;
 
   return (
-    <section ref={rootRef} className={`section ${styles.section}`} id="pourquoi">
-      <div className={`container ${styles.inner}`}>
-        <aside className={styles.sticky}>
-          <SectionMarker number={whyUs.marker.number} label={whyUs.marker.label} />
-          <h2 className={styles.claim}>
-            {whyUs.claim.before}{" "}
-            <ItalicAccent>{whyUs.claim.accent}</ItalicAccent>{" "}
-            {whyUs.claim.after}
-          </h2>
-          <ul className={styles.badges}>
-            {whyUs.badges.map((b) => (
-              <li key={b} className={styles.badge}>
-                <span className={styles.dot} aria-hidden="true" />
-                <span>{b}</span>
+    <section className={`section ${styles.section}`} id="pourquoi">
+      <div className={`grid ${styles.grid}`}>
+        <Reveal className={styles.copy}>
+          <h2 className={styles.title}>{title}</h2>
+          {paragraphs.map((paragraph) => (
+            <p key={paragraph} className={styles.paragraph}>
+              <RichText text={paragraph} />
+            </p>
+          ))}
+        </Reveal>
+
+        <Reveal className={styles.reviews} order={1}>
+          <h3 className={styles.reviewsTitle}>{testimonialsTitle}</h3>
+
+          <ul className={styles.list}>
+            {testimonials.map((testimonial) => (
+              <li key={testimonial.quote} className={styles.card}>
+                <figure className={styles.figure}>
+                  <span className={styles.quoteMark} aria-hidden="true">
+                    &rdquo;
+                  </span>
+                  <blockquote className={styles.quote}>
+                    <p className={styles.quoteText}>{testimonial.quote}</p>
+                  </blockquote>
+                  {/* Attribution is omitted entirely when unknown, rather than
+                      rendering an empty line — see the note in site.ts. */}
+                  {testimonial.author && (
+                    <figcaption className={styles.attribution}>
+                      <span className={styles.author}>{testimonial.author}</span>
+                      {testimonial.role && (
+                        <span className={styles.role}>{testimonial.role}</span>
+                      )}
+                    </figcaption>
+                  )}
+                </figure>
               </li>
             ))}
           </ul>
-        </aside>
-
-        <div className={styles.flow}>
-          <div className={styles.process}>
-            <h3 className={`mono ${styles.processTitle}`}>Notre démarche</h3>
-            <ol className={styles.steps}>
-              <span className={styles.stepsLine} aria-hidden="true" />
-              {whyUs.process.map((s) => (
-                <li key={s.number} className={styles.step}>
-                  <span className={styles.stepNum} aria-hidden="true">{s.number}</span>
-                  <div>
-                    <p className={`mono ${styles.stepHead}`}>
-                      {s.title} — <span>{s.duration}</span>
-                    </p>
-                    <p className={styles.stepBody}>{s.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <div className={styles.guarantee}>
-            <p className={`mono ${styles.guaranteeLabel}`}>{whyUs.guarantee.label}</p>
-            <h3 className={styles.guaranteeTitle}>{whyUs.guarantee.title}</h3>
-            <p className={styles.guaranteeBody}>{whyUs.guarantee.body}</p>
-          </div>
-
-        </div>
+        </Reveal>
       </div>
     </section>
   );
