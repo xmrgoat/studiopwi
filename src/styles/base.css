@@ -2,54 +2,56 @@
 
 body {
   background: var(--color-bg);
-  color: var(--color-ink);
+  color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  font-weight: 400;
-  letter-spacing: var(--ls-normal);
-  font-feature-settings: "ss01", "cv11";
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
 }
 
-/* Display & headings */
+/* Display & headings.
+   The redesign sets every heading in Montserrat with no negative tracking —
+   uppercase at 64px needs none, and the old -0.035em closed the counters up.
+   Casing is applied per section, not here: the legal pages use the same tags
+   and must stay sentence-case. */
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--fw-bold);
   font-optical-sizing: auto;
-  letter-spacing: var(--ls-display);
+  letter-spacing: normal;
   line-height: var(--lh-display);
-  color: var(--color-ink);
+  color: var(--color-text);
   text-wrap: balance;
 }
 
 h1 {
   font-size: var(--fs-display);
-  line-height: var(--lh-display);
+  font-weight: var(--fw-display);
 }
 h2 {
-  font-size: var(--fs-h1);
-  line-height: var(--lh-tight);
-  letter-spacing: var(--ls-display);
+  font-size: var(--fs-h2);
 }
 h3 {
-  font-size: var(--fs-h2);
-  line-height: var(--lh-snug);
-  letter-spacing: var(--ls-tight);
+  font-size: var(--fs-h3);
 }
 
 p {
   max-width: 62ch;
-  line-height: var(--lh-loose);
+  line-height: var(--lh-normal);
   text-wrap: pretty;
 }
 
 ::selection {
-  background: var(--color-ink);
+  background: var(--color-text);
   color: var(--color-bg);
 }
 
-/* Focus — visible on every interactive element. */
+/* Focus — visible on every interactive element.
+   Uses --color-focus (ink), never --color-accent: the accent is #2cff05,
+   which sits at ~1.1:1 against the #efefef page ground and would leave
+   keyboard users with no visible indicator at all. */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-focus);
   outline-offset: 3px;
   border-radius: var(--radius-xs);
 }
@@ -59,16 +61,16 @@ p {
    bypass the header and nav. */
 .skip-link {
   position: absolute;
-  top: -96px; /* spacing audit */
+  top: -96px;
   left: var(--side-pad);
   z-index: 1000;
-  background: var(--color-ink-deep);
+  background: var(--color-text);
   color: var(--color-bg);
-  padding: 16px 24px; /* spacing audit */
-  border-radius: var(--radius-pill);
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  font-weight: 500;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-action);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   text-decoration: none;
@@ -76,7 +78,7 @@ p {
 }
 .skip-link:focus-visible {
   top: var(--space-3);
-  outline: 2px solid var(--color-brand);
+  outline: 2px solid var(--color-text);
   outline-offset: 2px;
 }
 
@@ -98,9 +100,12 @@ p {
   margin-inline: var(--grid-margin);
 }
 
-/* Dark-inverted sections (Problem, Why Us) */
+/* Dark-inverted sections.
+   The redesign has no dark section — every frame sits on #efefef — but the
+   modifier is kept for the legal pages and any future inverted block. On ink,
+   the accent has enough contrast to serve as the focus ring. */
 .section--dark {
-  background: var(--color-ink-deep);
+  background: var(--color-text);
   color: var(--color-bg);
 }
 .section--dark h1,
@@ -109,39 +114,25 @@ p {
   color: var(--color-bg);
 }
 .section--dark :focus-visible {
-  outline-color: var(--color-brand);
+  outline-color: var(--color-accent);
 }
 
-/* Italic accent — §8.2 rule */
+/* Emphasis span. The one-italic-phrase-per-headline rule is gone with the
+   redesign — headlines are a single uppercase weight now. Retained because
+   not-found.tsx still marks a phrase with it. */
 .accent {
-  font-family: var(--font-display);
-  font-weight: 300;
-  color: var(--color-brand-text);
-  letter-spacing: -0.02em;
-}
-
-/* Inside section h2 headlines, accent words inherit the heading's styling */
-h2 .accent {
-  font-weight: inherit;
+  font-weight: var(--fw-display);
   color: inherit;
-  letter-spacing: inherit;
-  font-family: inherit;
-}
-
-/* On dark sections, brand-text (#396c5e) is invisible against ink-deep (#396c5e).
-   Switch to the lighter brand mint so the accent remains legible. */
-.section--dark .accent {
-  color: var(--color-brand);
 }
 
 /* Mono utility */
 .mono {
   font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  font-weight: 500;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   font-feature-settings: "tnum";
 }
 
@@ -161,16 +152,4 @@ h2 .accent {
 .section {
   padding-block: var(--section-py);
   position: relative;
-}
-
-/* Editorial signature: a tiny vertical hairline behind section headers */
-.section[data-numbered]::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: var(--side-pad);
-  width: 1px;
-  height: var(--space-6);
-  background: linear-gradient(to bottom, transparent, var(--color-line-strong));
-  pointer-events: none;
 }
