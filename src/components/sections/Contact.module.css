@@ -1,144 +1,83 @@
+/* Contact — Figma "Studio PWI contact" (1440×900) and "mobile contact us".
+   Copy on columns 1–5, form on 7–12. */
+
 .section {
-  position: relative;
   background: var(--color-bg);
-  overflow: hidden;
 }
 
-/* Same dot-grid texture as WhyUs */
-.section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--color-text) 10%, transparent) 1px, transparent 0);
-  background-size: 40px 40px;
-  opacity: 0.4;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+.grid {
+  row-gap: var(--space-6);
+  align-items: start;
 }
 
-.inner {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-9);
-}
-
-@media (min-width: 1024px) {
-  .inner {
-    grid-template-columns: 5fr 7fr;
-    gap: var(--space-10);
-    align-items: start;
-  }
-}
-
-/* Left column */
-.left {
+.copy {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
-.headline {
-  font-size: var(--fs-h1);
-  color: var(--color-brand-deep);
-  line-height: var(--lh-tight);
-  letter-spacing: var(--ls-display);
-  overflow-wrap: break-word;
-}
-
-.headline :global(.accent) {
-  color: var(--color-brand);
+.title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
 }
 
 .lead {
+  margin: 0;
+  max-width: 52ch;
   font-size: var(--fs-body);
-  line-height: var(--lh-loose);
-  color: var(--color-muted);
-  max-width: 38ch;
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
 }
 
-.ctaStack {
+.signals {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.signal {
+  display: flex;
+  align-items: center;
   gap: var(--space-4);
-  margin-top: var(--space-3);
-}
-
-.secondaryLink {
   font-size: var(--fs-body);
-  color: color-mix(in srgb, var(--color-text) 70%, transparent);
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 1px;
-  text-decoration-color: color-mix(in srgb, var(--color-text) 30%, transparent);
-  transition: text-decoration-color var(--duration-ui) var(--ease-smooth);
+  font-weight: var(--fw-medium);
 }
 
-.secondaryLink:hover {
-  text-decoration-color: var(--color-brand);
+/* Same exported check as the service cards, masked so it takes text colour. */
+.check {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: url("/images/icons/check.svg") no-repeat center / contain;
+  mask: url("/images/icons/check.svg") no-repeat center / contain;
 }
 
-/* Right column — form card */
-.right {
-  background: var(--color-brand);
-  border: 1px solid var(--color-line-strong);
-  border-radius: var(--radius-lg);
-  padding: var(--space-7) var(--space-6);
-  position: relative;
-  overflow: hidden;
+.formCol {
+  grid-column: 1 / -1;
 }
 
-/* Subtle dot texture on the card */
-.right::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--color-text) 15%, transparent) 1px, transparent 0);
-  background-size: 28px 28px;
-  pointer-events: none;
-  opacity: 0.5;
+@media (min-width: 769px) and (max-width: 1024px) {
+  .copy {
+    grid-column: 1 / span 8;
+  }
+  .formCol {
+    grid-column: 1 / span 8;
+  }
 }
 
-.right :global([class*="label"]) {
-  color: color-mix(in srgb, var(--color-text) 75%, transparent);
-}
-
-.right :global(input),
-.right :global(textarea) {
-  background: var(--color-bg);
-  border-color: color-mix(in srgb, var(--color-text) 20%, transparent);
-  color: var(--color-ink-deep);
-}
-
-.right :global(input::placeholder),
-.right :global(textarea::placeholder) {
-  color: color-mix(in srgb, var(--color-text) 55%, transparent);
-}
-
-.right :global(input:focus),
-.right :global(textarea:focus) {
-  background: var(--color-bg);
-  border-color: var(--color-ink-deep);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-text) 12%, transparent);
-}
-
-.right :global([class*="successLabel"]) {
-  color: var(--color-ink-deep);
-}
-
-.right :global([class*="successText"]) {
-  color: var(--color-ink-deep);
-}
-
-.right :global([class*="success"]) {
-  background: color-mix(in srgb, var(--color-bg) 20%, transparent);
-}
-
-@media (max-width: 767px) {
-  .right {
-    padding: var(--space-5) var(--space-4);
+@media (min-width: 1025px) {
+  .copy {
+    grid-column: 1 / span 5;
+  }
+  .formCol {
+    grid-column: 7 / span 6;
   }
 }
