@@ -1,20 +1,10 @@
+/* Contact form — Figma "Studio PWI contact" / "mobile contact us".
+   Label above a 53px-tall bordered input, 136px message box, full-width submit. */
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-}
-
-/* Two-column grid for Name + Email */
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-}
-
-@media (max-width: 540px) {
-  .row {
-    grid-template-columns: 1fr;
-  }
+  gap: var(--space-3);
 }
 
 .field {
@@ -24,51 +14,46 @@
 }
 
 .label {
-  font-family: var(--font-mono);
   font-size: var(--fs-body);
-  font-weight: 700;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--color-ink);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
 }
 
 .field input,
 .field textarea {
-  background: var(--color-bg-elevated);
+  width: 100%;
+  padding: var(--space-3);
   border: 1px solid var(--color-line-strong);
-  border-radius: var(--radius-lg);
-  padding: var(--space-3) var(--space-3);
+  border-radius: var(--radius-action);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  color: var(--color-ink);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.field textarea {
+  min-height: 136px;
   resize: vertical;
-  transition:
-    border-color 0.18s ease,
-    box-shadow 0.18s ease,
-    background 0.18s ease;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
-  color: var(--color-muted);
-  opacity: 0.6;
+  color: var(--color-text-faint);
 }
 
-.field input:focus,
-.field textarea:focus {
-  outline: none;
-  border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
-  background: var(--color-bg);
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--color-text);
 }
 
-.field input:user-invalid,
-.field textarea:user-invalid {
-  border-color: #c0392b;
+.submit {
+  margin-top: var(--space-2);
 }
 
+/* Honeypot — off-screen rather than display:none, which some bots skip. */
 .honeypot {
   position: absolute;
   left: -9999px;
@@ -78,22 +63,18 @@
 }
 
 .error {
-  font-size: var(--fs-body);
-  color: #c0392b;
-  padding: var(--space-2) var(--space-3);
-  border-left: 2px solid #c0392b;
-  background: rgba(192, 57, 43, 0.06);
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  /* Colour alone cannot carry the error — the palette has no red, so the
+     message is prefixed with a marker that does not rely on hue. */
+}
+.error::before {
+  content: "⚠ ";
 }
 
-.submit {
-  margin-top: var(--space-2);
-}
-
-/* Submitting skeleton — translateX shimmer (Composite only, no repaint) */
-@keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(100%); }
-}
+/* ── Submitting / success states ─────────────────────── */
 
 .skeleton {
   display: flex;
@@ -101,71 +82,53 @@
   gap: var(--space-4);
 }
 
-.skeletonRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-}
-
-.skeletonField {
-  height: 56px; /* spacing audit */
-  border-radius: var(--radius-lg);
-  background: var(--color-bg-warm);
-  overflow: hidden;
-  position: relative;
-}
-
-.skeletonField::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent 0%, var(--color-bg-elevated) 50%, transparent 100%);
-  animation: shimmer 1.4s infinite;
-  will-change: transform;
+.skeletonField,
+.skeletonBtn {
+  height: 53px;
+  border-radius: var(--radius-action);
+  background: color-mix(in srgb, var(--color-text) 10%, transparent);
 }
 
 .skeletonTextarea {
-  height: 144px; /* spacing audit */
+  height: 136px;
 }
 
 .skeletonBtn {
-  height: 48px;
-  width: 184px; /* spacing audit */
-  border-radius: var(--radius-pill);
-  background: var(--color-bg-warm);
-  overflow: hidden;
-  position: relative;
+  height: 56px;
+  background: color-mix(in srgb, var(--color-accent) 30%, transparent);
 }
 
-.skeletonBtn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent 0%, var(--color-bg-elevated) 50%, transparent 100%);
-  animation: shimmer 1.4s infinite;
-  will-change: transform;
+@media (prefers-reduced-motion: no-preference) {
+  .skeletonField,
+  .skeletonBtn {
+    animation: form-pulse 1.4s var(--ease-smooth) infinite;
+  }
 }
 
-/* Success state */
+@keyframes form-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
 .success {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-6) var(--space-5);
-  border-top: 2px solid var(--color-brand);
-  background: var(--color-bg-elevated);
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-action);
 }
 
 .successLabel {
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  letter-spacing: var(--ls-wide);
+  margin: 0;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
-  color: var(--color-brand-text);
 }
 
 .successText {
+  margin: 0;
   font-size: var(--fs-body);
-  color: var(--color-ink);
-  line-height: var(--lh-loose);
+  font-weight: var(--fw-medium);
 }
