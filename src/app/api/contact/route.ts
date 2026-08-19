@@ -44,6 +44,7 @@ export async function POST(req: NextRequest) {
     data: {
       name: parsed.data.name,
       email: parsed.data.email,
+      phone: parsed.data.phone ?? null,
       company: parsed.data.company ?? null,
       message: parsed.data.message,
       tier: parsed.data.tier ?? null,
@@ -57,6 +58,7 @@ export async function POST(req: NextRequest) {
   const emailResult = await sendLeadNotification({
     name: parsed.data.name,
     email: parsed.data.email,
+    phone: parsed.data.phone,
     company: parsed.data.company,
     message: parsed.data.message,
     tier: parsed.data.tier,
