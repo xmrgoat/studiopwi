@@ -28,3 +28,6 @@ coverage/
 
 # VPS deployment — local-only infra: scripts, secrets, keys (never commit)
 vps/
+
+.vercel
+.env*
