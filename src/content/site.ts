@@ -30,9 +30,11 @@ export const site = {
 
   whyUs: {
     title: "Pourquoi nous?",
+    // **bold** marks the fragments the design emphasises mid-paragraph;
+    // rendered by components/ui/RichText.
     paragraphs: [
-      "Basé à Neuchâtel, en Suisse, nous avons construit plus de 20 sites web dans des secteurs variés. Cette expérience nous a appris ce qui fonctionne réellement pour convertir un visiteur en client.",
-      "Comme un paysagiste qui doit s'adapter à la météo, nous nous adaptons aux tendances du web et nous construisons des sites, pensés pour durer.",
+      "Basé à Neuchâtel, en Suisse, nous avons construit plus de **20 sites web dans des secteurs variés.** Cette expérience nous a appris ce qui fonctionne réellement pour convertir un visiteur en client.",
+      "Comme un paysagiste qui doit s'adapter à la météo, nous nous adaptons aux tendances du web et nous construisons **des sites, pensés pour durer.**",
     ],
     testimonialsTitle: "Avis concret",
     testimonials: [
