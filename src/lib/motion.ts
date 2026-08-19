@@ -1,15 +1,12 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-let registered = false;
-
-export function registerGsapPlugins() {
-  if (registered || typeof window === "undefined") return;
-  gsap.registerPlugin(ScrollTrigger);
-  registered = true;
-}
+// Motion helpers. GSAP is no longer imported anywhere on the site — the
+// redesign has no pinning, scrubbing or parallax, section reveals run off a
+// shared IntersectionObserver (components/motion/Reveal), and Lenis is driven
+// by a native rAF loop. What remains is the reduced-motion plumbing.
+//
+// The `gsap` package is still in package.json but is now unreferenced; it can
+// be uninstalled once you are sure no future section needs it.
 
 export function prefersReducedMotion(): boolean {
   if (typeof window === "undefined") return false;
@@ -24,17 +21,3 @@ export function watchReducedMotion(cb: (reduce: boolean) => void): () => void {
   mq.addEventListener("change", handler);
   return () => mq.removeEventListener("change", handler);
 }
-
-export const eases = {
-  expoOut: "expo.out",
-  power3Out: "power3.out",
-  smooth: "cubic-bezier(0.65, 0, 0.35, 1)",
-} as const;
-
-export const durations = {
-  ui: 0.6,
-  reveal: 0.9,
-  hero: 1.4,
-} as const;
-
-export { gsap, ScrollTrigger };
