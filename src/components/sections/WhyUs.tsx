@@ -1,27 +1,27 @@
 import { site } from "@/content/site";
 import RichText from "@/components/ui/RichText";
+import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./WhyUs.module.css";
 
-// Server component.
-//
-// The testimonial uses the mobile frame's treatment — a bordered card with a
-// quote glyph and an attribution line — at every breakpoint. The desktop frame
-// shows the quote bare, untranslated and unattributed, with the section's
-// lower-left quadrant empty; the mobile frame is the finished one.
+// Server component. Matches the desktop Figma frame: copy column on the left
+// starting at the top, "Avis concret" column on the right dropped well down the
+// frame, bare quotes (no card), and a CTA beneath both columns.
 export default function WhyUs() {
-  const { title, paragraphs, testimonialsTitle, testimonials } = site.whyUs;
+  const { title, paragraphs, testimonialsTitle, testimonials, cta } = site.whyUs;
 
   return (
     <section className={`section ${styles.section}`} id="pourquoi">
       <div className={`grid ${styles.grid}`}>
         <Reveal className={styles.copy}>
           <h2 className={styles.title}>{title}</h2>
-          {paragraphs.map((paragraph) => (
-            <p key={paragraph} className={styles.paragraph}>
-              <RichText text={paragraph} />
-            </p>
-          ))}
+          <div className={styles.paragraphs}>
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph} className={styles.paragraph}>
+                <RichText text={paragraph} />
+              </p>
+            ))}
+          </div>
         </Reveal>
 
         <Reveal className={styles.reviews} order={1}>
@@ -29,16 +29,11 @@ export default function WhyUs() {
 
           <ul className={styles.list}>
             {testimonials.map((testimonial) => (
-              <li key={testimonial.quote} className={styles.card}>
+              <li key={testimonial.quote}>
                 <figure className={styles.figure}>
-                  <span className={styles.quoteMark} aria-hidden="true">
-                    &rdquo;
-                  </span>
                   <blockquote className={styles.quote}>
                     <p className={styles.quoteText}>{testimonial.quote}</p>
                   </blockquote>
-                  {/* Attribution is omitted entirely when unknown, rather than
-                      rendering an empty line — see the note in site.ts. */}
                   {testimonial.author && (
                     <figcaption className={styles.attribution}>
                       <span className={styles.author}>{testimonial.author}</span>
@@ -51,6 +46,12 @@ export default function WhyUs() {
               </li>
             ))}
           </ul>
+        </Reveal>
+
+        <Reveal className={styles.ctaRow} order={2}>
+          <Button href={cta.href} variant="primary">
+            {cta.label}
+          </Button>
         </Reveal>
       </div>
     </section>
