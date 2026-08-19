@@ -1,5 +1,4 @@
 import { site } from "@/content/site";
-import { services } from "@/content/services";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com";
 
@@ -97,76 +96,6 @@ export function LocalBusinessLd() {
     areaServed: AREA_SERVED,
     founder: { "@type": "Person", name: "Riff" },
     parentOrganization: { "@id": ORG_ID },
-  };
-  return <Ld data={data} />;
-}
-
-export function FaqLd() {
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: site.faq.items.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-  return <Ld data={data} />;
-}
-
-export function OffersLd() {
-  const priceMap: Record<string, { min: number; max: number; unit?: string }> = {
-    showcase: { min: 600, max: 1200 },
-    growth: { min: 1400, max: 3200 },
-    partnership: { min: 990, max: 990, unit: "month" },
-  };
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: services.tiers.map((tier, i) => {
-      const p = priceMap[tier.id] ?? { min: 0, max: 0 };
-      return {
-        "@type": "ListItem",
-        position: i + 1,
-        item: {
-          "@type": "Offer",
-          "@id": `${SITE_URL}/#offer-${tier.id}`,
-          name: tier.title,
-          description: tier.description,
-          price: p.min,
-          priceCurrency: "CHF",
-          priceSpecification: {
-            "@type": "PriceSpecification",
-            minPrice: p.min,
-            maxPrice: p.max,
-            priceCurrency: "CHF",
-            ...(p.unit ? { unitCode: p.unit } : {}),
-          },
-          seller: { "@id": BUSINESS_ID },
-          url: `${SITE_URL}/#services`,
-        },
-      };
-    }),
-  };
-  return <Ld data={data} />;
-}
-
-export function VideoObjectLd() {
-  const video = site.hero.video;
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "@id": `${SITE_URL}/#video-hero`,
-    name: video.title,
-    description: video.description,
-    thumbnailUrl: `${SITE_URL}${video.poster}`,
-    contentUrl: `${SITE_URL}${video.src}`,
-    uploadDate: "2026-01-15",
-    inLanguage: "fr-CH",
-    isPartOf: { "@id": WEBPAGE_ID },
   };
   return <Ld data={data} />;
 }
