@@ -71,17 +71,6 @@ export default function PrivacyPage() {
         </li>
       </ul>
 
-      <h3>Formulaire d&apos;inscription à la newsletter</h3>
-      <ul>
-        <li>
-          <strong>Adresse e-mail</strong>
-        </li>
-      </ul>
-      <p>
-        L&apos;inscription est soumise à un double opt-in : vous recevez un e-mail de
-        confirmation avant toute communication commerciale.
-      </p>
-
       <h3>Données de navigation</h3>
       <p>
         Notre serveur enregistre automatiquement des journaux techniques (logs)
@@ -96,11 +85,6 @@ export default function PrivacyPage() {
         <li>
           <strong>Répondre à vos demandes de contact</strong> — base : exécution de
           mesures précontractuelles (art. 6 al. 1 lit. b RGPD ; art. 31 nLPD)
-        </li>
-        <li>
-          <strong>Envoi de la newsletter</strong> (si vous y avez souscrit) — base :
-          consentement (art. 6 al. 1 lit. a RGPD ; art. 31 nLPD). Vous pouvez vous
-          désabonner à tout moment via le lien présent dans chaque e-mail.
         </li>
         <li>
           <strong>Sécurité et prévention des abus</strong> — base : intérêt légitime
@@ -132,8 +116,16 @@ export default function PrivacyPage() {
           .
         </li>
         <li>
-          <strong>Hébergeur VPS dédié</strong> — serveur situé en Europe sur lequel
-          la base de données et le code applicatif sont hébergés.
+          <strong>Vercel Inc.</strong> (hébergement du site) — 340 S Lemon Ave
+          #4133, Walnut, CA 91789, États-Unis.{" "}
+          <a
+            href="https://vercel.com/legal/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Politique de confidentialité Vercel
+          </a>
+          .
         </li>
       </ul>
       <p>
@@ -144,12 +136,10 @@ export default function PrivacyPage() {
       <h2>5. Durée de conservation</h2>
       <ul>
         <li>
-          <strong>Demandes de contact</strong> : 3 ans à compter de la dernière
+          <strong>Demandes de contact</strong> : le site ne conserve aucune base de
+          données. Votre message nous est transmis par e-mail et reste stocké
+          uniquement dans notre messagerie, pendant 3 ans à compter de la dernière
           interaction, sauf obligation légale de conservation plus longue.
-        </li>
-        <li>
-          <strong>Abonnements newsletter</strong> : jusqu&apos;à votre désinscription,
-          puis suppression dans un délai de 30 jours.
         </li>
         <li>
           <strong>Journaux techniques (logs)</strong> : 12 mois maximum.
@@ -237,16 +227,16 @@ export default function PrivacyPage() {
       <p>
         Nous mettons en œuvre des mesures techniques et organisationnelles adaptées
         pour protéger vos données contre tout accès non autorisé, perte ou
-        divulgation : connexions chiffrées (TLS), accès restreint aux bases de
-        données, limitation de débit sur les API.
+        divulgation : connexions chiffrées (TLS), limitation de débit sur les API,
+        et absence de base de données — aucune donnée personnelle n&apos;est stockée
+        par le site.
       </p>
 
       <h2>11. Modifications de cette politique</h2>
       <p>
         Nous nous réservons le droit de modifier la présente politique à tout moment.
         La version en vigueur est celle publiée sur cette page, avec sa date de mise
-        à jour. En cas de modifications substantielles, nous vous en informerons par
-        e-mail si vous êtes abonné à notre newsletter.
+        à jour.
       </p>
 
       <h2>12. Contact</h2>
