@@ -1,309 +1,85 @@
+/* Hero — Figma frame "Studio PWI Hero" (1440×900 / 360×800).
+   Content is vertically centred in the frame and left-aligned to the grid
+   margin; the desktop headline is capped at 847px and the lead at 630px so the
+   two ragged edges stagger the way the design does. */
+
 .hero {
-  position: relative;
-  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  isolation: isolate;
-  color: var(--color-bg);
-  background: var(--color-ink-deep);
+  align-items: center;
+  background: var(--color-bg);
+  color: var(--color-text);
+  /* Clears the fixed header, which overlaps the top of the frame. */
+  padding-block: calc(var(--space-8) + var(--space-7)) var(--space-8);
 }
 
-
-/* --- Background video --- */
-.media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--color-accent-highlight) 0%, var(--color-brand-soft) 100%);
-}
-
-.media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  will-change: transform;
-  filter: saturate(0.92) contrast(1.04);
-}
-
-/* --- Scrim --- */
-.scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 80% 55% at center bottom,
-    color-mix(in srgb, var(--color-text) 32%, transparent) 0%,
-    transparent 100%
-  );
-}
-
-
-/* --- Content --- */
 .inner {
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  padding-top: clamp(80px, 13vh, 144px); /* spacing audit */
-  padding-bottom: clamp(16px, 4vh, 96px);
-}
-
-.text {
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 2vh, 24px); /* spacing audit */
-  max-width: 58ch;
-}
-
-.eyebrow {
-  color: color-mix(in srgb, var(--color-text) 75%, transparent);
-  display: flex;
-  align-items: center;
-  gap: 0.65em;
-}
-
-.accentWord {
-  display: inline-block;
-  overflow: visible;
-  padding-bottom: 0.2em;
-}
-
-.accentInner {
-  display: inline-block;
-}
-
-.eyebrowDot {
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  background: var(--color-brand);
-  border-radius: 50%;
-}
-
-.headline :global(.accent) {
-  font-family: var(--font-nunito-sans), sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  color: var(--color-ink-deep);
-  font-size: 1.1em;
-  text-shadow: none;
-  white-space: normal;
-  text-decoration: underline;
-  text-decoration-color: var(--color-brand);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
+  align-items: flex-start;
+  gap: var(--space-5);
 }
 
 .headline {
-  font-family: var(--font-nunito-sans), sans-serif;
-  font-size: var(--fs-h1);
-  font-weight: 400;
-  letter-spacing: var(--ls-display);
+  max-width: 847px;
+  margin: 0;
+  font-size: var(--fs-display);
+  font-weight: var(--fw-display);
   line-height: var(--lh-display);
-  color: var(--color-ink-deep);
+  text-transform: uppercase;
   text-wrap: balance;
-  font-optical-sizing: auto;
-
 }
 
 .lead {
+  max-width: 630px;
+  margin: 0;
   font-size: var(--fs-body);
-  line-height: var(--lh-loose);
-  color: color-mix(in srgb, var(--color-text) 80%, transparent);
-  max-width: 44ch;
-  margin-top: 0;
-}
-
-/* --- Entrance animation (CSS, not GSAP) ---
-   Keeping the hero entrance in CSS means the above-the-fold hero needs zero
-   JavaScript to animate, so GSAP stays off the mobile critical path entirely.
-   The LCP element (.headline) animates transform ONLY — never opacity — so it
-   paints on the first frame and never delays LCP. Wrapped in no-preference so
-   reduced-motion users get the resting (fully visible) state with no animation. */
-@media (prefers-reduced-motion: no-preference) {
-  .headline .word > span {
-    animation: heroWordRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  .eyebrow {
-    animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  .lead {
-    animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-  }
-  .ctas > * {
-    animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
-  }
-}
-
-@keyframes heroWordRise {
-  from {
-    transform: translateY(18px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* The desktop frame sets this line in Bold and the mobile frame in Medium. */
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
 }
 
 .ctas {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin-top: 0;
+  width: 100%;
 }
 
-/* --- Metrics row at the bottom of hero --- */
-.metrics {
-  position: relative;
-  z-index: 2;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-5);
-  padding-block: clamp(16px, 2.5vh, var(--space-5)); /* spacing audit */
-  border-top: 1px solid color-mix(in srgb, var(--color-bg) 18%, transparent);
-}
-
-.metrics li {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.metrics strong {
-  font-family: var(--font-display);
-  font-size: var(--fs-h2);
-  font-weight: 400;
-  color: var(--color-bg);
-  letter-spacing: var(--ls-tight);
-  font-feature-settings: "tnum";
-  line-height: 1;
-}
-
-.metrics span,
-.metrics .mono {
-  color: color-mix(in srgb, var(--color-bg) 55%, transparent);
-}
-
-/* --- Scroll cue --- */
-.scrollCue {
-  position: absolute;
-  z-index: 3;
-  bottom: var(--space-5);
-  right: var(--side-pad);
-  display: none;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--color-bg);
-}
-
-.scrollCue .mono {
-  color: color-mix(in srgb, var(--color-bg) 70%, transparent);
-}
-
-.scrollLine {
-  display: inline-block;
-  width: 48px;
-  height: 1px;
-  background: var(--color-bg);
-  animation: scrollPulse 2.4s ease-in-out infinite;
-}
-
-@keyframes scrollPulse {
-  0%, 100% { transform: scaleX(1); transform-origin: left; opacity: 1; }
-  50% { transform: scaleX(0.25); transform-origin: left; opacity: 0.6; }
-}
-
-/* Primary button on dark hero — brand green */
-.ctas :global(a[class*="primary"]) {
-  background: var(--color-brand);
-  color: var(--color-ink-deep);
-}
-.ctas :global(a[class*="primary"]:hover) {
-  background: var(--color-brand-soft);
-}
-
-/* Ghost button on dark hero */
-.ctas :global(a[class*="ghost"]) {
-  color: var(--color-ink-deep);
-  border-color: color-mix(in srgb, var(--color-text) 45%, transparent);
-}
-.ctas :global(a[class*="ghost"]:hover) {
-  border-color: var(--color-ink-deep);
-  background: color-mix(in srgb, var(--color-text) 6%, transparent);
-}
-
-@media (max-width: 1023px) {
-  .media {
-    /* webp as the base fallback: every browserslist target supports webp,
-       and the old 17 MB png trap shipped raw (CSS backgrounds bypass
-       next/image). Browsers without image-set() at all are out of support. */
-    background-image: url("/images/mobile-hero.webp");
-    background-image: -webkit-image-set(url("/images/mobile-hero.webp") 1x);
-    background-image: image-set(
-      url("/images/mobile-hero.avif") type("image/avif"),
-      url("/images/mobile-hero.webp") type("image/webp")
-    );
-    background-size: cover;
-    background-position: 80% top;
+@media (min-width: 769px) {
+  .lead {
+    font-weight: var(--fw-bold);
   }
-  .media video {
-    display: none;
+  .ctas {
+    width: auto;
   }
-  .scrim {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.78) 0%,
-      rgba(0, 0, 0, 0.55) 40%,
-      rgba(0, 0, 0, 0.25) 68%,
-      color-mix(in srgb, var(--color-text) 15%, transparent) 100%
-    );
-  }
-  .eyebrow {
-    color: var(--color-bg);
+}
+
+/* Entrance — CSS only, so it costs no JavaScript above the fold. */
+@media (prefers-reduced-motion: no-preference) {
+  .headline,
+  .lead,
+  .ctas {
+    animation: hero-rise var(--duration-reveal) var(--ease-out) backwards;
   }
   .headline {
-    color: var(--color-bg);
-    font-weight: 700;
-  }
-  .headline :global(.accent) {
-    color: var(--color-bg);
+    animation-delay: 0.05s;
   }
   .lead {
-    color: var(--color-bg);
+    animation-delay: 0.18s;
   }
-  .ctas :global(a[class*="ghost"]) {
-    color: var(--color-bg);
-    border-color: color-mix(in srgb, var(--color-bg) 35%, transparent);
-  }
-}
-
-@media (min-width: 1024px) {
-  .metrics {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-6);
-  }
-  .scrollCue {
-    display: inline-flex;
-    bottom: var(--space-6);
+  .ctas {
+    animation-delay: 0.28s;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .scrollLine { animation: none; }
-  .media video { transform: none !important; filter: none; }
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
