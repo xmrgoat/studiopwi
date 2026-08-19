@@ -44,8 +44,7 @@ export default function TermsPage() {
       </p>
       <ul>
         <li>De consulter les offres de services et les réalisations ;</li>
-        <li>De soumettre une demande de contact ou de devis ;</li>
-        <li>De s&apos;inscrire à la newsletter de Studio PWI.</li>
+        <li>De soumettre une demande de contact ou de devis.</li>
       </ul>
       <p>
         Les services de création de site web sont régis par des contrats de
