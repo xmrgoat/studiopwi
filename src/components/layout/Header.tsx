@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { site } from "@/content/site";
-import Button from "@/components/ui/Button";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -40,15 +39,30 @@ export default function Header() {
   // Header.module.css — both transition at 1024px.
   useEffect(() => {
     if (!mobileOpen) return;
-    const close = () => { if (window.innerWidth >= 1024) setMobileOpen(false); };
+    const close = () => {
+      if (window.innerWidth >= 1024) setMobileOpen(false);
+    };
     window.addEventListener("resize", close);
     return () => window.removeEventListener("resize", close);
+  }, [mobileOpen]);
+
+  // Escape closes the drawer — it traps scroll and covers the page, so it needs
+  // the same dismissal affordance as any modal surface.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
   // Lock body scroll while drawer is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   // Close drawer on any anchor click inside it (event delegation)
@@ -59,7 +73,7 @@ export default function Header() {
   return (
     <header ref={ref} className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <Link href="/" className={styles.logo} aria-label={`${site.name} home`}>
+        <Link href="/" className={styles.logo} aria-label={`${site.name} — accueil`}>
           <span className={styles.wordmark}>{site.name}</span>
         </Link>
 
@@ -71,25 +85,33 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className={styles.cta}>
-          <Button href="#contact" variant="primary">
-            Démarrer un projet
-          </Button>
-        </div>
-
+        {/* Three bars, per the Figma "ri:menu-fill" burger. They are geometry
+            the design specifies outright, not an icon glyph, so they are spans
+            rather than an exported asset. */}
         <button
           type="button"
           className={styles.burger}
           onClick={() => setMobileOpen((v) => !v)}
           aria-expanded={mobileOpen}
+          aria-controls="mobile-drawer"
           aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
-          <span className={`${styles.burgerLine} ${mobileOpen ? styles.burgerOpen : ""}`} />
+          <span
+            className={`${styles.burgerBox} ${mobileOpen ? styles.burgerOpen : ""}`}
+            aria-hidden="true"
+          >
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+          </span>
         </button>
       </div>
 
-      {/* Mobile drawer — slides down from header on small viewports */}
+      {/* Mobile drawer — slides down from header on small viewports.
+          Closed state is visibility:hidden in CSS, which also removes the links
+          from the tab order; aria-hidden alone would leave them focusable. */}
       <div
+        id="mobile-drawer"
         className={`${styles.drawer} ${mobileOpen ? styles.drawerOpen : ""}`}
         aria-hidden={!mobileOpen}
         onClick={onDrawerClick}
@@ -101,11 +123,6 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <div className={styles.drawerCta}>
-          <Button href="#contact" variant="primary">
-            Démarrer un projet
-          </Button>
-        </div>
       </div>
     </header>
   );
