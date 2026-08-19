@@ -6,6 +6,7 @@ const resend = new Resend(env.RESEND_API_KEY);
 type LeadEmailInput = {
   name: string;
   email: string;
+  phone?: string;
   company?: string;
   message: string;
   tier?: string;
@@ -25,6 +26,7 @@ export async function sendLeadNotification(input: LeadEmailInput) {
     text: [
       `Nom    : ${input.name}`,
       `Email  : ${input.email}`,
+      input.phone ? `Tél.   : ${input.phone}` : null,
       input.company ? `Société: ${input.company}` : null,
       input.tier ? `Tier   : ${input.tier}` : null,
       `Source : ${input.source}`,
