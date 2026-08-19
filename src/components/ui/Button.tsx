@@ -4,13 +4,18 @@ import { cn } from "@/lib/cn";
 import Magnetic from "@/components/motion/Magnetic";
 import styles from "./Button.module.css";
 
-type Variant = "primary" | "ghost";
+// The design ships exactly two CTA treatments: an accent fill (#2cff05) and an
+// ink outline on the page ground. Both carry ink-coloured uppercase label text
+// — the accent is never used *as* text, only underneath it.
+type Variant = "primary" | "outline";
 
 type CommonProps = {
   variant?: Variant;
   className?: string;
   children: ReactNode;
   magnetic?: boolean;
+  /** Stretch to the container width — service cards and every mobile CTA. */
+  fullWidth?: boolean;
 };
 
 type LinkProps = CommonProps & {
@@ -30,18 +35,14 @@ type Props = LinkProps | ButtonProps;
 
 export default function Button(props: Props) {
   const variant: Variant = props.variant ?? "primary";
-  const className = cn(styles.btn, styles[variant], props.className);
-
-  const inner = (
-    <span className={styles.inner}>
-      {props.children}
-      {variant === "primary" && (
-        <span aria-hidden="true" className={styles.arrow}>
-          →
-        </span>
-      )}
-    </span>
+  const className = cn(
+    styles.btn,
+    styles[variant],
+    props.fullWidth && styles.fullWidth,
+    props.className,
   );
+
+  const inner = <span className={styles.inner}>{props.children}</span>;
 
   const wrap = (node: ReactNode) =>
     props.magnetic ? <Magnetic strength={0.2}>{node}</Magnetic> : node;
