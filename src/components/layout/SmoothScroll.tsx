@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
-import { registerGsapPlugins, gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/motion";
+import { prefersReducedMotion } from "@/lib/motion";
 
 export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -18,10 +18,8 @@ export default function SmoothScroll() {
   }, [pathname]);
 
   useEffect(() => {
-    registerGsapPlugins();
-
     // Smooth scroll is a desktop-pointer nicety. On touch / small screens the
-    // Lenis virtual scroll + perpetual gsap.ticker RAF loop is pure main-thread
+    // Lenis virtual scroll + perpetual RAF loop is pure main-thread
     // tax (it dominates TBT on throttled mobile and delays first paint) while
     // native momentum scrolling is what users actually expect there. So Lenis
     // only runs for fine-pointer desktops; everyone else gets native scroll.
@@ -29,9 +27,9 @@ export default function SmoothScroll() {
       !prefersReducedMotion() &&
       window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
 
-    // Anchor smooth-scroll works with or without Lenis. The header is sticky
-    // (~72px), so offset the target either way.
-    const HEADER_OFFSET = 72;
+    // Anchor smooth-scroll works with or without Lenis. The header is fixed
+    // (104px in the redesign), so offset the target either way.
+    const HEADER_OFFSET = 104;
     const onAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       const anchor = target?.closest<HTMLAnchorElement>('a[href^="#"]');
@@ -61,7 +59,7 @@ export default function SmoothScroll() {
     }
 
     let lenis: Lenis | null = null;
-    let raf: ((time: number) => void) | null = null;
+    let rafId = 0;
 
     // Defer Lenis startup until the browser is idle so it never competes with
     // hydration during the first-paint window.
@@ -72,10 +70,16 @@ export default function SmoothScroll() {
         smoothWheel: true,
       });
       lenisRef.current = lenis;
-      lenis.on("scroll", ScrollTrigger.update);
-      raf = (time: number) => lenis!.raf(time * 1000);
-      gsap.ticker.add(raf);
-      gsap.ticker.lagSmoothing(500, 33);
+
+      // Plain rAF loop. This used to run off gsap.ticker and push
+      // ScrollTrigger.update on every Lenis scroll event, but the redesign
+      // removed every ScrollTrigger on the site — so that was importing the
+      // whole of GSAP to drive one requestAnimationFrame callback.
+      const tick = (time: number) => {
+        lenis?.raf(time);
+        rafId = window.requestAnimationFrame(tick);
+      };
+      rafId = window.requestAnimationFrame(tick);
     };
 
     const ric =
@@ -90,7 +94,7 @@ export default function SmoothScroll() {
       } else {
         clearTimeout(ric as number);
       }
-      if (raf) gsap.ticker.remove(raf);
+      if (rafId) window.cancelAnimationFrame(rafId);
       lenis?.destroy();
       lenisRef.current = null;
     };
