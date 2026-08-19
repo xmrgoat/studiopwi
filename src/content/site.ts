@@ -1,14 +1,18 @@
 // Centralized copy for the site.
 // Edit copy here; sections re-render automatically.
+//
+// Copy transcribed from the "Studio PWI Website draft" Figma file. Where the
+// desktop and mobile frames disagreed, the choice is noted inline.
 
 export const site = {
   name: "Studio PWI",
   domain: "studiopwi.com",
-  tagline: "Studio web pour paysagistes suisses.",
+  tagline: "Des sites web pour les paysagistes",
   address: "Rue de la Treille 2 · 2000 Neuchâtel · Suisse",
   email: "contact@studiopwi.com",
   locale: "fr",
 
+  // Header nav — matches the three links in the Figma header frame.
   nav: [
     { label: "Services", href: "#services" },
     { label: "À propos", href: "#pourquoi" },
@@ -16,185 +20,105 @@ export const site = {
   ],
 
   hero: {
-    headline: {
-      before: "Des sites web pour les",
-      accent: "paysagistes suisses",
-      after: "qui veulent plus de chantiers.",
-    },
+    headline: "Des sites web pour les paysagistes qui veulent plus de chantiers",
     lead:
-      "Nous créons des sites web conçus pour les entreprises de paysagisme en Suisse afin d'attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs chantiers.",
+      "Basés en Suisse, nous concevons des sites qui aident les entreprises de paysagisme, où qu'elles soient, à attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs chantiers.",
+    // Desktop reads "Démarrer un devis", mobile "Démarrer un projet". Mobile's
+    // wording is the idiomatic one and matches the contact copy, so it wins.
     primaryCta: { label: "Démarrer un projet", href: "#contact" },
-    metrics: [
-      { value: 12, label: "Projets" },
-      { value: 90, label: "Jours" },
-      { value: 1, label: "Contact" },
-      { value: 24, label: "h Réponse", suffix: "h" },
-    ],
-    video: {
-      src: "/videos/flower.mp4",
-      poster: "/images/mobile-hero.webp",
-      title: "Studio PWI — Sites web pour paysagistes suisses",
-      description: "Nous créons des sites web axés conversion pour les entreprises de paysagisme en Suisse — pour attirer plus de clients et générer plus de demandes de devis.",
-    },
-  },
-
-  credibility: {
-    label: "Ils nous font confiance",
-    logos: [
-      { name: "Jardins Dupont", src: "/images/logos/dupont.svg" },
-      { name: "Paysage Müller", src: "/images/logos/muller.svg" },
-      { name: "VertCH", src: "/images/logos/vertch.svg" },
-      { name: "Espaces Verts SA", src: "/images/logos/espaces-verts.svg" },
-      { name: "Atelier Vert", src: "/images/logos/atelier-vert.svg" },
-    ],
-  },
-
-  problem: {
-    marker: { number: "02", label: "LE PROBLÈME" },
-    headline: {
-      before: "Votre site vous fait",
-      accent: "perdre des chantiers.",
-      after: "",
-    },
-    lead:
-      "Sur Google, vos **prospects** choisissent l'entreprise qui les rassure le plus vite : un site soigné, des photos réelles et des informations claires. S'ils ne trouvent pas ces éléments chez vous, ils **contactent** un **concurrent**.",
-    points: [
-      {
-        number: "01",
-        title: "Introuvable sur Google",
-        body:
-          "Vos **prospects** cherchent un paysagiste à Lausanne, Neuchâtel ou Genève. S'ils ne vous **trouvent pas**, ils vont voir ailleurs.",
-      },
-      {
-        number: "02",
-        title: "Une image peu professionnelle",
-        body:
-          "Un site peu soigné peut donner une **mauvaise impression** de votre savoir-faire.",
-      },
-      {
-        number: "03",
-        title: "Des chantiers invisibles",
-        body:
-          "Sans **preuves** de vos réalisations, vos prospects manquent de raisons de vous **contacter**.",
-      },
-    ],
   },
 
   whyUs: {
-    marker: { number: "05", label: "POURQUOI NOUS" },
-    claim: {
-      before: "Nous travaillons avec",
-      accent: "des paysagistes uniquement.",
-      after: "",
-    },
-    badges: [
-      "Basés à Neuchâtel. Spécialisés paysagistes.",
-      "Une équipe de 4. Un interlocuteur dédié.",
-      "Du brief au lancement, sans intermédiaire.",
-      "Support post-lancement inclus.",
+    title: "Pourquoi nous?",
+    paragraphs: [
+      "Basé à Neuchâtel, en Suisse, nous avons construit plus de 20 sites web dans des secteurs variés. Cette expérience nous a appris ce qui fonctionne réellement pour convertir un visiteur en client.",
+      "Comme un paysagiste qui doit s'adapter à la météo, nous nous adaptons aux tendances du web et nous construisons des sites, pensés pour durer.",
     ],
-    process: [
+    testimonialsTitle: "Avis concret",
+    testimonials: [
       {
-        number: "01",
-        title: "Appel découverte",
-        duration: "20 min, gratuit",
-        body:
-          "Nous échangeons sur votre activité, vos objectifs et les besoins de votre entreprise.",
+        quote:
+          "Avant, je n'avais pas de site, juste ma page Facebook. Studio PWI a compris rapidement ce dont j'avais besoin : montrer mes chantiers et être trouvable sur Google. En moins de deux semaines, j'avais un site professionnel, et j'ai reçu ma première demande de devis via le site dès le premier mois.",
+        author: "Marc D.",
+        role: "Paysagiste, Neuchâtel",
       },
       {
-        number: "02",
-        title: "Design et développement",
-        duration: "1 à 4 semaines selon l'offre",
+        // Translated from the English review in the desktop "Avis concret"
+        // frame. The Figma carries no attribution for it — fill `author`/`role`
+        // in before launch, or drop this entry. The component hides the
+        // attribution line while both fields are empty.
+        quote:
+          "Il a vraiment écouté ce que je voulais, au lieu de livrer quelque chose et de considérer le travail terminé. Il est resté impliqué jusqu'à ce que nous obtenions exactement le résultat que je cherchais. Un vrai plaisir de travailler avec lui : je recommande Jean-Pierre sans hésiter à quiconque cherche quelqu'un de fiable, de réactif et réellement attaché à la qualité.",
+        author: "",
+        role: "",
+      },
+    ],
+  },
+
+  process: {
+    title: "Notre démarche",
+    steps: [
+      {
+        number: "1",
+        title: "Appel découverte, 30 min, gratuit",
+        body:
+          "Nous parlerons de votre activité, vos objectifs et les besoins de votre entreprise.",
+      },
+      {
+        number: "2",
+        title: "Design et développement, 1 à 8 semaines selon l'offre",
         body:
           "Nous structurons, concevons et développons votre site autour d'un objectif : transformer vos visiteurs en clients.",
       },
       {
-        number: "03",
-        title: "Lancement et suivi",
-        duration: "14 jours inclus",
+        number: "3",
+        title: "Lancement et suivi : 14 jours inclus",
         body:
           "Après la mise en ligne, nous restons disponibles pour les corrections techniques et ajustements mineurs.",
       },
     ],
-    guarantee: {
-      label: "SUIVI POST-LANCEMENT",
-      title: "Votre site est accompagné après sa mise en ligne.",
-      body:
-        "Pendant 14 jours après le lancement, nous corrigeons les éventuels problèmes techniques et effectuons les ajustements mineurs convenus, sans frais supplémentaires.",
-    },
+    cta: { label: "Démarrer un projet", href: "#contact" },
   },
 
   contact: {
-    marker: { number: "06", label: "CONTACT" },
-    headline: {
-      before: "Prêt à",
-      accent: "planter la graine ?",
-      after: "",
+    title: "Contactez-nous",
+    lead:
+      "Remplissez le formulaire pour nous présenter votre projet. Nous vous répondrons rapidement pour organiser un appel découverte de 20 minutes.",
+    trustSignals: ["Réponse sous 48h", "Appel découverte gratuit"],
+    form: {
+      name: { label: "Nom", placeholder: "Votre nom complet" },
+      email: { label: "Email", placeholder: "votre@email.com" },
+      phone: { label: "Téléphone", placeholder: "076 612 27 41" },
+      message: { label: "Message", placeholder: "Décrivez votre projet..." },
+      submit: "Envoyer",
     },
-    lead: "Remplissez le formulaire pour nous présenter votre projet.\nNous vous répondrons rapidement pour organiser un appel découverte de 20 minutes si votre projet correspond à notre accompagnement.",
-    primary: { label: "Réserver un appel", href: "mailto:contact@studiopwi.com" },
-    secondary: { label: "Écrivez-nous directement", href: "mailto:contact@studiopwi.com" },
-  },
-
-  faq: {
-    marker: { number: "07", label: "FAQ" },
-    headline: {
-      before: "Questions",
-      accent: "fréquentes.",
-      after: "",
-    },
-    items: [
-      {
-        question: "Combien coûte un site web pour paysagiste ?",
-        answer:
-          "Nos offres démarrent à CHF 600 pour une présence simple et vont jusqu'à CHF 3'200 pour un site complet orienté conversion. Pour un paysagiste en Suisse romande — à Neuchâtel, Lausanne, Genève ou Fribourg — le tarif dépend du nombre de pages, des fonctionnalités souhaitées et du niveau de personnalisation. Chaque offre inclut le design, le développement et le référencement de base. Aucun abonnement caché.",
-      },
-      {
-        question: "Combien de temps faut-il pour créer mon site ?",
-        answer:
-          "Entre 1 et 4 semaines selon l'offre choisie, le nombre de pages et la disponibilité de vos contenus.",
-      },
-      {
-        question: "Est-ce que je peux modifier le site moi-même après livraison ?",
-        answer:
-          "Pour l'instant, notre équipe s'occupe des modifications afin de garder votre site propre, cohérent et bien optimisé. Après le lancement, 14 jours de support sont inclus. Les changements plus importants peuvent être gérés séparément ou via un accompagnement mensuel.",
-      },
-      {
-        question: "Travaillez-vous uniquement avec des paysagistes ?",
-        answer:
-          "Oui, c'est notre seule spécialité. Nous travaillons exclusivement avec des entreprises de paysagisme en Suisse romande — jardins résidentiels, entretien d'espaces verts, aménagement paysager, terrasses et massifs. Cette focalisation nous permet de comprendre votre métier, votre clientèle et ce qui fonctionne réellement dans votre secteur.",
-      },
-      {
-        question: "Mon site sera-t-il visible sur Google ?",
-        answer:
-          "Toutes nos offres incluent les bases du SEO local : structure claire, balises essentielles et optimisation technique de base. La visibilité dépend ensuite de votre marché, de votre zone d'intervention et du suivi SEO mis en place.",
-      },
-      {
-        question: "Que se passe-t-il si je ne suis pas satisfait ?",
-        answer:
-          "Vous bénéficiez de 1 à 2 séries de révisions selon l'offre choisie avant la mise en ligne. Après le lancement, 14 jours de support sont inclus pour les corrections techniques et ajustements mineurs convenus.",
-      },
-    ],
-  },
-
-  ctaBanner: {
-    headline: {
-      before: "Prêt à décrocher",
-      accent: "plus de chantiers ?",
-      after: "",
-    },
-    lead: "Remplissez le formulaire et dites-nous où vous en êtes.\nNous vous recontacterons pour organiser un appel découverte.",
-    cta: { label: "Envoyer ma demande →", href: "#contact" },
   },
 
   footer: {
     email: "contact@studiopwi.com",
-    legal: [
-      { label: "Confidentialité", href: "/confidentialite" },
-      { label: "CGU", href: "/conditions-generales" },
-      { label: "Mentions légales", href: "/mentions-legales" },
+    tagline: "Des sites web pour les paysagistes",
+    nav: [
+      { label: "Accueil", href: "#main" },
+      { label: "Services", href: "#services" },
+      { label: "Étude de cas", href: "#etude-de-cas" },
+      { label: "Notre démarche", href: "#demarche" },
+      { label: "Contact", href: "#contact" },
     ],
-    signature: "Conçu avec soin en Suisse.",
+    socialLabel: "Suivez-nous",
+    // TODO(jp): the Figma shows a LinkedIn icon but carries no URL. This is a
+    // guess at the company page slug — confirm or replace before launch.
+    social: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/studiopwi" },
+    ],
+    // The Figma footer lists only "Mentions légales" and "Politique de
+    // confidentialité". /conditions-generales is kept here deliberately: the
+    // route exists, and dropping the link would leave it orphaned with no
+    // internal path to it. Remove this entry only alongside the route.
+    legal: [
+      { label: "Mentions légales", href: "/mentions-legales" },
+      { label: "Politique de confidentialité", href: "/confidentialite" },
+      { label: "Conditions générales", href: "/conditions-generales" },
+    ],
   },
 } as const;
 
