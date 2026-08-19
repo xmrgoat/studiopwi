@@ -1,153 +1,70 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { cases, type CaseStudy } from "@/content/cases";
-import SectionMarker from "@/components/ui/SectionMarker";
-import ItalicAccent from "@/components/ui/ItalicAccent";
-import Counter from "@/components/motion/Counter";
-import { gsap, registerGsapPlugins, prefersReducedMotion } from "@/lib/motion";
-import { cn } from "@/lib/cn";
+import { cases } from "@/content/cases";
+import Button from "@/components/ui/Button";
+import Reveal from "@/components/motion/Reveal";
 import styles from "./CaseStudies.module.css";
 
+// Server component — the section is static. cases.items is a list even though
+// only one study exists today; the layout scales to more without change.
 export default function CaseStudies() {
-  const rootRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    registerGsapPlugins();
-    const root = rootRef.current;
-    if (!root) return;
-    if (prefersReducedMotion()) return;
-
-    const ctx = gsap.context(() => {
-      root.querySelectorAll<HTMLElement>(`.${styles.imageWrap}`).forEach((wrap) => {
-        gsap.from(wrap, {
-          clipPath: "inset(10% 10% 10% 10%)",
-          duration: 1.2,
-          ease: "expo.out",
-          scrollTrigger: { trigger: wrap, start: "top 85%", once: true },
-        });
-      });
-
-      // Per-frame scrub parallax is desktop-only. On mobile it ran ungated and
-      // wrote a transform every scroll frame, competing with paint and adding
-      // to scroll-down stutter — the images just stay static on phones.
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px)", () => {
-        root.querySelectorAll<HTMLElement>(`.${styles.imageWrap} img`).forEach((img) => {
-          gsap.to(img, {
-            yPercent: -10,
-            ease: "none",
-            scrollTrigger: {
-              trigger: img,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-        });
-      });
-    }, root);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={rootRef} className={`section ${styles.section}`} id="realisations">
-      <div className="container">
-        <header className={styles.header}>
-          <SectionMarker number={cases.marker.number} label={cases.marker.label} />
-          <h2 className={styles.headline}>
-            {cases.headline.before} <ItalicAccent>{cases.headline.accent}</ItalicAccent>
-          </h2>
-        </header>
+    <section className={`section ${styles.section}`} id="etude-de-cas">
+      {cases.items.map((item) => (
+        <article key={item.slug} className={`grid ${styles.grid}`}>
+          <Reveal className={styles.copy}>
+            <h2 className={styles.headline}>
+              <span className={styles.eyebrow}>{item.eyebrow} </span>
+              <span className={styles.client}>{item.client}</span>
+            </h2>
 
-        <div className={styles.list}>
-          {(cases.items as readonly CaseStudy[]).map((c, i) => (
-            <article key={c.slug} className={cn(styles.case, i % 2 === 1 && styles.reverse)}>
-              {c.siteUrl ? (
-                <a
-                  href={c.siteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.imageLink}
-                  tabIndex={-1}
-                  aria-hidden="true"
-                >
-                  <div className={styles.imageWrap}>
-                    <Image
-                      src={c.image.src}
-                      alt={c.image.alt}
-                      width={1280}
-                      height={900}
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                      loading="lazy"
-                      style={{ width: "100%", height: "auto" }}
-                    />
-                  </div>
-                </a>
-              ) : (
-                <div className={styles.imageWrap}>
-                  <Image
-                    src={c.image.src}
-                    alt={c.image.alt}
-                    width={1280}
-                    height={900}
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    loading="lazy"
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                </div>
-              )}
+            <div className={styles.body}>
+              <p className={styles.label}>{item.problemLabel}</p>
+              <p className={styles.paragraph}>{item.problem}</p>
+              <p className={styles.label}>{item.solutionLabel}</p>
+              <p className={styles.paragraph}>{item.solution}</p>
+            </div>
 
-              <div className={styles.text}>
-                <div className={styles.tagRow}>
-                  {c.tag && <p className={`mono ${styles.tag}`}>{c.tag}</p>}
-                  {c.inProduction && (
-                    <span className={styles.liveBadge}>
-                      <span className={styles.liveDot} aria-hidden="true" />
-                      En production
-                    </span>
-                  )}
-                </div>
-                <h3 className={styles.title}>{c.client}</h3>
+            <div className={styles.ctas}>
+              <Button href={item.cta.href} variant="primary">
+                {item.cta.label}
+              </Button>
+            </div>
+          </Reveal>
 
+          <Reveal className={styles.media} order={1}>
+            {item.inProduction && item.statusLabel && (
+              <p className={styles.status}>
+                {/* Plain filled circle in the design — CSS, not an asset. */}
+                <span className={styles.statusDot} aria-hidden="true" />
+                {item.statusLabel}
+              </p>
+            )}
 
-                <dl className={styles.facts}>
-                  <div>
-                    <dt className="mono">Challenge</dt>
-                    <dd>{c.challenge}</dd>
-                  </div>
-                  <div>
-                    <dt className="mono">Solution</dt>
-                    <dd>{c.solution}</dd>
-                  </div>
-                </dl>
+            <div className={styles.frame}>
+              <Image
+                src={item.image.src}
+                alt={item.image.alt}
+                width={item.image.width}
+                height={item.image.height}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 630px"
+                className={styles.shot}
+              />
+            </div>
 
-                {c.resultNumber != null && (
-                  <p className={styles.result}>
-                    {c.resultUnit === "%" && "+"}
-                    <Counter value={c.resultNumber} onScroll />
-                    <ItalicAccent>{c.resultUnit}</ItalicAccent>
-                    <span className={styles.resultLabel}> {c.resultLabel}</span>
-                  </p>
-                )}
-
-                {c.quote && (
-                  <blockquote className={styles.quote}>
-                    {c.quote}
-                    <footer className={styles.attribution}>
-                      &mdash; {c.attribution.name}, {c.attribution.role}
-                    </footer>
-                  </blockquote>
-                )}
-
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
+            {item.siteUrl && item.siteLabel && (
+              <a
+                className={styles.siteLink}
+                href={item.siteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.siteLabel}
+                <span className={styles.srOnly}> (nouvel onglet)</span>
+              </a>
+            )}
+          </Reveal>
+        </article>
+      ))}
     </section>
   );
 }
