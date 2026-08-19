@@ -8,9 +8,12 @@ dist/
 .DS_Store
 Thumbs.db
 
-.env
-.env.local
-.env.*.local
+# Every env file, including timestamped backups and any local variant.
+# The previous three-line list matched .env and .env.local exactly but not
+# things like .env.bak-20260819, leaving live API keys one `git add .`
+# away from being committed.
+.env*
+!.env.example
 
 prisma/*.db
 prisma/*.db-journal
