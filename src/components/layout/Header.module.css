@@ -1,275 +1,177 @@
+/* Header — Figma frames "Studio PWI header" (1280×104) and "navigation" (mobile).
+   Wordmark left, uppercase links right, transparent over the page ground until
+   scrolled. */
+
 .header {
   position: fixed;
   inset: 0 0 auto 0;
-  height: 72px;
   z-index: 100;
-  color: var(--color-ink-deep);
-  transition: background var(--duration-ui) var(--ease-smooth),
-              backdrop-filter var(--duration-ui) var(--ease-smooth),
-              color var(--duration-ui) var(--ease-smooth),
-              border-color var(--duration-ui) var(--ease-smooth);
-  border-bottom: 1px solid transparent;
+  background: transparent;
+  transition:
+    background-color var(--duration-ui) var(--ease-out),
+    box-shadow var(--duration-ui) var(--ease-out);
 }
 
+/* Once past the hero fold the bar needs its own ground, or the links collide
+   with section content scrolling underneath. */
 .scrolled {
-  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: var(--color-line);
-  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--color-line);
 }
 
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  gap: var(--space-5);
+  min-height: 104px;
 }
 
 .logo {
-  display: inline-flex;
-  align-items: center;
-  color: inherit;
+  color: var(--color-text);
+  text-decoration: none;
 }
 
 .wordmark {
-  /* Megrim has a small cap-height; scale up so it visually matches
-     the uppercase mono nav text, which shares --fs-body. */
-  font-family: var(--font-megrim);
-  font-size: calc(var(--fs-body) * 1.4);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: inherit;
+  font-family: var(--font-display);
+  font-size: 1.375rem; /* 22px mobile */
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
   white-space: nowrap;
 }
 
 .nav {
   display: none;
-  gap: var(--space-5);
+  align-items: center;
+  gap: 56px;
 }
 
 .navLink {
-  display: inline-flex;
-  justify-content: center;
-  min-width: 88px;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  font-weight: 500;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: inherit;
-  opacity: 0.9;
-  padding: 8px 16px; /* spacing audit */
-  border-radius: var(--radius-pill);
-  border: 1px solid color-mix(in srgb, var(--color-text) 45%, transparent);
-  transition: opacity var(--duration-ui) var(--ease-smooth),
-              border-color var(--duration-ui) var(--ease-smooth),
-              background var(--duration-ui) var(--ease-smooth);
-}
-
-.navLink:hover {
-  opacity: 1;
-  border-color: var(--color-ink-deep);
-}
-
-.scrolled .navLink {
-  border-color: var(--color-line-strong);
-}
-
-.scrolled .navLink:hover {
-  border-color: var(--color-ink);
-  background: var(--color-bg-elevated);
-}
-
-.cta {
-  display: flex;
-  align-items: center;
-}
-
-/* Header CTA over the dark hero — use brand fill so it pops. */
-.cta :global(a[class*="primary"]) {
-  background: var(--color-brand);
-  color: var(--color-ink-deep);
-}
-
-.scrolled .cta :global(a[class*="primary"]) {
-  background: var(--color-ink);
-  color: var(--color-bg);
-}
-
-@media (min-width: 1024px) {
-  .nav {
-    display: flex;
-  }
-}
-
-/* Hamburger button */
-.burger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 56px; /* spacing audit */
-  height: 56px; /* spacing audit */
-  background: var(--color-brand);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0;
-  color: var(--color-ink-deep);
-  transition: background var(--duration-ui) var(--ease-smooth),
-              color var(--duration-ui) var(--ease-smooth),
-              opacity var(--duration-ui) var(--ease-smooth);
-}
-
-.burger:hover {
-  opacity: 0.85;
-}
-
-.scrolled .burger {
-  background: var(--color-ink-deep);
-  color: var(--color-bg);
-}
-
-/* Three lines → X animation */
-.burgerLine {
-  display: block;
-  width: 18px;
-  height: 1.5px;
-  background: currentColor;
   position: relative;
-  transition: background 0.22s ease;
+  color: var(--color-text);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-display);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.burgerLine::before,
-.burgerLine::after {
+/* Underline grows from the left on hover — the design gives the links no
+   hover state, so this is the minimum needed to signal interactivity. */
+.navLink::after {
   content: "";
-  display: block;
-  width: 18px;
-  height: 1.5px;
-  background: currentColor;
   position: absolute;
   left: 0;
-  transition: transform 0.22s ease;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.navLink:hover::after {
+  transform: scaleX(1);
 }
 
-.burgerLine::before { top: -6px; }
-.burgerLine::after { top: 6px; }
+/* ── Burger ──────────────────────────────────────────── */
 
-.burgerOpen {
-  background: transparent;
+.burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-right: calc(var(--space-3) * -1);
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--color-text);
 }
 
-.burgerOpen::before { transform: translateY(6px) rotate(45deg); }
-.burgerOpen::after { transform: translateY(-6px) rotate(-45deg); }
-
-/* Mobile drawer */
-.drawer {
-  position: fixed;
-  top: 64px;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  background: var(--color-ink-deep);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+.burgerBox {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-4) var(--side-pad) var(--space-6);
-  transform: translateY(-8px);
+  justify-content: space-between;
+  width: 32px;
+  height: 18px;
+}
+
+.burgerLine {
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--radius-action);
+  background: currentColor;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+.burgerOpen .burgerLine:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burgerOpen .burgerLine:nth-child(2) {
   opacity: 0;
+}
+.burgerOpen .burgerLine:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ───────────────────────────────────── */
+
+.drawer {
+  position: fixed;
+  inset: 104px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-7) var(--side-pad);
+  background: var(--color-bg);
+  /* visibility (not just opacity) so the links leave the tab order when closed */
   visibility: hidden;
-  transition: transform 0.28s var(--ease-smooth),
-              opacity 0.28s var(--ease-smooth),
-              visibility 0.28s;
-  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity var(--duration-ui) var(--ease-out),
+    transform var(--duration-ui) var(--ease-out),
+    visibility 0s linear var(--duration-ui);
 }
 
 .drawerOpen {
-  transform: translateY(0);
-  opacity: 1;
   visibility: visible;
-  pointer-events: auto;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
 }
 
 .drawerNav {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid color-mix(in srgb, var(--color-bg) 10%, transparent);
-  padding-top: var(--space-3);
+  gap: var(--space-5);
 }
 
 .drawerLink {
-  font-family: var(--font-mono);
-  font-size: var(--fs-body);
-  font-weight: 500;
-  letter-spacing: var(--ls-wide);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-bg) 75%, transparent);
-  padding-block: var(--space-3);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-bg) 6%, transparent);
-  transition: color 0.18s ease;
-}
-
-.drawerLink:hover {
-  color: var(--color-brand);
-}
-
-.drawerCta {
-  padding-top: var(--space-2);
+  text-decoration: none;
 }
 
 @media (min-width: 1024px) {
-  .drawer { display: none; }
-}
-
-@media (max-width: 1023px) {
   .wordmark {
-    color: var(--color-bg);
+    font-size: 1.5rem; /* 24px desktop */
   }
-  .scrolled .wordmark {
-    color: var(--color-ink-deep);
+  .nav {
+    display: flex;
   }
-
-  /* Nav pills: light text + light outline over the dark hero video.
-     On scroll the .scrolled state takes over and reverts to the existing
-     dark-on-light treatment. (Nav itself only renders ≥768px, so on
-     phones this block is a no-op — the burger handles that range.) */
-  .navLink {
-    color: var(--color-bg);
-    border-color: color-mix(in srgb, var(--color-bg) 45%, transparent);
-  }
-  .navLink:hover {
-    border-color: var(--color-bg);
-  }
-  .scrolled .navLink {
-    color: var(--color-ink);
-    border-color: var(--color-line-strong);
-  }
-  .scrolled .navLink:hover {
-    border-color: var(--color-ink);
-    background: var(--color-bg-elevated);
-  }
-}
-
-@media (max-width: 1023px) {
-  .cta { display: none; }
-  .burger { display: flex; }
-}
-
-@media (max-width: 767px) {
-  .header { height: 64px; }
-}
-
-/* Mobile: drop the live backdrop blur. A blurred fixed bar forces the GPU to
-   re-sample everything behind it on every scrolled frame — the dominant cause
-   of scroll-down stutter on mobile. An opaque bg looks near-identical (the bg
-   was already 80% opaque) at zero per-frame cost. */
-@media (max-width: 1023px) {
-  .scrolled {
-    background: var(--color-bg);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
+  .burger,
+  .drawer {
+    display: none;
   }
 }
