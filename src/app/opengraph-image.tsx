@@ -20,7 +20,7 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "80px 96px",
+          padding: "72px 96px",
           fontFamily: "system-ui, sans-serif",
         }}
       >
@@ -49,15 +49,35 @@ export default function OpengraphImage() {
 
         <div
           style={{
-            fontSize: 88,
-            fontWeight: 800,
-            lineHeight: 1.08,
-            letterSpacing: "-0.01em",
-            textTransform: "uppercase",
-            maxWidth: 1000,
+            display: "flex",
+            flexDirection: "column",
+            gap: 24,
           }}
         >
-          {site.hero.headline}
+          <div
+            style={{
+              fontSize: 84,
+              fontWeight: 800,
+              lineHeight: 1.05,
+              letterSpacing: "-0.01em",
+              textTransform: "uppercase",
+              maxWidth: 980,
+            }}
+          >
+            {site.tagline}
+          </div>
+          <div
+            style={{
+              fontSize: 30,
+              fontWeight: 400,
+              maxWidth: 880,
+              lineHeight: 1.4,
+              opacity: 0.85,
+            }}
+          >
+            Attirez plus de clients, générez plus de demandes de devis et
+            décrochez de meilleurs chantiers.
+          </div>
         </div>
 
         <div
