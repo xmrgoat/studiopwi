@@ -1,23 +1,33 @@
-/* Hero — Figma frame "Studio PWI Hero" (1440×900 / 360×800).
-   Content is vertically centred in the frame and left-aligned to the grid
-   margin; the desktop headline is capped at 847px and the lead at 630px so the
-   two ragged edges stagger the way the design does. */
+/* Hero — Figma frame "Studio PWI Hero" (1440×900).
+   Full-bleed background photo; the headline/lead/CTA sit in a translucent
+   960×600 card at (80,152), which is 9 of 12 grid columns at this width. On
+   mobile — no updated frame for this breakpoint — the card becomes the whole
+   section, flat on the page ground, matching the prior treatment. */
 
 .hero {
+  position: relative;
   min-height: 100svh;
   display: flex;
   align-items: center;
   background: var(--color-bg);
   color: var(--color-text);
+  overflow: hidden;
   /* Clears the fixed header, which overlaps the top of the frame. */
   padding-block: calc(var(--space-8) + var(--space-7)) var(--space-8);
 }
 
 .inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+}
+
+.card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-5);
+  width: 100%;
 }
 
 .headline {
@@ -52,6 +62,33 @@
   }
   .ctas {
     width: auto;
+  }
+
+  /* The background photo — a plain CSS background-image, not a next/image.
+     Declared only inside this desktop media query, which is what actually
+     stops mobile from fetching it: unlike display:none on an <img>, a
+     background-image referenced inside a non-matching @media block is never
+     requested by the browser. avif/webp are pre-generated (see the hero-bg.*
+     files) since this file never passes through next/image's own pipeline. */
+  .hero {
+    background-image: image-set(
+      url("/images/hero-bg.avif") type("image/avif"),
+      url("/images/hero-bg.webp") type("image/webp")
+    );
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* The card: 90%-opacity page ground, rounded, padded — a legibility surface
+     over the photo rather than a bordered panel. 960px is 9 of the 12 grid
+     columns at this width (960/1280 content width), expressed as a cap on
+     .inner's flex item rather than a literal grid-column, since .inner is a
+     flex container here, not `.grid`. */
+  .card {
+    max-width: 960px;
+    background: color-mix(in srgb, var(--color-bg) 90%, transparent);
+    border-radius: var(--radius-action);
+    padding: var(--space-6); /* Figma: 40px — space-6 (48px) is the nearest token, same approximation Services.module.css uses for this card padding */
   }
 }
 
