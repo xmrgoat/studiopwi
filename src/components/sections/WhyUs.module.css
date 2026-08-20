@@ -82,20 +82,21 @@
   gap: var(--space-3);
 }
 
-/* Opening mark only, hanging to the left of the first line.
+/* Opening mark hangs outside the text block to the left, so the heading, the
+   quote and the attribution all share one left edge instead of the glyph
+   indenting the quote alone.
    Drawn as a background image rather than a mask — the Figma glyph is an
    outline (fill #efefef, stroke #396c5e), and masking it to currentColor would
    discard the stroke and flatten it into a solid shape. */
 .quote {
   position: relative;
   margin: 0;
-  padding-left: var(--space-4); /* 24px */
 }
 
 .quote::before {
   content: "";
   position: absolute;
-  left: 0;
+  left: calc(-1 * var(--space-4)); /* -24px, hangs into the grid gutter */
   top: 0;
   display: block;
   width: 22px;
@@ -121,7 +122,7 @@
 
 .author {
   font-size: var(--fs-body); /* 18px at desktop */
-  font-weight: var(--fw-bold);
+  font-weight: 400; /* Regular — not Bold like the quote it follows */
   font-style: italic;
 }
 
