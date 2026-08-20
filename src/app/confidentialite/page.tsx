@@ -56,18 +56,15 @@ export default function PrivacyPage() {
           <strong>Adresse e-mail</strong> — pour vous répondre
         </li>
         <li>
-          <strong>Nom de l&apos;entreprise</strong> (optionnel)
+          <strong>Numéro de téléphone</strong> (optionnel) — pour vous rappeler
         </li>
         <li>
           <strong>Message</strong>
         </li>
         <li>
-          <strong>Offre d&apos;intérêt</strong> (optionnel — Lancement, Croissance ou
-          Partenariat)
-        </li>
-        <li>
-          <strong>Adresse IP et User-Agent</strong> — à des fins de sécurité
-          (prévention des abus) et de journalisation technique
+          <strong>Adresse IP</strong> — utilisée de manière transitoire pour limiter
+          le nombre d&apos;envois et prévenir les abus. Elle n&apos;est pas
+          enregistrée.
         </li>
       </ul>
 
