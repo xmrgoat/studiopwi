@@ -1,8 +1,8 @@
-/* Hero — Figma frame "Studio PWI Hero" (1440×900).
-   Full-bleed background photo; the headline/lead/CTA sit in a translucent
-   960×600 card at (80,152), which is 9 of 12 grid columns at this width. On
-   mobile — no updated frame for this breakpoint — the card becomes the whole
-   section, flat on the page ground, matching the prior treatment. */
+/* Hero — Figma frames "Studio PWI Hero" (1440×900, desktop) and
+   "mobile Hero" (360×800). Both now carry the same full-bleed photo:
+   desktop crops it centred behind a small floating 90%-opacity card;
+   mobile crops it panned left behind a 90%-opacity wash covering the
+   whole frame, with text sitting directly on the wash — no card box. */
 
 .hero {
   position: relative;
@@ -14,6 +14,31 @@
   overflow: hidden;
   /* Clears the fixed header, which overlaps the top of the frame. */
   padding-block: calc(var(--space-8) + var(--space-7)) var(--space-8);
+
+  /* Background photo — a plain CSS background-image, not next/image, so
+     next/font's own optimisation pipeline is irrelevant; avif/webp are
+     pre-generated (see the hero-bg.* files in /public/images).
+     Position is derived from the mobile frame's crop: the Figma layer scales
+     the 1536×1024 source to 1200×800 inside a 360×800 frame (a uniform
+     0.78125× scale — the same factor `cover` computes here) and pans it left
+     by 252.6px, i.e. the visible window sits at ~36% across the image width. */
+  background-image: image-set(
+    url("/images/hero-bg.avif") type("image/avif"),
+    url("/images/hero-bg.webp") type("image/webp")
+  );
+  background-size: cover;
+  background-position: 36% 0%;
+}
+
+/* Mobile wash: near-opaque page ground over the whole frame, between the
+   photo and the text. Desktop doesn't use this — the card supplies its own
+   translucent surface instead — so it's switched off there. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: color-mix(in srgb, var(--color-bg) 90%, transparent);
 }
 
 .inner {
@@ -34,7 +59,9 @@
   max-width: 847px;
   margin: 0;
   font-size: var(--fs-display);
-  font-weight: var(--fw-display);
+  /* Mobile frame sets this Bold, not ExtraBold — only desktop goes to
+     --fw-display (800). */
+  font-weight: var(--fw-bold);
   line-height: var(--lh-display);
   text-transform: uppercase;
   text-wrap: balance;
@@ -57,6 +84,9 @@
 }
 
 @media (min-width: 769px) {
+  .headline {
+    font-weight: var(--fw-display);
+  }
   .lead {
     font-weight: var(--fw-bold);
   }
@@ -64,18 +94,11 @@
     width: auto;
   }
 
-  /* The background photo — a plain CSS background-image, not a next/image.
-     Declared only inside this desktop media query, which is what actually
-     stops mobile from fetching it: unlike display:none on an <img>, a
-     background-image referenced inside a non-matching @media block is never
-     requested by the browser. avif/webp are pre-generated (see the hero-bg.*
-     files) since this file never passes through next/image's own pipeline. */
+  .hero::before {
+    display: none;
+  }
+
   .hero {
-    background-image: image-set(
-      url("/images/hero-bg.avif") type("image/avif"),
-      url("/images/hero-bg.webp") type("image/webp")
-    );
-    background-size: cover;
     background-position: center;
   }
 

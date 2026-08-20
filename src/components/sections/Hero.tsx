@@ -3,12 +3,14 @@ import Button from "@/components/ui/Button";
 import styles from "./Hero.module.css";
 
 // Server component, zero client JS. The redesign adds a full-bleed background
-// photo behind a translucent content card. The photo is a plain CSS
-// background-image gated behind the desktop media query in Hero.module.css —
-// not a next/image, and deliberately not marked priority: a <link
-// rel="preload"> fires regardless of display:none, so an <Image priority>
-// here would force mobile to fetch a photo it never shows, which is exactly
-// what the earlier mobile-LCP work in this repo eliminated hero media for.
+// photo behind the headline/lead/CTA on both breakpoints — a floating
+// translucent card on desktop, a near-opaque page-ground wash over the whole
+// frame on mobile (see the "mobile Hero" Figma frame). The photo is a plain
+// CSS background-image in Hero.module.css, not a next/image, and not marked
+// priority — the earlier mobile-LCP work in this repo traced the mobile
+// bottleneck to main-thread/TBT saturation from JS hydration, not asset
+// weight, so one ~60KB avif behind text is not the thing to guard against
+// here; a render-blocking preload would be.
 export default function Hero() {
   const { headline, lead, primaryCta } = site.hero;
 
