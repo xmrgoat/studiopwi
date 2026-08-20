@@ -11,8 +11,15 @@ import "./globals.css";
 // three families the previous design shipped. It is the LCP font (it renders
 // the hero <h1>), so it preloads; the variable axis covers the 500/700/800
 // weights the design calls for without extra file requests.
+//
+// style includes "italic": next/font only loads the normal style by default,
+// so font-style: italic (the why-us attribution) fell back to faux-oblique,
+// which most engines suppress at bold weights on a variable font — it
+// computed as italic but rendered upright. Loading the real italic face fixes
+// that, at the cost of a second woff2 request.
 const montserrat = Montserrat({
   subsets: ["latin"],
+  style: ["normal", "italic"],
   variable: "--font-montserrat",
   display: "swap",
   preload: true,
