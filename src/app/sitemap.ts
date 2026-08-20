@@ -6,25 +6,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: new Date("2026-06-12"),
+      lastModified: new Date("2026-08-20"), // Figma redesign — full rewrite
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/confidentialite`,
-      lastModified: new Date("2026-05-16"),
+      lastModified: new Date("2026-08-20"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${SITE_URL}/conditions-generales`,
-      lastModified: new Date("2026-05-16"),
+      lastModified: new Date("2026-08-19"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${SITE_URL}/mentions-legales`,
-      lastModified: new Date("2026-05-16"),
+      lastModified: new Date("2026-08-19"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
