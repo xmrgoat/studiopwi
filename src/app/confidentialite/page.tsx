@@ -145,10 +145,29 @@ export default function PrivacyPage() {
 
       <h2>6. Transferts internationaux de données</h2>
       <p>
-        L&apos;envoi d&apos;e-mails via Resend implique un transfert de données vers les
-        États-Unis. Ce transfert est encadré par les clauses contractuelles types
-        (CCT) approuvées par la Commission européenne, conformément à l&apos;art. 16
-        nLPD et à l&apos;art. 46 RGPD.
+        Deux de nos sous-traitants sont établis aux États-Unis :
+      </p>
+      <ul>
+        <li>
+          <strong>Vercel Inc.</strong> — hébergement du site. Les pages sont
+          servies depuis l&apos;infrastructure européenne de Vercel (région de
+          Francfort), mais l&apos;entreprise étant américaine, un accès depuis les
+          États-Unis ne peut être exclu.
+        </li>
+        <li>
+          <strong>Resend Inc.</strong> — envoi des e-mails. Le traitement est
+          configuré sur la région européenne (Irlande), avec la même réserve.
+        </li>
+      </ul>
+      <p>
+        Ces transferts sont encadrés par les clauses contractuelles types (CCT)
+        approuvées par la Commission européenne, conformément à l&apos;art. 16 nLPD
+        et à l&apos;art. 46 RGPD.
+      </p>
+      <p>
+        Le site ne conservant aucune base de données, les seules données
+        personnelles concernées sont celles contenues dans le message que vous nous
+        adressez.
       </p>
 
       <h2>7. Vos droits</h2>
