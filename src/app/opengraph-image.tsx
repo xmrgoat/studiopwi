@@ -1,6 +1,10 @@
 import { ImageResponse } from "next/og";
+import { site } from "@/content/site";
 
-export const alt = "Studio PWI — Studio web pour paysagistes suisses";
+// Redesign palette: flat #efefef ground, #396c5e ink, #2cff05 accent — the same
+// 60/30/10 system as the page itself. The previous version was a dark gradient
+// card with an italic accent phrase, both conventions the redesign retired.
+export const alt = `${site.name} — Studio web pour paysagistes suisses`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -11,9 +15,8 @@ export default function OpengraphImage() {
         style={{
           width: "100%",
           height: "100%",
-          background:
-            "linear-gradient(135deg, #1d3a32 0%, #396c5e 60%, #5a8b78 100%)",
-          color: "#efefef",
+          background: "#efefef",
+          color: "#396c5e",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -26,10 +29,10 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             gap: 16,
-            fontSize: 28,
+            fontSize: 26,
+            fontWeight: 700,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
-            opacity: 0.85,
           }}
         >
           <span
@@ -37,54 +40,24 @@ export default function OpengraphImage() {
               display: "block",
               width: 10,
               height: 10,
-              background: "#a8d5ba",
               borderRadius: "50%",
+              background: "#2cff05",
             }}
           />
-          (CH) — Studio web pour paysagistes
+          Suisse — Studio web pour paysagistes
         </div>
 
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 28,
+            fontSize: 88,
+            fontWeight: 800,
+            lineHeight: 1.08,
+            letterSpacing: "-0.01em",
+            textTransform: "uppercase",
+            maxWidth: 1000,
           }}
         >
-          <div
-            style={{
-              fontSize: 96,
-              fontWeight: 700,
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-              maxWidth: 1000,
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "0 24px",
-            }}
-          >
-            <span>Sites web pour</span>
-            <span
-              style={{
-                color: "#a8d5ba",
-                fontStyle: "italic",
-                fontWeight: 500,
-              }}
-            >
-              paysagistes suisses
-            </span>
-          </div>
-          <div
-            style={{
-              fontSize: 32,
-              fontWeight: 400,
-              opacity: 0.9,
-              maxWidth: 900,
-              lineHeight: 1.4,
-            }}
-          >
-            Studio spécialisé. Conversion, demandes de devis, plus de chantiers.
-          </div>
+          {site.hero.headline}
         </div>
 
         <div
@@ -93,11 +66,12 @@ export default function OpengraphImage() {
             justifyContent: "space-between",
             alignItems: "flex-end",
             fontSize: 26,
-            letterSpacing: "0.04em",
+            fontWeight: 600,
+            letterSpacing: "0.02em",
           }}
         >
-          <span style={{ fontWeight: 600 }}>Studio PWI</span>
-          <span style={{ opacity: 0.7 }}>studiopwi.com</span>
+          <span>{site.name}</span>
+          <span style={{ opacity: 0.7 }}>{site.domain}</span>
         </div>
       </div>
     ),
