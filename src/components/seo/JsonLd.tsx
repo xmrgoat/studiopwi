@@ -84,7 +84,9 @@ export function LocalBusinessLd() {
       "Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, support post-lancement inclus.",
     url: SITE_URL,
     image: `${SITE_URL}/opengraph-image`,
-    priceRange: "CHF 600–3200",
+    // No priceRange: the redesign removed every figure from the page (see
+    // services.ts) — publishing one here would contradict the visible content,
+    // which is the same reason OffersLd was removed.
     address: ADDRESS,
     geo: {
       "@type": "GeoCoordinates",
@@ -111,10 +113,10 @@ export function WebPageLd() {
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": BUSINESS_ID },
     primaryImageOfPage: `${SITE_URL}/opengraph-image`,
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: ["h1", ".lead"],
-    },
+    // No speakable: cssSelector targets literal class names, but every
+    // component here uses CSS Modules — the rendered class is a hashed name
+    // like Hero_lead__a1b2c, never the literal ".lead" this used to declare.
+    // The previous selector matched nothing in the actual DOM.
   };
   return <Ld data={data} />;
 }
