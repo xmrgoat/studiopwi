@@ -40,13 +40,10 @@ export const site = {
     cta: { label: "Démarrer un projet", href: "#contact" },
     testimonials: [
       {
-        // Translated from the English review in the desktop "Avis concret"
-        // frame. The Figma carries no attribution for it — fill `author`/`role`
-        // in before launch, or drop this entry. The component hides the
-        // attribution line while both fields are empty.
+        // Translated from the English review in the desktop "Avis concret" frame.
         quote:
           "Il a vraiment écouté ce que je voulais, au lieu de livrer quelque chose et de considérer le travail terminé. Il est resté impliqué jusqu'à ce que nous obtenions exactement le résultat que je cherchais. Un vrai plaisir de travailler avec lui : je recommande Jean-Pierre sans hésiter à quiconque cherche quelqu'un de fiable, de réactif et réellement attaché à la qualité.",
-        author: "",
+        author: "Jimi Builds",
         role: "",
       },
     ],
