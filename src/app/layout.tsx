@@ -88,10 +88,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#efefef" },
-    { media: "(prefers-color-scheme: dark)", color: "#1d3a32" },
-  ],
+  // One flat theme — the redesign has no dark surface, so the browser chrome
+  // stays the page ground at every color-scheme setting. The old dark-mode
+  // value (#1d3a32) was inherited from a color that no longer exists in
+  // tokens.css and never matched anything actually on screen.
+  themeColor: "#efefef",
   width: "device-width",
   initialScale: 1,
 };
