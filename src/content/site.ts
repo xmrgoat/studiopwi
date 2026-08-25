@@ -79,7 +79,7 @@ export const site = {
   contact: {
     title: "Contactez-nous",
     lead:
-      "Remplissez le formulaire pour nous présenter votre projet. Nous vous répondrons rapidement pour organiser un appel découverte de 20 minutes.",
+      "Remplissez le formulaire pour nous présenter votre projet. Nous vous répondrons rapidement pour organiser un appel découverte de 30 minutes.",
     trustSignals: ["Réponse sous 48h", "Appel découverte gratuit"],
     form: {
       name: { label: "Nom", placeholder: "Votre nom complet" },
