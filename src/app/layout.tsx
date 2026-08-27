@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import GrainOverlay from "@/components/layout/GrainOverlay";
 import { OrganizationLd, WebSiteLd } from "@/components/seo/JsonLd";
@@ -113,6 +114,7 @@ export default function RootLayout({
         <SmoothScroll />
         {children}
         <GrainOverlay />
+        <Analytics />
       </body>
     </html>
   );
