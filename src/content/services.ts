@@ -35,7 +35,7 @@ export const services = {
       description:
         "Pour les indépendants et petites entreprises qui veulent une présence professionnelle, claire et rapide.",
       features: [
-        "Jusqu'à 5 pages personnalisées",
+        "Jusqu'à 3 pages personnalisées",
         "Design adapté aux mobiles & tablettes",
         "Formulaire de contact optimisé",
         "SEO local de base configuré",
