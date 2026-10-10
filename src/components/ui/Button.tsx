@@ -14,6 +14,9 @@ type CommonProps = {
   children: ReactNode;
   /** Stretch to the container width — service cards and every mobile CTA. */
   fullWidth?: boolean;
+  /** Sweep the glint across once on load — reserved for the hero CTA, so
+      one button on the page draws the eye rather than all of them. */
+  shine?: boolean;
 };
 
 type LinkProps = CommonProps & {
@@ -37,6 +40,7 @@ export default function Button(props: Props) {
     styles.btn,
     styles[variant],
     props.fullWidth && styles.fullWidth,
+    props.shine && styles.shine,
     props.className,
   );
 
