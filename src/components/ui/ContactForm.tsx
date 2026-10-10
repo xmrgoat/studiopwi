@@ -81,6 +81,16 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
   if (status === "success") {
     return (
       <div className={styles.success} role="status" aria-live="polite">
+        {/* Accent disc with an ink tick that draws itself. pathLength="1"
+            lets the stylesheet animate the stroke without measuring it. */}
+        <svg className={styles.successIcon} viewBox="0 0 48 48" aria-hidden="true">
+          <circle className={styles.successDisc} cx="24" cy="24" r="24" />
+          <path
+            className={styles.successTick}
+            d="M14 24.5l6.5 6.5L34 17.5"
+            pathLength="1"
+          />
+        </svg>
         <p className={styles.successLabel}>Message reçu</p>
         <p className={styles.successText}>
           Merci. On revient vers vous sous 48h ouvrées.
