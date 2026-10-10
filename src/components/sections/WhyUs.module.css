@@ -44,9 +44,13 @@
   line-height: var(--lh-normal);
 }
 
-/* SemiBold in the frame, not Bold. */
+/* SemiBold in the frame, not Bold — over a highlighter band in the lower
+   part of the line. The default background slice treats a phrase that wraps
+   as one long strip, so the sweep below runs line by line, like a marker. */
 .paragraph strong {
   font-weight: 600;
+  background: linear-gradient(var(--color-marker), var(--color-marker))
+    no-repeat left 90% / 100% 0.45em;
 }
 
 /* ── Testimonials ────────────────────────────────────── */
@@ -164,5 +168,39 @@
   .ctaRow {
     grid-column: 5 / span 4;
     justify-content: stretch;
+  }
+}
+
+/* ── Entrance ────────────────────────────────────────── */
+
+/* Once the copy is in, the highlighter sweeps under each bold phrase in
+   reading order, and the quote mark springs in beside the review. The band
+   is a background-size animation — a repaint of two short phrases, once. */
+@media (prefers-reduced-motion: no-preference) {
+  .copy[data-inview] .paragraph strong {
+    animation: marker-sweep 0.9s var(--ease-smooth)
+      calc(var(--reveal-delay) + 0.6s) backwards;
+  }
+  .copy[data-inview] .paragraph:nth-child(2) strong {
+    animation-delay: calc(var(--reveal-delay) + 1.1s);
+  }
+
+  .reviews[data-inview] .quote::before {
+    animation: quote-pop 0.7s var(--ease-spring)
+      calc(var(--reveal-delay) + 0.3s) backwards;
+  }
+}
+
+@keyframes marker-sweep {
+  from {
+    background-size: 0% 0.45em;
+  }
+}
+
+@keyframes quote-pop {
+  from {
+    opacity: 0;
+    scale: 0.3;
+    rotate: -20deg;
   }
 }
