@@ -3,6 +3,12 @@
    and a 0 4px 16px -2px drop tinted to match the fill. */
 
 .btn {
+  position: relative;
+  /* Keeps the fill layers below (z-index -1/0) inside the button rather than
+     behind the section. overflow clips them to the radius; it never clips the
+     button's own drop shadow or focus outline, which sit outside the box. */
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -19,8 +25,10 @@
   cursor: pointer;
   transition:
     transform var(--duration-fast) var(--ease-out),
+    scale var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-fast) var(--ease-out),
-    background-color var(--duration-fast) var(--ease-out);
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 /* The desktop hero CTA is 305px and the case-study one 304px — a floor rather
@@ -34,7 +42,10 @@
   width: 100%;
 }
 
+/* Above both fill layers. */
 .inner {
+  position: relative;
+  z-index: 1;
   display: inline-block;
 }
 
@@ -45,12 +56,42 @@
   box-shadow: var(--shadow-action);
 }
 
+/* The glint: a sheen parked off the left edge, swept across on hover (and
+   once on load for .shine). Transform only, so it never repaints the label. */
+.primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    var(--color-glint) 50%,
+    transparent 70%
+  );
+  transform: translateX(-101%);
+  pointer-events: none;
+}
+
 /* Ink outline on the page ground — used by the non-featured service cards. */
 .outline {
   background: var(--color-bg);
   border-color: var(--color-text);
   color: var(--color-text);
   box-shadow: var(--shadow-action-outline);
+}
+
+/* The ink fill that rises from the bottom edge on hover — the outline
+   button fills up like a measuring glass instead of switching colour. */
+.outline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--color-text);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--duration-fast) var(--ease-out);
 }
 
 @media (hover: hover) {
@@ -61,21 +102,44 @@
   .primary:hover {
     box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-accent) 45%, transparent);
   }
+  /* Transition on the hover state only: it sweeps through on the way in and
+     snaps back, out of sight, on the way out. */
+  .primary:hover::after {
+    transform: translateX(101%);
+    transition: transform 0.7s var(--ease-smooth);
+  }
   .outline:hover {
-    background: var(--color-text);
     color: var(--color-bg);
     box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-text) 45%, transparent);
   }
+  .outline:hover::before {
+    transform: scaleY(1);
+  }
 }
 
+/* Press feedback — the one state touch screens get. */
 .btn:active {
   transform: translateY(0);
+  scale: 0.97;
 }
 
 .btn:disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
+  scale: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shine::after {
+    animation: glint 1.1s var(--ease-smooth) 1.2s;
+  }
+}
+
+@keyframes glint {
+  to {
+    transform: translateX(101%);
+  }
 }
 
 /* Every CTA in the mobile frames spans the full column width. */
