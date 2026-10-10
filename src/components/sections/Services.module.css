@@ -150,6 +150,14 @@
   mask: url("/images/icons/check.svg") no-repeat center / 14px 14px;
 }
 
+/* The global selection is an ink band, which vanishes on this ink ground.
+   Accent fill under ink text instead — the one way the accent may sit
+   behind text. */
+.featured ::selection {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
 .featured .check {
   background: var(--color-accent);
 }
