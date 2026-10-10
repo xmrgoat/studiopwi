@@ -61,7 +61,12 @@ ${t.features.map((f) => `  - ${f}`).join("\n")}${
 
 ${services.care.intro}
 
-${plans.map((p) => `- **${p.title}** — ${chf(p.price)} / mois: ${p.features.join("; ")}`).join("\n")}
+${plans
+  .map(
+    (p) =>
+      `- **${p.title}**${p.featured ? ` (${services.featuredBadge} — the studio's recommended plan)` : ""} — ${chf(p.price)} / mois: ${p.features.join("; ")}`,
+  )
+  .join("\n")}
 
 ${services.care.footnote}
 
