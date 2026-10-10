@@ -126,6 +126,24 @@
   border-radius: var(--radius-action);
 }
 
+.successIcon {
+  width: var(--space-6);
+  height: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+
+.successDisc {
+  fill: var(--color-accent);
+}
+
+.successTick {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .successLabel {
   margin: 0;
   font-size: var(--fs-h3);
@@ -137,4 +155,38 @@
   margin: 0;
   font-size: var(--fs-body);
   font-weight: var(--fw-medium);
+}
+
+/* The success moment: the panel rises in, the disc springs up, then the tick
+   draws itself across it. */
+@media (prefers-reduced-motion: no-preference) {
+  .success {
+    animation: success-in var(--duration-ui) var(--ease-out) backwards;
+  }
+  .successIcon {
+    animation: success-pop 0.6s var(--ease-spring) 0.1s backwards;
+  }
+  .successTick {
+    stroke-dasharray: 1;
+    animation: tick-draw 0.45s var(--ease-out) 0.45s backwards;
+  }
+}
+
+@keyframes success-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
+  }
+}
+
+@keyframes success-pop {
+  from {
+    scale: 0;
+  }
+}
+
+@keyframes tick-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
 }
