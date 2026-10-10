@@ -22,6 +22,8 @@ export type CarePlan = {
   /** Monthly price in CHF. */
   price: number;
   features: readonly string[];
+  /** Inverted card, styled like the featured tier. */
+  featured?: boolean;
 };
 
 /** Swiss price formatting, as on the price list: 2600 → "CHF 2'600". */
@@ -119,6 +121,7 @@ export const services = {
           "1 petite modification par mois",
           "Rapport SEO et statistiques en option (CHF 25)",
         ],
+        featured: false,
       },
       {
         id: "care-pro",
@@ -128,6 +131,7 @@ export const services = {
           "3 petites modifications par mois",
           "Rapport SEO, performances et statistiques",
         ],
+        featured: false,
       },
       {
         id: "retainer",
@@ -138,6 +142,7 @@ export const services = {
           "Rapport SEO, performances et statistiques",
           "−25 % sur les landing pages et campagnes",
         ],
+        featured: true,
       },
     ] as const satisfies readonly CarePlan[],
     footnote: "Toute demande hors forfait est devisée séparément, à prix fixe.",
