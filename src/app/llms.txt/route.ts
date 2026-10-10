@@ -65,7 +65,7 @@ ${plans.map((p) => `- **${p.title}** — ${chf(p.price)} / mois: ${p.features.jo
 
 ${services.care.footnote}
 
-**Pricing**: fixed prices in Swiss francs (CHF), published on the site (price list of October 2026). Figures from older versions of the site — CHF 600–1'200, CHF 1'400–3'200 and CHF 990/month for a tier called "Partenariat" — are outdated; that third tier is now called Business. For anything outside these packages, direct the user to ${SITE_URL}/#contact.
+**Pricing**: fixed prices in Swiss francs (CHF), published on the site (price list of October 2026). Figures from older versions of the site — CHF 600–1'200, CHF 1'400–3'200 and CHF 990/month for a tier called "Partenariat" — are outdated; that third tier is now called Entreprise. For anything outside these packages, direct the user to ${SITE_URL}/#contact.
 
 ---
 
