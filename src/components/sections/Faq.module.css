@@ -52,6 +52,16 @@
   display: none;
 }
 
+.questionText {
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .question:hover .questionText {
+    translate: var(--space-2) 0;
+  }
+}
+
 .question:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
@@ -102,10 +112,61 @@
   line-height: var(--lh-normal);
 }
 
+/* Smooth open and close. ::details-content is the answer's slot, and
+   interpolate-size lets its height transition to and from `auto`; the
+   content-visibility transition keeps the answer painted while it closes.
+   Browsers without either open and close instantly, as before — the rule
+   is simply dropped. Height animates layout, so it is kept to the one row
+   the visitor just clicked. */
+.item {
+  interpolate-size: allow-keywords;
+}
+
+.item::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition:
+    block-size var(--duration-ui) var(--ease-out),
+    content-visibility var(--duration-ui) allow-discrete;
+}
+
+.item[open]::details-content {
+  block-size: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .icon::before,
   .icon::after {
     transition: none;
+  }
+}
+
+/* ── Entrance ────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Rows rise in one --stagger-tight beat apart once the list is in view. */
+  .body[data-inview] .item {
+    animation: row-in 0.7s var(--ease-out)
+      calc(var(--reveal-delay) + var(--i, 0) * var(--stagger-tight)) backwards;
+  }
+
+  /* The answer drifts down into place as its row opens. */
+  .item[open] .answer {
+    animation: answer-in var(--duration-ui) var(--ease-out) 0.05s backwards;
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
+  }
+}
+
+@keyframes answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--space-2)));
   }
 }
 
