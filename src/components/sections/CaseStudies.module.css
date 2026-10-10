@@ -74,11 +74,22 @@
 }
 
 .statusDot {
+  position: relative;
   width: 8px;
   height: 8px;
   flex: none;
   border-radius: var(--radius-pill);
   background: var(--color-accent);
+}
+
+/* The live ring: a copy of the dot that swells and fades. */
+.statusDot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  opacity: 0;
 }
 
 .frame {
@@ -121,6 +132,57 @@
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+/* ── Entrance ────────────────────────────────────────── */
+
+/* Once the article is in view, the screenshot grows up into its frame from
+   the bottom edge while the shot inside settles from a slight zoom, and the
+   live dot pulses a few times. The frame keeps its hairline: the clip ends
+   two pixels outside the box, beyond the 1px ring, before it lets go. */
+@media (prefers-reduced-motion: no-preference) {
+  .grid:not([data-inview]) .frame {
+    clip-path: inset(100% 0 0 0 round var(--radius-action));
+  }
+  .grid[data-inview] .frame {
+    animation: frame-grow 1.2s var(--ease-expo)
+      calc(var(--reveal-delay) + 0.15s) backwards;
+  }
+  .grid[data-inview] .shot {
+    animation: shot-settle 1.6s var(--ease-expo)
+      calc(var(--reveal-delay) + 0.15s) backwards;
+  }
+  /* Six pulses, then the dot holds still — nothing on the page animates
+     forever, so the compositor goes quiet once the page has settled. */
+  .grid[data-inview] .statusDot::after {
+    animation: live-pulse 1.8s var(--ease-out) 0.8s 6;
+  }
+}
+
+@keyframes frame-grow {
+  from {
+    clip-path: inset(100% 0 0 0 round var(--radius-action));
+  }
+  to {
+    clip-path: inset(-2px round calc(var(--radius-action) + 2px));
+  }
+}
+
+@keyframes shot-settle {
+  from {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes live-pulse {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3.2);
+  }
 }
 
 /* Desktop: copy stacks down columns 1–5 while the media spans all three rows
