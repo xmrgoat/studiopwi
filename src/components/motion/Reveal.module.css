@@ -2,20 +2,59 @@
 
    The hidden state only exists when the user accepts motion. Under
    prefers-reduced-motion the element renders at its final state with no
-   transition, so content is never left invisible if the observer never runs
-   (JS disabled, hydration error, bot without IntersectionObserver). */
+   animation, so content is never left invisible if the observer never runs
+   (JS disabled, hydration error, bot without IntersectionObserver).
+
+   An animation rather than a transition: it leaves the element's `transition`
+   free for its own hover states (the service cards lift), and with fill-mode
+   `backwards` nothing lingers on the element once it has played.
+
+   Only transform and opacity move here, so the entrance runs on the
+   compositor; the heading wipe below is the one clip-path, and it plays once. */
+
+.reveal {
+  --reveal-delay: calc(var(--reveal-order, 0) * var(--stagger));
+}
 
 @media (prefers-reduced-motion: no-preference) {
-  .reveal {
+  .reveal:not([data-inview]) {
     opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity var(--duration-reveal) var(--ease-out),
-      transform var(--duration-reveal) var(--ease-out);
+    transform: translateY(var(--motion-rise));
   }
 
-  .visible {
-    opacity: 1;
+  .reveal[data-inview] {
+    animation: reveal-rise var(--duration-reveal) var(--ease-out)
+      var(--reveal-delay) backwards;
+  }
+
+  /* Section headings lift out from behind their own top edge — a curtain
+     drawn down over the block's rise, a beat behind it. */
+  .reveal:not([data-inview]) h2 {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  .reveal[data-inview] h2 {
+    animation: heading-wipe var(--duration-hero) var(--ease-expo)
+      calc(var(--reveal-delay) + 0.1s) backwards;
+  }
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise));
+  }
+}
+
+/* Ends on a negative inset, not inset(0): the jump to clip-path: none when the
+   animation lets go is then invisible, even for accents above the caps. */
+@keyframes heading-wipe {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(0.35em);
+  }
+  to {
+    clip-path: inset(-0.25em);
     transform: none;
   }
 }
