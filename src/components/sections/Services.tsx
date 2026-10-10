@@ -74,7 +74,12 @@ export default function Services() {
 
       <ul className={`grid ${styles.careCards}`}>
         {services.care.plans.map((plan, i) => (
-          <Reveal as="li" key={plan.id} order={i} className={styles.careCard}>
+          <Reveal
+            as="li"
+            key={plan.id}
+            order={i}
+            className={plan.featured ? `${styles.careCard} ${styles.featured}` : styles.careCard}
+          >
             <h4 className={styles.careTitle}>{plan.title}</h4>
             <p className={styles.carePrice}>
               {chf(plan.price)}
