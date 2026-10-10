@@ -88,6 +88,21 @@
   text-transform: uppercase;
 }
 
+.price {
+  margin: 0;
+  font-size: var(--fs-price);
+  font-weight: var(--fw-display);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.payment {
+  margin: var(--space-1) 0 var(--space-4);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
 .description {
   margin: 0 0 var(--space-5);
   font-size: var(--fs-body);
@@ -148,9 +163,94 @@
   text-transform: uppercase;
 }
 
+/* ── Monthly care plans ──────────────────────────────── */
+
+.careHeader {
+  row-gap: var(--space-3);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-6);
+}
+
+.careHeadline {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.careIntro {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+.careCards {
+  list-style: none;
+  padding: 0;
+  margin-block: 0;
+  row-gap: var(--space-4);
+  align-items: stretch;
+}
+
+.careCard {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-action);
+}
+
+.careTitle {
+  margin: 0;
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.carePrice {
+  margin: 0;
+  font-size: var(--fs-price);
+  font-weight: var(--fw-display);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.carePeriod {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+}
+
+.careCard .features {
+  margin-bottom: 0;
+}
+
 @media (min-width: 769px) {
   .card {
     padding: var(--space-6);
+  }
+  .careHeadline {
+    grid-column: 1 / span 7;
+  }
+  .careIntro {
+    grid-column: 1 / span 7;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .careCard {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: 1025px) {
+  .careCard {
+    grid-column: span 4;
   }
 }
 
