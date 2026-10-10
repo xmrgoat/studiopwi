@@ -40,6 +40,11 @@
 }
 
 .step {
+  /* The tile's size, shared with the desktop connector that runs from its
+     right edge at half its height. */
+  --numeral-w: 88px;
+  --numeral-h: 80px;
+  position: relative;
   grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
@@ -51,8 +56,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 88px;
-  height: 80px;
+  width: var(--numeral-w);
+  height: var(--numeral-h);
   border-radius: var(--radius-action);
   background: var(--color-text);
   color: var(--color-bg);
@@ -89,9 +94,11 @@
 }
 
 @media (max-width: 768px) {
+  .step {
+    --numeral-w: 56px;
+    --numeral-h: 56px;
+  }
   .numeral {
-    width: 56px;
-    height: 56px;
     font-size: 2rem;
   }
 }
@@ -125,5 +132,58 @@
   }
   .cta {
     grid-column: 1 / span 4;
+  }
+}
+
+/* ── Entrance ────────────────────────────────────────── */
+
+/* Each tile springs in as its step arrives. On desktop, where the three
+   steps sit in one row, a line then draws from each tile to the next, and
+   the steps are paced one --step-beat apart so every tile lands as the line
+   reaches it: the process reads as a path. Stacked layouts keep the plain
+   stagger, so no step waits on one the reader hasn't reached. */
+@media (prefers-reduced-motion: no-preference) {
+  .step[data-inview] .numeral {
+    animation: tile-pop 0.7s var(--ease-spring)
+      calc(var(--reveal-delay) + 0.05s) backwards;
+  }
+  .step[data-inview]::after {
+    animation: line-draw var(--duration-draw) var(--ease-smooth)
+      calc(var(--reveal-delay) + 0.1s) backwards;
+  }
+}
+
+@media (min-width: 1025px) {
+  .steps {
+    --step-beat: 0.45s;
+  }
+  /* Two classes, so it outranks the reveal's own --reveal-delay. */
+  .steps .step {
+    --reveal-delay: calc(var(--reveal-order, 0) * var(--step-beat));
+  }
+  .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--numeral-h) / 2 - 1px);
+    left: calc(var(--numeral-w) + var(--space-3));
+    /* Through the column gap, stopping short of the next tile. */
+    right: calc(var(--space-3) - var(--grid-gap));
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--color-line-strong);
+    transform-origin: left;
+  }
+}
+
+@keyframes tile-pop {
+  from {
+    scale: 0.5;
+    rotate: -12deg;
+  }
+}
+
+@keyframes line-draw {
+  from {
+    transform: scaleX(0);
   }
 }
