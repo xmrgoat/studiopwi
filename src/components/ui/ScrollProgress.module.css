@@ -11,3 +11,20 @@
   pointer-events: none;
   will-change: transform;
 }
+
+/* Scroll-driven where supported: the bar's scale is bound to the page's
+   scroll progress, so no script runs on scroll and the update happens off
+   the main thread. ScrollProgress.tsx skips its listener in this case. */
+@supports (animation-timeline: scroll()) {
+  .bar {
+    will-change: auto;
+    animation: progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes progress {
+  to {
+    transform: scaleX(1);
+  }
+}
