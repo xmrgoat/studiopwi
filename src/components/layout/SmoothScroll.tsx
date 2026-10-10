@@ -5,11 +5,36 @@ import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { prefersReducedMotion } from "@/lib/motion";
 
+// No header offset in here: html carries scroll-padding-top (base.css), which
+// scrollIntoView and Lenis's element targets both honour. An offset applied in
+// script as well would double it — and would still lose to the router, whose
+// own hash scroll lands after this component's effects.
+
+// getElementById rather than querySelector(hash): a fragment is not a valid
+// CSS selector in general ("#1-intro" throws), and it comes from the URL.
+function targetOf(hash: string): HTMLElement | null {
+  if (hash.length < 2) return null;
+  return document.getElementById(decodeURIComponent(hash.slice(1)));
+}
+
 export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
+    // A URL carrying a fragment — a shared /#contact link, a Google "jump to"
+    // result, or the /#services links the legal pages' nav points at — must
+    // land on its section. This reset used to run unconditionally, so it
+    // threw every deep link back to the top of the page.
+    const el = targetOf(window.location.hash);
+    if (el) {
+      // Native even when Lenis runs: after a client-side navigation Lenis
+      // still holds the previous page's scroll position and resolves element
+      // targets against it, landing short. It re-syncs from the native scroll
+      // event this fires.
+      el.scrollIntoView();
+      return;
+    }
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
     } else {
@@ -27,27 +52,18 @@ export default function SmoothScroll() {
       !prefersReducedMotion() &&
       window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
 
-    // Anchor smooth-scroll works with or without Lenis. The header is fixed
-    // (104px in the redesign), so offset the target either way.
-    const HEADER_OFFSET = 104;
+    // Anchor smooth-scroll works with or without Lenis.
     const onAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       const anchor = target?.closest<HTMLAnchorElement>('a[href^="#"]');
       if (!anchor) return;
-      const href = anchor.getAttribute("href");
-      if (!href || href === "#") return;
-      const el = document.querySelector(href);
+      const el = targetOf(anchor.getAttribute("href") ?? "");
       if (!el) return;
       e.preventDefault();
       if (lenisRef.current) {
-        lenisRef.current.scrollTo(el as HTMLElement, { offset: -HEADER_OFFSET });
+        lenisRef.current.scrollTo(el);
       } else {
-        const top =
-          (el as HTMLElement).getBoundingClientRect().top +
-          window.scrollY -
-          HEADER_OFFSET;
-        window.scrollTo({
-          top,
+        el.scrollIntoView({
           behavior: prefersReducedMotion() ? "auto" : "smooth",
         });
       }
