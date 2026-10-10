@@ -57,8 +57,10 @@
   white-space: nowrap;
 }
 
-/* Underline grows from the left on hover — the design gives the links no
-   hover state, so this is the minimum needed to signal interactivity. */
+/* Underline grows in from the left on hover and leaves to the right — the
+   origin flips with the state, so the line passes through rather than
+   retracting. The design gives the links no hover state; this is the
+   minimum needed to signal interactivity. */
 .navLink::after {
   content: "";
   position: absolute;
@@ -68,11 +70,12 @@
   height: 2px;
   background: var(--color-text);
   transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: right;
   transition: transform var(--duration-fast) var(--ease-out);
 }
 .navLink:hover::after {
   transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* ── Burger ──────────────────────────────────────────── */
@@ -161,6 +164,42 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   text-decoration: none;
+}
+
+/* ── Entrance ────────────────────────────────────────── */
+
+/* The wordmark stays put (it is the first paint); the links drop in one beat
+   apart. The drawer links replay the cascade each time the drawer opens. */
+@media (prefers-reduced-motion: no-preference) {
+  .navLink,
+  .drawerOpen .drawerLink {
+    animation: header-in var(--duration-reveal) var(--ease-out) backwards;
+  }
+  .navLink {
+    animation-delay: 0.2s;
+  }
+  .navLink:nth-child(2) {
+    animation-delay: calc(0.2s + var(--stagger));
+  }
+  .navLink:nth-child(3) {
+    animation-delay: calc(0.2s + var(--stagger) * 2);
+  }
+  .drawerOpen .drawerLink {
+    animation-delay: 0.1s;
+  }
+  .drawerOpen .drawerLink:nth-child(2) {
+    animation-delay: calc(0.1s + var(--stagger));
+  }
+  .drawerOpen .drawerLink:nth-child(3) {
+    animation-delay: calc(0.1s + var(--stagger) * 2);
+  }
+}
+
+@keyframes header-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--motion-rise-sm)));
+  }
 }
 
 @media (min-width: 1024px) {
