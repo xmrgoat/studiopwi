@@ -34,6 +34,15 @@
   --color-action-text:      var(--color-text);
   --shadow-action:          0 4px 16px -2px color-mix(in srgb, var(--color-accent) 35%, transparent);
   --shadow-action-outline:  0 4px 16px -2px color-mix(in srgb, var(--color-text) 35%, transparent);
+  /* Hovered service card — a soft ink drop under the lift. */
+  --shadow-lift:            0 20px 40px -20px color-mix(in srgb, var(--color-text) 45%, transparent);
+
+  /* ── Motion surfaces ─────────────────────────────────── */
+  /* The sheen that sweeps across a primary CTA. */
+  --color-glint:            color-mix(in srgb, white 60%, transparent);
+  /* Highlighter band behind the why-us emphasis. A fill under ink text, so
+     the accent rule holds: ink on the band stays above 4.5:1. */
+  --color-marker:           color-mix(in oklch, var(--color-accent) 45%, var(--color-bg));
 
   /* ── Legacy aliases (module files reference these) ───── */
   --color-brand:            var(--color-accent);
@@ -121,6 +130,16 @@
   --duration-fast: 0.3s;
   --duration-ui: 0.5s;
   --duration-reveal: 0.9s;
+  --duration-hero: 1.1s;
+  --duration-draw: 0.5s;
+  /* Delay between siblings entering together; the tight beat is for small
+     repeated marks (checks, FAQ rows). */
+  --stagger: 80ms;
+  --stagger-tight: 60ms;
+  /* Travel distances — every entrance rises, nothing slides sideways. */
+  --motion-rise: 24px;
+  --motion-rise-sm: 12px;
+  --motion-lift: 6px;
 
   /* --- Radii (Swiss: small or none) --- */
   --radius-none: 0;
