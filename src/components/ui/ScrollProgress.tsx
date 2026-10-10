@@ -10,6 +10,10 @@ export default function ScrollProgress() {
     const bar = barRef.current;
     if (!bar) return;
 
+    // Where CSS can tie an animation to the scroll position, the stylesheet
+    // drives the bar on the compositor and this listener never attaches.
+    if (CSS.supports("animation-timeline: scroll()")) return;
+
     // scrollHeight is a layout-flushing read — keep it out of the scroll
     // handler. Cache the scrollable total and only recompute on resize.
     let total = 0;
