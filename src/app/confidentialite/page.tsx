@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Légal — Données personnelles"
       title="Politique de confidentialité"
-      updated="16 mai 2026"
+      updated="10 octobre 2026"
     >
       <p>
         La présente politique de confidentialité décrit comment Studio PWI (ci-après
@@ -35,8 +35,8 @@ export default function PrivacyPage() {
       <address>
         <strong>Studio PWI</strong>
         <br />
-        Rue de la Treille 2<br />
-        2000 Neuchâtel — Suisse
+        Route des Addoz 52<br />
+        2017 Boudry — Suisse
         <br />
         <a href="mailto:contact@studiopwi.com">contact@studiopwi.com</a>
       </address>
@@ -264,7 +264,7 @@ export default function PrivacyPage() {
         <br />
         <a href="mailto:contact@studiopwi.com">contact@studiopwi.com</a>
         <br />
-        Rue de la Treille 2, 2000 Neuchâtel, Suisse
+        Route des Addoz 52, 2017 Boudry, Suisse
       </address>
     </LegalPage>
   );
