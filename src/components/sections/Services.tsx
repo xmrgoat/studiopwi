@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { services, chf } from "@/content/services";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
@@ -5,6 +6,10 @@ import styles from "./Services.module.css";
 
 // Server component. The three tiers are a list — screen readers announce the
 // count, which is useful context when comparing offers.
+//
+// Each feature row carries its index as --i, which the stylesheet uses to
+// tick the checks in one after another once the card is in view.
+const indexed = (i: number) => ({ "--i": i }) as CSSProperties;
 export default function Services() {
   return (
     <section className={`section ${styles.section}`} id="services">
@@ -32,8 +37,8 @@ export default function Services() {
             <p className={styles.description}>{tier.description}</p>
 
             <ul className={styles.features}>
-              {tier.features.map((feature) => (
-                <li key={feature} className={styles.feature}>
+              {tier.features.map((feature, j) => (
+                <li key={feature} className={styles.feature} style={indexed(j)}>
                   {/* The exported check, drawn as a mask so it can take the
                       card's text colour — ink on the plain cards, accent on
                       the inverted one — from one asset. */}
@@ -76,8 +81,8 @@ export default function Services() {
               <span className={styles.carePeriod}> / mois</span>
             </p>
             <ul className={styles.features}>
-              {plan.features.map((feature) => (
-                <li key={feature} className={styles.feature}>
+              {plan.features.map((feature, j) => (
+                <li key={feature} className={styles.feature} style={indexed(j)}>
                   <span className={styles.check} aria-hidden="true" />
                   <span>{feature}</span>
                 </li>
