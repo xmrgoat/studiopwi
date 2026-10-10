@@ -89,7 +89,8 @@ export function GET() {
   lines.push(services.care.intro);
   lines.push("");
   for (const plan of services.care.plans as readonly CarePlan[]) {
-    lines.push(`- **${plan.title}** — ${chf(plan.price)} / mois : ${plan.features.join(" ; ")}`);
+    const featured = plan.featured ? ` *(${services.featuredBadge})*` : "";
+    lines.push(`- **${plan.title}**${featured} — ${chf(plan.price)} / mois : ${plan.features.join(" ; ")}`);
   }
   lines.push("");
   lines.push(services.care.footnote);
