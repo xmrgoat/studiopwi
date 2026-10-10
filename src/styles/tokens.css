@@ -57,6 +57,8 @@
   --fs-small:   clamp(0.875rem, 1.1vw, 1rem);
   --fs-eyebrow: 0.875rem;
   --fs-numeral: clamp(2rem, 4.45vw, 4rem);
+  /* Service-card prices: a step under --fs-h3 so the tier name still leads. */
+  --fs-price:   clamp(1.5rem, 2.5vw, 2.25rem);
 
   --lh-display: 1.22;
   --lh-tight: 1.05;
