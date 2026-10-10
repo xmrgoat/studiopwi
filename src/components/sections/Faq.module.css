@@ -1,0 +1,122 @@
+/* FAQ — same header pattern as Notre démarche: uppercase title, intro below,
+   then a ruled list of native <details> rows across 8 of the 12 columns. */
+
+.section {
+  background: var(--color-bg);
+}
+
+.header {
+  align-items: start;
+  row-gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.title {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.intro {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+}
+
+.list {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--color-line-strong);
+}
+
+.item {
+  border-bottom: 1px solid var(--color-line-strong);
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Drop the default disclosure triangle; .icon replaces it. */
+.question::-webkit-details-marker {
+  display: none;
+}
+
+.question:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.questionText {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+  text-transform: none;
+}
+
+/* A plus drawn from two bars; the vertical one folds away when open. */
+.icon {
+  position: relative;
+  flex: none;
+  width: var(--space-4);
+  height: var(--space-4);
+}
+
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.icon::after {
+  transform: rotate(90deg);
+}
+
+.item[open] .icon::after {
+  transform: rotate(0deg);
+}
+
+.answer {
+  margin: 0;
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-4);
+  max-width: 70ch;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon::before,
+  .icon::after {
+    transition: none;
+  }
+}
+
+@media (min-width: 1025px) {
+  .title {
+    grid-column: 1 / span 7;
+  }
+  .intro {
+    grid-column: 1 / span 7;
+  }
+  .list {
+    grid-column: 1 / span 8;
+  }
+}
