@@ -175,6 +175,25 @@ export function LocalBusinessLd() {
   return <Ld data={data} />;
 }
 
+// Mirrors the FAQ section question for question — FAQPage markup is only
+// valid for Q&A visible on the page. Google limits FAQ rich results to a few
+// authoritative sites, so the value here is for AI answer engines.
+export function FaqLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${SITE_URL}/#faq`,
+    inLanguage: "fr-CH",
+    isPartOf: { "@id": WEBPAGE_ID },
+    mainEntity: site.faq.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+  return <Ld data={data} />;
+}
+
 export function WebPageLd() {
   const data = {
     "@context": "https://schema.org",
