@@ -72,7 +72,7 @@ Files under `src/app/` that aren't pages or layouts are Next.js metadata-route c
 | `/apple-icon` (180×180) | `src/app/apple-icon.tsx` | iOS touch icon via `next/og` |
 | `/opengraph-image` (1200×630) | `src/app/opengraph-image.tsx` | Generated OG card via `next/og` |
 | `/twitter-image` | `src/app/twitter-image.tsx` | Re-exports `opengraph-image` |
-| `/llms.txt` | `src/app/llms.txt/route.ts` | French + English brief for AI answer engines. **Publishes no prices** and tells assistants not to infer any — nothing on the site shows a figure. |
+| `/llms.txt` | `src/app/llms.txt/route.ts` | French + English brief for AI answer engines. Publishes the current prices from `services.ts` and flags the pre-October-2026 figures as outdated. |
 | `/page.md` | `src/app/page.md/route.ts` | Markdown mirror of the homepage (carries `X-Robots-Tag: noindex`) |
 
 JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx) (four typed components: `OrganizationLd`, `WebSiteLd`, `LocalBusinessLd`, `WebPageLd`) and is mounted in two places — sitewide schema in `layout.tsx`, page-level schema in `page.tsx`. The components share `@id` references so Google can stitch the graph; preserve that pattern when adding new schema types.
@@ -122,7 +122,7 @@ The user wants **a commit and push to `origin/main` after every individual file 
 
 ## Things deliberately not done (don't "fix" these)
 
-- **No prices anywhere.** The redesigned service cards show no figures, so `services.ts` carries none and `OffersLd` was removed. Offer price markup is only permitted for prices visible on the page. Don't re-add prices to structured data without also putting them on the page.
+- **Prices are shown, and must stay in lockstep.** Since the October 2026 price list, the service cards show fixed prices (Lancement CHF 1'200, Croissance 2'600, Business 5'200) plus the monthly Care plans, all from `services.ts`. The Offer JSON-LD, llms.txt and page.md read the same numbers. Offer price markup is only permitted for prices visible on the page — never put a price in structured data that the cards don't show. The à la carte list stays off the site by choice.
 - **No FAQ.** The section, `site.faq` and `FaqLd` are all removed pending a new FAQ. Don't re-add `FaqLd` before the questions are back on the page.
 - All three service tiers share the CTA label "Créer ma présence en ligne" — that is what the Figma says (the component default was never overridden per card), not a copy/paste slip.
 - `site.footer.legal` keeps a **Conditions générales** link the Figma omits, so `/conditions-generales` isn't orphaned.
