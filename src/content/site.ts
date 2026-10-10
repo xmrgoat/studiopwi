@@ -11,6 +11,9 @@ export const site = {
   address: "Route des Addoz 52 · 2017 Boudry · Suisse",
   email: "contact@studiopwi.com",
   locale: "fr",
+  // Named the same way everywhere (JSON-LD, imprint, AI files): search and AI
+  // engines match the person across the site and LinkedIn by this string.
+  founder: "Jean-Pierre Médard-Garza",
 
   // Homepage <title> (before the " · Studio PWI" suffix) and meta description,
   // shared by the OG/Twitter cards and the WebPage JSON-LD. Not visible copy,
