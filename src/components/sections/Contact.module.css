@@ -81,3 +81,24 @@
     grid-column: 7 / span 6;
   }
 }
+
+/* ── Entrance ────────────────────────────────────────── */
+
+/* The trust-signal checks tick in after the copy, one beat apart — the same
+   gesture as the service cards. */
+@media (prefers-reduced-motion: no-preference) {
+  .copy[data-inview] .check {
+    animation: check-tick 0.5s var(--ease-spring)
+      calc(var(--reveal-delay) + 0.45s) backwards;
+  }
+  .copy[data-inview] .signal:nth-child(2) .check {
+    animation-delay: calc(var(--reveal-delay) + 0.45s + var(--stagger));
+  }
+}
+
+@keyframes check-tick {
+  from {
+    scale: 0;
+    rotate: -30deg;
+  }
+}
