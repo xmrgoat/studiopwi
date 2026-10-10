@@ -13,13 +13,13 @@ export default function TermsPage() {
     <LegalPage
       eyebrow="Légal — CGU"
       title="Conditions générales d'utilisation"
-      updated="16 mai 2026"
+      updated="10 octobre 2026"
     >
       <p>
         Les présentes Conditions générales d&apos;utilisation (ci-après «&nbsp;CGU&nbsp;»)
         régissent l&apos;accès et l&apos;utilisation du site web{" "}
         <strong>studiopwi.com</strong> (ci-après «&nbsp;le Site&nbsp;»), exploité par
-        Studio PWI, dont le siège est à Rue de la Treille 2, 2000 Neuchâtel,
+        Studio PWI, dont le siège est à la Route des Addoz 52, 2017 Boudry,
         Suisse.
       </p>
 
@@ -204,7 +204,7 @@ export default function TermsPage() {
       <address>
         <strong>Studio PWI</strong>
         <br />
-        Rue de la Treille 2, 2000 Neuchâtel, Suisse
+        Route des Addoz 52, 2017 Boudry, Suisse
         <br />
         <a href="mailto:contact@studiopwi.com">contact@studiopwi.com</a>
       </address>
