@@ -1,7 +1,7 @@
 import { site } from "@/content/site";
 import { services, type Service } from "@/content/services";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.studiopwi.com";
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
