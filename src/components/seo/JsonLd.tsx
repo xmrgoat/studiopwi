@@ -7,6 +7,15 @@ const ORG_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const BUSINESS_ID = `${SITE_URL}/#business`;
 const WEBPAGE_ID = `${SITE_URL}/#webpage`;
+const FOUNDER_ID = `${SITE_URL}/#founder`;
+
+const FOUNDER = {
+  "@type": "Person",
+  "@id": FOUNDER_ID,
+  name: site.founder,
+  jobTitle: "Fondateur",
+  worksFor: { "@id": ORG_ID },
+} as const;
 
 const ADDRESS = {
   "@type": "PostalAddress",
@@ -80,7 +89,7 @@ export function OrganizationLd() {
       areaServed: "CH",
     },
     address: ADDRESS,
-    founder: { "@type": "Person", name: "Riff" },
+    founder: FOUNDER,
     sameAs: SAME_AS,
     areaServed: AREA_SERVED,
     knowsAbout: KNOWS_ABOUT,
@@ -117,7 +126,7 @@ export function LocalBusinessLd() {
     email: site.email,
     sameAs: SAME_AS,
     areaServed: AREA_SERVED,
-    founder: { "@type": "Person", name: "Riff" },
+    founder: { "@id": FOUNDER_ID },
     parentOrganization: { "@id": ORG_ID },
     knowsAbout: KNOWS_ABOUT,
     knowsLanguage: "fr",
