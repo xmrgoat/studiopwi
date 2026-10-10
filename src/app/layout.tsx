@@ -32,7 +32,7 @@ const HOME_TITLE = `${site.seo.title} · ${site.name}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.studiopwi.com",
   ),
   title: {
     default: HOME_TITLE,
