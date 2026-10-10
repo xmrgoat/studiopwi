@@ -27,7 +27,7 @@ export default function LegalPage({ eyebrow, title, updated, children }: Props) 
           <div className={styles.body}>{children}</div>
         </div>
       </main>
-      <Footer />
+      <Footer anchorBase="/" />
     </>
   );
 }
