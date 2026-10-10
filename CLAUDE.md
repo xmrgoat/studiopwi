@@ -33,15 +33,19 @@ Sections import from these files; copy changes never go in component JSX. **The 
 
 The site is **French (fr-CH) targeting Swiss landscapers**. The `<html lang>`, metadata copy, JSON-LD `inLanguage`, and content files are all in French. Don't mix languages.
 
-### Motion: Lenis only — GSAP is gone
+### Motion: CSS only, plus Lenis — GSAP is gone
 
-The redesign removed every scroll-linked effect (no pinning, scrub or
-parallax), and with it every reason to ship GSAP. Do not reintroduce it for a
-one-shot fade.
+The redesign removed every script-driven scroll effect (no pinning, scrub or
+parallax in JS), and with it every reason to ship GSAP. Do not reintroduce it,
+or any animation library — the October 2026 motion pass is pure CSS and cost
+0.6 kB of JS.
 
 - **Lenis** (smooth scrolling) is mounted once in [`src/components/layout/SmoothScroll.tsx`](src/components/layout/SmoothScroll.tsx) from the root layout. It owns `window` scroll, is driven by a **plain `requestAnimationFrame` loop**, and only runs for fine-pointer viewports ≥1024px — on touch it is pure main-thread tax. It also handles all `a[href^="#"]` anchor scrolling, offset by the 104px header.
-- **Section reveals** use [`src/components/motion/Reveal.tsx`](src/components/motion/Reveal.tsx): one lazily-created `IntersectionObserver` shared by every instance, plus a CSS transition. Wrap a block, optionally pass `order` to stagger.
-- The hidden state in `Reveal.module.css` lives **inside** a `prefers-reduced-motion: no-preference` block. That is deliberate: if the observer never runs, content stays visible instead of being stranded at `opacity: 0`.
+- **Section reveals** use [`src/components/motion/Reveal.tsx`](src/components/motion/Reveal.tsx): one lazily-created `IntersectionObserver` shared by every instance, plus a CSS **animation** (not a transition, so elements keep `transition` free for hover states). Wrap a block, optionally pass `order` to stagger. On entry the element gets a `data-inview` attribute and exposes `--reveal-delay`; section stylesheets choreograph children off `[data-inview]` (checks ticking in, lines drawing, the FAQ rows), and rows that need an index get `--i` inline. Every `h2` inside a Reveal gets a wipe.
+- The hidden state in `Reveal.module.css` lives **inside** a `prefers-reduced-motion: no-preference` block. That is deliberate: if the observer never runs, content stays visible instead of being stranded at `opacity: 0`. Every new animation follows the same rule.
+- **Never fade the hero `<h1>`.** It is the LCP element; Chrome doesn't count it as painted while its opacity is 0, and on a throttled phone the next frame waits for hydration. The old fade-in cost ~1 s of mobile LCP (≈2.0 s → ≈1.0 s once it became rise-only). Transform-only on anything above the fold that could be LCP.
+- Rules the motion pass follows: animate `transform`/`opacity` (and the individual `translate`/`scale`/`rotate` properties, which compose with a running `transform` animation); clip-path, background-size and height only as one-shot or on a click; **no infinite animations** (the live dot and scroll cue stop after a few cycles); hover effects only under `@media (hover: hover)`.
+- Two scroll-linked effects exist, both CSS scroll-driven animations (`animation-timeline`) behind `@supports`, which run on the compositor: the hero photo's drift and the scroll progress bar (its JS listener only attaches where the CSS isn't supported).
 - [`src/lib/motion.ts`](src/lib/motion.ts) is now just `prefersReducedMotion()` / `watchReducedMotion()`. The `gsap` package is still in `package.json` but **nothing imports it** — removing it dropped the homepage First Load JS from 162 kB to 117 kB. Uninstalling it is safe.
 
 ### CSS Modules + design tokens — no Tailwind
