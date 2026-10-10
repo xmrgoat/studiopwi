@@ -90,6 +90,56 @@ export const site = {
     cta: { label: "Demander un devis", href: "#contact" },
   },
 
+  // Answers the buyer questions ChatGPT and Perplexity found unanswered in the
+  // October 2026 AI-visibility test (editing, hosting, ownership, languages).
+  // Facts follow the October 2026 price list; keep them in step with it.
+  faq: {
+    title: "Questions fréquentes",
+    intro: "Ce que les paysagistes nous demandent avant de démarrer.",
+    items: [
+      {
+        question: "Puis-je modifier mon site moi-même ?",
+        answer:
+          "Non : pour garder votre site propre et rapide, les modifications passent par nous. Elles sont incluses dans les forfaits de maintenance (1 à 5 par mois) ; sinon, chaque demande est devisée à prix fixe, de CHF 80 à 250.",
+      },
+      {
+        question: "Qui s'occupe de l'hébergement ?",
+        answer:
+          "Votre site est hébergé chez Vercel ou Infomaniak, des hébergeurs reconnus. L'hébergement est à votre nom ; nous le configurons et le gérons pour vous.",
+      },
+      {
+        question: "Et le nom de domaine ?",
+        answer:
+          "Nous l'enregistrons à votre nom, au prix coûtant, plus CHF 50 de mise en place.",
+      },
+      {
+        question: "À qui appartient le site ?",
+        answer:
+          "À vous. Le site et le nom de domaine vous appartiennent ; nous nous occupons de leur gestion technique.",
+      },
+      {
+        question: "Mon site peut-il être en plusieurs langues ?",
+        answer:
+          "Oui : 1 langue avec l'offre Lancement, jusqu'à 2 avec Croissance et jusqu'à 3 avec Entreprise.",
+      },
+      {
+        question: "Qui rédige les textes ?",
+        answer:
+          "Vous nous les fournissez, ou nous les rédigeons pour CHF 100 par page. Avec l'offre Entreprise, la rédaction est incluse.",
+      },
+      {
+        question: "Comment se passe le paiement ?",
+        answer:
+          "Les prix sont fixes, sans facturation à l'heure : un acompte au démarrage (25 à 45 % selon l'offre), le solde à la livraison. Les délais courent dès réception de l'acompte et de votre contenu.",
+      },
+      {
+        question: "Travaillez-vous hors de Suisse ?",
+        answer:
+          "Oui. Basés dans le canton de Neuchâtel, nous travaillons aussi à distance avec des paysagistes à l'étranger, en français et en anglais.",
+      },
+    ],
+  },
+
   contact: {
     title: "Contactez-nous",
     lead:
