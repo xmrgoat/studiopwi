@@ -56,7 +56,8 @@
 }
 
 @media (hover: hover) {
-  .card:hover {
+  .card:hover,
+  .careCard:hover {
     translate: 0 calc(-1 * var(--motion-lift));
     box-shadow: var(--shadow-lift);
   }
@@ -218,6 +219,10 @@
   padding: var(--space-4);
   border: 1px solid var(--color-line-strong);
   border-radius: var(--radius-action);
+  /* Same lift as the tier cards (see .card). */
+  transition:
+    translate var(--duration-ui) var(--ease-out),
+    box-shadow var(--duration-ui) var(--ease-out);
 }
 
 .careTitle {
