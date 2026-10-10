@@ -6,8 +6,9 @@ import CaseStudies from "@/components/sections/CaseStudies";
 import Services from "@/components/sections/Services";
 import WhyUs from "@/components/sections/WhyUs";
 import Process from "@/components/sections/Process";
+import Faq from "@/components/sections/Faq";
 import Contact from "@/components/sections/Contact";
-import { LocalBusinessLd, WebPageLd } from "@/components/seo/JsonLd";
+import { FaqLd, LocalBusinessLd, WebPageLd } from "@/components/seo/JsonLd";
 
 // Sections are plain imports again. They were wrapped in next/dynamic to keep
 // each one's GSAP ScrollTrigger setup off the initial hydration pass, which was
@@ -20,6 +21,7 @@ export default function HomePage() {
     <>
       <WebPageLd />
       <LocalBusinessLd />
+      <FaqLd />
       <ScrollProgress />
       <Header />
       <main id="main">
@@ -28,6 +30,7 @@ export default function HomePage() {
         <Services />
         <WhyUs />
         <Process />
+        <Faq />
         <Contact />
       </main>
       <Footer />
