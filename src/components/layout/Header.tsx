@@ -2,12 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { site } from "@/content/site";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const ref = useRef<HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  // The nav targets are homepage sections. Off the homepage a bare "#services"
+  // points at nothing on the current page, so route back to "/#services".
+  const onHome = usePathname() === "/";
+  const resolve = (href: string) =>
+    !onHome && href.startsWith("#") ? `/${href}` : href;
 
   useEffect(() => {
     const header = ref.current;
@@ -79,7 +85,7 @@ export default function Header() {
 
         <nav className={styles.nav} aria-label="Primary">
           {site.nav.map((item) => (
-            <Link key={item.href} href={item.href} className={styles.navLink}>
+            <Link key={item.href} href={resolve(item.href)} className={styles.navLink}>
               {item.label}
             </Link>
           ))}
@@ -118,7 +124,7 @@ export default function Header() {
       >
         <nav className={styles.drawerNav} aria-label="Mobile primary">
           {site.nav.map((item) => (
-            <Link key={item.href} href={item.href} className={styles.drawerLink}>
+            <Link key={item.href} href={resolve(item.href)} className={styles.drawerLink}>
               {item.label}
             </Link>
           ))}
