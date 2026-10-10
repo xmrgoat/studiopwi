@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { services, type Service } from "@/content/services";
+import { services, chf, type Service, type CarePlan } from "@/content/services";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.studiopwi.com";
 
@@ -43,6 +43,8 @@ const KNOWS_ABOUT = [
   "Référencement local (SEO)",
   "Paysagisme",
 ] as const;
+
+const TIER_PRICES = (services.tiers as readonly Service[]).map((t) => t.price);
 
 function serialize(data: object): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -109,9 +111,8 @@ export function LocalBusinessLd() {
     description: DESCRIPTION,
     url: SITE_URL,
     image: `${SITE_URL}/opengraph-image`,
-    // No priceRange: the redesign removed every figure from the page (see
-    // services.ts) — publishing one here would contradict the visible content,
-    // which is the same reason OffersLd was removed.
+    // Prices are visible on the service cards, so the range may be stated.
+    priceRange: `${chf(Math.min(...TIER_PRICES))} – ${chf(Math.max(...TIER_PRICES))}`,
     address: ADDRESS,
     email: site.email,
     sameAs: SAME_AS,
@@ -120,25 +121,46 @@ export function LocalBusinessLd() {
     parentOrganization: { "@id": ORG_ID },
     knowsAbout: KNOWS_ABOUT,
     knowsLanguage: "fr",
-    // What the studio sells, so search and AI answers can name the offers.
-    // Deliberately price-free: no figure appears on the page (see
-    // services.ts), and an Offer with no price makes no price claim — it is
-    // still valid schema.org, and feeds no price-bearing rich result.
+    // What the studio sells, so search and AI answers can name the offers
+    // and their prices. Every price here is shown on the page (#services) —
+    // Google requires Offer price markup to match the visible price.
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: services.headline,
-      itemListElement: (services.tiers as readonly Service[]).map((tier) => ({
-        "@type": "Offer",
-        url: `${SITE_URL}/#services`,
-        itemOffered: {
-          "@type": "Service",
-          name: `Offre ${tier.title} — site web pour paysagistes`,
-          description: tier.description,
-          serviceType: "Création de site web",
-          provider: { "@id": BUSINESS_ID },
-          areaServed: { "@type": "Country", name: "Switzerland" },
-        },
-      })),
+      itemListElement: [
+        ...(services.tiers as readonly Service[]).map((tier) => ({
+          "@type": "Offer",
+          url: `${SITE_URL}/#services`,
+          price: tier.price,
+          priceCurrency: "CHF",
+          itemOffered: {
+            "@type": "Service",
+            name: `Offre ${tier.title} — site web pour paysagistes`,
+            description: tier.description,
+            serviceType: "Création de site web",
+            provider: { "@id": BUSINESS_ID },
+            areaServed: { "@type": "Country", name: "Switzerland" },
+          },
+        })),
+        ...(services.care.plans as readonly CarePlan[]).map((plan) => ({
+          "@type": "Offer",
+          url: `${SITE_URL}/#services`,
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: plan.price,
+            priceCurrency: "CHF",
+            unitCode: "MON",
+            unitText: "mois",
+          },
+          itemOffered: {
+            "@type": "Service",
+            name: `${plan.title} — maintenance de site web`,
+            description: plan.features.join(" · "),
+            serviceType: "Maintenance de site web",
+            provider: { "@id": BUSINESS_ID },
+          },
+        })),
+      ],
     },
   };
   return <Ld data={data} />;
