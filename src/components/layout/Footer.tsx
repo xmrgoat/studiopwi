@@ -2,7 +2,10 @@ import Link from "next/link";
 import { site } from "@/content/site";
 import styles from "./Footer.module.css";
 
-export default function Footer() {
+// The nav targets are homepage sections. Pages other than the homepage pass
+// anchorBase="/" so "#services" routes back to "/#services" instead of
+// pointing at nothing on the current page.
+export default function Footer({ anchorBase = "" }: { anchorBase?: string }) {
   const { footer, name } = site;
   // Rendered at build time. Better than the Figma's literal "2025", which was
   // already a year out of date when this was built.
@@ -24,7 +27,10 @@ export default function Footer() {
             <ul className={styles.navList}>
               {footer.nav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className={styles.navLink}>
+                  <Link
+                    href={item.href.startsWith("#") ? anchorBase + item.href : item.href}
+                    className={styles.navLink}
+                  >
                     {item.label}
                   </Link>
                 </li>
