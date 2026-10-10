@@ -48,6 +48,18 @@
   border: 1px solid var(--color-text);
   border-radius: var(--radius-action);
   background: var(--color-bg);
+  /* `translate`, not `transform`: the reveal animates transform on this same
+     element, and the two properties compose instead of overwriting. */
+  transition:
+    translate var(--duration-ui) var(--ease-out),
+    box-shadow var(--duration-ui) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    translate: 0 calc(-1 * var(--motion-lift));
+    box-shadow: var(--shadow-lift);
+  }
 }
 
 /* Croissance inverts: ink ground, page-coloured text, accent CTA and checks. */
@@ -276,5 +288,52 @@
   }
   .card {
     grid-column: span 4;
+  }
+}
+
+/* ── Entrance ────────────────────────────────────────── */
+
+/* After a card rises: its price lifts in, the featured badge pops, and the
+   checks tick in one row after another (--i is set per row in Services.tsx).
+   The card itself is invisible until it enters, so the children need no
+   hidden state of their own — fill-mode `backwards` holds them through their
+   delays. Transform and opacity only. */
+@media (prefers-reduced-motion: no-preference) {
+  :is(.card, .careCard)[data-inview] :is(.price, .carePrice) {
+    animation: price-rise 0.8s var(--ease-expo)
+      calc(var(--reveal-delay) + 0.2s) backwards;
+  }
+
+  .featured[data-inview] .badge {
+    animation: badge-pop 0.6s var(--ease-spring)
+      calc(var(--reveal-delay) + 0.4s) backwards;
+  }
+
+  :is(.card, .careCard)[data-inview] .check {
+    animation: check-tick 0.5s var(--ease-spring)
+      calc(var(--reveal-delay) + 0.35s + var(--i, 0) * var(--stagger-tight))
+      backwards;
+  }
+}
+
+@keyframes price-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
+  }
+}
+
+/* `scale`, so the badge's own centring transform is left alone. */
+@keyframes badge-pop {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+}
+
+@keyframes check-tick {
+  from {
+    scale: 0;
+    rotate: -30deg;
   }
 }
