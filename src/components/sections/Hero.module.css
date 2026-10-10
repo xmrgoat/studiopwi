@@ -6,6 +6,9 @@
 
 .hero {
   position: relative;
+  /* A stacking context of its own, so the photo layer (z-index -1) paints
+     above this section's ground instead of dropping behind it. */
+  isolation: isolate;
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -14,14 +17,21 @@
   overflow: hidden;
   /* Clears the fixed header, which overlaps the top of the frame. */
   padding-block: calc(var(--space-8) + var(--space-7)) var(--space-8);
+}
 
-  /* Background photo — a plain CSS background-image, not next/image, so
-     next/font's own optimisation pipeline is irrelevant; avif/webp are
-     pre-generated (see the hero-bg.* files in /public/images).
-     Position is derived from the mobile frame's crop: the Figma layer scales
-     the 1536×1024 source to 1200×800 inside a 360×800 frame (a uniform
-     0.78125× scale — the same factor `cover` computes here) and pans it left
-     by 252.6px, i.e. the visible window sits at ~36% across the image width. */
+/* Background photo — a plain CSS background-image, not next/image, so
+   next/font's own optimisation pipeline is irrelevant; avif/webp are
+   pre-generated (see the hero-bg.* files in /public/images).
+   Position is derived from the mobile frame's crop: the Figma layer scales
+   the 1536×1024 source to 1200×800 inside a 360×800 frame (a uniform
+   0.78125× scale — the same factor `cover` computes here) and pans it left
+   by 252.6px, i.e. the visible window sits at ~36% across the image width.
+   It is its own layer, not .hero's background, so it can scale and drift
+   on the compositor without repainting the section. */
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background-image: image-set(
     url("/images/hero-bg.avif") type("image/avif"),
     url("/images/hero-bg.webp") type("image/webp")
@@ -56,6 +66,7 @@
 }
 
 .headline {
+  position: relative;
   max-width: 847px;
   margin: 0;
   font-size: var(--fs-display);
@@ -65,6 +76,20 @@
   line-height: var(--lh-display);
   text-transform: uppercase;
   text-wrap: balance;
+}
+
+/* A short accent rule centred in the gap under the headline — absolutely
+   placed, so it takes no space and moves nothing. A fill, never text. */
+.headline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(100% + (var(--space-5) - var(--space-1)) / 2);
+  width: var(--space-7);
+  height: var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  transform-origin: left;
 }
 
 .lead {
@@ -83,6 +108,30 @@
   width: 100%;
 }
 
+/* Scroll cue: a hairline track at the foot of the frame with an ink segment
+   falling through it. Only where the frame has room below the card. */
+.scrollCue {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-5);
+  z-index: 1;
+  display: none;
+  width: 2px;
+  height: var(--space-7);
+  margin-left: -1px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-line-strong);
+}
+
+.scrollCue::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-text);
+  transform: translateY(-100%);
+}
+
 @media (min-width: 769px) {
   .headline {
     font-weight: var(--fw-display);
@@ -98,7 +147,7 @@
     display: none;
   }
 
-  .hero {
+  .photo {
     background-position: center;
   }
 
@@ -115,31 +164,121 @@
   }
 }
 
-/* Entrance — CSS only, so it costs no JavaScript above the fold. */
+@media (min-width: 769px) and (min-height: 720px) {
+  .scrollCue {
+    display: block;
+  }
+}
+
+/* ── Entrance — CSS only, so it costs no JavaScript above the fold ──────
+
+   The headline is the page's LCP element, so it only ever moves — it never
+   fades. Chrome doesn't count an element as painted while its opacity is 0,
+   and on a throttled phone the next frame after the fade starts waits for
+   hydration: the old fade-in held the mobile LCP back by about 1.3 s.
+   Everything else may fade; nothing here changes layout. */
 @media (prefers-reduced-motion: no-preference) {
-  .headline,
+  .headline {
+    animation: hero-rise var(--duration-hero) var(--ease-expo) backwards;
+  }
+
+  .headline::after {
+    animation: hero-rule 0.8s var(--ease-expo) 0.45s backwards;
+  }
+
   .lead,
   .ctas {
-    animation: hero-rise var(--duration-reveal) var(--ease-out) backwards;
-  }
-  .headline {
-    animation-delay: 0.05s;
+    animation: hero-fade-rise var(--duration-reveal) var(--ease-out) backwards;
   }
   .lead {
-    animation-delay: 0.18s;
+    animation-delay: 0.15s;
   }
   .ctas {
     animation-delay: 0.28s;
+  }
+
+  /* The photo settles from a slight zoom as the copy lands. `scale`, not
+     `transform`, so the scroll drift below composes with it. */
+  .photo {
+    animation: hero-settle 2.4s var(--ease-expo) backwards;
+  }
+
+  /* Four falls, then rest — no animation runs forever on this page. */
+  .scrollCue::after {
+    animation: cue-fall 2s var(--ease-smooth) 1.6s 4;
+  }
+}
+
+/* Parallax without a line of script: where the browser can drive an
+   animation from scroll position, the photo drifts down at a fraction of the
+   scroll speed as the hero leaves the viewport. Scroll-driven transform
+   animations run on the compositor, off the main thread; browsers without
+   them simply skip the drift. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .photo {
+      animation:
+        hero-settle 2.4s var(--ease-expo) backwards,
+        hero-drift linear both;
+      animation-timeline: auto, view();
+      animation-range: normal, exit;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+  /* Desktop only: the card is a visible surface there, so it settles in
+     depth under the rising copy. On mobile it has no box to show. */
+  .card {
+    animation: hero-card 1.2s var(--ease-expo) backwards;
   }
 }
 
 @keyframes hero-rise {
   from {
-    opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(var(--motion-rise));
   }
+}
+
+@keyframes hero-fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
+  }
+}
+
+@keyframes hero-rule {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes hero-settle {
+  from {
+    scale: 1.08;
+  }
+}
+
+@keyframes hero-drift {
   to {
-    opacity: 1;
+    translate: 0 20%;
+  }
+}
+
+@keyframes hero-card {
+  from {
+    transform: scale(0.97);
+  }
+}
+
+@keyframes cue-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  55% {
     transform: none;
+  }
+  100% {
+    transform: translateY(100%);
   }
 }
