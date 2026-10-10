@@ -22,7 +22,7 @@ export function GET() {
   lines.push(`# ${site.name} — Sites web pour paysagistes suisses`);
   lines.push("");
   lines.push(
-    `> ${site.tagline}. Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, support post-lancement inclus. Basés à Neuchâtel.`,
+    `> ${site.tagline}. Studio web spécialisé pour paysagistes suisses. Sites orientés conversion, demandes de devis qualifiées, support post-lancement inclus. Basés dans le canton de Neuchâtel.`,
   );
   lines.push("");
   lines.push(`**Site canonique** : ${SITE_URL}`);
