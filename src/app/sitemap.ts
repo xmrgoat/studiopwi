@@ -6,7 +6,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: new Date("2026-08-20"), // Figma redesign — full rewrite
+      // Bump when the homepage content, title or structured data changes.
+      lastModified: new Date("2026-10-10"), // title, description, offer catalog
       changeFrequency: "monthly",
       priority: 1,
     },
