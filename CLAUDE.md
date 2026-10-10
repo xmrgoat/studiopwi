@@ -123,7 +123,7 @@ The user wants **a commit and push to `origin/main` after every individual file 
 ## Things deliberately not done (don't "fix" these)
 
 - **Prices are shown, and must stay in lockstep.** Since the October 2026 price list, the service cards show fixed prices (Lancement CHF 1'200, Croissance 2'600, Entreprise 5'200) plus the monthly Care plans, all from `services.ts`. The Offer JSON-LD, llms.txt and page.md read the same numbers. Offer price markup is only permitted for prices visible on the page — never put a price in structured data that the cards don't show. The à la carte list stays off the site by choice.
-- **No FAQ.** The section, `site.faq` and `FaqLd` are all removed pending a new FAQ. Don't re-add `FaqLd` before the questions are back on the page.
+- **The FAQ is back (October 2026)**, as `site.faq` rendered by `sections/Faq.tsx` (native `<details>`, zero JS) between Notre démarche and Contact. `FaqLd` mirrors `site.faq` item for item — never add a question to the markup that the page doesn't show. The answers restate the price list (hosting is the client's, at Vercel or Infomaniak, managed by the studio; the client owns site and domain).
 - All three service tiers share the CTA label "Créer ma présence en ligne" — that is what the Figma says (the component default was never overridden per card), not a copy/paste slip.
 - `site.footer.legal` keeps a **Conditions générales** link the Figma omits, so `/conditions-generales` isn't orphaned.
 - `next lint` deprecation warning is upstream noise; do not migrate to the ESLint CLI without being asked.
