@@ -8,7 +8,7 @@ export const site = {
   name: "Studio PWI",
   domain: "studiopwi.com",
   tagline: "Des sites web pour les paysagistes",
-  address: "Rue de la Treille 2 · 2000 Neuchâtel · Suisse",
+  address: "Route des Addoz 52 · 2017 Boudry · Suisse",
   email: "contact@studiopwi.com",
   locale: "fr",
 
@@ -20,7 +20,7 @@ export const site = {
   seo: {
     title: "Création de site web pour paysagistes en Suisse",
     description:
-      "Studio web à Neuchâtel dédié aux paysagistes suisses : des sites conçus pour être trouvés sur Google et générer des demandes de devis. Appel découverte gratuit.",
+      "Studio web du canton de Neuchâtel dédié aux paysagistes suisses : des sites conçus pour être trouvés sur Google et générer des demandes de devis.",
   },
 
   // Header nav — matches the three links in the Figma header frame.
@@ -44,7 +44,7 @@ export const site = {
     // **bold** marks the fragments the design emphasises mid-paragraph;
     // rendered by components/ui/RichText.
     paragraphs: [
-      "Basés à Neuchâtel, en Suisse, nous avons construit plus de **20 sites web dans des secteurs variés.** Cette expérience nous a appris ce qui fonctionne réellement pour convertir un visiteur en client.",
+      "Basés dans le canton de Neuchâtel, en Suisse, nous avons construit plus de **20 sites web dans des secteurs variés.** Cette expérience nous a appris ce qui fonctionne réellement pour convertir un visiteur en client.",
       "Comme un paysagiste qui doit s'adapter à la météo, nous nous adaptons aux tendances du web et nous construisons **des sites, pensés pour durer.**",
     ],
     testimonialsTitle: "Avis concret",
