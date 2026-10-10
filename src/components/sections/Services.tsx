@@ -80,6 +80,9 @@ export default function Services() {
             order={i}
             className={plan.featured ? `${styles.careCard} ${styles.featured}` : styles.careCard}
           >
+            {plan.featured && (
+              <span className={styles.badge}>{services.featuredBadge}</span>
+            )}
             <h4 className={styles.careTitle}>{plan.title}</h4>
             <p className={styles.carePrice}>
               {chf(plan.price)}
