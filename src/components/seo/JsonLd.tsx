@@ -10,9 +10,12 @@ const WEBPAGE_ID = `${SITE_URL}/#webpage`;
 
 const ADDRESS = {
   "@type": "PostalAddress",
-  streetAddress: "Rue de la Treille 2",
-  postalCode: "2000",
-  addressLocality: "Neuchâtel",
+  // No street: the studio serves clients remotely and on site, and its Google
+  // Business Profile is a service-area listing with a hidden address. The
+  // street is published on the legal pages, where the imprint needs it.
+  postalCode: "2017",
+  addressLocality: "Boudry",
+  addressRegion: "NE",
   addressCountry: "CH",
 } as const;
 
@@ -110,11 +113,6 @@ export function LocalBusinessLd() {
     // services.ts) — publishing one here would contradict the visible content,
     // which is the same reason OffersLd was removed.
     address: ADDRESS,
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 46.9926,
-      longitude: 6.931,
-    },
     email: site.email,
     sameAs: SAME_AS,
     areaServed: AREA_SERVED,
