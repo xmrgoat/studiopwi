@@ -98,6 +98,10 @@
   --section-py: clamp(64px, 7vw, 112px);
 
   /* --- Layout --- */
+  /* The fixed header's height. base.css feeds it to scroll-padding-top, so
+     every anchor jump (native, router or Lenis) clears the header by exactly
+     this much — keep the two in lockstep by changing it only here. */
+  --header-height: 104px;
   --content-max: 1440px;
   --gutter: 24px;
   --side-pad: clamp(24px, 5vw, 96px);
