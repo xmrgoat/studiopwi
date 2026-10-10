@@ -242,6 +242,13 @@
   margin-bottom: 0;
 }
 
+/* The featured plan takes the Croissance treatment from .featured: ink
+   ground, page-coloured text, accent checks. Its border comes back to ink
+   here, since .careCard's own border is declared after .featured. */
+.careCard.featured {
+  border-color: var(--color-text);
+}
+
 @media (min-width: 769px) {
   .card {
     padding: var(--space-6);
