@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/layout/LegalPage";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
@@ -39,7 +40,7 @@ export default function ImprintPage() {
 
       <h2>2. Responsable de la publication</h2>
       <p>
-        Le responsable de la publication est le fondateur de Studio PWI. Pour toute
+        Le responsable de la publication est {site.founder}, fondateur de Studio PWI. Pour toute
         question éditoriale, contactez{" "}
         <a href="mailto:contact@studiopwi.com">contact@studiopwi.com</a>.
       </p>
