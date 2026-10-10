@@ -89,6 +89,12 @@ ${site.process.steps
 - **Free discovery call** before any commitment.
 
 ---
+
+## ${site.faq.title} (FAQ)
+
+${site.faq.items.map((item) => `- **${item.question}** ${item.answer}`).join("\n")}
+
+---
 ${
   caseItem
     ? `
