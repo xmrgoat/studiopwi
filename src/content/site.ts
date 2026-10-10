@@ -110,7 +110,7 @@ export const site = {
       {
         question: "Et le nom de domaine ?",
         answer:
-          "Nous l'enregistrons à votre nom, au prix coûtant. La mise en place est offerte avec chacune de nos offres.",
+          "Le nom de domaine est à votre charge et enregistré à votre nom. Sa mise en place est offerte avec chacune de nos offres.",
       },
       {
         question: "À qui appartient le site ?",
