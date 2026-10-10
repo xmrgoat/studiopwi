@@ -77,7 +77,7 @@ Files under `src/app/` that aren't pages or layouts are Next.js metadata-route c
 
 JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx) (four typed components: `OrganizationLd`, `WebSiteLd`, `LocalBusinessLd`, `WebPageLd`) and is mounted in two places — sitewide schema in `layout.tsx`, page-level schema in `page.tsx`. The components share `@id` references so Google can stitch the graph; preserve that pattern when adding new schema types.
 
-`metadataBase` and every SEO route default to `https://studiopwi.com` when `NEXT_PUBLIC_SITE_URL` is unset. The canonical domain is **studiopwi.com**; the canonical contact email is **contact@studiopwi.com**. Older drafts used `studio.ch` / `contact@pwi.com` — those are wrong, don't reintroduce them.
+`metadataBase` and every SEO route default to `https://www.studiopwi.com` when `NEXT_PUBLIC_SITE_URL` is unset. The canonical host is **www.studiopwi.com**: Vercel serves www and 308-redirects the apex to it (Vercel's recommended setup), so canonicals, the sitemap and JSON-LD must say www — an apex canonical points every crawler at a redirect. The brand domain in copy stays "studiopwi.com"; the canonical contact email is **contact@studiopwi.com**. Older drafts used `studio.ch` / `contact@pwi.com` — those are wrong, don't reintroduce them.
 
 ### Forms, rate-limiting, env validation
 
