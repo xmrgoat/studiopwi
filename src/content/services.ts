@@ -1,4 +1,4 @@
-// "partnership" is the id of the Business tier. It was called Partenariat
+// "partnership" is the id of the Entreprise tier. It was called Partenariat
 // before the October 2026 price list; the id is kept because the contact form
 // and its validation schema send it, and it never reaches the page.
 export type ServiceTier = "showcase" | "growth" | "partnership";
@@ -85,7 +85,7 @@ export const services = {
     },
     {
       id: "partnership",
-      title: "Business",
+      title: "Entreprise",
       duration: "4 à 8 semaines",
       price: 5200,
       payment: "Acompte 45 % · solde 55 % à la livraison",
