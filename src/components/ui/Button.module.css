@@ -56,6 +56,14 @@
   box-shadow: var(--shadow-action);
 }
 
+/* Selection inside an accent button is always the ink band, even inside an
+   ink card whose own selection is the accent (which would vanish here). Two
+   classes so it outranks that card rule. */
+.btn.primary ::selection {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
 /* The glint: a sheen parked off the left edge, swept across on hover (and
    once on load for .shine). Transform only, so it never repaints the label. */
 .primary::after {
