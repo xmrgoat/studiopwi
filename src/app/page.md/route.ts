@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { services, type Service } from "@/content/services";
+import { services, chf, type Service, type CarePlan } from "@/content/services";
 import { cases, type CaseStudy } from "@/content/cases";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.studiopwi.com";
@@ -70,6 +70,7 @@ export function GET() {
     const featured = tier.featured ? ` *(${services.featuredBadge})*` : "";
     lines.push(`### ${tier.title}${featured}`);
     lines.push("");
+    lines.push(`- **Prix** : ${chf(tier.price)}, prix fixe (${tier.payment})`);
     lines.push(`- **Durée** : ${tier.duration}`);
     lines.push("");
     lines.push(tier.description);
@@ -82,6 +83,16 @@ export function GET() {
     lines.push("");
   }
   lines.push(`> ${services.reassurance}`);
+  lines.push("");
+  lines.push(`### ${services.care.headline}`);
+  lines.push("");
+  lines.push(services.care.intro);
+  lines.push("");
+  for (const plan of services.care.plans as readonly CarePlan[]) {
+    lines.push(`- **${plan.title}** — ${chf(plan.price)} / mois : ${plan.features.join(" ; ")}`);
+  }
+  lines.push("");
+  lines.push(services.care.footnote);
   lines.push("");
   lines.push("---");
   lines.push("");
