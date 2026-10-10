@@ -13,7 +13,7 @@ export default function ImprintPage() {
     <LegalPage
       eyebrow="Légal — Impressum"
       title="Mentions légales"
-      updated="16 mai 2026"
+      updated="10 octobre 2026"
     >
       <p>
         Conformément aux dispositions légales suisses applicables aux sites web à
@@ -26,8 +26,8 @@ export default function ImprintPage() {
       <address>
         <strong>Studio PWI</strong>
         <br />
-        Rue de la Treille 2<br />
-        2000 Neuchâtel — Suisse
+        Route des Addoz 52<br />
+        2017 Boudry — Suisse
         <br />
         <br />
         <strong>E-mail :</strong>{" "}
@@ -141,7 +141,7 @@ export default function ImprintPage() {
       <address>
         <strong>Studio PWI</strong>
         <br />
-        Rue de la Treille 2, 2000 Neuchâtel, Suisse
+        Route des Addoz 52, 2017 Boudry, Suisse
         <br />
         <a href="mailto:contact@studiopwi.com">contact@studiopwi.com</a>
       </address>
