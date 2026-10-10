@@ -34,7 +34,7 @@ export default function ImprintPage() {
         <a href="mailto:contact@studiopwi.com">contact@studiopwi.com</a>
         <br />
         <strong>Site web :</strong>{" "}
-        <a href="https://studiopwi.com">studiopwi.com</a>
+        <a href="https://www.studiopwi.com">studiopwi.com</a>
       </address>
 
       <h2>2. Responsable de la publication</h2>
