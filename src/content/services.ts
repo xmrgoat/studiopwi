@@ -107,7 +107,7 @@ export const services = {
   care: {
     headline: "Maintenance mensuelle",
     intro:
-      "Hébergement, sauvegardes et surveillance inclus dans chaque formule. Petites modifications : texte, image, ajout d'avis… Sans engagement, minimum recommandé de 3 mois.",
+      "Sauvegardes et surveillance incluses dans chaque formule. Petites modifications : texte, image, ajout d'avis… Sans engagement, minimum recommandé de 3 mois.",
     // The price list marks the SEO report "–" for Care Essentiel and prices it
     // at CHF 25 in the row label; read as an Essentiel add-on.
     plans: [
