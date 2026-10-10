@@ -1,5 +1,12 @@
 /* Base styles — body, type defaults, container, focus. */
 
+/* Anchor jumps clear the fixed header. This one value governs native fragment
+   loads, the router's hash scroll and Lenis alike (Lenis subtracts the root's
+   scroll-padding-top itself), so no script hardcodes the offset. */
+html {
+  scroll-padding-top: var(--header-height);
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
