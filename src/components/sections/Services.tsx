@@ -1,4 +1,4 @@
-import { services } from "@/content/services";
+import { services, chf } from "@/content/services";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./Services.module.css";
@@ -27,6 +27,8 @@ export default function Services() {
 
             <h3 className={styles.title}>{tier.title}</h3>
             <p className={styles.duration}>{tier.duration}</p>
+            <p className={styles.price}>{chf(tier.price)}</p>
+            <p className={styles.payment}>{tier.payment}</p>
             <p className={styles.description}>{tier.description}</p>
 
             <ul className={styles.features}>
@@ -56,6 +58,37 @@ export default function Services() {
 
       <Reveal className={`grid ${styles.footnoteRow}`}>
         <p className={styles.footnote}>{services.reassurance}</p>
+      </Reveal>
+
+      {/* Monthly care plans — lighter than the tier cards: no CTA, no badge.
+          h3 under the section's h2, plan names h4, so no level is skipped. */}
+      <Reveal className={`grid ${styles.careHeader}`}>
+        <h3 className={styles.careHeadline}>{services.care.headline}</h3>
+        <p className={styles.careIntro}>{services.care.intro}</p>
+      </Reveal>
+
+      <ul className={`grid ${styles.careCards}`}>
+        {services.care.plans.map((plan, i) => (
+          <Reveal as="li" key={plan.id} order={i} className={styles.careCard}>
+            <h4 className={styles.careTitle}>{plan.title}</h4>
+            <p className={styles.carePrice}>
+              {chf(plan.price)}
+              <span className={styles.carePeriod}> / mois</span>
+            </p>
+            <ul className={styles.features}>
+              {plan.features.map((feature) => (
+                <li key={feature} className={styles.feature}>
+                  <span className={styles.check} aria-hidden="true" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        ))}
+      </ul>
+
+      <Reveal className={`grid ${styles.footnoteRow}`}>
+        <p className={styles.footnote}>{services.care.footnote}</p>
       </Reveal>
     </section>
   );
