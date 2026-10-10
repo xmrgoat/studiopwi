@@ -130,6 +130,18 @@ export function GET() {
   lines.push("---");
   lines.push("");
 
+  // ---------- FAQ ----------
+  lines.push(`## ${site.faq.title}`);
+  lines.push("");
+  for (const item of site.faq.items) {
+    lines.push(`### ${item.question}`);
+    lines.push("");
+    lines.push(item.answer);
+    lines.push("");
+  }
+  lines.push("---");
+  lines.push("");
+
   // ---------- Contact ----------
   lines.push(`## ${contact.title}`);
   lines.push("");
