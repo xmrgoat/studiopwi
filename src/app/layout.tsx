@@ -26,16 +26,19 @@ const montserrat = Montserrat({
   preload: true,
 });
 
+// The homepage title, with the same " · Studio PWI" suffix the template gives
+// every other page.
+const HOME_TITLE = `${site.seo.title} · ${site.name}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://studiopwi.com",
   ),
   title: {
-    default: `${site.name} — Sites web pour paysagistes suisses`,
+    default: HOME_TITLE,
     template: `%s · ${site.name}`,
   },
-  description:
-    "Sites web pour entreprises de paysagisme en Suisse — attirez plus de clients, générez plus de demandes de devis et décrochez de meilleurs chantiers.",
+  description: site.seo.description,
   applicationName: site.name,
   authors: [{ name: site.name }],
   keywords: [
@@ -55,9 +58,8 @@ export const metadata: Metadata = {
     locale: "fr_CH",
     url: "/",
     siteName: site.name,
-    title: `${site.name} — Sites web pour paysagistes suisses`,
-    description:
-      "Sites web pour entreprises de paysagisme en Suisse — attirez plus de clients, générez plus de demandes de devis et décrochez de meilleurs chantiers.",
+    title: HOME_TITLE,
+    description: site.seo.description,
     images: [
       {
         url: "/opengraph-image",
@@ -69,9 +71,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Sites web pour paysagistes suisses`,
-    description:
-      "Sites web pour entreprises de paysagisme en Suisse — attirez plus de clients, générez plus de demandes de devis et décrochez de meilleurs chantiers.",
+    title: HOME_TITLE,
+    description: site.seo.description,
     images: ["/opengraph-image"],
   },
   robots: {
