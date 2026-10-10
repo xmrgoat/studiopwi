@@ -140,7 +140,7 @@ export function GET() {
   lines.push(`- **Domaine** : ${site.domain}`);
   lines.push(`- **Email** : ${site.email}`);
   lines.push(`- **Adresse** : ${site.address}`);
-  lines.push(`- **Zone d'intervention** : Suisse (CH)`);
+  lines.push(`- **Zone d'intervention** : Suisse (CH) principalement ; à distance pour des paysagistes à l'étranger (ex. Colorado, États-Unis)`);
   lines.push(`- **Fondateur** : Studio PWI, Neuchâtel`);
   lines.push(`- **Site web (HTML)** : ${SITE_URL}`);
   lines.push(`- **Brief pour IA** : ${SITE_URL}/llms.txt`);
