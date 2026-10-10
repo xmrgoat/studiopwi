@@ -12,6 +12,17 @@ export const site = {
   email: "contact@studiopwi.com",
   locale: "fr",
 
+  // Homepage <title> (before the " · Studio PWI" suffix) and meta description,
+  // shared by the OG/Twitter cards and the WebPage JSON-LD. Not visible copy,
+  // but kept here so the places that state it can't drift. Keyword first:
+  // nobody searches the brand yet, and "création site web paysagiste" is the
+  // query this page answers. Title ≤ 60 chars, description ≈ 155.
+  seo: {
+    title: "Création de site web pour paysagistes en Suisse",
+    description:
+      "Studio web à Neuchâtel dédié aux paysagistes suisses : des sites conçus pour être trouvés sur Google et générer des demandes de devis. Appel découverte gratuit.",
+  },
+
   // Header nav — matches the three links in the Figma header frame.
   nav: [
     { label: "Services", href: "#services" },
