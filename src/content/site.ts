@@ -154,6 +154,16 @@ export const site = {
     },
   },
 
+  // /merci — where the contact form lands after a successful send. Each view
+  // of it is one lead in Vercel Analytics, so nothing else should link here.
+  thanks: {
+    title: "Message reçu",
+    body:
+      "Merci. Nous revenons vers vous sous 48 h ouvrées pour fixer votre appel découverte de 30 minutes, gratuit et sans engagement.",
+    nextCta: { label: "Voir notre étude de cas", href: "/#etude-de-cas" },
+    backLabel: "Retour à l'accueil",
+  },
+
   footer: {
     email: "contact@studiopwi.com",
     tagline: "Des sites web pour les paysagistes",
