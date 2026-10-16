@@ -50,7 +50,18 @@
 }
 
 .submit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
   margin-top: var(--space-2);
+}
+
+.reassurance {
+  margin: 0;
+  max-width: none;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  text-align: center;
 }
 
 /* Honeypot — off-screen rather than display:none, which some bots skip. */
