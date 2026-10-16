@@ -24,7 +24,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
+  /* Tight on phones, where logo, CTA and burger share 312px; the desktop
+     nav brings its own spacing. */
+  gap: var(--space-2);
   min-height: var(--header-height);
 }
 
@@ -45,6 +47,68 @@
   display: none;
   align-items: center;
   gap: 56px;
+  margin-left: auto;
+}
+
+/* ── Actions: phone, CTA, burger ─────────────────────── */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* A compact accent button — the same fill-under-ink treatment as the page
+   CTAs, sized for a 104px bar and a 360px phone. */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-action);
+  background: var(--color-action);
+  color: var(--color-action-text);
+  box-shadow: var(--shadow-action);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    translate var(--duration-fast) var(--ease-out),
+    scale var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .cta:hover {
+    translate: 0 -2px;
+    box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-accent) 45%, transparent);
+  }
+}
+
+.cta:active {
+  translate: none;
+  scale: 0.97;
+}
+
+/* Click-to-call: an ink-outlined round button, phones and tablets only. */
+.phone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+}
+
+.phoneIcon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }
 
 .navLink {
@@ -202,15 +266,53 @@
   }
 }
 
+/* Narrow phones (360px class): wordmark, CTA and burger need ~24px more than
+   the bar has, so the CTA and burger give up some padding. */
+@media (max-width: 389px) {
+  .actions {
+    gap: var(--space-1);
+  }
+  .cta {
+    padding-inline: var(--space-2);
+  }
+  .burger {
+    width: 44px;
+    margin-right: calc(var(--space-2) * -1);
+  }
+}
+
+/* The oldest small phones (320px): a smaller wordmark and CTA label. */
+@media (max-width: 359px) {
+  .wordmark {
+    font-size: 1.125rem;
+  }
+  .cta {
+    font-size: 0.75rem;
+  }
+}
+
 @media (min-width: 1024px) {
+  .inner {
+    gap: var(--space-5);
+  }
   .wordmark {
     font-size: 1.5rem; /* 24px desktop */
   }
   .nav {
     display: flex;
   }
+  .actions {
+    gap: var(--space-5);
+    margin-left: 56px; /* the nav's own link gap */
+  }
+  .cta {
+    min-height: 48px;
+    padding-inline: var(--space-4);
+    font-size: var(--fs-body);
+  }
   .burger,
-  .drawer {
+  .drawer,
+  .phone {
     display: none;
   }
 }
