@@ -153,6 +153,7 @@ export function GET() {
   lines.push(`- **Email** : ${site.email}`);
   lines.push("");
   lines.push(`Formulaire de contact : ${SITE_URL}/#contact`);
+  lines.push(`Réserver l'appel découverte directement : ${site.booking.url}`);
   lines.push("");
   lines.push("---");
   lines.push("");
