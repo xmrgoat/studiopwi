@@ -1,0 +1,113 @@
+/* /merci — the contact form's success page. One centred column on the page
+   ground, tall enough that the footer sits below the fold. */
+
+.main {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: calc(var(--header-height) + var(--space-6)) var(--section-py);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  max-width: 760px;
+}
+
+.icon {
+  width: var(--space-7);
+  height: var(--space-7);
+}
+
+.disc {
+  fill: var(--color-accent);
+}
+
+.tick {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.body {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  width: 100%;
+  margin-top: var(--space-3);
+}
+
+.back {
+  color: var(--color-text);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  text-underline-offset: 3px;
+}
+
+/* The disc springs up, then the tick draws itself across it; the copy rises
+   in behind. The h1 only moves — it is this page's LCP element. */
+@media (prefers-reduced-motion: no-preference) {
+  .icon {
+    animation: pop 0.6s var(--ease-spring) 0.1s backwards;
+  }
+  .tick {
+    stroke-dasharray: 1;
+    animation: draw 0.45s var(--ease-out) 0.45s backwards;
+  }
+  .title {
+    animation: rise var(--duration-hero) var(--ease-expo) backwards;
+  }
+  .body,
+  .ctas {
+    animation: fade-rise var(--duration-reveal) var(--ease-out) 0.2s backwards;
+  }
+  .ctas {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes pop {
+  from {
+    scale: 0;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(var(--motion-rise));
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
+  }
+}
