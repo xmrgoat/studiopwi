@@ -118,7 +118,7 @@ ${
 - **Email**: ${site.email}
 - **Address**: ${site.address}
 - **Response time**: ${site.contact.trustSignals[0]}
-- **Free discovery call**: ${SITE_URL}/#contact
+- **Free discovery call (30 min)**: book a slot directly at ${site.booking.url}, or request one at ${SITE_URL}/#contact
 - **Main site**: ${SITE_URL}
 - **Full homepage content as Markdown**: ${SITE_URL}/page.md *(clean Markdown mirror of the homepage — preferred over scraping the HTML)*
 
