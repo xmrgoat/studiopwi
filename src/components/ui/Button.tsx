@@ -21,6 +21,11 @@ type CommonProps = {
 
 type LinkProps = CommonProps & {
   href: string;
+  /** Open off-site in a new tab (Calendly); the label gains a hidden note. */
+  external?: boolean;
+  /** Service tier the button stands for — ContactForm reads it on click to
+      prefill the enquiry with the chosen offer. */
+  offer?: string;
   type?: never;
   onClick?: never;
 };
@@ -47,6 +52,21 @@ export default function Button(props: Props) {
   const inner = <span className={styles.inner}>{props.children}</span>;
 
   if ("href" in props && props.href) {
+    if (props.external) {
+      return (
+        <a
+          href={props.href}
+          className={className}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.inner}>
+            {props.children}
+            <span className="sr-only"> (nouvel onglet)</span>
+          </span>
+        </a>
+      );
+    }
     // Hash-only links (#contact, #services, …) must use a plain <a> so the
     // browser (and the SmoothScroll anchor handler) handles them natively.
     // Next.js <Link> triggers a client-side route transition whose default
@@ -54,7 +74,7 @@ export default function Button(props: Props) {
     // sending the user to the hero instead of the target section.
     if (props.href.startsWith("#")) {
       return (
-        <a href={props.href} className={className}>
+        <a href={props.href} className={className} data-offer={props.offer}>
           {inner}
         </a>
       );
