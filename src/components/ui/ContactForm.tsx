@@ -1,23 +1,50 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { site } from "@/content/site";
+import { services } from "@/content/services";
 import Button from "./Button";
 import styles from "./ContactForm.module.css";
 
 type Status = "idle" | "submitting" | "error";
 
+type Tier = "showcase" | "growth" | "partnership";
+
 type Props = {
-  tier?: "showcase" | "growth" | "partnership";
+  tier?: Tier;
   source?: "hero" | "services" | "final-cta" | "direct" | "contact";
 };
 
-export default function ContactForm({ tier, source = "direct" }: Props) {
+export default function ContactForm({ tier: initialTier, source = "direct" }: Props) {
   const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [tier, setTier] = useState<Tier | undefined>(initialTier);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
   const f = site.contact.form;
+
+  // A service card's button carries its tier (data-offer, see Button). On
+  // that click — before the page has scrolled to the form — note the tier for
+  // the lead email and prefill the message with the offer's name, unless the
+  // visitor has already written something of their own.
+  useEffect(() => {
+    let prefill = "";
+    const onClick = (e: MouseEvent) => {
+      const el = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-offer]");
+      const id = el?.dataset.offer;
+      const offer = services.tiers.find((t) => t.id === id);
+      if (!offer) return;
+      setTier(offer.id);
+      const box = messageRef.current;
+      if (box && (box.value === "" || box.value === prefill)) {
+        prefill = `${f.offerPrefill} ${offer.title}.\n\n`;
+        box.value = prefill;
+      }
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, [f.offerPrefill]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -126,6 +153,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
       <label className={styles.field}>
         <span className={styles.label}>{f.message.label}</span>
         <textarea
+          ref={messageRef}
           name="message"
           required
           minLength={10}
@@ -157,6 +185,7 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
         <Button type="submit" fullWidth>
           {f.submit}
         </Button>
+        <p className={styles.reassurance}>{f.reassurance}</p>
       </div>
     </form>
   );
