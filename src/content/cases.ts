@@ -39,7 +39,7 @@ export const cases = {
       solutionLabel: "La solution :",
       solution:
         "Une landing page conçue pour présenter l'offre, rassurer les visiteurs et faciliter les demandes de devis.",
-      cta: { label: "Réserver mon appel gratuit", href: "#contact" },
+      cta: { label: "Discuter de mon projet", href: "#contact" },
     },
   ] as const satisfies readonly CaseStudy[],
 } as const;
