@@ -91,26 +91,46 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Three bars, per the Figma "ri:menu-fill" burger. They are geometry
-            the design specifies outright, not an icon glyph, so they are spans
-            rather than an exported asset. */}
-        <button
-          type="button"
-          className={styles.burger}
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-drawer"
-          aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
-        >
-          <span
-            className={`${styles.burgerBox} ${mobileOpen ? styles.burgerOpen : ""}`}
-            aria-hidden="true"
+        {/* The action cluster: click-to-call (phones only, once a number is
+            set in site.ts), the header CTA (every breakpoint), the burger. */}
+        <div className={styles.actions}>
+          {site.phone && (
+            <a
+              href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}
+              className={styles.phone}
+              aria-label={`Appeler le ${site.phone}`}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.phoneIcon}>
+                <path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" />
+              </svg>
+            </a>
+          )}
+
+          <Link href={resolve(site.headerCta.href)} className={styles.cta}>
+            {site.headerCta.label}
+          </Link>
+
+          {/* Three bars, per the Figma "ri:menu-fill" burger. They are geometry
+              the design specifies outright, not an icon glyph, so they are spans
+              rather than an exported asset. */}
+          <button
+            type="button"
+            className={styles.burger}
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-drawer"
+            aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
-            <span className={styles.burgerLine} />
-            <span className={styles.burgerLine} />
-            <span className={styles.burgerLine} />
-          </span>
-        </button>
+            <span
+              className={`${styles.burgerBox} ${mobileOpen ? styles.burgerOpen : ""}`}
+              aria-hidden="true"
+            >
+              <span className={styles.burgerLine} />
+              <span className={styles.burgerLine} />
+              <span className={styles.burgerLine} />
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile drawer — slides down from header on small viewports.
