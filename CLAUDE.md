@@ -94,6 +94,13 @@ returns **502** when a send fails instead of the 200 it used to return while a
 database held a duplicate — and why the form's error state always offers the
 contact address as a fallback. Don't soften either back to a silent success.
 
+**Conversion tracking is the `/merci` page.** On a successful send the form
+`router.push`es to [`src/app/merci/page.tsx`](src/app/merci/page.tsx) instead
+of swapping in a panel, so every `/merci` page view in Vercel Analytics is one
+lead (custom events would need a paid Vercel plan; page views don't). Keep it
+`noindex`, out of the sitemap, and unlinked from anywhere else on the site — any
+other way in inflates the count. Its copy is `site.thanks`.
+
 Schemas live in [`src/lib/validation.ts`](src/lib/validation.ts); rate-limit
 bucket in [`src/lib/rateLimit.ts`](src/lib/rateLimit.ts) (in-memory — on
 serverless this is per-instance, so it is weak; swap for Upstash if spam
