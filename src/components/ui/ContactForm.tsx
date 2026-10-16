@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { site } from "@/content/site";
 import Button from "./Button";
 import styles from "./ContactForm.module.css";
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "error";
 
 type Props = {
   tier?: "showcase" | "growth" | "partnership";
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export default function ContactForm({ tier, source = "direct" }: Props) {
+  const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const f = site.contact.form;
@@ -55,7 +57,9 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
             "Votre message n'a pas pu être envoyé. Écrivez-nous directement à",
         );
       }
-      setStatus("success");
+      // A page, not an in-place panel: each view of /merci is a lead in
+      // Vercel Analytics. The skeleton stays up until the route swaps in.
+      router.push("/merci");
     } catch (err) {
       setStatus("error");
       setError(
@@ -74,27 +78,6 @@ export default function ContactForm({ tier, source = "direct" }: Props) {
         <div className={styles.skeletonField} />
         <div className={`${styles.skeletonField} ${styles.skeletonTextarea}`} />
         <div className={styles.skeletonBtn} />
-      </div>
-    );
-  }
-
-  if (status === "success") {
-    return (
-      <div className={styles.success} role="status" aria-live="polite">
-        {/* Accent disc with an ink tick that draws itself. pathLength="1"
-            lets the stylesheet animate the stroke without measuring it. */}
-        <svg className={styles.successIcon} viewBox="0 0 48 48" aria-hidden="true">
-          <circle className={styles.successDisc} cx="24" cy="24" r="24" />
-          <path
-            className={styles.successTick}
-            d="M14 24.5l6.5 6.5L34 17.5"
-            pathLength="1"
-          />
-        </svg>
-        <p className={styles.successLabel}>Message reçu</p>
-        <p className={styles.successText}>
-          Merci. On revient vers vous sous 48h ouvrées.
-        </p>
       </div>
     );
   }
