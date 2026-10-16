@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function ThanksPage() {
-  const { title, body, nextCta, backLabel } = site.thanks;
+  const { title, body, bookingLabel, nextCta } = site.thanks;
 
   return (
     <>
@@ -35,11 +35,13 @@ export default function ThanksPage() {
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.body}>{body}</p>
           <div className={styles.ctas}>
-            <Button href={nextCta.href} variant="primary">
-              {nextCta.label}
+            {/* The lead is already in; booking now closes the loop without
+                waiting for the reply. The case study is the fallback. */}
+            <Button href={site.booking.url} variant="primary" external>
+              {bookingLabel}
             </Button>
-            <Link href="/" className={styles.back}>
-              {backLabel}
+            <Link href={nextCta.href} className={styles.back}>
+              {nextCta.label}
             </Link>
           </div>
         </div>
