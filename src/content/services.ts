@@ -43,9 +43,10 @@ export const services = {
     "Prix fixes, sans facturation à l'heure. Pages légales non comptées. Révisions : 72 h ouvrables pour valider le design ou envoyer une liste groupée de retours. Délais comptés dès réception de l'acompte et du contenu. Support après la mise en ligne : 14 jours inclus.",
   featuredBadge: "Recommandé",
 
-  // NOTE: all three CTAs read "Créer ma présence en ligne" in the Figma — the
-  // component default was never overridden per tier. Reproduced faithfully;
-  // differentiating them is a one-line change here if that was unintended.
+  // All three CTAs make the site-wide promise (the free call). The Figma's
+  // "Créer ma présence en ligne" was replaced in October 2026 so every button
+  // on the page reads the same; the card's button also carries its tier into
+  // the contact form (see ContactForm).
   tiers: [
     {
       id: "showcase",
@@ -63,7 +64,7 @@ export const services = {
         "1 langue · 2 rounds de révisions",
         "14 jours de support après la mise en ligne",
       ],
-      cta: { label: "Créer ma présence en ligne", href: "#contact" },
+      cta: { label: "Réserver mon appel gratuit", href: "#contact" },
       featured: false,
     },
     {
@@ -82,7 +83,7 @@ export const services = {
         "Statistiques de visites (analytics)",
         "SEO local : Google Business Profile, local.ch, search.ch",
       ],
-      cta: { label: "Créer ma présence en ligne", href: "#contact" },
+      cta: { label: "Réserver mon appel gratuit", href: "#contact" },
       featured: true,
     },
     {
@@ -101,7 +102,7 @@ export const services = {
         "SEO avancé : mots-clés, pages services, plan de blog",
         "Support prioritaire de 14 jours",
       ],
-      cta: { label: "Créer ma présence en ligne", href: "#contact" },
+      cta: { label: "Réserver mon appel gratuit", href: "#contact" },
       featured: false,
     },
   ] as const satisfies readonly Service[],
