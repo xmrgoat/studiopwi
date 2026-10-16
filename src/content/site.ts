@@ -10,7 +10,20 @@ export const site = {
   tagline: "Des sites web pour les paysagistes",
   address: "Route des Addoz 52 · 2017 Boudry · Suisse",
   email: "contact@studiopwi.com",
+  // Click-to-call: when set (e.g. "+41 76 000 00 00"), a phone button appears
+  // in the mobile header and the contact section. Left empty until confirmed.
+  phone: null as string | null,
   locale: "fr",
+
+  // Every CTA promises the same thing — the free 30-minute discovery call —
+  // so a visitor never wonders whether two buttons lead to different places.
+  // Section buttons go to #contact, where the call can be booked directly
+  // (Calendly) or requested through the form.
+  callCta: "Réserver mon appel gratuit",
+  booking: {
+    url: "https://calendly.com/contact-studiopwi/30min",
+    label: "Choisir un créneau",
+  },
   // Named the same way everywhere (JSON-LD, imprint, AI files): search and AI
   // engines match the person across the site and LinkedIn by this string.
   founder: "Jean-Pierre Médard-Garza",
@@ -26,7 +39,9 @@ export const site = {
       "Studio web du canton de Neuchâtel dédié aux paysagistes suisses : des sites conçus pour être trouvés sur Google et générer des demandes de devis.",
   },
 
-  // Header nav — matches the three links in the Figma header frame.
+  // Header nav — matches the three links in the Figma header frame — plus
+  // the header CTA, which stays reachable however far down the page is read.
+  headerCta: { label: "Appel gratuit", href: "#contact" },
   nav: [
     { label: "Services", href: "#services" },
     { label: "À propos", href: "#pourquoi" },
@@ -39,7 +54,7 @@ export const site = {
       "Basés en Suisse, nous concevons des sites qui aident les entreprises de paysagisme, où qu'elles soient, à attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs chantiers.",
     // Desktop reads "Démarrer un devis", mobile "Démarrer un projet". Mobile's
     // wording is the idiomatic one and matches the contact copy, so it wins.
-    primaryCta: { label: "Démarrer un projet", href: "#contact" },
+    primaryCta: { label: "Réserver mon appel gratuit", href: "#contact" },
   },
 
   whyUs: {
@@ -51,7 +66,7 @@ export const site = {
       "Comme un paysagiste qui doit s'adapter à la météo, nous nous adaptons aux tendances du web et nous construisons **des sites, pensés pour durer.**",
     ],
     testimonialsTitle: "Avis concret",
-    cta: { label: "Démarrer un projet", href: "#contact" },
+    cta: { label: "Réserver mon appel gratuit", href: "#contact" },
     testimonials: [
       {
         // Translated from the English review in the desktop "Avis concret" frame.
@@ -87,7 +102,7 @@ export const site = {
           "Après la mise en ligne, nous restons disponibles pour les corrections techniques et ajustements mineurs.",
       },
     ],
-    cta: { label: "Demander un devis", href: "#contact" },
+    cta: { label: "Réserver mon appel gratuit", href: "#contact" },
   },
 
   // Answers the buyer questions ChatGPT and Perplexity found unanswered in the
@@ -145,12 +160,22 @@ export const site = {
     lead:
       "Remplissez le formulaire pour nous présenter votre projet. Nous vous répondrons rapidement pour organiser un appel découverte de 30 minutes.",
     trustSignals: ["Réponse sous 48h", "Appel découverte gratuit"],
+    // The direct route: book the call without waiting for a reply.
+    booking: {
+      lead: "Vous préférez choisir l'horaire vous-même ?",
+      note: "Ouvre Calendly dans un nouvel onglet.",
+    },
+    phoneLabel: "Ou appelez-nous",
     form: {
       name: { label: "Nom", placeholder: "Votre nom complet" },
       email: { label: "Email", placeholder: "votre@email.com" },
       phone: { label: "Téléphone", placeholder: "076 612 27 41" },
       message: { label: "Message", placeholder: "Décrivez votre projet..." },
-      submit: "Envoyer",
+      submit: "Envoyer ma demande",
+      // Reassurance under the submit button, where the hesitation happens.
+      reassurance: "Réponse sous 48 h · Appel de 30 min, gratuit et sans engagement.",
+      // Prefilled into the message when a service card's button is used.
+      offerPrefill: "Intéressé(e) par l'offre",
     },
   },
 
@@ -159,9 +184,9 @@ export const site = {
   thanks: {
     title: "Message reçu",
     body:
-      "Merci. Nous revenons vers vous sous 48 h ouvrées pour fixer votre appel découverte de 30 minutes, gratuit et sans engagement.",
+      "Merci. Nous revenons vers vous sous 48 h ouvrées pour fixer votre appel découverte de 30 minutes. Pour aller plus vite, choisissez directement votre créneau :",
+    bookingLabel: "Choisir mon créneau maintenant",
     nextCta: { label: "Voir notre étude de cas", href: "/#etude-de-cas" },
-    backLabel: "Retour à l'accueil",
   },
 
   footer: {
