@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Légal — Données personnelles"
       title="Politique de confidentialité"
-      updated="10 octobre 2026"
+      updated="16 octobre 2026"
     >
       <p>
         La présente politique de confidentialité décrit comment Studio PWI (ci-après
@@ -75,6 +75,11 @@ export default function PrivacyPage() {
         accès. Ces données sont utilisées exclusivement pour assurer la sécurité et
         la stabilité du site.
       </p>
+      <p>
+        Nous mesurons l&apos;audience du site avec <strong>Vercel Web Analytics</strong>,
+        de manière agrégée et anonyme : pages vues, pays, type d&apos;appareil. Cet
+        outil ne dépose aucun cookie et ne permet pas de vous identifier.
+      </p>
 
       <h2>3. Finalités et bases juridiques du traitement</h2>
 
@@ -121,6 +126,19 @@ export default function PrivacyPage() {
             rel="noopener noreferrer"
           >
             Politique de confidentialité Vercel
+          </a>
+          .
+        </li>
+        <li>
+          <strong>Calendly LLC</strong> (prise de rendez-vous, uniquement si vous
+          choisissez de réserver un créneau sur calendly.com) — 115 E Main St,
+          Ste A1B, Buford, GA 30518, États-Unis.{" "}
+          <a
+            href="https://calendly.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Politique de confidentialité Calendly
           </a>
           .
         </li>
@@ -233,10 +251,11 @@ export default function PrivacyPage() {
 
       <h2>9. Cookies</h2>
       <p>
-        Ce site n&apos;utilise <strong>aucun cookie publicitaire ou de traçage tiers</strong>.
-        Seuls des cookies techniques strictement nécessaires au fonctionnement du
-        site peuvent être déposés (session, sécurité CSRF). Ces cookies ne
-        nécessitent pas votre consentement.
+        Ce site n&apos;utilise <strong>aucun cookie</strong> : ni publicitaire, ni de
+        mesure d&apos;audience, ni technique. Aucun bandeau de consentement
+        n&apos;est donc nécessaire. Si vous réservez un rendez-vous, vous quittez ce
+        site pour calendly.com, qui applique sa propre politique en matière de
+        cookies.
       </p>
 
       <h2>10. Sécurité</h2>
