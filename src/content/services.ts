@@ -43,10 +43,9 @@ export const services = {
     "Prix fixes, sans facturation à l'heure. Pages légales non comptées. Révisions : 72 h ouvrables pour valider le design ou envoyer une liste groupée de retours. Délais comptés dès réception de l'acompte et du contenu. Support après la mise en ligne : 14 jours inclus.",
   featuredBadge: "Recommandé",
 
-  // All three CTAs read "Commencer mon projet" and lead to the free call. The Figma's
-  // "Créer ma présence en ligne" was replaced in October 2026 so every button
-  // on the page reads the same; the card's button also carries its tier into
-  // the contact form (see ContactForm).
+  // All three CTAs read "Commencer mon projet" (October 2026, replacing the
+  // Figma's "Créer ma présence en ligne"). Each button also carries its tier
+  // into the contact form (see ContactForm).
   tiers: [
     {
       id: "showcase",
