@@ -61,6 +61,7 @@ Conventions worth knowing:
 - Headings are uppercase **per section**, never globally — the legal pages share `h1`/`h2` and must stay sentence-case.
 - `.section--dark` still exists for the legal pages and the footer, but no homepage section is dark.
 - The one-italic-phrase-per-headline rule is **retired**. `ItalicAccent` and `SplitWords` are deleted; `.accent` survives only because `not-found.tsx` uses it.
+- Spacing sits on the **8px grid**: the `--space-*` tokens (avoid `--space-1`, 4px), `--section-py` rounded to 8px behind `@supports`, and fixed heights for boxes that would otherwise take a font-driven size (contact inputs 56px, message box 136px).
 - `**bold**` markers inside content strings are rendered by [`src/components/ui/RichText.tsx`](src/components/ui/RichText.tsx).
 
 ### SEO surface — eight generated routes
