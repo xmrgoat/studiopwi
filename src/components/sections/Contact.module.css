@@ -94,6 +94,11 @@
    bold ink with the glyph masked to the same colour (never WhatsApp green,
    which would sit beside the accent and read as a second CTA). */
 .whatsapp {
+  /* A flex row, so the lead lines up with the 44px-tall link beside it. */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--space-2);
   margin: 0;
   font-size: var(--fs-small);
   font-weight: var(--fw-medium);
