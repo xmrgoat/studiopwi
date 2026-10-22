@@ -81,10 +81,14 @@ export function OrganizationLd() {
     description: DESCRIPTION,
     slogan: site.tagline,
     email: site.email,
+    // The WhatsApp Business number, shown in the footer and stated the same
+    // way on the Google Business Profile.
+    telephone: site.whatsapp.number,
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
       email: site.email,
+      telephone: site.whatsapp.number,
       availableLanguage: "French",
       areaServed: "CH",
     },
@@ -124,6 +128,7 @@ export function LocalBusinessLd() {
     priceRange: `${chf(Math.min(...TIER_PRICES))} – ${chf(Math.max(...TIER_PRICES))}`,
     address: ADDRESS,
     email: site.email,
+    telephone: site.whatsapp.number,
     sameAs: SAME_AS,
     areaServed: AREA_SERVED,
     founder: { "@id": FOUNDER_ID },
