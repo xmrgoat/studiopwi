@@ -39,6 +39,13 @@
   transition: border-color var(--duration-fast) var(--ease-out);
 }
 
+/* 56px, set outright: padding plus the line height would land on 52–59px
+   depending on the viewport's type size, off the 8px grid. */
+.field input {
+  height: calc(var(--space-6) + var(--space-2));
+  padding-block: 0;
+}
+
 .field textarea {
   min-height: 136px;
   resize: vertical;
@@ -106,7 +113,7 @@
 
 .skeletonField,
 .skeletonBtn {
-  height: 53px;
+  height: calc(var(--space-6) + var(--space-2));
   border-radius: var(--radius-action);
   background: color-mix(in srgb, var(--color-text) 10%, transparent);
 }
