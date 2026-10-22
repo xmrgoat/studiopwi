@@ -149,6 +149,19 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+
+        {/* WhatsApp lives in the drawer rather than the bar: at 360–390px the
+            bar has ~10–16px to spare, not the 52px an icon button needs. */}
+        <a
+          href={site.whatsapp.url}
+          className={styles.drawerWhatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.whatsappIcon} aria-hidden="true" />
+          {site.whatsapp.label}
+          <span className="sr-only"> (nouvel onglet)</span>
+        </a>
       </div>
     </header>
   );
