@@ -55,7 +55,6 @@ export default function ContactForm({ tier: initialTier, source = "direct" }: Pr
     const payload = {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
-      phone: String(formData.get("phone") ?? "") || undefined,
       message: String(formData.get("message") ?? ""),
       tier,
       source,
@@ -102,16 +101,16 @@ export default function ContactForm({ tier: initialTier, source = "direct" }: Pr
       <div className={styles.skeleton} aria-busy="true" aria-label="Envoi en cours…">
         <div className={styles.skeletonField} />
         <div className={styles.skeletonField} />
-        <div className={styles.skeletonField} />
         <div className={`${styles.skeletonField} ${styles.skeletonTextarea}`} />
         <div className={styles.skeletonBtn} />
       </div>
     );
   }
 
-  // Fields follow the Figma form: nom, email, téléphone, message. The old
-  // "société" and "site web actuel" inputs are gone; both remain optional in
-  // the API schema, so nothing breaks for callers that still send them.
+  // Kept to the minimum a reply needs: nom, email, message. The Figma's
+  // téléphone field went once WhatsApp became the quick route; it stays
+  // optional in the API schema (with the old "société" and "site web actuel"),
+  // so nothing breaks for callers that still send it.
   return (
     <form className={styles.form} onSubmit={onSubmit} noValidate>
       <label className={styles.field}>
@@ -136,17 +135,6 @@ export default function ContactForm({ tier: initialTier, source = "direct" }: Pr
           maxLength={200}
           autoComplete="email"
           placeholder={f.email.placeholder}
-        />
-      </label>
-
-      <label className={styles.field}>
-        <span className={styles.label}>{f.phone.label}</span>
-        <input
-          type="tel"
-          name="phone"
-          maxLength={40}
-          autoComplete="tel"
-          placeholder={f.phone.placeholder}
         />
       </label>
 
