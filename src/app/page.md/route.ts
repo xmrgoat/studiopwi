@@ -151,6 +151,7 @@ export function GET() {
   for (const signal of contact.trustSignals) lines.push(`- ${signal}`);
   lines.push("");
   lines.push(`- **Email** : ${site.email}`);
+  lines.push(`- **WhatsApp** : ${site.whatsapp.number}`);
   lines.push("");
   lines.push(`Formulaire de contact : ${SITE_URL}/#contact`);
   lines.push(`Réserver l'appel découverte directement : ${site.booking.url}`);
