@@ -170,3 +170,12 @@
     --grid-margin: 20px;
   }
 }
+
+/* Section padding snapped to the 8px grid: 7vw alone lands on values like
+   100.8px at 1440px. round() is invalid where unsupported, which would void
+   the padding, so it only replaces the plain clamp behind @supports. */
+@supports (width: round(1px, 8px)) {
+  :root {
+    --section-py: round(clamp(64px, 7vw, 112px), 8px);
+  }
+}
