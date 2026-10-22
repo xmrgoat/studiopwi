@@ -116,6 +116,7 @@ ${
 ## Contact
 
 - **Email**: ${site.email}
+- **WhatsApp**: ${site.whatsapp.number} (for a quick question)
 - **Address**: ${site.address}
 - **Response time**: ${site.contact.trustSignals[0]}
 - **Free discovery call (30 min)**: book a slot directly at ${site.booking.url}, or request one at ${SITE_URL}/#contact
