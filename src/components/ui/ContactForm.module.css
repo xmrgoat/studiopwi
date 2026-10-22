@@ -1,10 +1,13 @@
 /* Contact form — Figma "Studio PWI contact" / "mobile contact us".
-   Label above a 53px-tall bordered input, 136px message box, full-width submit. */
+   Label above a bordered input, 136px message box, full-width submit.
+   Spacing does the grouping: each label sits tight on its field (8px), fields
+   stand 32px apart, and the submit gets a further 16px so it reads as the
+   end of the form rather than one more field. */
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-5);
 }
 
 .field {
@@ -13,9 +16,11 @@
   gap: var(--space-2);
 }
 
+/* A step under the input text, in bold: the label names the field, the
+   input carries what the visitor writes. */
 .label {
-  font-size: var(--fs-body);
-  font-weight: var(--fw-medium);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
   color: var(--color-text);
 }
 
@@ -52,8 +57,8 @@
 .submit {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  margin-top: var(--space-2);
+  gap: var(--space-3);
+  margin-top: var(--space-3);
 }
 
 .reassurance {
@@ -96,7 +101,7 @@
 .skeleton {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5);
 }
 
 .skeletonField,
