@@ -46,8 +46,10 @@
   padding-block: 0;
 }
 
+/* A set height, not a minimum: rows={5} at the desktop type size would grow
+   the box to ~160px, off the grid. The visitor can still drag it taller. */
 .field textarea {
-  min-height: 136px;
+  height: 136px;
   resize: vertical;
 }
 
