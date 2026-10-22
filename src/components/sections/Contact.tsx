@@ -6,10 +6,13 @@ import styles from "./Contact.module.css";
 
 // Server component wrapper — only the form itself is a client island.
 //
-// Two routes to the same discovery call: book a slot straight away
-// (Calendly, in the copy column, so on a phone it comes before the form) or
-// send the form and get a reply within 48h. WhatsApp sits under both as a
-// text link, for the question that doesn't need a call yet.
+// Two routes to the same discovery call: send the form and get a reply within
+// 48h, or book a slot straight away on Calendly. In the source the booking
+// block follows the form, so on a phone the intro ("Remplissez le
+// formulaire…") leads straight into the form and the "vous préférez choisir
+// l'horaire vous-même ?" alternative comes after it; on desktop the grid puts
+// it back under the intro, beside the form. WhatsApp sits in its small print,
+// for the question that doesn't need a call yet.
 export default function Contact() {
   const { title, lead, trustSignals, booking, phoneLabel, whatsappLead } = site.contact;
 
@@ -28,36 +31,36 @@ export default function Contact() {
               </li>
             ))}
           </ul>
-
-          <div className={styles.booking}>
-            <p className={styles.bookingLead}>{booking.lead}</p>
-            <Button href={site.booking.url} variant="outline" external>
-              {site.booking.label}
-            </Button>
-            {/* The small print under the button, held 8px apart: the
-                Calendly note, then the other ways to reach us. */}
-            <div className={styles.notes}>
-              <p className={styles.bookingNote}>{booking.note}</p>
-              {site.phone && (
-                <p className={styles.phone}>
-                  {phoneLabel} :{" "}
-                  <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}>{site.phone}</a>
-                </p>
-              )}
-              <p className={styles.whatsapp}>
-                {whatsappLead}{" "}
-                <a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer">
-                  <span className={styles.whatsappIcon} aria-hidden="true" />
-                  {site.whatsapp.label}
-                  <span className="sr-only"> (nouvel onglet)</span>
-                </a>
-              </p>
-            </div>
-          </div>
         </Reveal>
 
         <Reveal className={styles.formCol} order={1}>
           <ContactForm source="contact" />
+        </Reveal>
+
+        <Reveal className={styles.booking} order={2}>
+          <p className={styles.bookingLead}>{booking.lead}</p>
+          <Button href={site.booking.url} variant="outline" external>
+            {site.booking.label}
+          </Button>
+          {/* The small print under the button, held 8px apart: the
+              Calendly note, then the other ways to reach us. */}
+          <div className={styles.notes}>
+            <p className={styles.bookingNote}>{booking.note}</p>
+            {site.phone && (
+              <p className={styles.phone}>
+                {phoneLabel} :{" "}
+                <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}>{site.phone}</a>
+              </p>
+            )}
+            <p className={styles.whatsapp}>
+              {whatsappLead}{" "}
+              <a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer">
+                <span className={styles.whatsappIcon} aria-hidden="true" />
+                {site.whatsapp.label}
+                <span className="sr-only"> (nouvel onglet)</span>
+              </a>
+            </p>
+          </div>
         </Reveal>
       </div>
     </section>
