@@ -21,6 +21,17 @@ export default function Footer({ anchorBase = "" }: { anchorBase?: string }) {
             <a className={styles.email} href={`mailto:${footer.email}`}>
               {footer.email}
             </a>
+            {/* The number in plain text, as the Google Business Profile and
+                the JSON-LD telephone state it. */}
+            <a
+              className={styles.email}
+              href={site.whatsapp.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp {site.whatsapp.number}
+              <span className="sr-only"> (nouvel onglet)</span>
+            </a>
           </div>
 
           <nav className={styles.nav} aria-label="Pied de page">
