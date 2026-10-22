@@ -34,23 +34,26 @@ export default function Contact() {
             <Button href={site.booking.url} variant="outline" external>
               {site.booking.label}
             </Button>
-            <p className={styles.bookingNote}>{booking.note}</p>
-            {site.phone && (
-              <p className={styles.phone}>
-                {phoneLabel} :{" "}
-                <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}>{site.phone}</a>
+            {/* The small print under the button, held 8px apart: the
+                Calendly note, then the other ways to reach us. */}
+            <div className={styles.notes}>
+              <p className={styles.bookingNote}>{booking.note}</p>
+              {site.phone && (
+                <p className={styles.phone}>
+                  {phoneLabel} :{" "}
+                  <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}>{site.phone}</a>
+                </p>
+              )}
+              <p className={styles.whatsapp}>
+                {whatsappLead}{" "}
+                <a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer">
+                  <span className={styles.whatsappIcon} aria-hidden="true" />
+                  {site.whatsapp.label}
+                  <span className="sr-only"> (nouvel onglet)</span>
+                </a>
               </p>
-            )}
+            </div>
           </div>
-
-          <p className={styles.whatsapp}>
-            {whatsappLead}{" "}
-            <a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer">
-              <span className={styles.whatsappIcon} aria-hidden="true" />
-              {site.whatsapp.label}
-              <span className="sr-only"> (nouvel onglet)</span>
-            </a>
-          </p>
         </Reveal>
 
         <Reveal className={styles.formCol} order={1}>
