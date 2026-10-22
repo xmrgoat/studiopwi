@@ -4,6 +4,11 @@
 // Copy transcribed from the "Studio PWI Website draft" Figma file. Where the
 // desktop and mobile frames disagreed, the choice is noted inline.
 
+// WhatsApp Business. wa.me takes the number in international form, digits
+// only; the text opens the chat with a first line already written.
+const WHATSAPP = "+41 77 267 33 24";
+const WHATSAPP_TEXT = "Bonjour Studio PWI, j'ai une question sur mon site web :";
+
 export const site = {
   name: "Studio PWI",
   domain: "studiopwi.com",
@@ -13,6 +18,14 @@ export const site = {
   // Click-to-call: when set (e.g. "+41 76 000 00 00"), a phone button appears
   // in the mobile header and the contact section. Left empty until confirmed.
   phone: null as string | null,
+  // The quiet third route beside the form and Calendly, for a quick question
+  // that doesn't need a call yet. A text link in the contact section and the
+  // mobile menu, never a floating bubble: every CTA still promises the call.
+  whatsapp: {
+    number: WHATSAPP,
+    url: `https://wa.me/${WHATSAPP.replace(/\D/g, "")}?text=${encodeURIComponent(WHATSAPP_TEXT)}`,
+    label: "Écrire sur WhatsApp",
+  },
   locale: "fr",
 
   // Every CTA promises the same thing — the free 30-minute discovery call —
@@ -166,11 +179,11 @@ export const site = {
       note: "Ouvre Calendly dans un nouvel onglet.",
     },
     phoneLabel: "Ou appelez-nous",
+    whatsappLead: "Une question rapide ?",
     form: {
-      name: { label: "Nom", placeholder: "Votre nom complet" },
+      name: { label: "Nom", placeholder: "Prénom et nom" },
       email: { label: "Email", placeholder: "votre@email.com" },
-      phone: { label: "Téléphone", placeholder: "076 612 27 41" },
-      message: { label: "Message", placeholder: "Décrivez votre projet..." },
+      message: { label: "Message", placeholder: "Votre projet en quelques mots" },
       submit: "Envoyer ma demande",
       // Reassurance under the submit button, where the hesitation happens.
       reassurance: "Réponse sous 48 h · Appel de 30 min, gratuit et sans engagement.",
