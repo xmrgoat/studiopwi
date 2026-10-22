@@ -77,6 +77,13 @@
   font-weight: var(--fw-bold);
 }
 
+/* Note, phone and WhatsApp lines: one group of small print, 8px apart. */
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .bookingNote,
 .phone {
   margin: 0;
@@ -90,11 +97,11 @@
   text-underline-offset: 3px;
 }
 
-/* WhatsApp: a quiet line under the booking route — small text, the link in
+/* WhatsApp: a quiet line under the Calendly note — small text, the link in
    bold ink with the glyph masked to the same colour (never WhatsApp green,
    which would sit beside the accent and read as a second CTA). */
 .whatsapp {
-  /* A flex row, so the lead lines up with the 44px-tall link beside it. */
+  /* A flex row, so the lead lines up with the link's 16px glyph. */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -108,7 +115,9 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  min-height: 44px;
+  /* 24px: the WCAG 2.2 minimum target, and on the 8px grid. A 44px box
+     would open a gap above the line that the 8px spacing can't close. */
+  min-height: var(--space-4);
   color: var(--color-text);
   font-weight: var(--fw-bold);
   text-underline-offset: 3px;
@@ -116,8 +125,8 @@
 
 .whatsappIcon {
   flex: none;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background: currentColor;
   -webkit-mask: url("/images/icons/whatsapp.svg") no-repeat center / contain;
   mask: url("/images/icons/whatsapp.svg") no-repeat center / contain;
