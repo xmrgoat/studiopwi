@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Légal — Données personnelles"
       title="Politique de confidentialité"
-      updated="16 octobre 2026"
+      updated="22 octobre 2026"
     >
       <p>
         La présente politique de confidentialité décrit comment Studio PWI (ci-après
@@ -56,9 +56,6 @@ export default function PrivacyPage() {
           <strong>Adresse e-mail</strong> — pour vous répondre
         </li>
         <li>
-          <strong>Numéro de téléphone</strong> (optionnel) — pour vous rappeler
-        </li>
-        <li>
           <strong>Message</strong>
         </li>
         <li>
@@ -67,6 +64,24 @@ export default function PrivacyPage() {
           enregistrée.
         </li>
       </ul>
+
+      <h3>WhatsApp</h3>
+      <p>
+        Si vous choisissez de nous écrire sur WhatsApp, votre numéro de
+        téléphone, votre nom de profil et le contenu de vos messages sont
+        traités par <strong>WhatsApp Ireland Limited</strong> (groupe Meta),
+        Merrion Road, Dublin 4, D04 X2K5, Irlande, selon sa propre{" "}
+        <a
+          href="https://www.whatsapp.com/legal/privacy-policy-eea"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          politique de confidentialité
+        </a>
+        . Ce canal est facultatif : le formulaire et l&apos;e-mail restent
+        disponibles si vous préférez ne pas l&apos;utiliser. Nous utilisons vos
+        messages uniquement pour vous répondre.
+      </p>
 
       <h3>Données de navigation</h3>
       <p>
