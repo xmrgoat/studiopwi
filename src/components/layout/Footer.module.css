@@ -123,6 +123,14 @@
   -webkit-mask: url("/images/icons/linkedin.svg") no-repeat center / contain;
   mask: url("/images/icons/linkedin.svg") no-repeat center / contain;
 }
+.socialIcon[data-icon="facebook"] {
+  -webkit-mask: url("/images/icons/facebook.svg") no-repeat center / contain;
+  mask: url("/images/icons/facebook.svg") no-repeat center / contain;
+}
+.socialIcon[data-icon="instagram"] {
+  -webkit-mask: url("/images/icons/instagram.svg") no-repeat center / contain;
+  mask: url("/images/icons/instagram.svg") no-repeat center / contain;
+}
 
 /* ── Divider & bottom bar ────────────────────────────── */
 
