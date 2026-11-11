@@ -1,0 +1,441 @@
+/* Project pages — Figma "Projet — Jimi Builds / Ô Paysage" (1440) and their
+   390 mobile frames. Desktop measures are mapped onto the 12-column grid
+   (80px margins, 1280px content): a 740px headline is columns 1–7, a 320px
+   phone shot columns 1–3, the 912px detail shots columns 4–12.
+   Below 1025px every block stacks in DOM order, as the mobile frame does. */
+
+/* ── Shared ──────────────────────────────────────────── */
+
+.section {
+  padding-block: var(--section-py);
+}
+
+.grid {
+  row-gap: var(--space-5);
+  align-items: start;
+}
+
+.grid > * {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+/* 64 → 28/32px Bold, uppercase: every section headline. */
+.heading {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.text {
+  margin: 0;
+  max-width: none;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+/* Small bold caps: fact labels, the site address, screenshot captions. */
+.label {
+  margin: 0;
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+  text-transform: uppercase;
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.preview,
+.mobileView,
+.detailView,
+.testimonial {
+  margin: 0;
+}
+
+/* ── Introduction ────────────────────────────────────── */
+
+/* The header is fixed, so the first block clears it, then the frame's own
+   32 → 48px top padding. */
+.hero {
+  padding-block: calc(var(--header-height) + var(--space-5)) var(--section-py);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-display);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* The client name is the 48 → 24px card heading style. */
+.client {
+  margin: 0;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-display);
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-3) 0 0;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.factValue {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.siteLink {
+  composes: label;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── The problem ─────────────────────────────────────── */
+
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* The 48 → 24px Bold line under the headline. */
+.lead {
+  margin: 0;
+  max-width: none;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-display);
+}
+
+/* ── The solution ────────────────────────────────────── */
+
+.solutionIntro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.decisions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.decision {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* An h3 for the outline, at body size: the frame sets it in Body Bold. */
+.decisionTitle {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+  text-wrap: pretty;
+}
+
+.mobileView,
+.detailView {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* A full-width phone screenshot would run past 1600px tall on a tablet. */
+.mobileView {
+  max-width: 390px;
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.captionText {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+.detailViews {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ── The client's words ──────────────────────────────── */
+
+/* ExtraBold 48 → 24px, like the case-study heading style in the frame. */
+.testimonialTitle {
+  margin: 0;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* The solid Figma quote mark sits above the quote on phones and beside it
+   from 1025px — drawn as an image, not a mask, so it keeps its own fill. */
+.testimonial::before {
+  content: "";
+  display: block;
+  flex: none;
+  width: 22px;
+  height: 19px;
+  background: url("/images/icons/quote-solid.svg") no-repeat center / contain;
+}
+
+.quote {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+}
+
+.quote p {
+  margin: 0;
+  max-width: none;
+}
+
+/* ── Call to action ──────────────────────────────────── */
+
+.ctaMessage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ctaAction {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.note {
+  margin: 0;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+/* ── Next project ────────────────────────────────────── */
+
+/* A full-width link block with an ink hairline, as in the frame. */
+.next {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--grid-margin);
+  border-block: 1px solid var(--color-line-strong);
+  color: inherit;
+  text-decoration: none;
+}
+
+.nextClient {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+/* Sized to the caps of the client name, stroked at its ExtraBold weight. */
+.arrow {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  vertical-align: 0.05em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .next:hover .arrow {
+    translate: var(--space-2) 0;
+  }
+  .next:hover .nextClient {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+  .siteLink:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/* ── Desktop: the frame's two-column rows ────────────── */
+
+@media (min-width: 1025px) {
+  .grid {
+    row-gap: var(--space-6);
+  }
+
+  .hero {
+    padding-top: calc(var(--header-height) + var(--space-6));
+  }
+
+  .title {
+    grid-column: 1 / span 7;
+  }
+  .summary {
+    grid-column: 8 / -1;
+    gap: var(--space-4);
+  }
+
+  .facts {
+    flex-direction: row;
+    gap: var(--space-7);
+    margin-top: 0;
+  }
+  .fact {
+    flex: 1 1 0;
+  }
+  .preview {
+    margin-top: 0;
+  }
+
+  /* Problem: 560px headline, copy from column 7. */
+  .problemHeading {
+    grid-column: 1 / span 6;
+  }
+  .split {
+    grid-column: 7 / -1;
+    gap: var(--space-5);
+  }
+
+  /* Solution: 680px headline beside its lead, then the three decisions. */
+  .solutionIntro {
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: start;
+  }
+  .solutionIntro .heading {
+    grid-column: 1 / span 7;
+  }
+  .solutionIntro .text {
+    grid-column: 8 / -1;
+  }
+
+  .decisions {
+    flex-direction: row;
+    gap: var(--space-6);
+  }
+  .decision {
+    flex: 1 1 0;
+    gap: var(--space-2);
+  }
+
+  .mobileView {
+    grid-column: 1 / span 3;
+    max-width: none;
+    gap: var(--space-4);
+  }
+  .detailViews {
+    grid-column: 4 / -1;
+  }
+
+  /* Testimonial: 400px heading, the quote mark and quote from column 5. */
+  .testimonialTitle {
+    grid-column: 1 / span 4;
+  }
+  .testimonial {
+    grid-column: 5 / -1;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-3);
+    row-gap: var(--space-5);
+  }
+  .testimonial::before {
+    grid-row: 1 / span 2;
+  }
+  .testimonial > * {
+    grid-column: 2;
+  }
+
+  /* CTA: 800px message, the button from column 9. */
+  .ctaMessage {
+    grid-column: 1 / span 7;
+  }
+  .ctaAction {
+    grid-column: 9 / -1;
+    align-self: center;
+  }
+}
+
+/* ── Entrance ────────────────────────────────────────── */
+
+/* The h1 only rises — it is the page's LCP candidate on phones, and an opacity
+   of 0 would hold the paint back. The summary and facts fade up behind it. */
+@media (prefers-reduced-motion: no-preference) {
+  .title {
+    animation: rise var(--duration-hero) var(--ease-expo) backwards;
+  }
+  .summary,
+  .facts {
+    animation: fade-rise var(--duration-reveal) var(--ease-out) 0.15s backwards;
+  }
+  .facts {
+    animation-delay: 0.25s;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(var(--motion-rise));
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
+  }
+}
