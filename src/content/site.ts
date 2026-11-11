@@ -200,6 +200,23 @@ export const site = {
     },
   },
 
+  // /contact — the homepage contact section as a page of its own, followed by
+  // the FAQ (Figma "Contact — 1440" / "Mobile — Contact"). Its form lands on
+  // /merci like the homepage's, so leads are counted the same way.
+  contactPage: {
+    seo: {
+      title: "Contact : appel découverte gratuit de 30 minutes",
+      description:
+        "Parlez-nous de votre entreprise de paysagisme : formulaire, créneau en ligne ou WhatsApp. Réponse sous 48 h, appel découverte de 30 minutes gratuit et sans engagement.",
+    },
+    // Noelia Krähenbühl's review (nbk-interp.ch, an interpreter, not a
+    // landscaper), shown on this page only.
+    quote: {
+      text: "Service rapide et très professionnelle, je recommande !",
+      author: "Noelia Krähenbühl",
+    },
+  },
+
   // /merci — where the contact form lands after a successful send. Each view
   // of it is one lead in Vercel Analytics, so nothing else should link here.
   thanks: {
