@@ -1,5 +1,6 @@
 import { site } from "@/content/site";
 import { services, chf, type Service, type CarePlan } from "@/content/services";
+import type { Project } from "@/content/cases";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.studiopwi.com";
 
@@ -216,6 +217,33 @@ export function WebPageLd() {
     // component here uses CSS Modules — the rendered class is a hashed name
     // like Hero_lead__a1b2c, never the literal ".lead" this used to declare.
     // The previous selector matched nothing in the actual DOM.
+  };
+  return <Ld data={data} />;
+}
+
+// A portfolio page: the page itself, joined to the sitewide graph by @id, and
+// the client site it presents, credited to the studio. No Review markup for
+// the client quote — Google ignores reviews a business publishes about itself.
+export function ProjectPageLd({ project }: { project: Project }) {
+  const url = `${SITE_URL}/portfolio/${project.slug}`;
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: `${project.seo.title} · ${site.name}`,
+    description: project.seo.description,
+    inLanguage: "fr-CH",
+    isPartOf: { "@id": WEBSITE_ID },
+    publisher: { "@id": ORG_ID },
+    primaryImageOfPage: `${SITE_URL}${project.shots.desktop.src}`,
+    about: {
+      "@type": "WebSite",
+      name: project.client,
+      url: project.site.url,
+      creator: { "@id": BUSINESS_ID },
+      image: `${SITE_URL}${project.shots.desktop.src}`,
+    },
   };
   return <Ld data={data} />;
 }
