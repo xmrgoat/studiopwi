@@ -13,25 +13,42 @@ import styles from "./Contact.module.css";
 // l'horaire vous-même ?" alternative comes after it; on desktop the grid puts
 // it back under the intro, beside the form. WhatsApp sits in its small print,
 // for the question that doesn't need a call yet.
-export default function Contact() {
+//
+// `page` renders the same section as the /contact page: the title becomes the
+// page's h1, the intro shows on load instead of on scroll (it is above the
+// fold, and the h1 must never fade), and the contact page's review is added.
+export default function Contact({ page = false }: { page?: boolean }) {
   const { title, lead, trustSignals, booking, phoneLabel, whatsappLead } = site.contact;
+  const quote = page ? site.contactPage.quote : null;
+  const Title = page ? "h1" : "h2";
+
+  const intro = (
+    <>
+      <Title className={styles.title}>{title}</Title>
+      <p className={styles.lead}>{lead}</p>
+
+      <ul className={styles.signals}>
+        {trustSignals.map((signal) => (
+          <li key={signal} className={styles.signal}>
+            <span className={styles.check} aria-hidden="true" />
+            {signal}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 
   return (
-    <section className={`section ${styles.section}`} id="contact">
-      <div className={`grid ${styles.grid}`}>
-        <Reveal className={styles.copy}>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.lead}>{lead}</p>
-
-          <ul className={styles.signals}>
-            {trustSignals.map((signal) => (
-              <li key={signal} className={styles.signal}>
-                <span className={styles.check} aria-hidden="true" />
-                {signal}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+    <section
+      className={`section ${styles.section} ${page ? styles.page : ""}`}
+      id="contact"
+    >
+      <div className={`grid ${styles.grid} ${quote ? styles.withQuote : ""}`}>
+        {page ? (
+          <div className={styles.copy}>{intro}</div>
+        ) : (
+          <Reveal className={styles.copy}>{intro}</Reveal>
+        )}
 
         <Reveal className={styles.formCol} order={1}>
           <ContactForm source="contact" />
@@ -62,6 +79,13 @@ export default function Contact() {
             </p>
           </div>
         </Reveal>
+
+        {quote && (
+          <Reveal as="figure" className={styles.quote} order={3}>
+            <blockquote className={styles.quoteText}>« {quote.text} »</blockquote>
+            <figcaption className={styles.quoteAuthor}>{quote.author}</figcaption>
+          </Reveal>
+        )}
       </div>
     </section>
   );
