@@ -71,7 +71,7 @@ Files under `src/app/` that aren't pages or layouts are Next.js metadata-route c
 | Route | File | Purpose |
 |---|---|---|
 | `/robots.txt` | `src/app/robots.ts` | Allow `/`, disallow `/api/`, `/_next/`, `/admin`; points to sitemap |
-| `/sitemap.xml` | `src/app/sitemap.ts` | Homepage only (other linked routes don't exist yet) |
+| `/sitemap.xml` | `src/app/sitemap.ts` | Homepage, `/contact`, one entry per project page (from `projects`), the three legal pages. Never `/merci`. |
 | `/manifest.webmanifest` | `src/app/manifest.ts` | PWA manifest |
 | `/icon` (32×32) | `src/app/icon.tsx` | Generated favicon via `next/og` |
 | `/apple-icon` (180×180) | `src/app/apple-icon.tsx` | iOS touch icon via `next/og` |
@@ -80,7 +80,14 @@ Files under `src/app/` that aren't pages or layouts are Next.js metadata-route c
 | `/llms.txt` | `src/app/llms.txt/route.ts` | French + English brief for AI answer engines. Publishes the current prices from `services.ts` and flags the pre-October-2026 figures as outdated. |
 | `/page.md` | `src/app/page.md/route.ts` | Markdown mirror of the homepage (carries `X-Robots-Tag: noindex`) |
 
-JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx) (four typed components: `OrganizationLd`, `WebSiteLd`, `LocalBusinessLd`, `WebPageLd`) and is mounted in two places — sitewide schema in `layout.tsx`, page-level schema in `page.tsx`. The components share `@id` references so Google can stitch the graph; preserve that pattern when adding new schema types.
+JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx) (typed components: `OrganizationLd`, `WebSiteLd`, `LocalBusinessLd`, `WebPageLd`, `FaqLd`, plus `ContactPageLd` and `ProjectPageLd` for the pages below) and is mounted in two places — sitewide schema in `layout.tsx`, page-level schema in each page. The components share `@id` references so Google can stitch the graph; preserve that pattern when adding new schema types. `sameAs` is read from `site.footer.social`. `FaqLd` stays on the homepage only, even though `/contact` also renders the FAQ.
+
+### Pages beyond the homepage (November 2026)
+
+- **`/portfolio/[slug]`** — [`src/app/portfolio/[slug]/page.tsx`](src/app/portfolio/[slug]/page.tsx) renders [`ProjectPage`](src/components/project/ProjectPage.tsx) from `projects` in `cases.ts` (`dynamicParams = false`, so unknown slugs 404). Adding a project means adding an entry there plus its four shots under `public/images/projects/<slug>/`; sitemap, llms.txt and the "Projet suivant" chain pick it up. The client quote on a project page is read by author from `site.whyUs.testimonials` (`review()` throws if it is missing), so a review is written once. No `Review` markup: these are reviews of the studio shown on the studio's own site.
+- **`/contact`** — the homepage `Contact` section rendered with `page` (its title becomes the `h1`, the intro isn't wrapped in a Reveal so the h1 never fades, and `site.contactPage.quote` appears under it), followed by `Faq`. Copy and SEO strings live in `site.contactPage`.
+- **Navigation**: the "Contact" nav and footer links go to `/contact` from every page. Section CTAs and the header "Appel gratuit" button still scroll to `#contact` on the homepage; off the homepage `Header` rewrites `#contact` to `/contact` and other `#section` links to `/#section`.
+- A page-level `openGraph` replaces the root one entirely: restate `siteName` and `images` on every page that sets it.
 
 `metadataBase` and every SEO route default to `https://www.studiopwi.com` when `NEXT_PUBLIC_SITE_URL` is unset. The canonical host is **www.studiopwi.com**: Vercel serves www and 308-redirects the apex to it (Vercel's recommended setup), so canonicals, the sitemap and JSON-LD must say www — an apex canonical points every crawler at a redirect. The brand domain in copy stays "studiopwi.com"; the canonical contact email is **contact@studiopwi.com**. Older drafts used `studio.ch` / `contact@pwi.com` — those are wrong, don't reintroduce them.
 
