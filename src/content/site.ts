@@ -213,10 +213,14 @@ export const site = {
       { label: "Contact", href: "#contact" },
     ],
     socialLabel: "Suivez-nous",
-    // TODO(jp): the Figma shows a LinkedIn icon but carries no URL. This is a
-    // guess at the company page slug — confirm or replace before launch.
+    // The label doubles as the icon key (lowercased → data-icon in Footer).
+    // TODO(jp): the LinkedIn URL is a guess at the company page slug — confirm
+    // or replace before launch. Facebook and Instagram are the owner's own.
+    // Keep this list and SAME_AS in components/seo/JsonLd.tsx in step.
     social: [
       { label: "LinkedIn", href: "https://www.linkedin.com/company/studiopwi" },
+      { label: "Facebook", href: "https://www.facebook.com/studiopwi/" },
+      { label: "Instagram", href: "https://www.instagram.com/studiopwi/" },
     ],
     // The Figma footer lists only "Mentions légales" and "Politique de
     // confidentialité". /conditions-generales is kept here deliberately: the
