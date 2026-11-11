@@ -29,8 +29,9 @@ const ADDRESS = {
 } as const;
 
 // Public profiles confirming the entity (Google/AI answer engines use these
-// to disambiguate the brand).
-const SAME_AS = ["https://www.linkedin.com/company/studiopwi/"] as const;
+// to disambiguate the brand). Read from the footer's social links, so the
+// profiles the page shows and the ones the schema claims can't drift.
+const SAME_AS = site.footer.social.map((profile) => profile.href);
 
 // The Romandie cities the studio serves. Since the problem and FAQ sections
 // were removed, only Neuchâtel is named on the page itself; areaServed feeds
