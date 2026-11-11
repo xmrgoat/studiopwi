@@ -138,10 +138,42 @@
   grid-column: 1 / -1;
 }
 
+/* ── /contact page variant ───────────────────────────── */
+
+/* First block on the page, so it clears the fixed header: 104 + 48px on a
+   phone, 104 + 56px on desktop, as in the frames. */
+.page {
+  padding-top: calc(var(--header-height) + var(--space-6));
+}
+
+/* A review in the client's words: Body Bold, no card. In source order it
+   follows the booking block (the phone frame); on desktop the grid lifts it
+   under the intro. */
+.quote {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.quoteText {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+}
+
+.quoteAuthor {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
   .copy,
   .formCol,
-  .booking {
+  .booking,
+  .quote {
     grid-column: 1 / span 8;
   }
 }
@@ -164,6 +196,25 @@
     grid-column: 7 / span 6;
     grid-row: 1 / span 2;
   }
+
+  .page {
+    padding-top: calc(var(--header-height) + var(--space-6) + var(--space-2));
+  }
+
+  /* With a review, the left column has three rows: intro, review, booking. */
+  .withQuote {
+    grid-template-rows: auto auto 1fr;
+  }
+  .withQuote .quote {
+    grid-column: 1 / span 5;
+    grid-row: 2;
+  }
+  .withQuote .booking {
+    grid-row: 3;
+  }
+  .withQuote .formCol {
+    grid-row: 1 / span 3;
+  }
 }
 
 /* ── Entrance ────────────────────────────────────────── */
@@ -177,6 +228,32 @@
   }
   .copy[data-inview] .signal:nth-child(2) .check {
     animation-delay: calc(var(--reveal-delay) + 0.45s + var(--stagger));
+  }
+
+  /* On /contact the intro is above the fold and holds the h1 (the LCP
+     candidate), so it is not a Reveal: the title only rises, the rest of the
+     intro fades up behind it, and the checks tick in on load. */
+  .page .title {
+    animation: title-rise var(--duration-hero) var(--ease-expo) backwards;
+  }
+  .page .copy > :not(.title) {
+    animation: intro-in var(--duration-reveal) var(--ease-out) 0.15s backwards;
+  }
+  .page .check {
+    animation: check-tick 0.5s var(--ease-spring) 0.5s backwards;
+  }
+}
+
+@keyframes title-rise {
+  from {
+    transform: translateY(var(--motion-rise));
+  }
+}
+
+@keyframes intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
   }
 }
 
