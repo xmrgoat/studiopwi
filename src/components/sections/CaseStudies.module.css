@@ -52,6 +52,19 @@
 
 .ctas {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+}
+
+/* The way into the full project page: a plain text link beside the CTA, so
+   the button stays the one action that stands out. */
+.detail {
+  color: var(--color-text);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  text-underline-offset: 3px;
 }
 
 /* ── Media column ────────────────────────────────────── */
