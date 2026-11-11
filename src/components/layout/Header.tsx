@@ -10,10 +10,14 @@ export default function Header() {
   const ref = useRef<HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   // The nav targets are homepage sections. Off the homepage a bare "#services"
-  // points at nothing on the current page, so route back to "/#services".
+  // points at nothing on the current page, so route back to "/#services" —
+  // except "#contact", which has a page of its own: /contact is lighter than
+  // the whole homepage, and on /contact itself the form is already there.
   const onHome = usePathname() === "/";
-  const resolve = (href: string) =>
-    !onHome && href.startsWith("#") ? `/${href}` : href;
+  const resolve = (href: string) => {
+    if (onHome || !href.startsWith("#")) return href;
+    return href === "#contact" ? "/contact" : `/${href}`;
+  };
 
   useEffect(() => {
     const header = ref.current;
