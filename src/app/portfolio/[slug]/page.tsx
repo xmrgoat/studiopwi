@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProjectPage from "@/components/project/ProjectPage";
 import { getProject, projects } from "@/content/cases";
+import { site } from "@/content/site";
 
 // Every project is prerendered; an unknown slug is a 404, not a render.
 export const dynamicParams = false;
@@ -29,10 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: project.seo.title,
     description: project.seo.description,
     alternates: { canonical: path },
+    // Replaces the root openGraph whole, so the site name is restated.
     openGraph: {
       type: "article",
       locale: "fr_CH",
       url: path,
+      siteName: site.name,
       title: project.seo.title,
       description: project.seo.description,
       images: [image],
