@@ -96,7 +96,9 @@ const shot = (slug: string, name: string, width: number, height: number, alt: st
 
 export const projectPage = {
   nextLabel: "Projet suivant",
+  // Labelled site.callCta, the one promise every CTA makes: the free call.
   cta: {
+    href: "/#contact",
     title: "Envie d'un site\ncomme celui-ci ?",
     lead: "Parlons de votre entreprise pendant 30 minutes. C'est gratuit.",
     note: "Gratuit et sans engagement.",
