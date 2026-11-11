@@ -12,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    {
+      url: `${SITE_URL}/contact`,
+      lastModified: new Date("2026-11-12"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     // One entry per project page, read from cases.ts.
     ...projects.map((project) => ({
       url: `${SITE_URL}/portfolio/${project.slug}`,
