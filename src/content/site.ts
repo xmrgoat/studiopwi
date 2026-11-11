@@ -54,11 +54,13 @@ export const site = {
 
   // Header nav — matches the three links in the Figma header frame — plus
   // the header CTA, which stays reachable however far down the page is read.
+  // "Contact" is the /contact page from everywhere; the CTA scrolls to the
+  // form on the homepage and opens /contact elsewhere (see Header).
   headerCta: { label: "Appel gratuit", href: "#contact" },
   nav: [
     { label: "Services", href: "#services" },
     { label: "À propos", href: "#pourquoi" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/contact" },
   ],
 
   hero: {
@@ -235,7 +237,7 @@ export const site = {
       { label: "Services", href: "#services" },
       { label: "Étude de cas", href: "#etude-de-cas" },
       { label: "Notre démarche", href: "#demarche" },
-      { label: "Contact", href: "#contact" },
+      { label: "Contact", href: "/contact" },
     ],
     socialLabel: "Suivez-nous",
     // The label doubles as the icon key (lowercased → data-icon in Footer).
