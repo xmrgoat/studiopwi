@@ -221,6 +221,23 @@ export function WebPageLd() {
   return <Ld data={data} />;
 }
 
+// /contact: a ContactPage about the business, joined to the sitewide graph.
+export function ContactPageLd() {
+  const url = `${SITE_URL}/contact`;
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: `${site.contactPage.seo.title} · ${site.name}`,
+    description: site.contactPage.seo.description,
+    inLanguage: "fr-CH",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": BUSINESS_ID },
+  };
+  return <Ld data={data} />;
+}
+
 // A portfolio page: the page itself, joined to the sitewide graph by @id, and
 // the client site it presents, credited to the studio. No Review markup for
 // the client quote — Google ignores reviews a business publishes about itself.
