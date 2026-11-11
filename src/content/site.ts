@@ -88,6 +88,14 @@ export const site = {
         author: "Jimi Builds",
         role: "",
       },
+      {
+        // Nicolas's review, lightly corrected with his wording kept (owner
+        // approved, November 2026). The 👌 he ended with is left out.
+        quote:
+          "Jean-Pierre a très vite compris ce que je souhaitais : communication claire et efficacité ! Le tout à des tarifs tout à fait corrects. Je ne peux que recommander.",
+        author: "Nicolas Descloux",
+        role: "Ô Paysage",
+      },
     ],
   },
 
