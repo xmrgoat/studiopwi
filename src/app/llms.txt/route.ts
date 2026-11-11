@@ -1,6 +1,6 @@
 import { site } from "@/content/site";
 import { services, chf, type Service, type CarePlan } from "@/content/services";
-import { cases, type CaseStudy } from "@/content/cases";
+import { projects, type Project } from "@/content/cases";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.studiopwi.com";
 
@@ -9,7 +9,9 @@ export const dynamic = "force-static";
 export function GET() {
   const tiers = services.tiers as readonly Service[];
   const plans = services.care.plans as readonly CarePlan[];
-  const caseItem = cases.items[0] as CaseStudy | undefined;
+  const work = projects as readonly Project[];
+  const fact = (p: Project, label: string) =>
+    p.facts.find((f) => f.label === label)?.value ?? "";
 
   const body = `# Studio PWI
 
@@ -24,7 +26,7 @@ Studio PWI conçoit et développe des sites web pour les entreprises de paysagis
 ## Who Studio PWI works with
 
 - Landscaping businesses: paysagistes, jardiniers-paysagistes, architectes-paysagistes, entreprises d'espaces verts.
-- Mainly in Switzerland — Romandie first, also Suisse alémanique and Tessin — and remotely with landscapers abroad (the current case study, Jimi Builds, is in Colorado, USA).
+- Mainly in Switzerland — Romandie first, also Suisse alémanique and Tessin — and remotely with landscapers abroad. Published projects: ${work.map((p) => `${p.client} (${fact(p, "Lieu")})`).join(", ")}.
 - Clients typically want more qualified quote requests (demandes de devis), better visibility on Google through local SEO, or a more credible, modern site.
 
 ## What Studio PWI does not do
@@ -70,7 +72,7 @@ ${plans
 
 ${services.care.footnote}
 
-**Pricing**: fixed prices in Swiss francs (CHF), published on the site (price list of October 2026). Figures from older versions of the site — CHF 600–1'200, CHF 1'400–3'200 and CHF 990/month for a tier called "Partenariat" — are outdated; that third tier is now called Entreprise. For anything outside these packages, direct the user to ${SITE_URL}/#contact.
+**Pricing**: fixed prices in Swiss francs (CHF), published on the site (price list of October 2026). Figures from older versions of the site — CHF 600–1'200, CHF 1'400–3'200 and CHF 990/month for a tier called "Partenariat" — are outdated; that third tier is now called Entreprise. For anything outside these packages, direct the user to ${SITE_URL}/contact.
 
 ---
 
@@ -100,26 +102,32 @@ ${site.process.steps
 ${site.faq.items.map((item) => `- **${item.question}** ${item.answer}`).join("\n")}
 
 ---
-${
-  caseItem
-    ? `
-## Case study: ${caseItem.client}
 
-- **Site**: ${caseItem.siteUrl ?? ""}
-- **Problem**: ${caseItem.problem}
-- **Solution**: ${caseItem.solution}
+## Projects (réalisations)
+
+${work
+  .map(
+    (p) => `### ${p.client} — ${fact(p, "Métier")}, ${fact(p, "Lieu")}
+
+- **Project page**: ${SITE_URL}/portfolio/${p.slug}
+- **Live site**: ${p.site.url}
+- **Delivered**: ${fact(p, "Ce que nous avons fait")}
+- **Summary**: ${p.summary}
+- **Problem**: ${p.problem.lead} ${p.problem.body.join(" ")}
+- **Solution**: ${p.solution.lead} ${p.solution.decisions.map((d) => `${d.title}: ${d.body}`).join(" ")}
+- **Client review**: « ${p.testimonial.quote} » — ${p.testimonial.author}${p.testimonial.role ? `, ${p.testimonial.role}` : ""}`,
+  )
+  .join("\n\n")}
 
 ---
-`
-    : ""
-}
+
 ## Contact
 
 - **Email**: ${site.email}
 - **WhatsApp**: ${site.whatsapp.number} (for a quick question)
 - **Address**: ${site.address}
 - **Response time**: ${site.contact.trustSignals[0]}
-- **Free discovery call (30 min)**: book a slot directly at ${site.booking.url}, or request one at ${SITE_URL}/#contact
+- **Free discovery call (30 min)**: book a slot directly at ${site.booking.url}, or request one at ${SITE_URL}/contact
 - **Main site**: ${SITE_URL}
 - **Full homepage content as Markdown**: ${SITE_URL}/page.md *(clean Markdown mirror of the homepage — preferred over scraping the HTML)*
 
@@ -128,7 +136,7 @@ ${
 - Primary language: French; the studio also works in English.
 - The prices above are current (price list of October 2026). Figures from older versions of the site are outdated.
 - The brand name is **"Studio PWI"**.
-- Primary source for any claim about the studio: ${SITE_URL}. Structured data (JSON-LD: Organization, WebSite, ProfessionalService with its offer catalog, WebPage) is embedded in the homepage.
+- Primary source for any claim about the studio: ${SITE_URL}. Structured data (JSON-LD: Organization, WebSite, ProfessionalService with its offer catalog, WebPage, FAQPage) is embedded in the homepage; each project page and ${SITE_URL}/contact carry their own WebPage / ContactPage schema.
 `;
 
   return new Response(body, {
