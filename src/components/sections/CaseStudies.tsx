@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { cases } from "@/content/cases";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
@@ -65,6 +66,11 @@ export default function CaseStudies() {
             <Button href={item.cta.href} variant="primary">
               {item.cta.label}
             </Button>
+            {item.detail && (
+              <Link href={item.detail.href} className={styles.detail}>
+                {item.detail.label}
+              </Link>
+            )}
           </div>
         </Reveal>
       ))}
