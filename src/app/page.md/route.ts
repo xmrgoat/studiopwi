@@ -57,6 +57,10 @@ export function GET() {
     lines.push("");
     lines.push(`**${caseItem.solutionLabel}** ${caseItem.solution}`);
     lines.push("");
+    if (caseItem.detail) {
+      lines.push(`${caseItem.detail.label} : ${SITE_URL}${caseItem.detail.href}`);
+      lines.push("");
+    }
     lines.push("---");
     lines.push("");
   }
@@ -153,7 +157,7 @@ export function GET() {
   lines.push(`- **Email** : ${site.email}`);
   lines.push(`- **WhatsApp** : ${site.whatsapp.number}`);
   lines.push("");
-  lines.push(`Formulaire de contact : ${SITE_URL}/#contact`);
+  lines.push(`Formulaire de contact : ${SITE_URL}/#contact (aussi sur ${SITE_URL}/contact)`);
   lines.push(`Réserver l'appel découverte directement : ${site.booking.url}`);
   lines.push("");
   lines.push("---");
