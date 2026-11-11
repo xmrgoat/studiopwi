@@ -216,7 +216,7 @@ export const site = {
     // The label doubles as the icon key (lowercased → data-icon in Footer).
     // TODO(jp): the LinkedIn URL is a guess at the company page slug — confirm
     // or replace before launch. Facebook and Instagram are the owner's own.
-    // Keep this list and SAME_AS in components/seo/JsonLd.tsx in step.
+    // The JSON-LD sameAs list is read from here.
     social: [
       { label: "LinkedIn", href: "https://www.linkedin.com/company/studiopwi" },
       { label: "Facebook", href: "https://www.facebook.com/studiopwi/" },
