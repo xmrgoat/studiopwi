@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/content/site";
+import { markHydrated } from "@/lib/navigation";
 import styles from "./Header.module.css";
 
 export type ProjectLink = { href: string; client: string; teaser: string };
@@ -23,6 +24,10 @@ export default function HeaderBar({ projects }: { projects: readonly ProjectLink
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const nav: readonly NavItem[] = site.nav;
+  // Same entries, in the phone drawer's own order (site.drawerOrder).
+  const drawerNav = site.drawerOrder
+    .map((label) => nav.find((item) => item.label === label))
+    .filter((item): item is NavItem => item !== undefined);
 
   // The nav targets are homepage sections. Off the homepage a bare "#services"
   // points at nothing on the current page, so route back to "/#services" —
@@ -37,6 +42,10 @@ export default function HeaderBar({ projects }: { projects: readonly ProjectLink
   const current = (href: string) => (href === pathname ? ("page" as const) : undefined);
   const onProject = projects.some((p) => p.href === pathname);
   const delay = (i: number) => ({ "--i": i }) as CSSProperties;
+
+  // Runs once the whole page has rendered: from here on, a newly mounted
+  // component arrived by navigation (see lib/navigation).
+  useEffect(markHydrated, []);
 
   useEffect(() => {
     const header = ref.current;
@@ -244,7 +253,7 @@ export default function HeaderBar({ projects }: { projects: readonly ProjectLink
         onClick={onDrawerClick}
       >
         <nav className={styles.drawerNav} aria-label="Mobile primary">
-          {nav.map((item, i) =>
+          {drawerNav.map((item, i) =>
             item.menu === "projects" ? (
               <div key={item.label} className={styles.drawerGroup} style={delay(i)}>
                 <span className={styles.drawerGroupLabel} id="drawer-projects">
