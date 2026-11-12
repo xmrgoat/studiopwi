@@ -52,13 +52,16 @@ export const site = {
       "Studio web du canton de Neuchâtel dédié aux paysagistes suisses : des sites conçus pour être trouvés sur Google et générer des demandes de devis.",
   },
 
-  // Header nav — matches the three links in the Figma header frame — plus
-  // the header CTA, which stays reachable however far down the page is read.
-  // "Contact" is the /contact page from everywhere; the CTA scrolls to the
-  // form on the homepage and opens /contact elsewhere (see Header).
+  // Header nav — the Figma header frame's three links, plus "Réalisations"
+  // (November 2026), which opens the list of project pages (read from
+  // `projects` in cases.ts) — and the header CTA, which stays reachable
+  // however far down the page is read. "Contact" is the /contact page from
+  // everywhere; the CTA scrolls to the form on the homepage and opens
+  // /contact elsewhere (see HeaderBar).
   headerCta: { label: "Appel gratuit", href: "#contact" },
   nav: [
     { label: "Services", href: "#services" },
+    { label: "Réalisations", menu: "projects" },
     { label: "À propos", href: "#pourquoi" },
     { label: "Contact", href: "/contact" },
   ],
