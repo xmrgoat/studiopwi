@@ -79,8 +79,9 @@ export type Project = {
   next: string;
 };
 
-// The project pages quote the same reviews the homepage shows, so a review is
-// written once (site.whyUs.testimonials) and picked up here by author.
+// A project page that quotes a review the homepage also shows picks it up from
+// site.whyUs.testimonials by author, so it is written once. A review the owner
+// keeps off the homepage (Ô Paysage) is written on its project below.
 function review(author: string) {
   const found = site.whyUs.testimonials.find((t) => t.author === author);
   if (!found) throw new Error(`No testimonial by "${author}" in site.whyUs`);
@@ -231,7 +232,16 @@ export const projects = [
       process: "Comment ça marche, en 5 étapes",
       form: "Un formulaire court pour demander un devis",
     },
-    testimonial: { title: "Ce qu'en dit Nicolas", ...review("Nicolas Descloux") },
+    // Nicolas's review, lightly corrected with his wording kept (owner
+    // approved, November 2026). The 👌 he ended with is left out. Shown here
+    // only: the owner keeps it off the homepage.
+    testimonial: {
+      title: "Ce qu'en dit Nicolas",
+      quote:
+        "Jean-Pierre a très vite compris ce que je souhaitais : communication claire et efficacité ! Le tout à des tarifs tout à fait corrects. Je ne peux que recommander.",
+      author: "Nicolas Descloux",
+      role: "Ô Paysage",
+    },
     teaser: "Un paysagiste à Saint-Aubin (FR).",
     next: "jimi-builds",
   },
