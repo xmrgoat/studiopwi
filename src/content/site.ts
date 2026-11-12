@@ -59,15 +59,14 @@ export const site = {
   // everywhere; the CTA scrolls to the form on the homepage and opens
   // /contact elsewhere (see HeaderBar).
   headerCta: { label: "Appel gratuit", href: "#contact" },
+  // Order from the Figma Header and Mobile Menu components (November 2026),
+  // the same in the bar and the phone drawer.
   nav: [
+    { label: "À propos", href: "#pourquoi" },
     { label: "Services", href: "#services" },
     { label: "Réalisations", menu: "projects" },
-    { label: "À propos", href: "#pourquoi" },
     { label: "Contact", href: "/contact" },
   ],
-  // The phone drawer lists the same entries in the order of the Figma
-  // "Mobile Menu" component (November 2026), by label.
-  drawerOrder: ["À propos", "Services", "Réalisations", "Contact"],
 
   hero: {
     headline: "Des sites web pour les paysagistes qui veulent plus de chantiers",
