@@ -212,9 +212,13 @@
   transition-delay: 0s;
 }
 
-.panelList {
+.panelList,
+.drawerSubList {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .panelLink {
@@ -361,8 +365,6 @@
 }
 
 .drawerSubList {
-  display: flex;
-  flex-direction: column;
   padding-left: var(--space-3);
   border-left: 2px solid var(--color-line-strong);
 }
