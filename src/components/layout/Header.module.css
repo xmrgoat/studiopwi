@@ -358,7 +358,7 @@
 }
 
 .drawerGroupLabel {
-  color: var(--color-text-muted);
+  color: var(--color-text);
   font-size: var(--fs-eyebrow);
   font-weight: var(--fw-bold);
   text-transform: uppercase;
@@ -366,7 +366,8 @@
 
 .drawerSubList {
   padding-left: var(--space-3);
-  border-left: 2px solid var(--color-line-strong);
+  /* The Figma "Mobile Menu" marks the group with the light accent. */
+  border-left: 2px solid var(--color-marker);
 }
 
 .drawerSubLink {
