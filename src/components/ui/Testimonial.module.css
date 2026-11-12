@@ -31,6 +31,14 @@
   background: url("/images/icons/quote.svg") no-repeat center / contain;
 }
 
+/* Phones: no mark, as in the Figma mobile variant — the 20px page margin
+   has no room for a glyph hanging 24px into it. */
+@media (max-width: 768px) {
+  .quote::before {
+    content: none;
+  }
+}
+
 /* Bold in the frame — the quote carries more weight than the copy around it. */
 .text {
   margin: 0;
