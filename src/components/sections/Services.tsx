@@ -66,7 +66,8 @@ export default function Services() {
         <p className={styles.footnote}>{services.reassurance}</p>
       </Reveal>
 
-      {/* Monthly care plans — lighter than the tier cards: no CTA, no badge.
+      {/* Monthly care plans — lighter than the tier cards: no per-card CTA,
+          one button under the block instead (Figma Services frame).
           h3 under the section's h2, plan names h4, so no level is skipped. */}
       <Reveal className={`grid ${styles.careHeader}`}>
         <h3 className={styles.careHeadline}>{services.care.headline}</h3>
@@ -103,6 +104,11 @@ export default function Services() {
 
       <Reveal className={`grid ${styles.footnoteRow}`}>
         <p className={styles.footnote}>{services.care.footnote}</p>
+        <div className={styles.careCta}>
+          <Button href={services.care.cta.href} variant="primary" fullWidth>
+            {services.care.cta.label}
+          </Button>
+        </div>
       </Reveal>
     </section>
   );
