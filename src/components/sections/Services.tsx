@@ -105,7 +105,7 @@ export default function Services() {
       <Reveal className={`grid ${styles.footnoteRow}`}>
         <p className={styles.footnote}>{services.care.footnote}</p>
         <div className={styles.careCta}>
-          <Button href={services.care.cta.href} variant="primary" fullWidth>
+          <Button href={services.care.cta.href} variant="primary">
             {services.care.cta.label}
           </Button>
         </div>
