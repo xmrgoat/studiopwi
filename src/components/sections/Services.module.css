@@ -209,6 +209,19 @@
   line-height: var(--lh-normal);
 }
 
+/* The care block's single button: 24px under the footnote, full width on
+   phones, one card wide from tablet up (Figma: 317px, the care card width). */
+.careCta {
+  grid-column: 1 / -1;
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 769px) {
+  .careCta {
+    grid-column: span 4;
+  }
+}
+
 .careCards {
   list-style: none;
   padding: 0;
