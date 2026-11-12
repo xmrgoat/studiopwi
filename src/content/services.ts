@@ -146,5 +146,8 @@ export const services = {
       },
     ] as const satisfies readonly CarePlan[],
     footnote: "Toute demande hors forfait est devisée séparément, à prix fixe.",
+    // One button under the whole care block (Figma desktop Services frame),
+    // worded like the tier cards; no tier is passed, the plans aren't one.
+    cta: { label: "Commencer mon projet", href: "#contact" },
   },
 } as const;
