@@ -1,5 +1,5 @@
 /* Project transition — the Figma "Case study … transistion page" frames: the
-   ink ground, the client name in the accent, centred. Mounted only after an
+   page ground, the client name in ink, centred. Mounted only after an
    in-site click (see ProjectTransition.tsx): it covers the incoming page while
    the name rises in, then lifts off it. Transform and opacity only, so it runs
    on the compositor; it never blocks clicks.
@@ -18,13 +18,13 @@
     display: grid;
     place-items: center;
     padding: var(--grid-margin);
-    background: var(--color-text);
+    background: var(--color-bg);
     pointer-events: none;
     animation: lift var(--duration-reveal) var(--ease-smooth) var(--duration-ui) forwards;
   }
 
   .name {
-    color: var(--color-action);
+    color: var(--color-text);
     font-family: var(--font-display);
     font-size: var(--fs-splash);
     font-weight: var(--fw-bold);
