@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import { ProjectPageLd } from "@/components/seo/JsonLd";
+import ProjectTransition from "./ProjectTransition";
 import { getProject, projectPage, type Project } from "@/content/cases";
 import { site } from "@/content/site";
 import styles from "./ProjectPage.module.css";
@@ -32,8 +33,9 @@ function Lines({ text }: { text: string }) {
   );
 }
 
-// Server component: no client JS beyond the shared Header and Reveal.
-// Sections follow the Figma "Projet — …" frames: introduction and live site,
+// Server component: no client JS beyond the shared Header, Reveal and the
+// small ProjectTransition. Sections follow the Figma "Projet — …" frames:
+// the transition panel (in-site clicks only), introduction and live site,
 // the problem, the solution with three screenshots, the client's own words,
 // the call to action, and the next project.
 export default function ProjectPage({ project }: { project: Project }) {
@@ -46,6 +48,8 @@ export default function ProjectPage({ project }: { project: Project }) {
   return (
     <>
       <ProjectPageLd project={project} />
+      {/* Keyed by project so "Projet suivant" replays it for the next one. */}
+      <ProjectTransition key={project.slug} name={project.client} />
       <Header />
       <main id="main">
         {/* ── Introduction ───────────────────────────────── */}
