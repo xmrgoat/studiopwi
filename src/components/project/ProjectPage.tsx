@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/Button";
+import Testimonial from "@/components/ui/Testimonial";
 import Reveal from "@/components/motion/Reveal";
 import { ProjectPageLd } from "@/components/seo/JsonLd";
 import ProjectTransition from "./ProjectTransition";
@@ -41,9 +42,6 @@ function Lines({ text }: { text: string }) {
 export default function ProjectPage({ project }: { project: Project }) {
   const { shots, captions } = project;
   const next = getProject(project.next);
-  const author = project.testimonial.role
-    ? `${project.testimonial.author}, ${project.testimonial.role}`
-    : project.testimonial.author;
 
   return (
     <>
@@ -183,12 +181,14 @@ export default function ProjectPage({ project }: { project: Project }) {
         <section className={styles.section}>
           <Reveal className={`grid ${styles.grid}`}>
             <h2 className={styles.testimonialTitle}>{project.testimonial.title}</h2>
-            <figure className={styles.testimonial}>
-              <blockquote className={styles.quote}>
-                <p>« {project.testimonial.quote} »</p>
-              </blockquote>
-              <figcaption className={styles.text}>{author}</figcaption>
-            </figure>
+            {/* The same Testimonial as the homepage "Avis concret". */}
+            <div className={styles.testimonial}>
+              <Testimonial
+                quote={project.testimonial.quote}
+                author={project.testimonial.author}
+                role={project.testimonial.role}
+              />
+            </div>
           </Reveal>
         </section>
 
