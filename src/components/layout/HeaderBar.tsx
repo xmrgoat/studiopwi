@@ -24,10 +24,6 @@ export default function HeaderBar({ projects }: { projects: readonly ProjectLink
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const nav: readonly NavItem[] = site.nav;
-  // Same entries, in the phone drawer's own order (site.drawerOrder).
-  const drawerNav = site.drawerOrder
-    .map((label) => nav.find((item) => item.label === label))
-    .filter((item): item is NavItem => item !== undefined);
 
   // The nav targets are homepage sections. Off the homepage a bare "#services"
   // points at nothing on the current page, so route back to "/#services" —
@@ -253,7 +249,7 @@ export default function HeaderBar({ projects }: { projects: readonly ProjectLink
         onClick={onDrawerClick}
       >
         <nav className={styles.drawerNav} aria-label="Mobile primary">
-          {drawerNav.map((item, i) =>
+          {nav.map((item, i) =>
             item.menu === "projects" ? (
               <div key={item.label} className={styles.drawerGroup} style={delay(i)}>
                 <span className={styles.drawerGroupLabel} id="drawer-projects">
