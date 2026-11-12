@@ -68,6 +68,8 @@
   --fs-numeral: clamp(2rem, 4.45vw, 4rem);
   /* Service-card prices: a step under --fs-h3 so the tier name still leads. */
   --fs-price:   clamp(1.5rem, 2.5vw, 2.25rem);
+  /* Project transition: the client name, 128px in the 1440 Figma frame. */
+  --fs-splash:  clamp(2.5rem, 8.9vw, 8rem);
 
   --lh-display: 1.22;
   --lh-tight: 1.05;
