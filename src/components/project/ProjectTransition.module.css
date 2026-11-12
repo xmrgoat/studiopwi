@@ -1,0 +1,51 @@
+/* Project transition — the Figma "Case study … transistion page" frames: the
+   ink ground, the client name in the accent, centred. Mounted only after an
+   in-site click (see ProjectTransition.tsx): it covers the incoming page while
+   the name rises in, then lifts off it. Transform and opacity only, so it runs
+   on the compositor; it never blocks clicks.
+
+   Hidden outside the no-preference block, so under reduced motion — or if the
+   animation never runs — the page is simply there. */
+.overlay {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200; /* above the fixed header (100) */
+    display: grid;
+    place-items: center;
+    padding: var(--grid-margin);
+    background: var(--color-text);
+    pointer-events: none;
+    animation: lift var(--duration-reveal) var(--ease-smooth) var(--duration-ui) forwards;
+  }
+
+  .name {
+    color: var(--color-action);
+    font-family: var(--font-display);
+    font-size: var(--fs-splash);
+    font-weight: var(--fw-bold);
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    animation: name-in var(--duration-ui) var(--ease-out) backwards;
+  }
+}
+
+@keyframes lift {
+  to {
+    transform: translateY(-100%);
+    visibility: hidden;
+  }
+}
+
+@keyframes name-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
+  }
+}
