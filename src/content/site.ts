@@ -65,6 +65,9 @@ export const site = {
     { label: "À propos", href: "#pourquoi" },
     { label: "Contact", href: "/contact" },
   ],
+  // The phone drawer lists the same entries in the order of the Figma
+  // "Mobile Menu" component (November 2026), by label.
+  drawerOrder: ["À propos", "Services", "Réalisations", "Contact"],
 
   hero: {
     headline: "Des sites web pour les paysagistes qui veulent plus de chantiers",
@@ -93,14 +96,8 @@ export const site = {
         author: "Jimi Builds",
         role: "",
       },
-      {
-        // Nicolas's review, lightly corrected with his wording kept (owner
-        // approved, November 2026). The 👌 he ended with is left out.
-        quote:
-          "Jean-Pierre a très vite compris ce que je souhaitais : communication claire et efficacité ! Le tout à des tarifs tout à fait corrects. Je ne peux que recommander.",
-        author: "Nicolas Descloux",
-        role: "Ô Paysage",
-      },
+      // Jimi's review only, as in the Figma "Avis concret" frame. Nicolas's
+      // review lives on the Ô Paysage project page (cases.ts), not here.
     ],
   },
 
@@ -235,10 +232,12 @@ export const site = {
   footer: {
     email: "contact@studiopwi.com",
     tagline: "Des sites web pour les paysagistes",
+    // The Figma Footer (November 2026): "Étude de cas" dropped, "À propos"
+    // added after Accueil (the mobile frame's list, used at every size).
     nav: [
       { label: "Accueil", href: "#main" },
+      { label: "À propos", href: "#pourquoi" },
       { label: "Services", href: "#services" },
-      { label: "Étude de cas", href: "#etude-de-cas" },
       { label: "Notre démarche", href: "#demarche" },
       { label: "Contact", href: "/contact" },
     ],
