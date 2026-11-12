@@ -1,6 +1,7 @@
 import { site } from "@/content/site";
 import RichText from "@/components/ui/RichText";
 import Button from "@/components/ui/Button";
+import Testimonial from "@/components/ui/Testimonial";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./WhyUs.module.css";
 
@@ -30,19 +31,7 @@ export default function WhyUs() {
           <ul className={styles.list}>
             {testimonials.map((testimonial) => (
               <li key={testimonial.quote}>
-                <figure className={styles.figure}>
-                  <blockquote className={styles.quote}>
-                    <p className={styles.quoteText}>{testimonial.quote}</p>
-                  </blockquote>
-                  {testimonial.author && (
-                    <figcaption className={styles.attribution}>
-                      <span className={styles.author}>{testimonial.author}</span>
-                      {testimonial.role && (
-                        <span className={styles.role}>{testimonial.role}</span>
-                      )}
-                    </figcaption>
-                  )}
-                </figure>
+                <Testimonial {...testimonial} />
               </li>
             ))}
           </ul>
