@@ -27,20 +27,24 @@ export const contactSchema = z.object({
 
 export type ContactInput = z.infer<typeof contactSchema>;
 
-// The free audit request (sections/Audit). `site` is free text, not a URL:
-// visitors type "monsite.ch" without a scheme, and those with no site yet
-// give their company name and town instead.
-export const auditSchema = z.object({
-  name: z.string().trim().min(2, "Nom trop court").max(120),
-  email: z.string().trim().email("Email invalide").max(200),
-  site: z
-    .string()
-    .trim()
-    .min(3, "Indiquez votre site, ou le nom de votre entreprise")
-    .max(300),
-  locale: z.enum(["fr", "de", "en"]).default("fr"),
-  // Honeypot, permissive for the same reason as contactSchema's.
-  website: z.string().optional(),
-});
+// The free audit + homepage draft request (ui/AuditForm, first in the
+// contact section). `site` is free text, not a URL: visitors type
+// "monsite.ch" without a scheme. Firms with no site yet tick `noSite`, and
+// the work starts from their company's Google listing instead.
+export const auditSchema = z
+  .object({
+    name: z.string().trim().min(2, "Nom trop court").max(120),
+    company: z.string().trim().min(2, "Indiquez le nom de votre entreprise").max(160),
+    site: z.string().trim().max(300).default(""),
+    noSite: z.boolean().default(false),
+    email: z.string().trim().email("Email invalide").max(200),
+    locale: z.enum(["fr", "de", "en"]).default("fr"),
+    // Honeypot, permissive for the same reason as contactSchema's.
+    website: z.string().optional(),
+  })
+  .refine((d) => d.noSite || d.site.length >= 3, {
+    path: ["site"],
+    message: "Indiquez votre site, ou cochez « Pas encore de site »",
+  });
 
 export type AuditInput = z.infer<typeof auditSchema>;
