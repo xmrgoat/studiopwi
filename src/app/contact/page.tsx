@@ -6,10 +6,12 @@ import Faq from "@/components/sections/Faq";
 import { ContactPageLd } from "@/components/seo/JsonLd";
 import { site } from "@/content/site";
 
-// The homepage's contact section and FAQ as a page of their own (Figma
-// "Contact — 1440"). Same components, not copies: the form, the booking block
-// and the questions stay identical in both places. The FAQPage schema stays on
-// the homepage only, where its @id lives — one FAQPage per set of questions.
+// The homepage's contact section as a page of its own (Figma "Contact —
+// 1440"), followed by a short FAQ. Same components, not copies: the forms
+// and the booking block stay identical in both places. The FAQ shows only
+// the questions that matter before getting in touch (site.contactPage.faq)
+// and links to the full list on the homepage, so the page doesn't repeat
+// it. The FAQPage schema stays on the homepage only, where its @id lives.
 //
 // A page-level openGraph replaces the root one whole, so the card image and
 // site name are restated here rather than inherited.
@@ -41,7 +43,10 @@ export default function ContactPage() {
       <Header />
       <main id="main">
         <Contact page />
-        <Faq />
+        <Faq
+          questions={site.contactPage.faq.questions}
+          more={site.contactPage.faq.more}
+        />
       </main>
       <Footer anchorBase="/" />
     </>
