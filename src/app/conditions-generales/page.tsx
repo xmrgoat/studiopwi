@@ -139,9 +139,9 @@ export default function TermsPage() {
       <h2>7. Conditions commerciales</h2>
       <p>
         Les prix affichés sur le Site sont indiqués en{" "}
-        <strong>francs suisses (CHF)</strong>, hors taxe sur la valeur ajoutée (TVA)
-        sauf mention contraire. La TVA applicable est celle en vigueur en Suisse au
-        moment de la facturation.
+        <strong>francs suisses (CHF)</strong>. TVA non applicable : Studio PWI
+        n&apos;est pas assujetti à la TVA (voir nos{" "}
+        <a href="/mentions-legales">Mentions légales</a>).
       </p>
       <p>
         Les offres présentées sur le Site sont données à titre indicatif. Toute
