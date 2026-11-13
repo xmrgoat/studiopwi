@@ -102,7 +102,7 @@ export default function AuditForm() {
 
       {/* type="text", not "url": "monsite.ch" without https:// is how people
           write it. Ticking "pas encore de site" disables and clears it. */}
-      <div className={styles.field}>
+      <div className={styles.siteGroup}>
         <label className={styles.field}>
           <span className={styles.label}>{f.site.label}</span>
           <input
