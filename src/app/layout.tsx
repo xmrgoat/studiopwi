@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import GrainOverlay from "@/components/layout/GrainOverlay";
+import Magnetic from "@/components/motion/Magnetic";
 import { OrganizationLd, WebSiteLd } from "@/components/seo/JsonLd";
 import { site } from "@/content/site";
 import "./globals.css";
@@ -113,6 +114,7 @@ export default function RootLayout({
         <OrganizationLd />
         <WebSiteLd />
         <SmoothScroll />
+        <Magnetic />
         {children}
         <GrainOverlay />
         <Analytics />
