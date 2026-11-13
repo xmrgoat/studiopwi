@@ -31,9 +31,8 @@ export default function TermsPage() {
       </p>
       <p>
         Ces CGU s&apos;appliquent à tout visiteur du Site, qu&apos;il soit ou non client de
-        Studio PWI. Les prestations commerciales font l&apos;objet de contrats séparés
-        et de conditions générales de vente (CGV) qui prévalent en cas de
-        contradiction.
+        Studio PWI. Les prestations commerciales font l&apos;objet d&apos;un contrat
+        écrit séparé (voir l&apos;article 7), qui prévaut en cas de contradiction.
       </p>
 
       <h2>2. Description du Site et des services</h2>
