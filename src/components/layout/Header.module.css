@@ -7,17 +7,31 @@
   inset: 0 0 auto 0;
   z-index: 100;
   background: transparent;
-  transition:
-    background-color var(--duration-ui) var(--ease-out),
-    box-shadow var(--duration-ui) var(--ease-out);
 }
 
 /* Once past the hero fold the bar needs its own ground, or the links collide
-   with section content scrolling underneath. */
-.scrolled {
+   with section content scrolling underneath.
+
+   The frosted ground lives on a layer behind the bar, never on .header
+   itself: a backdrop-filter on an element makes it the containing block of
+   its position:fixed descendants, so the mobile drawer (inside the header)
+   was sized against the 104px bar instead of the screen and collapsed —
+   the menu only opened properly at the top of the page. */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: color-mix(in srgb, var(--color-bg) 88%, transparent);
   backdrop-filter: blur(10px);
   box-shadow: 0 1px 0 var(--color-line);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-ui) var(--ease-out);
+}
+
+.scrolled::before {
+  opacity: 1;
 }
 
 .inner {
