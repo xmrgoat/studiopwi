@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Link from "next/link";
 import { site } from "@/content/site";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./Faq.module.css";
@@ -8,8 +9,25 @@ import styles from "./Faq.module.css";
 // HTML for search and AI crawlers even while collapsed. FaqLd mirrors these
 // items, so the structured data never claims a question the page lacks.
 // Each row carries its index as --i so the rows enter one after another.
-export default function Faq() {
-  const { title, intro, items } = site.faq;
+//
+// `questions` shows a subset, picked by question text (the /contact page
+// keeps the four that matter before getting in touch), and `more` links to
+// the full list. A listed question missing from site.faq fails the build
+// rather than silently dropping a row.
+type FaqProps = {
+  questions?: readonly string[];
+  more?: { label: string; href: string };
+};
+
+export default function Faq({ questions, more }: FaqProps = {}) {
+  const { title, intro } = site.faq;
+  const items = questions
+    ? questions.map((q) => {
+        const item = site.faq.items.find((i) => i.question === q);
+        if (!item) throw new Error(`FAQ question not found in site.faq: "${q}"`);
+        return item;
+      })
+    : site.faq.items;
 
   return (
     <section className={`section ${styles.section}`} id="faq">
@@ -33,6 +51,11 @@ export default function Faq() {
               <p className={styles.answer}>{item.answer}</p>
             </details>
           ))}
+          {more && (
+            <p className={styles.more}>
+              <Link href={more.href}>{more.label}</Link>
+            </p>
+          )}
         </div>
       </Reveal>
     </section>
