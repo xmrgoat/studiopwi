@@ -28,10 +28,10 @@ export const site = {
   },
   locale: "fr",
 
-  // The hero and header promise the free audit (#audit, November 2026).
-  // Section buttons further down promise the free 30-minute discovery call
-  // and go to #contact, where it can be booked directly (Calendly) or
-  // requested through the form.
+  // Every CTA promises the same thing — the free 30-minute discovery call —
+  // so a visitor never wonders whether two buttons lead to different places.
+  // Section buttons go to #contact, where the call can be booked directly
+  // (Calendly) or requested through the form.
   callCta: "Réserver mon appel gratuit",
   booking: {
     url: "https://calendly.com/contact-studiopwi/30min",
@@ -58,10 +58,7 @@ export const site = {
   // however far down the page is read. "Contact" is the /contact page from
   // everywhere; the CTA scrolls to the form on the homepage and opens
   // /contact elsewhere (see HeaderBar).
-  // Since November 2026 the header promises the free audit (#audit, or
-  // /#audit off the homepage). Same length as the old "Appel gratuit", which
-  // matters: 360px phones have almost no spare room in the bar.
-  headerCta: { label: "Audit gratuit", href: "#audit" },
+  headerCta: { label: "Appel gratuit", href: "#contact" },
   // Order from the Figma Header and Mobile Menu components (November 2026),
   // the same in the bar and the phone drawer.
   nav: [
@@ -75,14 +72,15 @@ export const site = {
     headline: "Des sites web pour les paysagistes qui veulent plus de chantiers",
     lead:
       "Basés en Suisse, nous concevons des sites qui aident les entreprises de paysagisme, où qu'elles soient, à attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs chantiers.",
-    // The free audit is the hero's promise (November 2026); the call stays
-    // the promise of the section buttons further down.
-    primaryCta: { label: "Recevoir mon audit gratuit", href: "#audit" },
+    // Desktop reads "Démarrer un devis", mobile "Démarrer un projet". Mobile's
+    // wording is the idiomatic one and matches the contact copy, so it wins.
+    primaryCta: { label: "Réserver mon appel gratuit", href: "#contact" },
   },
 
   // The lead magnet (November 2026): a free audit of the visitor's site, then
-  // a draft of their homepage. It replaces the call as the main promise of
-  // the hero and header. Capacity is real — the owner does 5 a week — so the
+  // a draft of their homepage. Its homepage section was removed at the
+  // owner's request; this copy still feeds AuditForm and /merci-audit, kept
+  // for whatever replaces it. Capacity is real — the owner does 5 a week — so the
   // scarcity line states a fact, not a countdown.
   //
   // The example is a real audit (November 2026), anonymised: the firm has
@@ -218,11 +216,6 @@ export const site = {
     title: "Questions fréquentes",
     intro: "Ce que les paysagistes nous demandent avant de démarrer.",
     items: [
-      {
-        question: "L'audit gratuit, qu'est-ce que je reçois ?",
-        answer:
-          "Sous 1 à 2 jours ouvrables, un PDF : une note sur 10, ce qui fonctionne, ce qui fait hésiter vos visiteurs et les corrections prioritaires. Sous 1 à 3 jours ouvrables, une maquette de votre page d'accueil. C'est gratuit et sans engagement ; nous en faisons 5 par semaine.",
-      },
       {
         question: "Puis-je modifier mon site moi-même ?",
         answer:
