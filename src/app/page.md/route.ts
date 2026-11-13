@@ -65,31 +65,6 @@ export function GET() {
     lines.push("");
   }
 
-  // ---------- Free audit ----------
-  const { audit } = site;
-  lines.push(`## ${audit.title}`);
-  lines.push("");
-  lines.push(audit.intro);
-  lines.push("");
-  for (const d of audit.deliverables) {
-    lines.push(`- **${d.title}** (${d.delay.toLowerCase()}) : ${d.body}`);
-  }
-  lines.push("");
-  lines.push(
-    `**${audit.example.label}** : ${audit.example.client}, ${audit.example.scoreLabel.toLowerCase()} ${audit.example.score}/${audit.example.scoreMax}.`,
-  );
-  lines.push("");
-  for (const f of audit.example.findings) {
-    lines.push(`- **${f.label}** : ${f.text}`);
-  }
-  lines.push("");
-  lines.push(`${audit.scarcity} ${audit.form.reassurance}`);
-  lines.push("");
-  lines.push(`- **${audit.form.submit}** — ${SITE_URL}/#audit`);
-  lines.push("");
-  lines.push("---");
-  lines.push("");
-
   // ---------- Services ----------
   lines.push(`## Services — ${services.headline}`);
   lines.push("");
