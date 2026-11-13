@@ -28,10 +28,10 @@ export const site = {
   },
   locale: "fr",
 
-  // Every CTA promises the same thing — the free 30-minute discovery call —
-  // so a visitor never wonders whether two buttons lead to different places.
-  // Section buttons go to #contact, where the call can be booked directly
-  // (Calendly) or requested through the form.
+  // The hero and header promise the free audit (#audit, November 2026).
+  // Section buttons further down promise the free 30-minute discovery call
+  // and go to #contact, where it can be booked directly (Calendly) or
+  // requested through the form.
   callCta: "Réserver mon appel gratuit",
   booking: {
     url: "https://calendly.com/contact-studiopwi/30min",
@@ -58,7 +58,10 @@ export const site = {
   // however far down the page is read. "Contact" is the /contact page from
   // everywhere; the CTA scrolls to the form on the homepage and opens
   // /contact elsewhere (see HeaderBar).
-  headerCta: { label: "Appel gratuit", href: "#contact" },
+  // Since November 2026 the header promises the free audit (#audit, or
+  // /#audit off the homepage). Same length as the old "Appel gratuit", which
+  // matters: 360px phones have almost no spare room in the bar.
+  headerCta: { label: "Audit gratuit", href: "#audit" },
   // Order from the Figma Header and Mobile Menu components (November 2026),
   // the same in the bar and the phone drawer.
   nav: [
@@ -72,9 +75,9 @@ export const site = {
     headline: "Des sites web pour les paysagistes qui veulent plus de chantiers",
     lead:
       "Basés en Suisse, nous concevons des sites qui aident les entreprises de paysagisme, où qu'elles soient, à attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs chantiers.",
-    // Desktop reads "Démarrer un devis", mobile "Démarrer un projet". Mobile's
-    // wording is the idiomatic one and matches the contact copy, so it wins.
-    primaryCta: { label: "Réserver mon appel gratuit", href: "#contact" },
+    // The free audit is the hero's promise (November 2026); the call stays
+    // the promise of the section buttons further down.
+    primaryCta: { label: "Recevoir mon audit gratuit", href: "#audit" },
   },
 
   // The lead magnet (November 2026): a free audit of the visitor's site, then
