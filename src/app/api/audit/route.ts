@@ -42,13 +42,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
-  const { name, email, site } = parsed.data;
-  const emailResult = await sendAuditRequest({ name, email, site });
+  const { name, company, email, site, noSite } = parsed.data;
+  const emailResult = await sendAuditRequest({ name, company, email, site, noSite });
 
   // The email is the request. If it fails, the visitor must hear about it
   // and be offered the address, not be told it worked (see /api/contact).
   if (emailResult.error) {
-    console.error("Resend error — AUDIT REQUEST NOT DELIVERED", emailResult.error, { name, email, site });
+    console.error("Resend error — AUDIT REQUEST NOT DELIVERED", emailResult.error, { name, company, email, site, noSite });
     return NextResponse.json(
       {
         ok: false,
