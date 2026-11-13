@@ -20,7 +20,7 @@ export const site = {
   phone: null as string | null,
   // The quiet third route beside the form and Calendly, for a quick question
   // that doesn't need a call yet. A text link in the contact section and the
-  // mobile menu, never a floating bubble: every CTA still promises the call.
+  // mobile menu, never a floating bubble: every CTA still promises the audit.
   whatsapp: {
     number: WHATSAPP,
     url: `https://wa.me/${WHATSAPP.replace(/\D/g, "")}?text=${encodeURIComponent(WHATSAPP_TEXT)}`,
@@ -28,11 +28,11 @@ export const site = {
   },
   locale: "fr",
 
-  // Every CTA promises the same thing — the free 30-minute discovery call —
-  // so a visitor never wonders whether two buttons lead to different places.
-  // Section buttons go to #contact, where the call can be booked directly
-  // (Calendly) or requested through the form.
-  callCta: "Réserver mon appel gratuit",
+  // Every section CTA promises the same thing — the free audit and homepage
+  // draft (November 2026) — so a visitor never wonders whether two buttons
+  // lead to different places. They go to #contact, where the audit form comes
+  // first; the 30-minute call (Calendly, WhatsApp) is the second path there.
+  callCta: "Recevoir mon audit + maquette gratuits",
   booking: {
     url: "https://calendly.com/contact-studiopwi/30min",
     label: "Choisir un créneau",
@@ -74,13 +74,14 @@ export const site = {
       "Basés en Suisse, nous concevons des sites qui aident les entreprises de paysagisme, où qu'elles soient, à attirer plus de clients, générer plus de demandes de devis et décrocher de meilleurs chantiers.",
     // Desktop reads "Démarrer un devis", mobile "Démarrer un projet". Mobile's
     // wording is the idiomatic one and matches the contact copy, so it wins.
-    primaryCta: { label: "Réserver mon appel gratuit", href: "#contact" },
+    primaryCta: { label: "Recevoir mon audit + maquette gratuits", href: "#contact" },
   },
 
   // The lead magnet (November 2026): a free audit of the visitor's site, then
   // a draft of their homepage. Its homepage section was removed at the
-  // owner's request; this copy still feeds AuditForm and /merci-audit, kept
-  // for whatever replaces it. Capacity is real — the owner does 5 a week — so the
+  // owner's request; the offer now lives in the contact section, where
+  // `form` feeds AuditForm (first, above the general form) and /merci-audit.
+  // The rest of this block is kept for whatever showcase replaces the section. Capacity is real — the owner does 5 a week — so the
   // scarcity line states a fact, not a countdown.
   //
   // The example is a real audit (November 2026), anonymised: the firm has
@@ -146,15 +147,19 @@ export const site = {
     },
     scarcity: "5 audits gratuits par semaine, dans l'ordre des demandes.",
     form: {
-      title: "Demander mon audit",
+      title: "Audit + maquette gratuits",
+      lead:
+        "Nous analysons votre site sous 1 à 2 jours ouvrables, puis vous envoyons une maquette de votre page d'accueil sous 1 à 3 jours. 5 audits par semaine.",
       name: { label: "Nom", placeholder: "Prénom et nom" },
-      email: { label: "Email", placeholder: "votre@email.com" },
+      company: { label: "Entreprise", placeholder: "Nom de votre entreprise" },
       site: {
-        label: "Votre site web",
+        label: "Site web",
         placeholder: "www.votre-site.ch",
-        hint: "Pas encore de site ? Indiquez le nom de votre entreprise et votre localité : nous partirons de votre fiche Google.",
+        // Checking it disables the field: we start from the Google listing.
+        noSite: "Pas encore de site",
       },
-      submit: "Recevoir mon audit gratuit",
+      email: { label: "Email", placeholder: "votre@email.com" },
+      submit: "Recevoir mon audit + maquette gratuits",
       reassurance: "Gratuit et sans engagement. L'audit est à vous, même si nous ne travaillons jamais ensemble.",
     },
   },
@@ -168,7 +173,7 @@ export const site = {
       "Comme un paysagiste qui doit s'adapter à la météo, nous nous adaptons aux tendances du web et nous construisons **des sites, pensés pour durer.**",
     ],
     testimonialsTitle: "Avis concret",
-    cta: { label: "Réserver mon appel gratuit", href: "#contact" },
+    cta: { label: "Recevoir mon audit + maquette gratuits", href: "#contact" },
     testimonials: [
       {
         // Translated from the English review in the desktop "Avis concret" frame.
@@ -206,7 +211,7 @@ export const site = {
           "Après la mise en ligne, nous restons disponibles pour les corrections techniques et ajustements mineurs.",
       },
     ],
-    cta: { label: "Réserver mon appel gratuit", href: "#contact" },
+    cta: { label: "Recevoir mon audit + maquette gratuits", href: "#contact" },
   },
 
   // Answers the buyer questions ChatGPT and Perplexity found unanswered in the
@@ -252,6 +257,11 @@ export const site = {
           "Les prix sont fixes, sans facturation à l'heure : un acompte au démarrage (25 à 45 % selon l'offre), le solde à la livraison. Les délais courent dès réception de l'acompte et de votre contenu.",
       },
       {
+        question: "Combien de temps faut-il pour créer mon site ?",
+        answer:
+          "1 à 3 semaines pour l'offre Lancement, 3 à 4 pour Croissance et 4 à 8 pour Entreprise, comptées dès réception de l'acompte et de votre contenu.",
+      },
+      {
         question: "Travaillez-vous hors de Suisse ?",
         answer:
           "Oui. Basés dans le canton de Neuchâtel, nous travaillons aussi à distance avec des paysagistes à l'étranger, en français et en anglais.",
@@ -262,11 +272,14 @@ export const site = {
   contact: {
     title: "Contactez-nous",
     lead:
-      "Remplissez le formulaire pour nous présenter votre projet. Nous vous répondrons rapidement pour organiser un appel découverte de 30 minutes.",
-    trustSignals: ["Réponse sous 48h", "Appel découverte gratuit"],
-    // The direct route: book the call without waiting for a reply.
+      "Commencez par un audit gratuit de votre site et une maquette de votre page d'accueil. Une autre question ? Le formulaire juste en dessous suffit.",
+    // A promise the owner keeps: 24 h, weekends included.
+    trustSignals: ["Réponse sous 24 h", "Gratuit et sans engagement"],
+    // Title over the general form, which follows the audit form.
+    generalTitle: "Une autre question ?",
+    // The second path: the call, booked without waiting for a reply.
     booking: {
-      lead: "Vous préférez choisir l'horaire vous-même ?",
+      lead: "Vous préférez en parler ?",
       note: "Ouvre Calendly dans un nouvel onglet.",
     },
     phoneLabel: "Ou appelez-nous",
@@ -274,23 +287,35 @@ export const site = {
     form: {
       name: { label: "Nom", placeholder: "Prénom et nom" },
       email: { label: "Email", placeholder: "votre@email.com" },
-      message: { label: "Message", placeholder: "Votre projet en quelques mots" },
+      message: { label: "Message", placeholder: "Que souhaitez-vous améliorer ?" },
       submit: "Envoyer ma demande",
       // Reassurance under the submit button, where the hesitation happens.
-      reassurance: "Réponse sous 48 h · Appel de 30 min, gratuit et sans engagement.",
+      reassurance: "Réponse sous 24 h, gratuite et sans engagement.",
       // Prefilled into the message when a service card's button is used.
       offerPrefill: "Intéressé(e) par l'offre",
     },
   },
 
   // /contact — the homepage contact section as a page of its own, followed by
-  // the FAQ (Figma "Contact — 1440" / "Mobile — Contact"). Its form lands on
-  // /merci like the homepage's, so leads are counted the same way.
+  // a short FAQ (Figma "Contact — 1440" / "Mobile — Contact"). Its forms land
+  // on /merci and /merci-audit like the homepage's, so leads count the same.
   contactPage: {
     seo: {
-      title: "Contact : appel découverte gratuit de 30 minutes",
+      title: "Contact : audit + maquette ou appel gratuit",
       description:
-        "Parlez-nous de votre entreprise de paysagisme : formulaire, créneau en ligne ou WhatsApp. Réponse sous 48 h, appel découverte de 30 minutes gratuit et sans engagement.",
+        "Recevez un audit gratuit de votre site et une maquette de votre page d'accueil, ou réservez un appel de 30 minutes. Réponse sous 24 h, sans engagement.",
+    },
+    // The questions that matter before getting in touch, picked by question
+    // text from `faq.items` (Faq throws if one goes missing); the full list
+    // is on the homepage.
+    faq: {
+      questions: [
+        "Comment se passe le paiement ?",
+        "Combien de temps faut-il pour créer mon site ?",
+        "Qui s'occupe de l'hébergement ?",
+        "Mon site peut-il être en plusieurs langues ?",
+      ],
+      more: { label: "Voir toutes les questions", href: "/#faq" },
     },
     // Noelia Krähenbühl's review (nbk-interp.ch, an interpreter, not a
     // landscaper), shown on this page only.
@@ -305,7 +330,7 @@ export const site = {
   thanks: {
     title: "Message reçu",
     body:
-      "Merci. Nous revenons vers vous sous 48 h ouvrées pour fixer votre appel découverte de 30 minutes. Pour aller plus vite, choisissez directement votre créneau :",
+      "Merci. Nous revenons vers vous sous 24 h. Pour en parler de vive voix, choisissez directement un créneau d'appel de 30 minutes :",
     bookingLabel: "Choisir mon créneau maintenant",
     nextCta: { label: "Voir notre étude de cas", href: "/#etude-de-cas" },
   },
