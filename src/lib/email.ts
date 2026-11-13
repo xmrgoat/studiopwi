@@ -66,6 +66,8 @@ export async function sendAuditRequest(input: AuditEmailInput) {
         ? "Pas de site : partir de la fiche Google de l'entreprise."
         : null,
       "À livrer : audit PDF sous 1 à 2 jours ouvrables, maquette de la page d'accueil sous 1 à 3 jours ouvrables.",
-    ].join("\n"),
+    ]
+      .filter((line): line is string => line !== null)
+      .join("\n"),
   });
 }
