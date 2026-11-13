@@ -58,7 +58,7 @@ export const site = {
   // however far down the page is read. "Contact" is the /contact page from
   // everywhere; the CTA scrolls to the form on the homepage and opens
   // /contact elsewhere (see HeaderBar).
-  headerCta: { label: "Appel gratuit", href: "#contact" },
+  headerCta: { label: "Audit gratuit", href: "#contact" },
   // Order from the Figma Header and Mobile Menu components (November 2026),
   // the same in the bar and the phone drawer.
   nav: [
