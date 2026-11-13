@@ -144,10 +144,12 @@ export default function TermsPage() {
         <a href="/mentions-legales">Mentions légales</a>).
       </p>
       <p>
-        Les offres présentées sur le Site sont données à titre indicatif. Toute
-        prestation fait l&apos;objet d&apos;un devis personnalisé et d&apos;un contrat écrit
-        distinct. Aucune commande n&apos;est valide sans signature d&apos;un bon de
-        commande ou d&apos;un contrat de prestation.
+        Les prix des offres présentées sur le Site sont des{" "}
+        <strong>prix fixes</strong>, sans facturation à l&apos;heure, pour le contenu
+        décrit dans chaque offre. Toute demande hors offre est devisée séparément,
+        également à prix fixe. Chaque prestation fait l&apos;objet d&apos;un contrat écrit
+        distinct, qui reprend l&apos;offre choisie. Aucune commande n&apos;est valide sans
+        signature d&apos;un bon de commande ou d&apos;un contrat de prestation.
       </p>
 
       <h2>8. Protection des données personnelles</h2>
