@@ -313,6 +313,29 @@
 
 /* ── Layout ──────────────────────────────────────────── */
 
+/* Phones: the score drops under the label, so it starts on the left; each
+   bar takes the full width under its label; and the form loses its frame,
+   whose border and padding pushed the submit label onto two lines at 360px. */
+@media (max-width: 768px) {
+  .score {
+    align-items: flex-start;
+  }
+  .criterion {
+    grid-template-columns: 1fr 2ch;
+    row-gap: var(--space-2);
+  }
+  .criterionLabel {
+    grid-column: 1 / -1;
+  }
+  .criteria {
+    gap: var(--space-3);
+  }
+  .formCard {
+    padding: 0;
+    border: 0;
+  }
+}
+
 @media (min-width: 769px) {
   .report,
   .formCard {
