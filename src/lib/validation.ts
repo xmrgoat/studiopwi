@@ -33,11 +33,15 @@ export type ContactInput = z.infer<typeof contactSchema>;
 // the work starts from their company's Google listing instead.
 export const auditSchema = z
   .object({
-    name: z.string().trim().min(2, "Nom trop court").max(120),
-    company: z.string().trim().min(2, "Indiquez le nom de votre entreprise").max(160),
+    name: z.string({ required_error: "Indiquez votre nom" }).trim().min(2, "Nom trop court").max(120),
+    company: z
+      .string({ required_error: "Indiquez le nom de votre entreprise" })
+      .trim()
+      .min(2, "Indiquez le nom de votre entreprise")
+      .max(160),
     site: z.string().trim().max(300).default(""),
     noSite: z.boolean().default(false),
-    email: z.string().trim().email("Email invalide").max(200),
+    email: z.string({ required_error: "Indiquez votre email" }).trim().email("Email invalide").max(200),
     locale: z.enum(["fr", "de", "en"]).default("fr"),
     // Honeypot, permissive for the same reason as contactSchema's.
     website: z.string().optional(),
