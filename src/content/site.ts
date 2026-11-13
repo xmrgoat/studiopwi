@@ -77,6 +77,87 @@ export const site = {
     primaryCta: { label: "Réserver mon appel gratuit", href: "#contact" },
   },
 
+  // The lead magnet (November 2026): a free audit of the visitor's site, then
+  // a draft of their homepage. It replaces the call as the main promise of
+  // the hero and header. Capacity is real — the owner does 5 a week — so the
+  // scarcity line states a fact, not a countdown.
+  //
+  // The example is a real audit (November 2026), anonymised: the firm has
+  // not agreed to appear, so nothing here may identify it (no name, town,
+  // founding year, phone or photos). When it agrees, its own before/after
+  // can replace the example and the draft image.
+  audit: {
+    eyebrow: "Offert",
+    title: "Votre site, audité gratuitement",
+    intro:
+      "Envoyez-nous l'adresse de votre site. Nous le regardons comme un client qui cherche un paysagiste, puis nous vous montrons ce qui l'empêche de vous apporter des demandes de devis.",
+    deliverables: [
+      {
+        title: "L'audit de votre site, en PDF",
+        delay: "Sous 1 à 2 jours ouvrables",
+        body:
+          "Une note sur 10, ce qui fonctionne déjà, ce qui fait hésiter vos visiteurs et les corrections prioritaires, dont la plupart se font vous-même.",
+      },
+      {
+        title: "Une maquette de votre page d'accueil",
+        delay: "Sous 1 à 3 jours ouvrables",
+        body:
+          "Votre page d'accueil redessinée avec vos photos et votre histoire, pour voir la différence avant de décider quoi que ce soit.",
+      },
+    ],
+    example: {
+      label: "Extrait d'un audit réel, anonymisé",
+      client: "Un paysagiste neuchâtelois",
+      scoreLabel: "Note globale",
+      score: 5,
+      scoreMax: 10,
+      findings: [
+        {
+          label: "Son atout",
+          text: "Une vraie histoire de famille, et déjà en tête sur la carte Google dans sa ville.",
+        },
+        {
+          label: "Le frein",
+          text: "Aucun bouton de devis en haut de page, et pas de numéro sur sa fiche Google : le visiteur ne sait pas quoi faire.",
+        },
+        {
+          label: "La solution",
+          text: "5 changements, dont 4 qu'il peut faire lui-même en une heure environ.",
+        },
+      ],
+      // Scores out of 10 from the same audit, criterion by criterion.
+      criteria: [
+        { label: "Clarté du message", score: 6 },
+        { label: "Boutons d'action", score: 4 },
+        { label: "Confiance", score: 5 },
+        { label: "Vitesse sur mobile", score: 6 },
+        { label: "Visibilité Google", score: 5 },
+      ],
+    },
+    // The studio's own published work, labelled as such: the draft is built
+    // to this standard. Not the audited firm's site.
+    draft: {
+      src: "/images/projects/o-paysage/desktop.webp",
+      width: 1440,
+      height: 1000,
+      alt: "Page d'accueil du site Ô Paysage, conçue par Studio PWI : un chemin vers les montagnes et un bouton de devis gratuit",
+      caption: "Le niveau de finition de nos maquettes : ici, la page d'accueil conçue pour Ô Paysage.",
+    },
+    scarcity: "5 audits gratuits par semaine, dans l'ordre des demandes.",
+    form: {
+      title: "Demander mon audit",
+      name: { label: "Nom", placeholder: "Prénom et nom" },
+      email: { label: "Email", placeholder: "votre@email.com" },
+      site: {
+        label: "Votre site web",
+        placeholder: "www.votre-site.ch",
+        hint: "Pas encore de site ? Indiquez le nom de votre entreprise et votre localité : nous partirons de votre fiche Google.",
+      },
+      submit: "Recevoir mon audit gratuit",
+      reassurance: "Gratuit et sans engagement. L'audit est à vous, même si nous ne travaillons jamais ensemble.",
+    },
+  },
+
   whyUs: {
     title: "Pourquoi nous?",
     // **bold** marks the fragments the design emphasises mid-paragraph;
@@ -134,6 +215,11 @@ export const site = {
     title: "Questions fréquentes",
     intro: "Ce que les paysagistes nous demandent avant de démarrer.",
     items: [
+      {
+        question: "L'audit gratuit, qu'est-ce que je reçois ?",
+        answer:
+          "Sous 1 à 2 jours ouvrables, un PDF : une note sur 10, ce qui fonctionne, ce qui fait hésiter vos visiteurs et les corrections prioritaires. Sous 1 à 3 jours ouvrables, une maquette de votre page d'accueil. C'est gratuit et sans engagement ; nous en faisons 5 par semaine.",
+      },
       {
         question: "Puis-je modifier mon site moi-même ?",
         answer:
@@ -226,6 +312,16 @@ export const site = {
       "Merci. Nous revenons vers vous sous 48 h ouvrées pour fixer votre appel découverte de 30 minutes. Pour aller plus vite, choisissez directement votre créneau :",
     bookingLabel: "Choisir mon créneau maintenant",
     nextCta: { label: "Voir notre étude de cas", href: "/#etude-de-cas" },
+  },
+
+  // /merci-audit — where the audit form lands. A page of its own so audit
+  // requests and contact leads are counted apart in Vercel Analytics; same
+  // rules as /merci (noindex, out of the sitemap, linked from nowhere).
+  auditThanks: {
+    title: "Demande d'audit reçue",
+    body:
+      "Merci. Votre audit arrive par email sous 1 à 2 jours ouvrables, la maquette de votre page d'accueil sous 1 à 3 jours ouvrables. Si les 5 audits de la semaine sont déjà pris, nous vous écrivons tout de suite avec une date.",
+    nextCta: { label: "Voir nos réalisations", href: "/#etude-de-cas" },
   },
 
   footer: {
