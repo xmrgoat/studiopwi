@@ -1,0 +1,395 @@
+/* Free audit — between the case study and the services.
+   Desktop: header 1–7 / 8–12 like Services; deliverables on 1–7, the form
+   on 9–12, held in view while the left column scrolls. Tablet and phone:
+   one column, the form last. */
+
+.section {
+  background: var(--color-bg);
+}
+
+.header {
+  align-items: end;
+  row-gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+
+.eyebrow {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-text);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.headline {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.intro {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+/* ── Deliverables ────────────────────────────────────── */
+
+.body {
+  row-gap: var(--space-7);
+  align-items: start;
+}
+
+.deliverables {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.deliverable {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.delay {
+  margin: 0;
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-price);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.text {
+  margin: 0 0 var(--space-3);
+  max-width: 60ch;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+/* ── The audit extract ───────────────────────────────── */
+
+/* A sheet of paper on the page: the lighter elevated ground and a hairline,
+   so it reads as a document, not another price card. */
+.report {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-action);
+  background: var(--color-bg-elevated);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.reportHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.reportLabel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.reportClient {
+  font-size: var(--fs-body);
+  text-transform: none;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.scoreLabel {
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.scoreValue {
+  font-size: var(--fs-numeral);
+  font-weight: var(--fw-display);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.scoreMax {
+  font-size: var(--fs-price);
+  color: var(--color-text-muted);
+}
+
+.findings {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.finding {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.findingLabel {
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.findingText {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+}
+
+.criteria {
+  list-style: none;
+  padding: var(--space-3) 0 0;
+  margin: 0;
+  border-top: 1px solid var(--color-line);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.criterion {
+  display: grid;
+  grid-template-columns: minmax(0, 11em) 1fr 2ch;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+}
+
+.track {
+  height: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-line);
+  overflow: hidden;
+}
+
+/* The score is a scale on a full-width bar, not a width: the entrance can
+   then grow it from zero on the compositor. */
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-text);
+  transform-origin: left center;
+  transform: scaleX(var(--score));
+}
+
+.criterionScore {
+  font-weight: var(--fw-bold);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── The draft ───────────────────────────────────────── */
+
+.draft {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.frame {
+  overflow: hidden;
+  border-radius: var(--radius-action);
+  /* A light screenshot on a light ground: the hairline keeps its edge. */
+  box-shadow: 0 0 0 1px var(--color-line);
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.caption {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+  color: var(--color-text-muted);
+}
+
+/* ── The form ────────────────────────────────────────── */
+
+.aside {
+  grid-column: 1 / -1;
+}
+
+.formCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-action);
+}
+
+.formTitle {
+  margin: 0;
+  font-size: var(--fs-price);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.scarcity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-3);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-normal);
+}
+
+.dot {
+  flex: none;
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  /* An ink ring: the accent alone vanishes on the page ground. */
+  box-shadow: 0 0 0 1px var(--color-text);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Layout ──────────────────────────────────────────── */
+
+@media (min-width: 769px) {
+  .report,
+  .formCard {
+    padding: var(--space-5);
+  }
+  .finding {
+    flex-direction: row;
+    gap: var(--space-4);
+  }
+  .findingLabel {
+    flex: none;
+    width: 9em;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .headline {
+    grid-column: 1 / span 5;
+  }
+  .intro {
+    grid-column: 6 / span 3;
+  }
+}
+
+@media (min-width: 1025px) {
+  .headline {
+    grid-column: 1 / span 7;
+  }
+  .intro {
+    grid-column: 8 / span 5;
+  }
+  .deliverables {
+    grid-column: 1 / span 7;
+  }
+  /* Sticky on the grid item itself; align-self keeps it from stretching to
+     the row, which would leave it nowhere to travel. */
+  .aside {
+    grid-column: 9 / span 4;
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-4));
+    align-self: start;
+  }
+}
+
+/* ── Entrance ────────────────────────────────────────── */
+
+/* Once the extract is in view, the bars grow to their score one after the
+   other and the overall score rises in; the screenshot settles from a slight
+   zoom. Transform and opacity only, held by fill-mode `backwards`. */
+@media (prefers-reduced-motion: no-preference) {
+  .deliverable[data-inview] .fill {
+    animation: bar-grow 0.9s var(--ease-expo)
+      calc(var(--reveal-delay) + 0.3s + var(--i, 0) * var(--stagger)) backwards;
+  }
+  .deliverable[data-inview] .scoreValue {
+    animation: score-rise 0.8s var(--ease-expo) calc(var(--reveal-delay) + 0.2s) backwards;
+  }
+  .deliverable[data-inview] .shot {
+    animation: shot-settle 1.6s var(--ease-expo) calc(var(--reveal-delay) + 0.15s) backwards;
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes score-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise-sm));
+  }
+}
+
+@keyframes shot-settle {
+  from {
+    transform: scale(1.08);
+  }
+}
