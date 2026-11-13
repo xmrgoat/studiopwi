@@ -6,6 +6,8 @@ import styles from "./Button.module.css";
 // The design ships exactly two CTA treatments: an accent fill (#2cff05) and an
 // ink outline on the page ground. Both carry ink-coloured uppercase label text
 // — the accent is never used *as* text, only underneath it.
+// Every variant carries `data-magnetic`: on desktop, motion/Magnetic makes it
+// lean towards the cursor.
 type Variant = "primary" | "outline";
 
 type CommonProps = {
@@ -57,6 +59,7 @@ export default function Button(props: Props) {
         <a
           href={props.href}
           className={className}
+          data-magnetic=""
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -74,13 +77,18 @@ export default function Button(props: Props) {
     // sending the user to the hero instead of the target section.
     if (props.href.startsWith("#")) {
       return (
-        <a href={props.href} className={className} data-offer={props.offer}>
+        <a
+          href={props.href}
+          className={className}
+          data-offer={props.offer}
+          data-magnetic=""
+        >
           {inner}
         </a>
       );
     }
     return (
-      <Link href={props.href} className={className}>
+      <Link href={props.href} className={className} data-magnetic="">
         {inner}
       </Link>
     );
@@ -90,6 +98,7 @@ export default function Button(props: Props) {
     <button
       type={props.type ?? "button"}
       className={className}
+      data-magnetic=""
       onClick={"onClick" in props ? props.onClick : undefined}
       disabled={"disabled" in props ? props.disabled : undefined}
     >
