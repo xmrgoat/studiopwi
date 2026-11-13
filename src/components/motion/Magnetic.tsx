@@ -10,8 +10,12 @@ import { useEffect } from "react";
 // One set of delegated listeners for the whole page, attached only when there
 // is a mouse or trackpad and motion is welcome: on phones and tablets nothing
 // is listening at all. Pointer moves are batched to one write per frame.
+//
+// `any-` rather than the primary-pointer queries: a touchscreen laptop can
+// report its screen as the primary pointer ("hover: none") while its trackpad
+// is what moves the cursor. Phones have no fine pointer of any kind.
 const QUERY =
-  "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
+  "(any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference)";
 
 function listen(): () => void {
   let el: HTMLElement | null = null;
