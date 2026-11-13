@@ -63,6 +63,15 @@
   border-color: var(--color-text);
 }
 
+/* Help under a field (the audit form's site field). Muted ink, one step
+   down, so it reads as a note on the field rather than a second label. */
+.hint {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+  color: var(--color-text-muted);
+}
+
 .submit {
   display: flex;
   flex-direction: column;
