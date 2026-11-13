@@ -55,14 +55,13 @@
     box-shadow var(--duration-ui) var(--ease-out);
 }
 
-/* Desktop only (a mouse or trackpad): the price cards — tiers and care
-   plans — lift --motion-lift (8px) onto a deeper shadow. */
-@media (any-hover: hover) and (any-pointer: fine) {
-  .card:hover,
-  .careCard:hover {
-    translate: 0 calc(-1 * var(--motion-lift));
-    box-shadow: var(--shadow-lift);
-  }
+/* Desktop only, while a mouse is in use (:root[data-mouse], set by
+   motion/Magnetic): the price cards — tiers and care plans — lift
+   --motion-lift (8px) onto a deeper shadow. */
+:root[data-mouse] .card:hover,
+:root[data-mouse] .careCard:hover {
+  translate: 0 calc(-1 * var(--motion-lift));
+  box-shadow: var(--shadow-lift);
 }
 
 /* Croissance inverts: ink ground, page-coloured text, accent CTA and checks. */
