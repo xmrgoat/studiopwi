@@ -141,7 +141,11 @@
   /* Travel distances — every entrance rises, nothing slides sideways. */
   --motion-rise: 24px;
   --motion-rise-sm: 12px;
-  --motion-lift: 6px;
+  /* Desktop hover only: price cards lift --motion-lift, CTAs --motion-lift-sm
+     and lean up to --motion-magnet towards the cursor (motion/Magnetic). */
+  --motion-lift: 8px;
+  --motion-lift-sm: 4px;
+  --motion-magnet: 6px;
 
   /* --- Radii (Swiss: small or none) --- */
   --radius-none: 0;
