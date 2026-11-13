@@ -212,7 +212,11 @@ export default function HeaderBar({ projects }: { projects: readonly ProjectLink
             </a>
           )}
 
-          <Link href={resolve(site.headerCta.href)} className={styles.cta}>
+          <Link
+            href={resolve(site.headerCta.href)}
+            className={styles.cta}
+            data-magnetic=""
+          >
             {site.headerCta.label}
           </Link>
 
