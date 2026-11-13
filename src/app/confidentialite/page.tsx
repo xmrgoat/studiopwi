@@ -65,17 +65,6 @@ export default function PrivacyPage() {
         </li>
       </ul>
 
-      <h3>Demande d&apos;audit gratuit</h3>
-      <p>
-        Lorsque vous demandez un audit gratuit, nous collectons votre nom et
-        prénom, votre adresse e-mail et l&apos;adresse de votre site web (ou le
-        nom de votre entreprise et votre localité si vous n&apos;avez pas encore
-        de site). Nous les utilisons uniquement pour analyser votre site, vous
-        envoyer l&apos;audit et la maquette, et vous répondre. Votre adresse IP
-        est traitée comme pour le formulaire de contact. L&apos;audit porte
-        sur des informations publiques : votre site et votre fiche Google.
-      </p>
-
       <h3>WhatsApp</h3>
       <p>
         Si vous choisissez de nous écrire sur WhatsApp, votre numéro de
