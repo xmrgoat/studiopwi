@@ -26,3 +26,21 @@ export const contactSchema = z.object({
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
+
+// The free audit request (sections/Audit). `site` is free text, not a URL:
+// visitors type "monsite.ch" without a scheme, and those with no site yet
+// give their company name and town instead.
+export const auditSchema = z.object({
+  name: z.string().trim().min(2, "Nom trop court").max(120),
+  email: z.string().trim().email("Email invalide").max(200),
+  site: z
+    .string()
+    .trim()
+    .min(3, "Indiquez votre site, ou le nom de votre entreprise")
+    .max(300),
+  locale: z.enum(["fr", "de", "en"]).default("fr"),
+  // Honeypot, permissive for the same reason as contactSchema's.
+  website: z.string().optional(),
+});
+
+export type AuditInput = z.infer<typeof auditSchema>;
