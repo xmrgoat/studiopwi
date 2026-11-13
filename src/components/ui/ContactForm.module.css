@@ -63,13 +63,33 @@
   border-color: var(--color-text);
 }
 
-/* Help under a field (the audit form's site field). Muted ink, one step
-   down, so it reads as a note on the field rather than a second label. */
-.hint {
+/* Disabled while "Pas encore de site" is ticked: faded, no hover. */
+.field input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: var(--color-line-strong);
+}
+
+/* The audit form's "Pas encore de site": a native checkbox in ink (the
+   accent can't carry a mark on the ground), with a 24px row to tap. */
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--space-4);
+  align-self: flex-start;
   font-size: var(--fs-small);
   font-weight: var(--fw-medium);
-  line-height: var(--lh-normal);
-  color: var(--color-text-muted);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.check input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--color-text);
+  cursor: pointer;
 }
 
 .submit {
