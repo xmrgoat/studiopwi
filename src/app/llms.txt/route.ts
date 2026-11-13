@@ -93,7 +93,8 @@ ${site.process.steps
 - **Track record**: 20+ websites built across varied sectors before specialising in landscaping.
 - **Single contact**: the founder, ${site.founder}, handles each project end-to-end — no account-manager hand-off.
 - **Post-launch support**: 14 days of technical corrections and minor adjustments included after launch at no extra cost.
-- **Free discovery call** before any commitment.
+- **Free audit + homepage draft** before any commitment: an audit of the firm's current site (PDF, within 1–2 working days), then a draft of its homepage (within 1–3 working days). Firms without a site yet can ask too. Five per week; request at ${SITE_URL}/contact.
+- **Free discovery call** (30 min) as the alternative route.
 
 ---
 
@@ -127,7 +128,8 @@ ${work
 - **WhatsApp**: ${site.whatsapp.number} (for a quick question)
 - **Address**: ${site.address}
 - **Response time**: ${site.contact.trustSignals[0]}
-- **Free discovery call (30 min)**: book a slot directly at ${site.booking.url}, or request one at ${SITE_URL}/contact
+- **Free audit + homepage draft**: request form at ${SITE_URL}/contact (name, company, website or "no site yet", email)
+- **Free discovery call (30 min)**: book a slot directly at ${site.booking.url}
 - **Main site**: ${SITE_URL}
 - **Full homepage content as Markdown**: ${SITE_URL}/page.md *(clean Markdown mirror of the homepage — preferred over scraping the HTML)*
 
