@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Légal — Données personnelles"
       title="Politique de confidentialité"
-      updated="22 octobre 2026"
+      updated="13 novembre 2026"
     >
       <p>
         La présente politique de confidentialité décrit comment Studio PWI (ci-après
@@ -65,6 +65,34 @@ export default function PrivacyPage() {
         </li>
       </ul>
 
+      <h3>Demande d&apos;audit et de maquette</h3>
+      <p>
+        Lorsque vous demandez l&apos;audit gratuit de votre site et une maquette
+        de votre page d&apos;accueil, nous collectons les données suivantes :
+      </p>
+      <ul>
+        <li>
+          <strong>Nom et prénom</strong> — identification de la demande
+        </li>
+        <li>
+          <strong>Nom de l&apos;entreprise</strong> — pour trouver votre fiche
+          Google et préparer l&apos;audit
+        </li>
+        <li>
+          <strong>Adresse de votre site web</strong>, ou l&apos;indication que vous
+          n&apos;en avez pas encore — le site à analyser
+        </li>
+        <li>
+          <strong>Adresse e-mail</strong> — pour vous envoyer l&apos;audit et la
+          maquette
+        </li>
+        <li>
+          <strong>Adresse IP</strong> — utilisée de manière transitoire pour limiter
+          le nombre d&apos;envois, comme pour le formulaire de contact. Elle
+          n&apos;est pas enregistrée.
+        </li>
+      </ul>
+
       <h3>WhatsApp</h3>
       <p>
         Si vous choisissez de nous écrire sur WhatsApp, votre numéro de
@@ -100,7 +128,7 @@ export default function PrivacyPage() {
 
       <ul>
         <li>
-          <strong>Répondre à vos demandes de contact</strong> — base : exécution de
+          <strong>Répondre à vos demandes de contact et d&apos;audit</strong> — base : exécution de
           mesures précontractuelles (art. 6 al. 1 lit. b RGPD ; art. 31 nLPD)
         </li>
         <li>
