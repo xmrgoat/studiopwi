@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import Hero from "@/components/sections/Hero";
 import CaseStudies from "@/components/sections/CaseStudies";
+import Audit from "@/components/sections/Audit";
 import Services from "@/components/sections/Services";
 import WhyUs from "@/components/sections/WhyUs";
 import Process from "@/components/sections/Process";
@@ -27,6 +28,7 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <CaseStudies />
+        <Audit />
         <Services />
         <WhyUs />
         <Process />
