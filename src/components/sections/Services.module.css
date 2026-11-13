@@ -57,7 +57,7 @@
 
 /* Desktop only (a mouse or trackpad): the price cards — tiers and care
    plans — lift --motion-lift (8px) onto a deeper shadow. */
-@media (hover: hover) and (pointer: fine) {
+@media (any-hover: hover) and (any-pointer: fine) {
   .card:hover,
   .careCard:hover {
     translate: 0 calc(-1 * var(--motion-lift));
