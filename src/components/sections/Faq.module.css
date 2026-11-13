@@ -37,6 +37,21 @@
   border-bottom: 1px solid var(--color-line-strong);
 }
 
+/* The link to the full list under a shortened FAQ (/contact). */
+.more {
+  margin: var(--space-4) 0 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+}
+
+.more a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--space-4);
+  color: var(--color-text);
+  text-underline-offset: 3px;
+}
+
 .question {
   display: flex;
   align-items: center;
