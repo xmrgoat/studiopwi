@@ -38,3 +38,27 @@ export async function sendLeadNotification(input: LeadEmailInput) {
       .join("\n"),
   });
 }
+
+type AuditEmailInput = {
+  name: string;
+  email: string;
+  site: string;
+};
+
+// An audit request: its own subject prefix so it can be filtered apart from
+// contact leads, and the site first, since it is the work to be done.
+export async function sendAuditRequest(input: AuditEmailInput) {
+  return resend.emails.send({
+    from: env.RESEND_FROM,
+    to: env.LEADS_TO,
+    replyTo: input.email,
+    subject: `Demande d'audit — ${input.site}`,
+    text: [
+      `Site   : ${input.site}`,
+      `Nom    : ${input.name}`,
+      `Email  : ${input.email}`,
+      "",
+      "À livrer : audit PDF sous 1 à 2 jours ouvrables, maquette de la page d'accueil sous 1 à 3 jours ouvrables.",
+    ].join("\n"),
+  });
+}
