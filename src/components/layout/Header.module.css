@@ -82,19 +82,19 @@
     box-shadow var(--duration-fast) var(--ease-out);
 }
 
-/* Desktop only, as ui/Button: lift on `transform`, magnetic lean on
-   `translate` (motion/Magnetic). */
-@media (any-hover: hover) and (any-pointer: fine) {
-  .cta {
-    translate: var(--magnet-x, 0px) var(--magnet-y, 0px);
-  }
-  .cta:hover {
-    transform: translateY(calc(-1 * var(--motion-lift-sm)));
-    box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-accent) 45%, transparent);
-  }
+/* Desktop only, as ui/Button: while a mouse is in use (:root[data-mouse],
+   set by motion/Magnetic), lift on `transform`, magnetic lean on
+   `translate`. */
+:root[data-mouse] .cta {
+  translate: var(--magnet-x, 0px) var(--magnet-y, 0px);
+}
+:root[data-mouse] .cta:hover {
+  transform: translateY(calc(-1 * var(--motion-lift-sm)));
+  box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-accent) 45%, transparent);
 }
 
-.cta:active {
+.cta:active,
+:root[data-mouse] .cta:active {
   transform: none;
   scale: 0.97;
 }
