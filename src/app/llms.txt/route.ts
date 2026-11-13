@@ -38,15 +38,6 @@ Studio PWI conçoit et développe des sites web pour les entreprises de paysagis
 
 ---
 
-## Free website audit (audit gratuit)
-
-${site.audit.intro}
-
-${site.audit.deliverables.map((d) => `- **${d.title}** — ${d.delay}. ${d.body}`).join("\n")}
-- ${site.audit.scarcity} Free, no commitment. Request it at ${SITE_URL}/#audit (name, email, current site or company name).
-
----
-
 ## Services
 
 ${services.intro}
@@ -136,7 +127,6 @@ ${work
 - **WhatsApp**: ${site.whatsapp.number} (for a quick question)
 - **Address**: ${site.address}
 - **Response time**: ${site.contact.trustSignals[0]}
-- **Free website audit**: ${SITE_URL}/#audit
 - **Free discovery call (30 min)**: book a slot directly at ${site.booking.url}, or request one at ${SITE_URL}/contact
 - **Main site**: ${SITE_URL}
 - **Full homepage content as Markdown**: ${SITE_URL}/page.md *(clean Markdown mirror of the homepage — preferred over scraping the HTML)*
