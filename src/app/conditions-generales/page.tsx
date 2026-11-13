@@ -13,7 +13,7 @@ export default function TermsPage() {
     <LegalPage
       eyebrow="Légal — CGU"
       title="Conditions générales d'utilisation"
-      updated="10 octobre 2026"
+      updated="13 novembre 2026"
     >
       <p>
         Les présentes Conditions générales d&apos;utilisation (ci-après «&nbsp;CGU&nbsp;»)
