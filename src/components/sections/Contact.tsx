@@ -1,18 +1,19 @@
 import { site } from "@/content/site";
 import ContactForm from "@/components/ui/ContactForm";
+import AuditForm from "@/components/ui/AuditForm";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./Contact.module.css";
 
 // Server component wrapper — only the form itself is a client island.
 //
-// Two routes to the same discovery call: send the form and get a reply within
-// 48h, or book a slot straight away on Calendly. In the source the booking
-// block follows the form, so on a phone the intro ("Remplissez le
-// formulaire…") leads straight into the form and the "vous préférez choisir
-// l'horaire vous-même ?" alternative comes after it; on desktop the grid puts
-// it back under the intro, beside the form. WhatsApp sits in its small print,
-// for the question that doesn't need a call yet.
+// The free audit + homepage draft comes first (November 2026): its short form
+// heads the form column, with the general form (nom, email, message) under
+// it for any other question. The call is the second path, not a choice to
+// make up front: "Vous préférez en parler ?" offers the Calendly slot and,
+// in its small print, WhatsApp. In the source the booking block follows the
+// forms, so a phone reads intro → audit → question → call; on desktop the
+// grid lifts it under the intro, beside the forms. Replies within 24 h.
 //
 // `page` renders the same section as the /contact page: the title becomes the
 // page's h1, the intro shows on load instead of on scroll (it is above the
@@ -21,6 +22,9 @@ export default function Contact({ page = false }: { page?: boolean }) {
   const { title, lead, trustSignals, booking, phoneLabel, whatsappLead } = site.contact;
   const quote = page ? site.contactPage.quote : null;
   const Title = page ? "h1" : "h2";
+  // One level under the section title, whichever that is.
+  const Sub = page ? "h2" : "h3";
+  const audit = site.audit.form;
 
   const intro = (
     <>
@@ -51,7 +55,17 @@ export default function Contact({ page = false }: { page?: boolean }) {
         )}
 
         <Reveal className={styles.formCol} order={1}>
-          <ContactForm source="contact" />
+          <div className={styles.formBlock}>
+            <div className={styles.formHead}>
+              <Sub className={styles.formTitle}>{audit.title}</Sub>
+              <p className={styles.formLead}>{audit.lead}</p>
+            </div>
+            <AuditForm />
+          </div>
+          <div className={styles.formBlock}>
+            <Sub className={styles.formTitle}>{site.contact.generalTitle}</Sub>
+            <ContactForm source="contact" />
+          </div>
         </Reveal>
 
         <Reveal className={styles.booking} order={2}>
