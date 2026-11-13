@@ -103,42 +103,44 @@
   transition: transform var(--duration-fast) var(--ease-out);
 }
 
-/* Desktop only — a mouse or trackpad. Phones get no hover state at all, just
-   the press below.
+/* Desktop only — while a mouse or trackpad is in use, which motion/Magnetic
+   flags as :root[data-mouse] from the pointer events themselves (media
+   queries lie in Brave). Phones get no hover state at all, just the press.
 
    Two moves that compose: the lift on `transform`, and the magnetic lean on
-   `translate`, fed by motion/Magnetic (--magnet-x/y, 0 until the cursor is
-   over the button). The label leans half as far again, so it floats inside
-   the fill. The ::after glint and ::before fill keep `transform` to
-   themselves. */
-@media (any-hover: hover) and (any-pointer: fine) {
-  .btn {
-    translate: var(--magnet-x, 0px) var(--magnet-y, 0px);
-  }
-  .inner {
-    translate: calc(var(--magnet-x, 0px) * 0.5) calc(var(--magnet-y, 0px) * 0.5);
-    transition: translate var(--duration-fast) var(--ease-out);
-  }
-  .primary:hover,
-  .outline:hover {
-    transform: translateY(calc(-1 * var(--motion-lift-sm)));
-  }
-  .primary:hover {
-    box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-accent) 45%, transparent);
-  }
-  /* Transition on the hover state only: it sweeps through on the way in and
-     snaps back, out of sight, on the way out. */
-  .primary:hover::after {
-    transform: translateX(101%);
-    transition: transform 0.7s var(--ease-smooth);
-  }
-  .outline:hover {
-    color: var(--color-bg);
-    box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-text) 45%, transparent);
-  }
-  .outline:hover::before {
-    transform: scaleY(1);
-  }
+   `translate` (--magnet-x/y, 0 until the cursor is over the button). The
+   label leans half as far again, so it floats inside the fill. The ::after
+   glint and ::before fill keep `transform` to themselves. */
+:root[data-mouse] .btn {
+  translate: var(--magnet-x, 0px) var(--magnet-y, 0px);
+}
+:root[data-mouse] .inner {
+  translate: calc(var(--magnet-x, 0px) * 0.5) calc(var(--magnet-y, 0px) * 0.5);
+  transition: translate var(--duration-fast) var(--ease-out);
+}
+:root[data-mouse] .primary:hover,
+:root[data-mouse] .outline:hover {
+  transform: translateY(calc(-1 * var(--motion-lift-sm)));
+}
+:root[data-mouse] .primary:hover {
+  box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+/* Transition on the hover state only: it sweeps through on the way in and
+   snaps back, out of sight, on the way out. */
+:root[data-mouse] .primary:hover::after {
+  transform: translateX(101%);
+  transition: transform 0.7s var(--ease-smooth);
+}
+:root[data-mouse] .outline:hover {
+  color: var(--color-bg);
+  box-shadow: 0 8px 24px -4px color-mix(in srgb, var(--color-text) 45%, transparent);
+}
+:root[data-mouse] .outline:hover::before {
+  transform: scaleY(1);
+}
+/* The click presses the lifted button back down (outranks the lift above). */
+:root[data-mouse] .btn:active {
+  transform: translateY(0);
 }
 
 /* Press feedback — the one state touch screens get. */
