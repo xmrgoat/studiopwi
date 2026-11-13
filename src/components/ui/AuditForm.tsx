@@ -11,12 +11,14 @@ type Status = "idle" | "submitting" | "error";
 
 const FALLBACK = "Votre demande n'a pas pu être envoyée. Écrivez-nous directement à";
 
-// The free audit request: nom, email, site. On success it lands on
-// /merci-audit, whose page views count audit requests in Vercel Analytics.
+// The free audit + homepage draft request: nom, entreprise, site (or "pas
+// encore de site"), email. On success it lands on /merci-audit, whose page
+// views count audit requests in Vercel Analytics.
 export default function AuditForm() {
   const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [noSite, setNoSite] = useState(false);
   const f = site.audit.form;
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -27,8 +29,11 @@ export default function AuditForm() {
     const data = new FormData(e.currentTarget);
     const payload = {
       name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
+      company: String(data.get("company") ?? ""),
+      // A disabled field isn't submitted, so this is "" when noSite is ticked.
       site: String(data.get("site") ?? ""),
+      noSite,
+      email: String(data.get("email") ?? ""),
       locale: "fr" as const,
       website: String(data.get("website") ?? ""),
     };
@@ -61,6 +66,7 @@ export default function AuditForm() {
         <div className={styles.skeletonField} />
         <div className={styles.skeletonField} />
         <div className={styles.skeletonField} />
+        <div className={styles.skeletonField} />
         <div className={styles.skeletonBtn} />
       </div>
     );
@@ -82,6 +88,48 @@ export default function AuditForm() {
       </label>
 
       <label className={styles.field}>
+        <span className={styles.label}>{f.company.label}</span>
+        <input
+          type="text"
+          name="company"
+          required
+          minLength={2}
+          maxLength={160}
+          autoComplete="organization"
+          placeholder={f.company.placeholder}
+        />
+      </label>
+
+      {/* type="text", not "url": "monsite.ch" without https:// is how people
+          write it. Ticking "pas encore de site" disables and clears it. */}
+      <div className={styles.field}>
+        <label className={styles.field}>
+          <span className={styles.label}>{f.site.label}</span>
+          <input
+            type="text"
+            name="site"
+            required={!noSite}
+            disabled={noSite}
+            minLength={3}
+            maxLength={300}
+            inputMode="url"
+            autoComplete="url"
+            placeholder={noSite ? "" : f.site.placeholder}
+            key={noSite ? "none" : "site"}
+          />
+        </label>
+        <label className={styles.check}>
+          <input
+            type="checkbox"
+            name="noSite"
+            checked={noSite}
+            onChange={(e) => setNoSite(e.target.checked)}
+          />
+          <span>{f.site.noSite}</span>
+        </label>
+      </div>
+
+      <label className={styles.field}>
         <span className={styles.label}>{f.email.label}</span>
         <input
           type="email"
@@ -91,26 +139,6 @@ export default function AuditForm() {
           autoComplete="email"
           placeholder={f.email.placeholder}
         />
-      </label>
-
-      {/* type="text", not "url": "monsite.ch" without https:// is how people
-          write it, and a company name stands in when there is no site. */}
-      <label className={styles.field}>
-        <span className={styles.label}>{f.site.label}</span>
-        <input
-          type="text"
-          name="site"
-          required
-          minLength={3}
-          maxLength={300}
-          inputMode="url"
-          autoComplete="url"
-          placeholder={f.site.placeholder}
-          aria-describedby="audit-site-hint"
-        />
-        <span id="audit-site-hint" className={styles.hint}>
-          {f.site.hint}
-        </span>
       </label>
 
       {/* Honeypot — hidden from humans, traps bots. */}
