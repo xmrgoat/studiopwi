@@ -41,23 +41,30 @@ export async function sendLeadNotification(input: LeadEmailInput) {
 
 type AuditEmailInput = {
   name: string;
+  company: string;
   email: string;
   site: string;
+  noSite: boolean;
 };
 
 // An audit request: its own subject prefix so it can be filtered apart from
 // contact leads, and the site first, since it is the work to be done.
 export async function sendAuditRequest(input: AuditEmailInput) {
+  const site = input.noSite ? "pas de site" : input.site;
   return resend.emails.send({
     from: env.RESEND_FROM,
     to: env.LEADS_TO,
     replyTo: input.email,
-    subject: `Demande d'audit — ${input.site}`,
+    subject: `Demande d'audit — ${input.company} (${site})`,
     text: [
-      `Site   : ${input.site}`,
-      `Nom    : ${input.name}`,
-      `Email  : ${input.email}`,
+      `Site      : ${site}`,
+      `Entreprise: ${input.company}`,
+      `Nom       : ${input.name}`,
+      `Email     : ${input.email}`,
       "",
+      input.noSite
+        ? "Pas de site : partir de la fiche Google de l'entreprise."
+        : null,
       "À livrer : audit PDF sous 1 à 2 jours ouvrables, maquette de la page d'accueil sous 1 à 3 jours ouvrables.",
     ].join("\n"),
   });
