@@ -1,83 +1,42 @@
+// French case studies and project pages. The English versions
+// (content/en/cases.ts) have the same slugs and shape.
 import { site } from "./site";
+import type { CasesCopy, CaseStudy, Project, Shot } from "../types";
 
-export type CaseStudy = {
-  slug: string;
-  client: string;
-  eyebrow: string;
-  image: { src: string; alt: string; width: number; height: number };
-  siteUrl?: string;
-  siteLabel?: string;
-  inProduction?: boolean;
-  statusLabel?: string;
-  problemLabel: string;
-  problem: string;
-  solutionLabel: string;
-  solution: string;
-  cta: { label: string; href: string };
-  /** The full project page, linked under the CTA. */
-  detail?: { label: string; href: string };
-};
-
-export const cases = {
-  items: [
-    {
-      slug: "jimi-builds",
-      client: "Jimi Builds",
-      eyebrow: "Un projet paysagiste,",
-      image: {
-        src: "/images/case-studies/JimiBuilds.webp",
-        alt: "Page d'accueil du site Jimi Builds — aménagement paysager écologique",
-        width: 2377,
-        height: 1357,
-      },
-      siteUrl: "https://www.jimibuilds.com",
-      siteLabel: "www.jimibuilds.com",
-      inProduction: true,
-      statusLabel: "En direct",
-      problemLabel: "Le problème :",
-      // Desktop copy. The mobile frame carries a condensed variant of the same
-      // paragraph; the fuller desktop wording is used at every breakpoint
-      // rather than duplicating the string per viewport.
-      problem:
-        "L'entreprise, n'ayant pas de site web ni de présence en ligne, n'a aucun moyen de se faire trouver par quelqu'un qui aurait besoin de ses services, ni de lui faire savoir pourquoi il devrait la choisir. Cette personne ira donc chez un concurrent qui, lui, aura su le faire.",
-      solutionLabel: "La solution :",
-      solution:
-        "Une landing page conçue pour présenter l'offre, rassurer les visiteurs et faciliter les demandes de devis.",
-      cta: { label: "Discuter de mon projet", href: "#contact" },
-      detail: { label: "Voir le projet en détail", href: "/portfolio/jimi-builds" },
+// The homepage case study (sections/CaseStudies).
+const items = [
+  {
+    slug: "jimi-builds",
+    client: "Jimi Builds",
+    eyebrow: "Un projet paysagiste,",
+    image: {
+      src: "/images/case-studies/JimiBuilds.webp",
+      alt: "Page d'accueil du site Jimi Builds — aménagement paysager écologique",
+      width: 2377,
+      height: 1357,
     },
-  ] as const satisfies readonly CaseStudy[],
-} as const;
+    siteUrl: "https://www.jimibuilds.com",
+    siteLabel: "www.jimibuilds.com",
+    inProduction: true,
+    statusLabel: "En direct",
+    problemLabel: "Le problème :",
+    // Desktop copy. The mobile frame carries a condensed variant of the same
+    // paragraph; the fuller desktop wording is used at every breakpoint
+    // rather than duplicating the string per viewport.
+    problem:
+      "L'entreprise, n'ayant pas de site web ni de présence en ligne, n'a aucun moyen de se faire trouver par quelqu'un qui aurait besoin de ses services, ni de lui faire savoir pourquoi il devrait la choisir. Cette personne ira donc chez un concurrent qui, lui, aura su le faire.",
+    solutionLabel: "La solution :",
+    solution:
+      "Une landing page conçue pour présenter l'offre, rassurer les visiteurs et faciliter les demandes de devis.",
+    cta: { label: "Discuter de mon projet", href: "#contact" },
+    detail: { label: "Voir le projet en détail", href: "/portfolio/jimi-builds" },
+  },
+] as const satisfies readonly CaseStudy[];
 
 // ── Project pages (/portfolio/[slug]) ───────────────────────────────────────
 // Copy transcribed from the Figma "Projet — …" frames (November 2026). Strings
 // with "\n" break where the frame breaks its headline; on narrow screens the
 // lines also wrap on their own.
-
-export type Shot = { src: string; alt: string; width: number; height: number };
-
-export type Project = {
-  slug: string;
-  client: string;
-  /** <title> (before " · Studio PWI") and meta description. ≤ 60 / ≈ 155. */
-  seo: { title: string; description: string };
-  title: string;
-  summary: string;
-  facts: readonly { label: string; value: string }[];
-  site: { url: string; label: string };
-  problem: { title: string; lead: string; body: readonly string[] };
-  solution: {
-    title: string;
-    lead: string;
-    decisions: readonly { title: string; body: string }[];
-  };
-  shots: { desktop: Shot; mobile: Shot; process: Shot; form: Shot };
-  captions: { mobileLabel: string; mobile: string; process: string; form: string };
-  testimonial: { title: string; quote: string; author: string; role: string };
-  /** One line under the client name in the "Projet suivant" link. */
-  teaser: string;
-  next: string;
-};
 
 // A project page that quotes a review the homepage also shows picks it up from
 // site.whyUs.testimonials by author, so it is written once. A review the owner
@@ -95,7 +54,7 @@ const shot = (slug: string, name: string, width: number, height: number, alt: st
   height,
 });
 
-export const projectPage = {
+const projectPage = {
   nextLabel: "Projet suivant",
   // Labelled site.callCta, the one promise every CTA makes: the free audit
   // of the visitor's site and a draft of their homepage.
@@ -107,7 +66,7 @@ export const projectPage = {
   },
 } as const;
 
-export const projects = [
+const projects = [
   {
     slug: "jimi-builds",
     client: "Jimi Builds",
@@ -120,9 +79,9 @@ export const projects = [
     summary:
       "Jimi n'avait pas de site. Aujourd'hui, une page claire présente ses services et invite à le contacter.",
     facts: [
-      { label: "Métier", value: "Paysagiste" },
-      { label: "Lieu", value: "Colorado, États-Unis" },
-      { label: "Ce que nous avons fait", value: "Un site d'une page" },
+      { id: "trade", label: "Métier", value: "Paysagiste" },
+      { id: "location", label: "Lieu", value: "Colorado, États-Unis" },
+      { id: "scope", label: "Ce que nous avons fait", value: "Un site d'une page" },
     ],
     site: { url: "https://www.jimibuilds.com", label: "jimibuilds.com" },
     // The desktop frame's headline. The mobile frame still carries the older
@@ -186,9 +145,9 @@ export const projects = [
     summary:
       "Plus de 140 projets et bientôt 18 ans de métier. Nicolas avait perdu son ancien site : nous lui en avons fait un nouveau.",
     facts: [
-      { label: "Métier", value: "Paysagiste indépendant" },
-      { label: "Lieu", value: "Saint-Aubin (FR), dans la Broye" },
-      { label: "Ce que nous avons fait", value: "Un site de 3 pages" },
+      { id: "trade", label: "Métier", value: "Paysagiste indépendant" },
+      { id: "location", label: "Lieu", value: "Saint-Aubin (FR), dans la Broye" },
+      { id: "scope", label: "Ce que nous avons fait", value: "Un site de 3 pages" },
     ],
     site: { url: "https://o-paysage.ch", label: "o-paysage.ch" },
     problem: {
@@ -248,6 +207,4 @@ export const projects = [
   },
 ] as const satisfies readonly Project[];
 
-export function getProject(slug: string): Project | undefined {
-  return (projects as readonly Project[]).find((p) => p.slug === slug);
-}
+export const cases = { items, projectPage, projects } as const satisfies CasesCopy;
