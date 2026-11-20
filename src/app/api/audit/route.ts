@@ -1,9 +1,14 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { auditSchema } from "@/lib/validation";
+import { auditSchemaFor, requestLocale } from "@/lib/validation";
 import { sendAuditRequest } from "@/lib/email";
 import { rateLimit, clientIp } from "@/lib/rateLimit";
 
 export const runtime = "nodejs";
+
+const SEND_FAILED = {
+  fr: "Votre demande n'a pas pu être envoyée. Écrivez-nous directement à contact@studiopwi.com.",
+  en: "Your request couldn't be sent. Email us directly at contact@studiopwi.com.",
+} as const;
 
 // The free audit request. Same shape as /api/contact: rate limit → validate →
 // honeypot → one email, which is the only copy of the request (no database).
@@ -29,7 +34,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
   }
 
-  const parsed = auditSchema.safeParse(json);
+  // The language decides which messages a failed field shows.
+  const locale = requestLocale(json);
+  const parsed = auditSchemaFor(locale).safeParse(json);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, error: "Validation failed", issues: parsed.error.flatten() },
@@ -43,7 +50,14 @@ export async function POST(req: NextRequest) {
   }
 
   const { name, company, email, site, noSite } = parsed.data;
-  const emailResult = await sendAuditRequest({ name, company, email, site, noSite });
+  const emailResult = await sendAuditRequest({
+    name,
+    company,
+    email,
+    site,
+    noSite,
+    locale: parsed.data.locale,
+  });
 
   // The email is the request. If it fails, the visitor must hear about it
   // and be offered the address, not be told it worked (see /api/contact).
@@ -52,8 +66,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         ok: false,
-        error:
-          "Votre demande n'a pas pu être envoyée. Écrivez-nous directement à contact@studiopwi.com.",
+        error: SEND_FAILED[locale],
       },
       { status: 502 },
     );
