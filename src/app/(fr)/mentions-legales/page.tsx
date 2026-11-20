@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/layout/LegalPage";
+import { pageMetadata } from "@/i18n/metadata";
+import { routes } from "@/i18n/routes";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "fr",
+  paths: routes.legalNotice,
   title: "Mentions légales",
   description:
     "Mentions légales du site studiopwi.com — identité de l'éditeur, hébergement, propriété intellectuelle et droit applicable.",
-  alternates: { canonical: "/mentions-legales" },
-};
+});
 
 export default function ImprintPage() {
   return (
     <LegalPage
+      locale="fr"
       eyebrow="Légal — Impressum"
       title="Mentions légales"
       updated="10 octobre 2026"
