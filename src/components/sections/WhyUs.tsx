@@ -1,4 +1,5 @@
-import { site } from "@/content/site";
+import { getDictionary } from "@/content";
+import type { Locale } from "@/i18n/locales";
 import RichText from "@/components/ui/RichText";
 import Button from "@/components/ui/Button";
 import Testimonial from "@/components/ui/Testimonial";
@@ -8,11 +9,12 @@ import styles from "./WhyUs.module.css";
 // Server component. Matches the desktop Figma frame: copy column on the left
 // starting at the top, "Avis concret" column on the right dropped well down the
 // frame, bare quotes (no card), and a CTA beneath both columns.
-export default function WhyUs() {
+export default function WhyUs({ locale }: { locale: Locale }) {
+  const { site } = getDictionary(locale);
   const { title, paragraphs, testimonialsTitle, testimonials, cta } = site.whyUs;
 
   return (
-    <section className={`section ${styles.section}`} id="pourquoi">
+    <section className={`section ${styles.section}`} id={site.ids.about}>
       <div className={`grid ${styles.grid}`}>
         <Reveal className={styles.copy}>
           <h2 className={styles.title}>{title}</h2>
