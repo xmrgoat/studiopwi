@@ -1,12 +1,16 @@
 import Link from "next/link";
-import { site } from "@/content/site";
+import { getDictionary } from "@/content";
+import type { Locale } from "@/i18n/locales";
+import { routes } from "@/i18n/routes";
 import styles from "./Footer.module.css";
 
-// The nav targets are homepage sections. Pages other than the homepage pass
-// anchorBase="/" so "#services" routes back to "/#services" instead of
-// pointing at nothing on the current page.
-export default function Footer({ anchorBase = "" }: { anchorBase?: string }) {
+// The nav targets are homepage sections. Off the homepage, "#services" routes
+// back to the homepage of the same language ("/#services", "/en#services")
+// instead of pointing at nothing on the current page.
+export default function Footer({ locale, onHome = false }: { locale: Locale; onHome?: boolean }) {
+  const { site, ui } = getDictionary(locale);
   const { footer, name } = site;
+  const anchorBase = onHome ? "" : routes.home[locale];
   // Rendered at build time. Better than the Figma's literal "2025", which was
   // already a year out of date when this was built.
   const year = new Date().getFullYear();
@@ -30,11 +34,11 @@ export default function Footer({ anchorBase = "" }: { anchorBase?: string }) {
               rel="noopener noreferrer"
             >
               WhatsApp {site.whatsapp.number}
-              <span className="sr-only"> (nouvel onglet)</span>
+              <span className="sr-only">{ui.newTab}</span>
             </a>
           </div>
 
-          <nav className={styles.nav} aria-label="Pied de page">
+          <nav className={styles.nav} aria-label={ui.footerNav}>
             <ul className={styles.navList}>
               {footer.nav.map((item) => (
                 <li key={item.href}>
@@ -59,7 +63,7 @@ export default function Footer({ anchorBase = "" }: { anchorBase?: string }) {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${item.label} (nouvel onglet)`}
+                    aria-label={`${item.label}${ui.newTab}`}
                   >
                     <span
                       className={styles.socialIcon}
@@ -77,7 +81,7 @@ export default function Footer({ anchorBase = "" }: { anchorBase?: string }) {
 
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {year} {name}. Tous droits réservés.
+            © {year} {name}. {ui.rights}
           </p>
           <ul className={styles.legal}>
             {footer.legal.map((item) => (
