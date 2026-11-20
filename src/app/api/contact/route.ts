@@ -1,9 +1,16 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { contactSchema } from "@/lib/validation";
+import { contactSchemaFor, requestLocale } from "@/lib/validation";
 import { sendLeadNotification } from "@/lib/email";
 import { rateLimit, clientIp } from "@/lib/rateLimit";
 
 export const runtime = "nodejs";
+
+// Shown to the visitor when the send fails, in the form's language, with
+// the address as the way through (there is no other copy of the lead).
+const SEND_FAILED = {
+  fr: "Votre message n'a pas pu être envoyé. Écrivez-nous directement à contact@studiopwi.com.",
+  en: "Your message couldn't be sent. Email us directly at contact@studiopwi.com.",
+} as const;
 
 export async function POST(req: NextRequest) {
   const ip = clientIp(req.headers);
@@ -27,7 +34,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
   }
 
-  const parsed = contactSchema.safeParse(json);
+  // The language decides which messages a failed field shows.
+  const locale = requestLocale(json);
+  const parsed = contactSchemaFor(locale).safeParse(json);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, error: "Validation failed", issues: parsed.error.flatten() },
@@ -48,6 +57,7 @@ export async function POST(req: NextRequest) {
     message: parsed.data.message,
     tier: parsed.data.tier,
     source: parsed.data.source,
+    locale: parsed.data.locale,
   });
 
   // With no database, this email IS the lead — there is no second copy to
@@ -65,8 +75,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         ok: false,
-        error:
-          "Votre message n'a pas pu être envoyé. Écrivez-nous directement à contact@studiopwi.com.",
+        error: SEND_FAILED[locale],
       },
       { status: 502 },
     );
