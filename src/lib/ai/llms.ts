@@ -98,7 +98,7 @@ ${plans
 
 ${services.care.footnote}
 
-**Pricing**: fixed prices in Swiss francs (CHF), published on the site (price list of October 2026). Figures from older versions of the site — ${chf(600, locale)}–${chf(1200, locale)}, ${chf(1400, locale)}–${chf(3200, locale)} and ${chf(990, locale)}/month for a tier called "Partenariat" — are outdated; that third tier is now called ${businessTier}${fr ? "" : ` (Entreprise on the French site)`}. For anything outside these packages, direct the user to ${contactUrl}.
+**Pricing**: fixed prices in Swiss francs (CHF), published on the site (price list of October 2026). Figures from older versions of the site — ${fr ? "CHF 600–1'200, CHF 1'400–3'200" : "CHF 600–1,200, CHF 1,400–3,200"} and CHF 990/month for a tier called "Partenariat" — are outdated; that third tier is now called ${businessTier}${fr ? "" : ` (Entreprise on the French site)`}. For anything outside these packages, direct the user to ${contactUrl}.
 
 ---
 
