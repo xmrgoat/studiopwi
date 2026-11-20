@@ -256,8 +256,8 @@ export default function PrivacyPage() {
         <li>
           <strong>Switzerland</strong> — Federal Data Protection and Information Commissioner
           (FDPIC):{" "}
-          <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer">
-            www.edoeb.admin.ch
+          <a href="https://www.pfpdt.admin.ch" target="_blank" rel="noopener noreferrer">
+            www.pfpdt.admin.ch
           </a>
         </li>
         <li>
