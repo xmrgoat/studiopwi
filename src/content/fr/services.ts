@@ -1,46 +1,31 @@
-// "partnership" is the id of the Entreprise tier. It was called Partenariat
-// before the October 2026 price list; the id is kept because the contact form
-// and its validation schema send it, and it never reaches the page.
-export type ServiceTier = "showcase" | "growth" | "partnership";
+import { facts, split } from "../facts";
+import { chf } from "../format";
+import type { CarePlan, Service, ServicesCopy } from "../types";
 
-export type Service = {
-  id: ServiceTier;
-  title: string;
-  duration: string;
-  /** Fixed price in CHF — shown on the card and in the Offer JSON-LD. */
-  price: number;
-  payment: string;
-  description: string;
-  features: readonly string[];
-  cta: { label: string; href: string };
-  featured?: boolean;
+const { tiers: t, care: c } = facts;
+const weeks = (w: readonly number[]) => `${w[0]} à ${w[1]} semaines`;
+const payment = (tier: keyof typeof t) => {
+  const [deposit, balance] = split(tier);
+  return `Acompte ${deposit} % · solde ${balance} % à la livraison`;
 };
 
-export type CarePlan = {
-  id: string;
-  title: string;
-  /** Monthly price in CHF. */
-  price: number;
-  features: readonly string[];
-  /** Inverted card, styled like the featured tier. */
-  featured?: boolean;
-};
+// The offer names, used by the cards, the FAQ, the JSON-LD and the AI files.
+export const names = {
+  showcase: "Lancement",
+  growth: "Croissance",
+  partnership: "Entreprise",
+  "care-essentiel": "Care Essentiel",
+  "care-pro": "Care Pro",
+  retainer: "Retainer",
+} as const;
 
-/** Swiss price formatting, as on the price list: 2600 → "CHF 2'600". */
-export function chf(amount: number): string {
-  return `CHF ${String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, "'")}`;
-}
-
-// Source of truth: the "Studio PWI – Liste de prix" PDF (October 2026).
 // Prices are shown on the page, which is what allows them in the Offer
-// JSON-LD too — Google requires price markup to match visible prices.
-// The à la carte list stays off the site.
+// JSON-LD too. The à la carte list stays off the site.
 export const services = {
   headline: "Trois façons de développer votre présence en ligne",
   intro:
     "Chaque offre est conçue pour aider votre entreprise de paysagisme à être trouvée, inspirer confiance et générer plus de demandes de devis.",
-  reassurance:
-    "Prix fixes, sans facturation à l'heure. Pages légales non comptées. Révisions : 72 h ouvrables pour valider le design ou envoyer une liste groupée de retours. Délais comptés dès réception de l'acompte et du contenu. Support après la mise en ligne : 14 jours inclus.",
+  reassurance: `Prix fixes, sans facturation à l'heure. Pages légales non comptées. Révisions : ${facts.revisionHours} h ouvrables pour valider le design ou envoyer une liste groupée de retours. Délais comptés dès réception de l'acompte et du contenu. Support après la mise en ligne : ${facts.supportDays} jours inclus.`,
   featuredBadge: "Recommandé",
 
   // All three CTAs read "Commencer mon projet" (October 2026, replacing the
@@ -49,36 +34,36 @@ export const services = {
   tiers: [
     {
       id: "showcase",
-      title: "Lancement",
-      duration: "1 à 3 semaines",
-      price: 1200,
-      payment: "Acompte 25 % · solde 75 % à la livraison",
+      title: names.showcase,
+      duration: weeks(t.showcase.weeks),
+      price: t.showcase.price,
+      payment: payment("showcase"),
       description:
         "Pour les indépendants et petites entreprises qui veulent une présence professionnelle, claire et rapide.",
       features: [
-        "3 pages : accueil, services, contact",
+        `${t.showcase.pages} pages : accueil, services, contact`,
         "Design sur mesure, identité visuelle et logo textuel",
         "Formulaire de contact",
         "SEO essentiel : sitemap, Google Search Console, Bing",
-        "1 langue · 2 rounds de révisions",
-        "14 jours de support après la mise en ligne",
+        `${t.showcase.languages} langue · ${facts.revisionRounds} rounds de révisions`,
+        `${facts.supportDays} jours de support après la mise en ligne`,
       ],
       cta: { label: "Commencer mon projet", href: "#contact" },
       featured: false,
     },
     {
       id: "growth",
-      title: "Croissance",
-      duration: "3 à 4 semaines",
-      price: 2600,
-      payment: "Acompte 35 % · solde 65 % à la livraison",
+      title: names.growth,
+      duration: weeks(t.growth.weeks),
+      price: t.growth.price,
+      payment: payment("growth"),
       description:
         "Pour les entreprises qui veulent un site plus complet, conçu pour inspirer confiance et convertir les visiteurs.",
       features: [
-        "Tout le Lancement inclus",
-        "5 pages : + à propos et réalisations",
+        `Tout le ${names.showcase} inclus`,
+        `${t.growth.pages} pages : + à propos et réalisations`,
         "Vidéo de présentation en motion graphic",
-        "Jusqu'à 2 langues",
+        `Jusqu'à ${t.growth.languages} langues`,
         "Statistiques de visites (analytics)",
         "SEO local : Google Business Profile, local.ch, search.ch",
       ],
@@ -87,19 +72,19 @@ export const services = {
     },
     {
       id: "partnership",
-      title: "Entreprise",
-      duration: "4 à 8 semaines",
-      price: 5200,
-      payment: "Acompte 45 % · solde 55 % à la livraison",
+      title: names.partnership,
+      duration: weeks(t.partnership.weeks),
+      price: t.partnership.price,
+      payment: payment("partnership"),
       description:
         "Pour les entreprises sérieuses qui veulent se démarquer et s'établir durablement.",
       features: [
-        "Tout le Croissance inclus",
-        "10 pages : 6 pages services, blog, réalisations",
-        "Jusqu'à 3 langues, textes rédigés par Studio PWI",
+        `Tout le ${names.growth} inclus`,
+        `${t.partnership.pages} pages : 6 pages services, blog, réalisations`,
+        `Jusqu'à ${t.partnership.languages} langues, textes rédigés par Studio PWI`,
         "Formulaire relié à un CRM, ou outil de réservation",
         "SEO avancé : mots-clés, pages services, plan de blog",
-        "Support prioritaire de 14 jours",
+        `Support prioritaire de ${facts.supportDays} jours`,
       ],
       cta: { label: "Commencer mon projet", href: "#contact" },
       featured: false,
@@ -108,39 +93,36 @@ export const services = {
 
   care: {
     headline: "Maintenance mensuelle",
-    intro:
-      "Sauvegardes et surveillance incluses dans chaque formule. Petites modifications : texte, image, ajout d'avis… Sans engagement, minimum recommandé de 3 mois.",
-    // The price list marks the SEO report "–" for Care Essentiel and prices it
-    // at CHF 25 in the row label; read as an Essentiel add-on.
+    intro: `Sauvegardes et surveillance incluses dans chaque formule. Petites modifications : texte, image, ajout d'avis… Sans engagement, minimum recommandé de ${facts.careMinMonths} mois.`,
     plans: [
       {
         id: "care-essentiel",
-        title: "Care Essentiel",
-        price: 45,
+        title: names["care-essentiel"],
+        price: c["care-essentiel"].price,
         features: [
-          "1 petite modification par mois",
-          "Rapport SEO et statistiques en option (CHF 25)",
+          `${c["care-essentiel"].edits} petite modification par mois`,
+          `Rapport SEO et statistiques en option (${chf(facts.seoReportAddon)})`,
         ],
         featured: false,
       },
       {
         id: "care-pro",
-        title: "Care Pro",
-        price: 90,
+        title: names["care-pro"],
+        price: c["care-pro"].price,
         features: [
-          "3 petites modifications par mois",
+          `${c["care-pro"].edits} petites modifications par mois`,
           "Rapport SEO, performances et statistiques",
         ],
         featured: false,
       },
       {
         id: "retainer",
-        title: "Retainer",
-        price: 150,
+        title: names.retainer,
+        price: c.retainer.price,
         features: [
-          "5 petites modifications par mois",
+          `${c.retainer.edits} petites modifications par mois`,
           "Rapport SEO, performances et statistiques",
-          "−25 % sur les landing pages et campagnes",
+          `−${facts.landingDiscount} % sur les landing pages et campagnes`,
         ],
         featured: true,
       },
@@ -150,4 +132,12 @@ export const services = {
     // worded like the tier cards; no tier is passed, the plans aren't one.
     cta: { label: "Commencer mon projet", href: "#contact" },
   },
-} as const;
+
+  schema: {
+    tierName: (title: string) => `Offre ${title} — site web pour paysagistes`,
+    tierType: "Création de site web",
+    careName: (title: string) => `${title} — maintenance de site web`,
+    careType: "Maintenance de site web",
+    month: "mois",
+  },
+} as const satisfies ServicesCopy;
