@@ -52,7 +52,7 @@ ${versions}
 ## Who Studio PWI works with
 
 - Landscaping businesses: ${fr ? "paysagistes, jardiniers-paysagistes, architectes-paysagistes, entreprises d'espaces verts" : "landscapers, landscape gardeners, landscape architects, grounds-maintenance companies"}.
-- Mainly in Switzerland — Romandie first, also Suisse alémanique and Tessin — and remotely with landscapers abroad. Published projects: ${work.map((p) => `${p.client} (${fact(p, "location")})`).join(", ")}.
+- Mainly in Switzerland — ${fr ? "Romandie first, also Suisse alémanique and Tessin" : "French-speaking Switzerland (Romandie) first, also German-speaking Switzerland and Ticino"} — and remotely with landscapers abroad. Published projects: ${work.map((p) => `${p.client} (${fact(p, "location")})`).join(", ")}.
 - Clients typically want more qualified quote requests${fr ? " (demandes de devis)" : ""}, better visibility on Google through local SEO, or a more credible, modern site.
 
 ## What Studio PWI does not do
