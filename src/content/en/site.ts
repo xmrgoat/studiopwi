@@ -235,7 +235,7 @@ export const site = {
       },
       {
         question: "Can my website be in more than one language?",
-        answer: `Yes. The ${names.showcase} plan includes ${t.showcase.languages} language, ${names.growth} up to ${t.growth.languages} and ${names.partnership} up to ${t.partnership.languages}. With ${names.partnership}, Studio PWI also writes the text for you. That's useful if your clients speak different languages, which is common in Switzerland.`,
+        answer: `Yes. The ${names.showcase} plan includes ${t.showcase.languages} language, ${names.growth} up to ${t.growth.languages} and ${names.partnership} up to ${t.partnership.languages}. With ${names.partnership}, Studio PWI also writes the text for you. That's useful if your clients speak different languages, which is common in Switzerland. Tell us which languages you need when you ask for your free audit.`,
       },
       {
         question: "Who writes the text?",
@@ -243,7 +243,7 @@ export const site = {
       },
       {
         question: "How does payment work?",
-        answer: `Our prices are fixed, with no hourly billing. You pay a deposit when we start (${t.showcase.deposit}% for ${names.showcase}, ${t.growth.deposit}% for ${names.growth}, ${t.partnership.deposit}% for ${names.partnership}) and the rest on delivery. Timelines start once we have your deposit and your content.`,
+        answer: `Our prices are fixed, with no hourly billing. You pay a deposit when we start (${t.showcase.deposit}% for ${names.showcase}, ${t.growth.deposit}% for ${names.growth}, ${t.partnership.deposit}% for ${names.partnership}) and the rest on delivery. Timelines start once we have your deposit and your content. All prices are in Swiss francs (CHF).`,
       },
       {
         question: "How long does it take to build my website?",
@@ -252,7 +252,7 @@ export const site = {
       {
         question: "Do you work outside Switzerland?",
         answer:
-          "Yes. We're based in the canton of Neuchâtel, Switzerland, and we also work remotely with landscapers abroad, in French and English. One example is Jimi Builds, a landscaper in Colorado, USA, whose one-page website we designed and built.",
+          "Yes. We're based in the canton of Neuchâtel, Switzerland, and we also work remotely with landscapers abroad, in French and English. One example is Jimi Builds, a landscaper in Colorado, USA, whose one-page website we designed and built. You can request your free audit or book a call online, wherever you are.",
       },
     ],
   },
