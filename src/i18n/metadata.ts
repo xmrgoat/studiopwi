@@ -11,10 +11,16 @@ export const ogImagePath: Record<Locale, string> = {
   en: "/en/opengraph-image",
 };
 
-type Image = { url: string; width: number; height: number; alt: string };
+type Image = { url: string; width: number; height: number; alt: string; type?: string };
 
 function defaultImage(locale: Locale): Image {
-  return { url: ogImagePath[locale], width: 1200, height: 630, alt: getDictionary(locale).site.seo.ogAlt };
+  return {
+    url: ogImagePath[locale],
+    width: 1200,
+    height: 630,
+    alt: getDictionary(locale).site.seo.ogAlt,
+    type: "image/png",
+  };
 }
 
 /**
@@ -46,7 +52,7 @@ export function rootMetadata(locale: Locale): Metadata {
       card: "summary_large_image",
       title,
       description: site.seo.description,
-      images: [ogImagePath[locale]],
+      images: [defaultImage(locale)],
     },
     robots: {
       index: true,
@@ -103,7 +109,7 @@ export function pageMetadata(opts: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [image.url],
+      images: [image],
     },
   };
 }
