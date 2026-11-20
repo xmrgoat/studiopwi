@@ -65,7 +65,7 @@ src/
 │   ├── email.ts               # Resend wrappers
 │   ├── validation.ts          # Zod schemas (contact, newsletter)
 │   ├── rateLimit.ts           # In-memory bucket, swap for Upstash in prod
-│   ├── motion.ts              # GSAP + Lenis helpers, prefers-reduced-motion
+│   ├── motion.ts              # prefers-reduced-motion helpers
 │   └── cn.ts                  # className helper
 │
 ├── styles/
@@ -107,15 +107,10 @@ Newsletter uses double-opt-in: subscriber gets a confirm link → `GET /api/news
 
 ## Motion
 
-GSAP + Lenis are loaded via `next/dynamic`-friendly ES modules (no CDN). Every animation:
-- Registers plugins via `registerGsapPlugins()` in [`lib/motion.ts`](src/lib/motion.ts).
-- Bails out under `prefers-reduced-motion: reduce`.
-- Uses `gsap.context()` so React unmount → `ctx.revert()` cleans up triggers.
-
-Custom components instead of GSAP Club's SplitText:
-- `<SplitWords text="…" />` wraps each word for line/word reveals.
-- `<Counter value={12} />` correctly animates 0 → target (fixes the `gsap.from({textContent:0})` bug from the spec).
-- `<Magnetic>` uses `quickTo` and respects `(hover: none)`.
+No animation library: motion is CSS, plus Lenis for smooth scrolling (GSAP was uninstalled in November 2026).
+- Section reveals: [`components/motion/Reveal.tsx`](src/components/motion/Reveal.tsx), one shared `IntersectionObserver` plus a CSS animation.
+- Desktop hover lift and magnetic lean: [`components/motion/Magnetic.tsx`](src/components/motion/Magnetic.tsx), under 0.5 kB.
+- Every animation sits behind `prefers-reduced-motion: no-preference`. See CLAUDE.md for the full rules.
 
 ## Performance & a11y
 
