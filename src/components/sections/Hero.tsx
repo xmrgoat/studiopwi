@@ -1,4 +1,5 @@
-import { site } from "@/content/site";
+import { getDictionary } from "@/content";
+import type { Locale } from "@/i18n/locales";
 import Button from "@/components/ui/Button";
 import styles from "./Hero.module.css";
 
@@ -14,8 +15,8 @@ import styles from "./Hero.module.css";
 //
 // The photo sits on its own element so it can settle and drift on the
 // compositor; the scroll cue is decoration. Both are aria-hidden.
-export default function Hero() {
-  const { headline, lead, primaryCta } = site.hero;
+export default function Hero({ locale }: { locale: Locale }) {
+  const { headline, lead, primaryCta } = getDictionary(locale).site.hero;
 
   return (
     <section
