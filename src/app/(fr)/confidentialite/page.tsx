@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/layout/LegalPage";
+import { pageMetadata } from "@/i18n/metadata";
+import { routes } from "@/i18n/routes";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "fr",
+  paths: routes.privacy,
   title: "Politique de confidentialité",
   description:
     "Comment Studio PWI collecte, traite et protège vos données personnelles, conformément à la nLPD suisse et au RGPD européen.",
-  alternates: { canonical: "/confidentialite" },
-};
+});
 
 export default function PrivacyPage() {
   return (
     <LegalPage
+      locale="fr"
       eyebrow="Légal — Données personnelles"
       title="Politique de confidentialité"
       updated="13 novembre 2026"
