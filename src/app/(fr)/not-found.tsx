@@ -1,26 +1,7 @@
-import Link from "next/link";
+import NotFoundView from "@/components/pages/NotFoundView";
 
+// notFound() inside the French site (an unknown project slug, say). URLs that
+// match no route at all get app/global-not-found.tsx, in both languages.
 export default function NotFound() {
-  return (
-    <main
-      style={{
-        minHeight: "100dvh",
-        display: "grid",
-        placeItems: "center",
-        padding: "var(--side-pad)",
-      }}
-    >
-      <div style={{ textAlign: "center", maxWidth: "60ch" }}>
-        <p className="mono" style={{ marginBottom: "var(--space-3)" }}>
-          404 / PAGE INTROUVABLE
-        </p>
-        <h1 style={{ marginBottom: "var(--space-4)" }}>
-          Cette page a <span className="accent">poussé ailleurs.</span>
-        </h1>
-        <Link href="/" className="mono">
-          ← Retour à l&apos;accueil
-        </Link>
-      </div>
-    </main>
-  );
+  return <NotFoundView locale="fr" />;
 }
