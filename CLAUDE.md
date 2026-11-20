@@ -23,15 +23,25 @@ No test framework is configured. Don't invent one.
 
 ### Content is the source of truth, not the components
 
-All visible copy lives in three typed files:
+All visible copy lives in typed dictionaries, one folder per language:
 
-- [`src/content/site.ts`](src/content/site.ts) — hero, problem, why-us, contact, FAQ, footer, navigation
-- [`src/content/services.ts`](src/content/services.ts) — three pricing tiers (Lancement / Croissance / Partenariat)
-- [`src/content/cases.ts`](src/content/cases.ts) — case studies
+- [`src/content/facts.ts`](src/content/facts.ts) — **every number and fact both languages state**: prices, deposits, delays, page and language counts, care plans, the 24 h reply promise, contact details. Copy interpolates these; never type a price or a delay into a copy file.
+- `src/content/fr/` and `src/content/en/`, each with `site.ts` (hero, why-us, contact, FAQ, footer, nav, SEO strings, anchor ids), `services.ts` (the tiers and care plans), `cases.ts` (case study + project pages) and `ui.ts` (small interface strings: aria labels, form states, 404).
+- [`src/content/types.ts`](src/content/types.ts) derives `SiteCopy` etc. from the French files (`DeepWiden`), and every English file `satisfies` it — a key added in one language and not the other fails `tsc`.
+- [`src/content/index.ts`](src/content/index.ts) — `getDictionary(locale)`, `getProject(locale, slug)`, `projectSlugs`, `chf()` (fr `CHF 2'600`, en `CHF 2,600`). It throws if the two languages list different projects.
 
-Sections import from these files; copy changes never go in component JSX. **The SEO routes also read from these files** — `robots.ts`, `sitemap.ts`, `manifest.ts`, `opengraph-image.tsx`, `llms.txt/route.ts`, `page.md/route.ts`, and `components/seo/JsonLd.tsx` all pull live data. Editing `site.ts` cascades to OG cards, JSON-LD, the AI brief, and the Markdown mirror automatically. Don't duplicate constants across files.
+Sections take a `locale` prop and read `getDictionary(locale)`; copy changes never go in component JSX. Client components (`HeaderBar`, `ContactForm`, `AuditForm`) receive only the strings they render, as props, so a dictionary never ships to the browser. **The SEO routes read the same files** — `sitemap.ts`, `manifest.ts`, the OG cards, `llms.txt`, `page.md` and `components/seo/JsonLd.tsx`. Editing a copy file cascades to OG cards, JSON-LD, the AI briefs and the Markdown mirrors. Don't duplicate constants across files.
 
-The site is **French (fr-CH) targeting Swiss landscapers**. The `<html lang>`, metadata copy, JSON-LD `inLanguage`, and content files are all in French. Don't mix languages.
+### Two languages: French at `/`, English at `/en` (November 2026)
+
+The site is **French (fr-CH) first, targeting Swiss landscapers**, with a full English version (`en`, Open Graph `en_US`) under `/en`. French URLs have no prefix and must never move. English copy is **adapted, not translated** (grade-8 English, "quote" for "devis"; plan names Launch / Growth / Business and Care Essential / Care Pro / Retainer); the facts must stay identical, which `facts.ts` enforces. Don't mix languages inside one page.
+
+- **Routing**: two root layouts in route groups, `app/(fr)/layout.tsx` and `app/(en)/layout.tsx`, each rendering [`RootShell`](src/components/layout/RootShell.tsx) with its `<html lang>` (`fr-CH` / `en`). French pages live in `app/(fr)/…`, English in `app/(en)/en/…`; the route files are thin wrappers around `components/pages/*` (`HomePage`, `ContactPage`, `ThanksPage`, `NotFoundView`) and `components/project/ProjectPage`. Every path, in both languages, is in [`src/i18n/routes.ts`](src/i18n/routes.ts) — legal pages `/en/legal-notice`, `/en/privacy`, `/en/terms`; thank-you pages `/en/thank-you`, `/en/thank-you-audit`. English anchor ids differ (`#case-study`, `#about`, `#process`) and come from `site.ids`.
+- **No browser-language redirect.** The visible switcher is the only way across: "EN"/"FR" in the bar from 1024px (`.lang`, a 44px target before the CTA) and "English version"/"Version française" as the last drawer row on phones (the 360px bar has no room). It is a plain `<a>` with `hrefLang`/`lang` to the same page in the other language (`switchMap`); from a thank-you page it goes to the other homepage, so the counters stay clean.
+- **Metadata**: [`src/i18n/metadata.ts`](src/i18n/metadata.ts). `rootMetadata(locale)` in each layout (no alternates, so a page that forgets can't inherit the homepage canonical); `pageMetadata()` on every indexable page gives a self-referencing www canonical, hreflang `fr`/`en`/`x-default`→French, and full OG/Twitter cards with `og:locale` + `og:locale:alternate`. English titles ≤60 characters, descriptions ≤155.
+- **404s**: unmatched URLs get [`app/global-not-found.tsx`](src/app/global-not-found.tsx) (`experimental.globalNotFound` in `next.config.ts`), French with a `lang="en"` "Back to home" link to `/en`. An `/en/[...rest]` catch-all calling `notFound()` was tried for an English 404: Next 15.5 doesn't catch it under a route-group root layout and serves a blank `__next_error__` document, so don't add one.
+- **Analytics**: leads are `/merci` + `/en/thank-you`; audit requests are `/merci-audit` + `/en/thank-you-audit`.
+- The Figma file mirrors the switcher (Header desktop variants, `Language` text property; Mobile Menu, `Language label`). It has no English page frames: English copy lives in the code only.
 
 ### Motion: CSS only, plus Lenis — GSAP is gone
 
@@ -71,21 +81,21 @@ Files under `src/app/` that aren't pages or layouts are Next.js metadata-route c
 
 | Route | File | Purpose |
 |---|---|---|
-| `/robots.txt` | `src/app/robots.ts` | Allow `/`, disallow `/api/`, `/_next/`, `/admin`; points to sitemap |
-| `/sitemap.xml` | `src/app/sitemap.ts` | Homepage, `/contact`, one entry per project page (from `projects`), the three legal pages. Never `/merci`. |
+| `/robots.txt` | `src/app/robots.ts` | Allow `/`, disallow `/api/`, `/admin` (never `/_next/`: Google needs the CSS/JS and `/_next/image`); a named group welcomes the AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended…) with the same rules; points to sitemap |
+| `/sitemap.xml` | `src/app/sitemap.ts` | Both languages: homepage, contact, every project page, the three legal pages, each entry with its fr/en/x-default alternates. Never a thank-you page. |
 | `/manifest.webmanifest` | `src/app/manifest.ts` | PWA manifest |
 | `/icon` (32×32) | `src/app/icon.tsx` | Generated favicon via `next/og` |
 | `/apple-icon` (180×180) | `src/app/apple-icon.tsx` | iOS touch icon via `next/og` |
-| `/opengraph-image` (1200×630) | `src/app/opengraph-image.tsx` | Generated OG card via `next/og` |
-| `/twitter-image` | `src/app/twitter-image.tsx` | Re-exports `opengraph-image` |
-| `/llms.txt` | `src/app/llms.txt/route.ts` | French + English brief for AI answer engines. Publishes the current prices from `services.ts` and flags the pre-October-2026 figures as outdated. |
-| `/page.md` | `src/app/page.md/route.ts` | Markdown mirror of the homepage (carries `X-Robots-Tag: noindex`) |
+| `/opengraph-image`, `/en/opengraph-image` (1200×630) | `src/app/opengraph-image/route.tsx`, `src/app/(en)/en/opengraph-image/route.tsx` | The OG card per language, both drawn by `renderOgImage` in [`src/lib/og.tsx`](src/lib/og.tsx). **Route handlers, not `opengraph-image.tsx` files**: inside a route group the file convention serves the card at a hashed URL. |
+| `/twitter-image` | `src/app/twitter-image/route.tsx` | The French card again (kept so old shares resolve; pages point Twitter at `/opengraph-image`) |
+| `/llms.txt`, `/en/llms.txt` | `src/app/llms.txt/route.ts`, `src/app/(en)/en/llms.txt/route.ts` | Brief for AI answer engines, one per language, cross-linked, both rendered by [`src/lib/ai/llms.ts`](src/lib/ai/llms.ts). Publishes the current prices from `facts.ts` and flags the pre-October-2026 figures as outdated. |
+| `/page.md`, `/en/page.md` | `src/app/page.md/route.ts`, `src/app/(en)/en/page.md/route.ts` | Markdown mirror of each homepage ([`src/lib/ai/pageMd.ts`](src/lib/ai/pageMd.ts)), cross-linked, `X-Robots-Tag: noindex` |
 
-JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx) (typed components: `OrganizationLd`, `WebSiteLd`, `LocalBusinessLd`, `WebPageLd`, `FaqLd`, plus `ContactPageLd` and `ProjectPageLd` for the pages below) and is mounted in two places — sitewide schema in `layout.tsx`, page-level schema in each page. The components share `@id` references so Google can stitch the graph; preserve that pattern when adding new schema types. `sameAs` is read from `site.footer.social`. `FaqLd` stays on the homepage only, even though `/contact` also renders four of its questions.
+JSON-LD lives in [`src/components/seo/JsonLd.tsx`](src/components/seo/JsonLd.tsx) (typed components: `OrganizationLd`, `WebSiteLd`, `LocalBusinessLd`, `WebPageLd`, `FaqLd`, plus `ContactPageLd` and `ProjectPageLd` for the pages below) and is mounted in two places — sitewide schema in `RootShell`, page-level schema in each page. Every component takes a `locale`. The entities (`#organization`, `#business`, `#website`) keep one `@id` for both languages; pages get their own (`/en#webpage`, `/en#faq`) and English pages point at the French one with `translationOfWork`. Offers carry the plan name in the page's language and the CHF price from `facts.ts`. Preserve the shared `@id` pattern when adding new schema types. `sameAs` is read from `site.footer.social`. `FaqLd` stays on the homepage only, even though `/contact` also renders four of its questions.
 
 ### Pages beyond the homepage (November 2026)
 
-- **`/portfolio/[slug]`** — [`src/app/portfolio/[slug]/page.tsx`](src/app/portfolio/[slug]/page.tsx) renders [`ProjectPage`](src/components/project/ProjectPage.tsx) from `projects` in `cases.ts` (`dynamicParams = false`, so unknown slugs 404). Adding a project means adding an entry there plus its four shots under `public/images/projects/<slug>/`; sitemap, llms.txt and the "Projet suivant" chain pick it up. A project page that quotes a homepage review reads it by author from `site.whyUs.testimonials` (`review()` throws if it is missing); a review that isn't on the homepage is written on its project (Ô Paysage). **Which reviews the homepage shows is the owner's call** — it shows Jimi's only; never add a review there (or anywhere new) without explicit approval. No `Review` markup: these are reviews of the studio shown on the studio's own site. Every review, homepage and project pages alike, renders through [`ui/Testimonial`](src/components/ui/Testimonial.tsx) (the Figma "Testimonial" component): no guillemets, an outline mark hanging 24px into the gutter from 769px, no mark on phones.
+- **`/portfolio/[slug]`** (and `/en/portfolio/[slug]`) — `app/(fr)/portfolio/[slug]/page.tsx` and its English twin render [`ProjectPage`](src/components/project/ProjectPage.tsx) from `cases.projects` (`dynamicParams = false`, so unknown slugs 404; shared helpers in `project/projectRoute.ts`). Adding a project means adding an entry to **both** `fr/cases.ts` and `en/cases.ts` (same slug) plus its four shots under `public/images/projects/<slug>/`; sitemap, llms.txt and the "Projet suivant" chain pick it up. A project page that quotes a homepage review reads it by author from `site.whyUs.testimonials` (`review()` throws if it is missing); a review that isn't on the homepage is written on its project (Ô Paysage). **Which reviews the homepage shows is the owner's call** — it shows Jimi's only; never add a review there (or anywhere new) without explicit approval. No `Review` markup: these are reviews of the studio shown on the studio's own site. Every review, homepage and project pages alike, renders through [`ui/Testimonial`](src/components/ui/Testimonial.tsx) (the Figma "Testimonial" component): no guillemets, an outline mark hanging 24px into the gutter from 769px, no mark on phones.
 - **Project transition** — [`ProjectTransition`](src/components/project/ProjectTransition.tsx) draws the Figma "transition page" (ground panel, client name in ink) when a project page mounts **after a client-side navigation**, then lifts it off in CSS. On a fresh load it renders nothing, so search visitors never wait and LCP is untouched: [`lib/navigation.ts`](src/lib/navigation.ts) holds a `hydrated` flag that `HeaderBar` flips in a mount effect, and the transition reads it while rendering. Keep that split if you touch either file, and keep the panel hidden outside `prefers-reduced-motion: no-preference`.
 - **`/contact`** — the homepage `Contact` section rendered with `page` (its title becomes the `h1`, the intro isn't wrapped in a Reveal so the h1 never fades, and `site.contactPage.quote` appears under it), followed by a **short** `Faq`: the four questions named in `site.contactPage.faq.questions` (payment, timeline, hosting, languages; Faq throws if one is missing from `site.faq`) and a "Voir toutes les questions" link to `/#faq`, so the page doesn't repeat the homepage list. Copy and SEO strings (title and description name both the audit and the call) live in `site.contactPage`.
 - **Navigation**: `site.nav` is À propos · Services · Réalisations · Contact, in the bar and the phone drawer alike (Figma Header + Mobile Menu). The footer list is Accueil · À propos · Services · Notre démarche · Contact. "Réalisations" (`menu: "projects"`) opens a disclosure panel of the project pages on desktop and an indented group in the drawer; links to the current page carry `aria-current="page"`. [`Header.tsx`](src/components/layout/Header.tsx) is a server wrapper that maps `projects` to `{href, client, teaser}` and renders the client [`HeaderBar.tsx`](src/components/layout/HeaderBar.tsx) — keep it that way, or the whole of `cases.ts` ships to every page's bundle. The "Contact" nav and footer links go to `/contact` from every page. Section CTAs and the header "Audit gratuit" button still scroll to `#contact` on the homepage; off the homepage `HeaderBar` rewrites `#contact` to `/contact` and other `#section` links to `/#section`.
@@ -104,19 +114,27 @@ returns **502** when a send fails instead of the 200 it used to return while a
 database held a duplicate — and why the form's error state always offers the
 contact address as a fallback. Don't soften either back to a silent success.
 
-**Conversion tracking is the `/merci` page.** On a successful send the form
-`router.push`es to [`src/app/merci/page.tsx`](src/app/merci/page.tsx) instead
+**Conversion tracking is the `/merci` page** (and `/en/thank-you` for English
+leads). On a successful send the form `router.push`es to
+[`src/app/(fr)/merci/page.tsx`](src/app/(fr)/merci/page.tsx) instead
 of swapping in a panel, so every `/merci` page view in Vercel Analytics is one
 lead (custom events would need a paid Vercel plan; page views don't). Keep it
 `noindex`, out of the sitemap, and unlinked from anywhere else on the site — any
 other way in inflates the count. Its copy is `site.thanks`.
 
+**Both forms send `locale`** (`fr`/`en`). The API routes read it first
+(`requestLocale`), validate with that language's schema
+(`contactSchemaFor` / `auditSchemaFor`, so field errors come back in the
+visitor's language) and answer a failed send in that language. The emails stay
+in French for the owner, with a `Langue : EN` line and " (EN)" in the subject
+for English leads.
+
 **The free audit has its own pipe** (November 2026): [`ui/AuditForm`](src/components/ui/AuditForm.tsx)
 (nom, entreprise, site — free text — or a "Pas encore de site" checkbox that
 disables the field, then email)
-→ [`/api/audit`](src/app/api/audit/route.ts) (`auditSchema`, `sendAuditRequest`,
+→ [`/api/audit`](src/app/api/audit/route.ts) (`auditSchemaFor`, `sendAuditRequest`,
 subject "Demande d'audit — …", same 502-on-failure rule) →
-[`/merci-audit`](src/app/merci-audit/page.tsx), which counts audit requests apart
+[`/merci-audit`](src/app/(fr)/merci-audit/page.tsx) (English: `/en/thank-you-audit`), which counts audit requests apart
 from `/merci` under the same rules (noindex, no sitemap, linked from nowhere).
 Copy: `site.audit`, `site.auditThanks`.
 
