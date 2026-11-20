@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
-import { services, chf } from "@/content/services";
+import { chf, getDictionary } from "@/content";
+import type { Locale } from "@/i18n/locales";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./Services.module.css";
@@ -10,9 +11,10 @@ import styles from "./Services.module.css";
 // Each feature row carries its index as --i, which the stylesheet uses to
 // tick the checks in one after another once the card is in view.
 const indexed = (i: number) => ({ "--i": i }) as CSSProperties;
-export default function Services() {
+export default function Services({ locale }: { locale: Locale }) {
+  const { services, site, ui } = getDictionary(locale);
   return (
-    <section className={`section ${styles.section}`} id="services">
+    <section className={`section ${styles.section}`} id={site.ids.services}>
       <Reveal className={`grid ${styles.header}`}>
         <h2 className={styles.headline}>{services.headline}</h2>
         <p className={styles.intro}>{services.intro}</p>
@@ -32,7 +34,7 @@ export default function Services() {
 
             <h3 className={styles.title}>{tier.title}</h3>
             <p className={styles.duration}>{tier.duration}</p>
-            <p className={styles.price}>{chf(tier.price)}</p>
+            <p className={styles.price}>{chf(tier.price, locale)}</p>
             <p className={styles.payment}>{tier.payment}</p>
             <p className={styles.description}>{tier.description}</p>
 
@@ -87,8 +89,8 @@ export default function Services() {
             )}
             <h4 className={styles.careTitle}>{plan.title}</h4>
             <p className={styles.carePrice}>
-              {chf(plan.price)}
-              <span className={styles.carePeriod}> / mois</span>
+              {chf(plan.price, locale)}
+              <span className={styles.carePeriod}>{ui.perMonth}</span>
             </p>
             <ul className={styles.features}>
               {plan.features.map((feature, j) => (
