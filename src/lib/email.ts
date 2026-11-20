@@ -8,7 +8,8 @@ const resend = new Resend(env.RESEND_API_KEY);
 // "(EN)" at the end of the subject, so they stand out in the inbox without
 // breaking the subject prefixes the filters use.
 type Lang = "fr" | "de" | "en";
-const langLine = (locale: Lang) => `Langue    : ${locale.toUpperCase()}`;
+// Padded to line up with each email's other labels.
+const langLine = (locale: Lang, width: number) => `${"Langue".padEnd(width)}: ${locale.toUpperCase()}`;
 const langTag = (locale: Lang) => (locale === "fr" ? "" : ` (${locale.toUpperCase()})`);
 
 type LeadEmailInput = {
@@ -40,7 +41,7 @@ export async function sendLeadNotification(input: LeadEmailInput) {
       input.company ? `Société: ${input.company}` : null,
       input.tier ? `Tier   : ${input.tier}` : null,
       `Source : ${input.source}`,
-      langLine(input.locale),
+      langLine(input.locale, 7),
       "",
       "Message :",
       input.message,
@@ -73,7 +74,7 @@ export async function sendAuditRequest(input: AuditEmailInput) {
       `Entreprise: ${input.company}`,
       `Nom       : ${input.name}`,
       `Email     : ${input.email}`,
-      langLine(input.locale),
+      langLine(input.locale, 10),
       "",
       input.noSite
         ? "Pas de site : partir de la fiche Google de l'entreprise."
