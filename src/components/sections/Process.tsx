@@ -1,4 +1,5 @@
-import { site } from "@/content/site";
+import { getDictionary } from "@/content";
+import type { Locale } from "@/i18n/locales";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./Process.module.css";
@@ -9,11 +10,12 @@ import styles from "./Process.module.css";
 // Rendered as an ordered list: the steps are a sequence, and <ol> is what
 // communicates that to assistive tech. The numerals in the design are the list
 // positions, so they are decorative here rather than content.
-export default function Process() {
+export default function Process({ locale }: { locale: Locale }) {
+  const { site } = getDictionary(locale);
   const { title, intro, steps, cta } = site.process;
 
   return (
-    <section className={`section ${styles.section}`} id="demarche">
+    <section className={`section ${styles.section}`} id={site.ids.process}>
       <Reveal className={`grid ${styles.header}`}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.intro}>{intro}</p>
