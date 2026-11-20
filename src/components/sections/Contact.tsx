@@ -1,6 +1,8 @@
-import { site } from "@/content/site";
-import ContactForm from "@/components/ui/ContactForm";
-import AuditForm from "@/components/ui/AuditForm";
+import { getDictionary } from "@/content";
+import type { Locale } from "@/i18n/locales";
+import { routes } from "@/i18n/routes";
+import ContactForm, { type ContactFormCopy } from "@/components/ui/ContactForm";
+import AuditForm, { type AuditFormCopy } from "@/components/ui/AuditForm";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./Contact.module.css";
@@ -18,13 +20,36 @@ import styles from "./Contact.module.css";
 // `page` renders the same section as the /contact page: the title becomes the
 // page's h1, the intro shows on load instead of on scroll (it is above the
 // fold, and the h1 must never fade), and the contact page's review is added.
-export default function Contact({ page = false }: { page?: boolean }) {
+export default function Contact({ locale, page = false }: { locale: Locale; page?: boolean }) {
+  const { site, services, ui } = getDictionary(locale);
   const { title, lead, trustSignals, booking, phoneLabel, whatsappLead } = site.contact;
   const quote = page ? site.contactPage.quote : null;
   const Title = page ? "h1" : "h2";
   // One level under the section title, whichever that is.
   const Sub = page ? "h2" : "h3";
   const audit = site.audit.form;
+
+  // The client forms get only the strings they render.
+  const contactCopy: ContactFormCopy = {
+    ...site.contact.form,
+    error: ui.contactError,
+    sending: ui.sending,
+    contactEmail: site.email,
+    tiers: services.tiers.map(({ id, title }) => ({ id, title })),
+    thanksHref: routes.thanks[locale],
+  };
+  const auditCopy: AuditFormCopy = {
+    name: audit.name,
+    company: audit.company,
+    site: audit.site,
+    email: audit.email,
+    submit: audit.submit,
+    reassurance: audit.reassurance,
+    error: ui.auditError,
+    sending: ui.sending,
+    contactEmail: site.email,
+    thanksHref: routes.auditThanks[locale],
+  };
 
   const intro = (
     <>
@@ -45,7 +70,7 @@ export default function Contact({ page = false }: { page?: boolean }) {
   return (
     <section
       className={`section ${styles.section} ${page ? styles.page : ""}`}
-      id="contact"
+      id={site.ids.contact}
     >
       <div className={`grid ${styles.grid} ${quote ? styles.withQuote : ""}`}>
         {page ? (
@@ -60,17 +85,17 @@ export default function Contact({ page = false }: { page?: boolean }) {
               <Sub className={styles.formTitle}>{audit.title}</Sub>
               <p className={styles.formLead}>{audit.lead}</p>
             </div>
-            <AuditForm />
+            <AuditForm locale={locale} copy={auditCopy} />
           </div>
           <div className={styles.formBlock}>
             <Sub className={styles.formTitle}>{site.contact.generalTitle}</Sub>
-            <ContactForm source="contact" />
+            <ContactForm locale={locale} copy={contactCopy} source="contact" />
           </div>
         </Reveal>
 
         <Reveal className={styles.booking} order={2}>
           <p className={styles.bookingLead}>{booking.lead}</p>
-          <Button href={site.booking.url} variant="outline" external>
+          <Button href={site.booking.url} variant="outline" external newTabNote={ui.newTab}>
             {site.booking.label}
           </Button>
           {/* The small print under the button, held 8px apart: the
@@ -88,7 +113,7 @@ export default function Contact({ page = false }: { page?: boolean }) {
               <a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer">
                 <span className={styles.whatsappIcon} aria-hidden="true" />
                 {site.whatsapp.label}
-                <span className="sr-only"> (nouvel onglet)</span>
+                <span className="sr-only">{ui.newTab}</span>
               </a>
             </p>
           </div>
@@ -96,7 +121,11 @@ export default function Contact({ page = false }: { page?: boolean }) {
 
         {quote && (
           <Reveal as="figure" className={styles.quote} order={3}>
-            <blockquote className={styles.quoteText}>« {quote.text} »</blockquote>
+            <blockquote className={styles.quoteText}>
+              {ui.quoteOpen}
+              {quote.text}
+              {ui.quoteClose}
+            </blockquote>
             <figcaption className={styles.quoteAuthor}>{quote.author}</figcaption>
           </Reveal>
         )}
