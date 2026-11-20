@@ -3,6 +3,14 @@ import { env } from "./env";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
+// The emails stay in French — they are for the owner — with a "Langue" line
+// so a reply goes out in the visitor's language. English leads also carry
+// "(EN)" at the end of the subject, so they stand out in the inbox without
+// breaking the subject prefixes the filters use.
+type Lang = "fr" | "de" | "en";
+const langLine = (locale: Lang) => `Langue    : ${locale.toUpperCase()}`;
+const langTag = (locale: Lang) => (locale === "fr" ? "" : ` (${locale.toUpperCase()})`);
+
 type LeadEmailInput = {
   name: string;
   email: string;
@@ -11,12 +19,14 @@ type LeadEmailInput = {
   message: string;
   tier?: string;
   source: string;
+  locale: Lang;
 };
 
 export async function sendLeadNotification(input: LeadEmailInput) {
-  const subject = input.tier
-    ? `Nouveau lead [${input.tier.toUpperCase()}] — ${input.name}`
-    : `Nouveau lead — ${input.name}`;
+  const subject =
+    (input.tier
+      ? `Nouveau lead [${input.tier.toUpperCase()}] — ${input.name}`
+      : `Nouveau lead — ${input.name}`) + langTag(input.locale);
 
   return resend.emails.send({
     from: env.RESEND_FROM,
@@ -30,6 +40,7 @@ export async function sendLeadNotification(input: LeadEmailInput) {
       input.company ? `Société: ${input.company}` : null,
       input.tier ? `Tier   : ${input.tier}` : null,
       `Source : ${input.source}`,
+      langLine(input.locale),
       "",
       "Message :",
       input.message,
@@ -45,6 +56,7 @@ type AuditEmailInput = {
   email: string;
   site: string;
   noSite: boolean;
+  locale: Lang;
 };
 
 // An audit request: its own subject prefix so it can be filtered apart from
@@ -55,12 +67,13 @@ export async function sendAuditRequest(input: AuditEmailInput) {
     from: env.RESEND_FROM,
     to: env.LEADS_TO,
     replyTo: input.email,
-    subject: `Demande d'audit — ${input.company} (${site})`,
+    subject: `Demande d'audit — ${input.company} (${site})${langTag(input.locale)}`,
     text: [
       `Site      : ${site}`,
       `Entreprise: ${input.company}`,
       `Nom       : ${input.name}`,
       `Email     : ${input.email}`,
+      langLine(input.locale),
       "",
       input.noSite
         ? "Pas de site : partir de la fiche Google de l'entreprise."
