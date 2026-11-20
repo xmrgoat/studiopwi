@@ -1,12 +1,9 @@
 "use client";
 
-// Motion helpers. GSAP is no longer imported anywhere on the site — the
-// redesign has no pinning, scrubbing or parallax, section reveals run off a
+// Motion helpers. The site has no animation library (GSAP was uninstalled in
+// November 2026): no pinning, scrubbing or parallax, section reveals run off a
 // shared IntersectionObserver (components/motion/Reveal), and Lenis is driven
 // by a native rAF loop. What remains is the reduced-motion plumbing.
-//
-// The `gsap` package is still in package.json but is now unreferenced; it can
-// be uninstalled once you are sure no future section needs it.
 
 export function prefersReducedMotion(): boolean {
   if (typeof window === "undefined") return false;
