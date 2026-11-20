@@ -421,6 +421,43 @@
   text-underline-offset: 3px;
 }
 
+/* ── Language switch ─────────────────────────────────── */
+
+/* In the bar: a short "EN" / "FR" beside the CTA, desktop only (phones get
+   the drawer link below — the 360px bar has no room). A 44px target in
+   eyebrow type, underlined on hover like the nav links. */
+.lang {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--color-text);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+@media (hover: hover) {
+  .lang:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* In the drawer: the last row, under WhatsApp, in the same body type. */
+.drawerLang {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 44px;
+  color: var(--color-text);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  text-underline-offset: 3px;
+}
+
 .whatsappIcon {
   flex: none;
   width: 20px;
@@ -502,6 +539,12 @@
     min-height: 48px;
     padding-inline: var(--space-4);
     font-size: var(--fs-body);
+  }
+  /* Its 44px box already spaces it from the CTA, so it takes back most of
+     the actions gap. */
+  .lang {
+    display: inline-flex;
+    margin-right: calc(var(--space-3) - var(--space-5));
   }
   .burger,
   .drawer,
