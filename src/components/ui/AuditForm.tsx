@@ -2,24 +2,39 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { site } from "@/content/site";
+import type { Locale } from "@/i18n/locales";
 import Button from "./Button";
 // Same fields, skeleton and error treatment as the contact form.
 import styles from "./ContactForm.module.css";
 
 type Status = "idle" | "submitting" | "error";
 
-const FALLBACK = "Votre demande n'a pas pu être envoyée. Écrivez-nous directement à";
+type Field = { label: string; placeholder: string };
+
+// Only the strings this form renders, passed in by the Contact section.
+export type AuditFormCopy = {
+  name: Field;
+  company: Field;
+  site: Field & { noSite: string };
+  email: Field;
+  submit: string;
+  reassurance: string;
+  error: string;
+  sending: string;
+  contactEmail: string;
+  /** Where a successful send lands: /merci-audit or /en/thank-you-audit. */
+  thanksHref: string;
+};
 
 // The free audit + homepage draft request: nom, entreprise, site (or "pas
-// encore de site"), email. On success it lands on /merci-audit, whose page
-// views count audit requests in Vercel Analytics.
-export default function AuditForm() {
+// encore de site"), email. On success it lands on /merci-audit (English:
+// /en/thank-you-audit), whose page views count audit requests in Vercel
+// Analytics.
+export default function AuditForm({ locale, copy: f }: { locale: Locale; copy: AuditFormCopy }) {
   const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [noSite, setNoSite] = useState(false);
-  const f = site.audit.form;
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,7 +49,7 @@ export default function AuditForm() {
       site: String(data.get("site") ?? ""),
       noSite,
       email: String(data.get("email") ?? ""),
-      locale: "fr" as const,
+      locale,
       website: String(data.get("website") ?? ""),
     };
 
@@ -51,18 +66,18 @@ export default function AuditForm() {
         } | null;
         const fieldErrors = body?.issues?.fieldErrors;
         const first = fieldErrors ? Object.values(fieldErrors).flat()[0] : null;
-        throw new Error(first ?? body?.error ?? FALLBACK);
+        throw new Error(first ?? body?.error ?? f.error);
       }
-      router.push("/merci-audit");
+      router.push(f.thanksHref);
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error && err.message ? err.message : FALLBACK);
+      setError(err instanceof Error && err.message ? err.message : f.error);
     }
   }
 
   if (status === "submitting") {
     return (
-      <div className={styles.skeleton} aria-busy="true" aria-label="Envoi en cours…">
+      <div className={styles.skeleton} aria-busy="true" aria-label={f.sending}>
         <div className={styles.skeletonField} />
         <div className={styles.skeletonField} />
         <div className={styles.skeletonField} />
@@ -150,8 +165,8 @@ export default function AuditForm() {
       {error && (
         <p className={styles.error} role="alert">
           {error}{" "}
-          <a className={styles.errorLink} href={`mailto:${site.email}`}>
-            {site.email}
+          <a className={styles.errorLink} href={`mailto:${f.contactEmail}`}>
+            {f.contactEmail}
           </a>
         </p>
       )}
