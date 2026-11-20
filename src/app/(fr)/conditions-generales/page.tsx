@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/layout/LegalPage";
+import { pageMetadata } from "@/i18n/metadata";
+import { routes } from "@/i18n/routes";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "fr",
+  paths: routes.terms,
   title: "Conditions générales d'utilisation",
   description:
     "Conditions générales d'utilisation du site studiopwi.com et des services de Studio PWI, soumises au droit suisse.",
-  alternates: { canonical: "/conditions-generales" },
-};
+});
 
 export default function TermsPage() {
   return (
     <LegalPage
+      locale="fr"
       eyebrow="Légal — CGU"
       title="Conditions générales d'utilisation"
       updated="13 novembre 2026"
