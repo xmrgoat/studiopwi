@@ -131,7 +131,7 @@ const projects = [
     facts: [
       { id: "trade", label: "Trade", value: "Independent landscaper" },
       // "Saint-Aubin (FR)": FR is the canton of Fribourg, not France.
-      { id: "location", label: "Location", value: "Saint-Aubin, canton of Fribourg (Broye region)" },
+      { id: "location", label: "Location", value: "Saint-Aubin, Broye region, canton of Fribourg" },
       { id: "scope", label: "What we did", value: "A 3-page website" },
     ],
     site: { url: "https://o-paysage.ch", label: "o-paysage.ch" },
