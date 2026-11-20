@@ -8,8 +8,9 @@ import Testimonial from "@/components/ui/Testimonial";
 import Reveal from "@/components/motion/Reveal";
 import { ProjectPageLd } from "@/components/seo/JsonLd";
 import ProjectTransition from "./ProjectTransition";
-import { getProject, projectPage, type Project } from "@/content/cases";
-import { site } from "@/content/site";
+import { getDictionary, getProject, type Project } from "@/content";
+import type { Locale } from "@/i18n/locales";
+import { projectPath } from "@/i18n/routes";
 import styles from "./ProjectPage.module.css";
 
 // A headline breaks where the Figma frame breaks it ("\n" in the content).
@@ -39,16 +40,18 @@ function Lines({ text }: { text: string }) {
 // the transition panel (in-site clicks only), introduction and live site,
 // the problem, the solution with three screenshots, the client's own words,
 // the call to action, and the next project.
-export default function ProjectPage({ project }: { project: Project }) {
+export default function ProjectPage({ locale, project }: { locale: Locale; project: Project }) {
+  const { site, cases, ui } = getDictionary(locale);
+  const { projectPage } = cases;
   const { shots, captions } = project;
-  const next = getProject(project.next);
+  const next = getProject(locale, project.next);
 
   return (
     <>
-      <ProjectPageLd project={project} />
+      <ProjectPageLd locale={locale} project={project} />
       {/* Keyed by project so "Projet suivant" replays it for the next one. */}
       <ProjectTransition key={project.slug} name={project.client} />
-      <Header />
+      <Header locale={locale} />
       <main id="main">
         {/* ── Introduction ───────────────────────────────── */}
         <section className={styles.hero} aria-labelledby="project-title">
@@ -81,7 +84,7 @@ export default function ProjectPage({ project }: { project: Project }) {
                   rel="noopener noreferrer"
                 >
                   {project.site.label}
-                  <span className="sr-only"> (nouvel onglet)</span>
+                  <span className="sr-only">{ui.newTab}</span>
                 </a>
               </figcaption>
               {/* Above the fold at desktop, so it loads eagerly; it is never
@@ -212,7 +215,7 @@ export default function ProjectPage({ project }: { project: Project }) {
 
         {/* ── Next project ───────────────────────────────── */}
         {next && (
-          <Link href={`/portfolio/${next.slug}`} className={styles.next}>
+          <Link href={projectPath(locale, next.slug)} className={styles.next}>
             <span className={styles.label}>{projectPage.nextLabel}</span>
             <span className={styles.nextClient}>
               {next.client}{" "}
@@ -226,7 +229,7 @@ export default function ProjectPage({ project }: { project: Project }) {
           </Link>
         )}
       </main>
-      <Footer anchorBase="/" />
+      <Footer locale={locale} />
     </>
   );
 }
