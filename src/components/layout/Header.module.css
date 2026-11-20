@@ -435,7 +435,6 @@
   color: var(--color-text);
   font-size: var(--fs-eyebrow);
   font-weight: var(--fw-bold);
-  letter-spacing: 0.04em;
   text-decoration: none;
   text-underline-offset: 4px;
 }
