@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
-import { site } from "@/content/site";
+import { getDictionary } from "@/content";
+import type { Locale } from "@/i18n/locales";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./Faq.module.css";
 
@@ -15,11 +16,13 @@ import styles from "./Faq.module.css";
 // the full list. A listed question missing from site.faq fails the build
 // rather than silently dropping a row.
 type FaqProps = {
+  locale: Locale;
   questions?: readonly string[];
   more?: { label: string; href: string };
 };
 
-export default function Faq({ questions, more }: FaqProps = {}) {
+export default function Faq({ locale, questions, more }: FaqProps) {
+  const { site } = getDictionary(locale);
   const { title, intro } = site.faq;
   const items = questions
     ? questions.map((q) => {
@@ -30,7 +33,7 @@ export default function Faq({ questions, more }: FaqProps = {}) {
     : site.faq.items;
 
   return (
-    <section className={`section ${styles.section}`} id="faq">
+    <section className={`section ${styles.section}`} id={site.ids.faq}>
       <Reveal className={`grid ${styles.header}`}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.intro}>{intro}</p>
