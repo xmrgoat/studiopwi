@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { site } from "@/content/site";
-import { services } from "@/content/services";
+import type { Locale } from "@/i18n/locales";
 import Button from "./Button";
 import styles from "./ContactForm.module.css";
 
@@ -11,18 +10,40 @@ type Status = "idle" | "submitting" | "error";
 
 type Tier = "showcase" | "growth" | "partnership";
 
+type Field = { label: string; placeholder: string };
+
+// Only the strings this form renders, passed in by the server-side Contact
+// section, so neither language's whole dictionary ships in the bundle.
+export type ContactFormCopy = {
+  name: Field;
+  email: Field;
+  message: Field;
+  submit: string;
+  reassurance: string;
+  /** "{plan}" becomes the offer's name. */
+  offerPrefill: string;
+  error: string;
+  sending: string;
+  contactEmail: string;
+  /** The offers a service card can pass in (id → name in this language). */
+  tiers: readonly { id: Tier; title: string }[];
+  /** Where a successful send lands: /merci or /en/thank-you. */
+  thanksHref: string;
+};
+
 type Props = {
+  locale: Locale;
+  copy: ContactFormCopy;
   tier?: Tier;
   source?: "hero" | "services" | "final-cta" | "direct" | "contact";
 };
 
-export default function ContactForm({ tier: initialTier, source = "direct" }: Props) {
+export default function ContactForm({ locale, copy: f, tier: initialTier, source = "direct" }: Props) {
   const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [tier, setTier] = useState<Tier | undefined>(initialTier);
   const messageRef = useRef<HTMLTextAreaElement>(null);
-  const f = site.contact.form;
 
   // A service card's button carries its tier (data-offer, see Button). On
   // that click — before the page has scrolled to the form — note the tier for
@@ -33,7 +54,7 @@ export default function ContactForm({ tier: initialTier, source = "direct" }: Pr
     const onClick = (e: MouseEvent) => {
       const el = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-offer]");
       const id = el?.dataset.offer;
-      const offer = services.tiers.find((t) => t.id === id);
+      const offer = f.tiers.find((t) => t.id === id);
       if (!offer) return;
       setTier(offer.id);
       const box = messageRef.current;
@@ -44,7 +65,7 @@ export default function ContactForm({ tier: initialTier, source = "direct" }: Pr
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
-  }, [f.offerPrefill]);
+  }, [f.offerPrefill, f.tiers]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -58,7 +79,7 @@ export default function ContactForm({ tier: initialTier, source = "direct" }: Pr
       message: String(formData.get("message") ?? ""),
       tier,
       source,
-      locale: "fr" as const,
+      locale,
       website: String(formData.get("website") ?? ""),
     };
 
@@ -77,28 +98,21 @@ export default function ContactForm({ tier: initialTier, source = "direct" }: Pr
         const firstFieldError = fieldErrors
           ? Object.values(fieldErrors).flat()[0]
           : null;
-        throw new Error(
-          firstFieldError ??
-            body?.error ??
-            "Votre message n'a pas pu être envoyé. Écrivez-nous directement à",
-        );
+        throw new Error(firstFieldError ?? body?.error ?? f.error);
       }
-      // A page, not an in-place panel: each view of /merci is a lead in
-      // Vercel Analytics. The skeleton stays up until the route swaps in.
-      router.push("/merci");
+      // A page, not an in-place panel: each view of /merci (or, in English,
+      // /en/thank-you) is a lead in Vercel Analytics. The skeleton stays up
+      // until the route swaps in.
+      router.push(f.thanksHref);
     } catch (err) {
       setStatus("error");
-      setError(
-        err instanceof Error && err.message
-          ? err.message
-          : "Votre message n'a pas pu être envoyé. Écrivez-nous directement à",
-      );
+      setError(err instanceof Error && err.message ? err.message : f.error);
     }
   }
 
   if (status === "submitting") {
     return (
-      <div className={styles.skeleton} aria-busy="true" aria-label="Envoi en cours…">
+      <div className={styles.skeleton} aria-busy="true" aria-label={f.sending}>
         <div className={styles.skeletonField} />
         <div className={styles.skeletonField} />
         <div className={`${styles.skeletonField} ${styles.skeletonTextarea}`} />
@@ -163,8 +177,8 @@ export default function ContactForm({ tier: initialTier, source = "direct" }: Pr
       {error && (
         <p className={styles.error} role="alert">
           {error}{" "}
-          <a className={styles.errorLink} href={`mailto:${site.email}`}>
-            {site.email}
+          <a className={styles.errorLink} href={`mailto:${f.contactEmail}`}>
+            {f.contactEmail}
           </a>
         </p>
       )}
