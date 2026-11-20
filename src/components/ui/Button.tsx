@@ -25,6 +25,8 @@ type LinkProps = CommonProps & {
   href: string;
   /** Open off-site in a new tab (Calendly); the label gains a hidden note. */
   external?: boolean;
+  /** That hidden note, in the page's language (ui.newTab). */
+  newTabNote?: string;
   /** Service tier the button stands for — ContactForm reads it on click to
       prefill the enquiry with the chosen offer. */
   offer?: string;
@@ -65,7 +67,7 @@ export default function Button(props: Props) {
         >
           <span className={styles.inner}>
             {props.children}
-            <span className="sr-only"> (nouvel onglet)</span>
+            {props.newTabNote && <span className="sr-only">{props.newTabNote}</span>}
           </span>
         </a>
       );
