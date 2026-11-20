@@ -9,6 +9,9 @@ const config: NextConfig = {
   output: "standalone",
   experimental: {
     optimizePackageImports: ["gsap", "lenis"],
+    // Each language has its own root layout (app/(fr), app/(en)), so URLs
+    // that match no route render app/global-not-found.tsx.
+    globalNotFound: true,
   },
   images: {
     formats: ["image/avif", "image/webp"],
