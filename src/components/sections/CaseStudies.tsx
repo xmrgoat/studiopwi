@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cases } from "@/content/cases";
+import { getDictionary } from "@/content";
+import type { Locale } from "@/i18n/locales";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import styles from "./CaseStudies.module.css";
@@ -12,9 +13,10 @@ import styles from "./CaseStudies.module.css";
 // wrapping three of them: the mobile frame interleaves them (title, image,
 // body, CTA), which a wrapper could only reproduce via display:contents — and
 // that removes the box the reveal transition needs.
-export default function CaseStudies() {
+export default function CaseStudies({ locale }: { locale: Locale }) {
+  const { cases, site, ui } = getDictionary(locale);
   return (
-    <section className={`section ${styles.section}`} id="etude-de-cas">
+    <section className={`section ${styles.section}`} id={site.ids.caseStudy}>
       {cases.items.map((item) => (
         <Reveal as="article" key={item.slug} className={`grid ${styles.grid}`}>
           <h2 className={styles.headline}>
@@ -50,7 +52,7 @@ export default function CaseStudies() {
                 rel="noopener noreferrer"
               >
                 {item.siteLabel}
-                <span className={styles.srOnly}> (nouvel onglet)</span>
+                <span className={styles.srOnly}>{ui.newTab}</span>
               </a>
             )}
           </div>
