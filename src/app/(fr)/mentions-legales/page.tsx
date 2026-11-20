@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalPage from "@/components/layout/LegalPage";
 import { pageMetadata } from "@/i18n/metadata";
 import { routes } from "@/i18n/routes";
-import { site } from "@/content/site";
+import { getDictionary } from "@/content";
 
 export const metadata: Metadata = pageMetadata({
   locale: "fr",
@@ -11,6 +11,8 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Mentions légales du site studiopwi.com — identité de l'éditeur, hébergement, propriété intellectuelle et droit applicable.",
 });
+
+const { site } = getDictionary("fr");
 
 export default function ImprintPage() {
   return (
